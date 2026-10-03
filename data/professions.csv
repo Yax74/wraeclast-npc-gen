@@ -165,6 +165,54 @@ Tribal,Karui,Any,Spirit caller,1
 Tribal,Karui,Any,Tribal envoy,1
 Tribal,Karui,Any,Warband scout,1
 Tribal,Karui,Any,Weapon carver,1
+Military,Karui,Tukohama,War-host champion,1
+Military,Karui,Tukohama,Pā guardian,1
+Military,Karui,Tukohama,Weapon-drill leader,1
+Military,Karui,Tukohama,Conquest scout,1
+Craftsman,Karui,Ngamahu,Ngamahu forge-priest,1
+Craftsman,Karui,Ngamahu,Ancestral metalworker,1
+Craftsman,Karui,Ngamahu,Volcanic-glass carver,1
+Craftsman,Karui,Ngamahu,Ritual weapon smith,1
+Agriculture,Karui,Valako,Storm-season farmer,1
+Agriculture,Karui,Valako,Rain-field keeper,1
+Agriculture,Karui,Valako,Windbreak builder,1
+Agriculture,Karui,Valako,Weather crop reader,1
+Transport,Karui,Tasalio,Tidewalker pilot,1
+Transport,Karui,Tasalio,Reef navigator,1
+Transport,Karui,Tasalio,War-canoe steersman,1
+Transport,Karui,Tasalio,Wave Speaker's courier,1
+Scholarly,Karui,Ramako,Sun-school tutor,1
+Scholarly,Karui,Ramako,Diplomatic chronicler,1
+Scholarly,Karui,Ramako,Agricultural innovator,1
+Scholarly,Karui,Ramako,Ramako lorekeeper,1
+Military,Karui,Rongokurai,Night guardian,1
+Military,Karui,Rongokurai,Cave-refuge warder,1
+Military,Karui,Rongokurai,Moonless-path scout,1
+Military,Karui,Rongokurai,Rongokurai peacekeeper,1
+Transport,Karui,Arohongui,Star navigator,1
+Transport,Karui,Arohongui,Moon-tide reader,1
+Transport,Karui,Arohongui,Dream-route pilot,1
+Transport,Karui,Arohongui,Night canoe guide,1
+Tribal,Karui,Tawhoa,Dream-tender,1
+Tribal,Karui,Tawhoa,Forest guardian,1
+Tribal,Karui,Tawhoa,Sustainable hunter,1
+Tribal,Karui,Tawhoa,Sacred-grove keeper,1
+Outcast,Karui,Kitava,Hidden hunger-cultist,1
+Outcast,Karui,Kitava,Forbidden-feast keeper,1
+Outcast,Karui,Kitava,Secret chaos preacher,1
+Outcast,Karui,Kitava,Shunned Kitava devotee,1
+Tribal,Karui,Hinekora,Hatungo apprentice,1
+Tribal,Karui,Hinekora,Ancestor custodian,1
+Tribal,Karui,Hinekora,Funerary guide,1
+Tribal,Karui,Hinekora,Omen interpreter,1
+Religion,Karui,Sione,Dawn chanter,1
+Religion,Karui,Sione,Radiant shrine keeper,1
+Religion,Karui,Sione,Sunfire ritualist,1
+Religion,Karui,Sione,Sione celebrant,1
+Magic,Karui,Lani Lua,Moon seer,1
+Magic,Karui,Lani Lua,Dream interpreter,1
+Magic,Karui,Lani Lua,Serenity keeper,1
+Magic,Karui,Lani Lua,Lani Lua mystic,1
 Royal Court,Vaal,Any,Astronomer-priest,1
 Royal Court,Vaal,Any,Calendar keeper,1
 Royal Court,Vaal,Any,Court artificer,1
@@ -216,10 +264,39 @@ Craftsman,Stygian,Any,Azurite lens grinder,1
 Craftsman,Stygian,Any,Rune chisel maker,1
 Craftsman,Stygian,Any,Deep-lantern maker,1
 Craftsman,Stygian,Any,Basalt mason,1
+Construction,Stygian,Deepwardens,Tunnel-brace warden,1
+Construction,Stygian,Deepwardens,Cave-in assessor,1
+Construction,Stygian,Deepwardens,Load-rune cutter,1
+Construction,Stygian,Deepwardens,Deep-gate mason,1
+Black Powder,Stygian,Sulphite Syndicate,Sulphite refiner,1
+Black Powder,Stygian,Sulphite Syndicate,Volatility alchemist,1
+Black Powder,Stygian,Sulphite Syndicate,Demolition planner,1
+Black Powder,Stygian,Sulphite Syndicate,Blast-safety inspector,1
+Scholarly,Stygian,Shadowborn,Vaal-ruin decipherer,1
+Scholarly,Stygian,Shadowborn,Abyssal scholar,1
+Scholarly,Stygian,Shadowborn,Forgotten-archive keeper,1
+Scholarly,Stygian,Shadowborn,Void-sign researcher,1
+Exploration,Stygian,Shadowborn,Abyssal pathfinder,1
+Exploration,Stygian,Shadowborn,Vaal-gallery surveyor,1
+Exploration,Stygian,Shadowborn,Lightless-depth scout,1
+Exploration,Stygian,Shadowborn,Forbidden-ruin delver,1
+Trade,Stygian,Emberforged,Surface smuggler,1
+Trade,Stygian,Emberforged,Oriathan go-between,1
+Trade,Stygian,Emberforged,Hidden-route factor,1
+Trade,Stygian,Emberforged,Surface-goods broker,1
 Trade,Stygian,Emberforged,Kalguur powder factor,1
-Trade,Stygian,Emberforged,Azurite broker,1
-Trade,Stygian,Emberforged,Deep-market interpreter,1
-Trade,Stygian,Emberforged,Sulphite contract keeper,1
+Exploration,Stygian,Emberforged,Surface pathfinder,1
+Exploration,Stygian,Emberforged,Sun-route scout,1
+Exploration,Stygian,Emberforged,Vent climber,1
+Exploration,Stygian,Emberforged,Passage mapper,1
+Communications,Stygian,Emberforged,Surface diplomat,1
+Communications,Stygian,Emberforged,Code courier,1
+Communications,Stygian,Emberforged,Trade interpreter,1
+Communications,Stygian,Emberforged,Secret-contact keeper,1
+Black Powder,Stygian,Emberforged,Sulphite powderwright,1
+Black Powder,Stygian,Emberforged,Kalguur powder liaison,1
+Black Powder,Stygian,Emberforged,Trade-batch tester,1
+Black Powder,Stygian,Emberforged,Hidden-cask keeper,1
 Exploration,Stygian,Hollowed Vein,Lost-gallery mapper,1
 Exploration,Stygian,Hollowed Vein,Hollowed pathfinder,1
 Exploration,Stygian,Hollowed Vein,Collapsed-shaft delver,1

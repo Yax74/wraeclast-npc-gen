@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.1.0
+
+### Faction hierarchy and lore
+
+- Added a dedicated clan/subfaction level beneath culture and parent affiliation.
+- Reclassified Emberforged and Hollowed Vein as Stygian internal factions.
+- Added the Deepwardens, Sulphite Syndicate, and Shadowborn to complete the five Stygian factions recorded in the campaign database.
+- Reclassified Hinekora and Tawhoa as Karui god-clans.
+- Added clans for all twelve Karui gods: Tukohama, Ngamahu, Valako, Tasalio, Ramako, Rongokurai, Arohongui, Tawhoa, Kitava, Hinekora, Sione, and Lani Lua.
+- Added branch-weighted professions and campaign hooks for the new Stygian factions and Karui clans.
+
+### Quality of life
+
+- Added a dependent Clan/Internal faction filter with locking and section-reroll support.
+- Included the selected branch in previews, chat cards, Journals, Actors, clipboard output, and generated-NPC flags.
+- Kept legacy macros using the former flattened affiliation values working through automatic migration.
+- Added structural validation and regression tests for parent/branch relationships, all recorded factions, and legacy calls.
+
 ## 2.0.0
 
 ### Lore and data

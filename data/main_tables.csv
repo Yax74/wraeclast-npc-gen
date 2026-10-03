@@ -13,15 +13,30 @@ Affiliation,Oriathan,Any,The Ring,20
 Affiliation,Azmeri,Any,Unaffiliated,100
 Affiliation,Ezomyte,Any,Unaffiliated,100
 Affiliation,Maraketh,Any,Unaffiliated,100
-Affiliation,Karui,Any,Hinekora,40
-Affiliation,Karui,Any,Tawhoa,40
-Affiliation,Karui,Any,Unaffiliated,20
+Affiliation,Karui,Any,Karui,100
 Affiliation,Vaal,Any,Unaffiliated,100
 Affiliation,Kalguur,Any,Kalguur Expedition,70
 Affiliation,Kalguur,Any,Unaffiliated,30
-Affiliation,Stygian,Any,Emberforged,60
-Affiliation,Stygian,Any,Hollowed Vein,15
-Affiliation,Stygian,Any,Unaffiliated,25
+Affiliation,Stygian,Any,Stygian,100
+Branch,Karui,Karui,Tukohama,12
+Branch,Karui,Karui,Ngamahu,11
+Branch,Karui,Karui,Valako,9
+Branch,Karui,Karui,Tasalio,8
+Branch,Karui,Karui,Ramako,9
+Branch,Karui,Karui,Rongokurai,6
+Branch,Karui,Karui,Arohongui,4
+Branch,Karui,Karui,Tawhoa,10
+Branch,Karui,Karui,Kitava,2
+Branch,Karui,Karui,Hinekora,10
+Branch,Karui,Karui,Sione,4
+Branch,Karui,Karui,Lani Lua,5
+Branch,Karui,Karui,Unaffiliated,10
+Branch,Stygian,Stygian,Deepwardens,25
+Branch,Stygian,Stygian,Sulphite Syndicate,22
+Branch,Stygian,Stygian,Shadowborn,13
+Branch,Stygian,Stygian,Emberforged,18
+Branch,Stygian,Stygian,Hollowed Vein,10
+Branch,Stygian,Stygian,Unaffiliated,12
 Species,Oriathan,Any,Human,72
 Species,Oriathan,Any,Half-Elf,8
 Species,Oriathan,Any,Dwarf,5
@@ -143,6 +158,62 @@ ProfessionCategory,Karui,Any,Agriculture,7
 ProfessionCategory,Karui,Any,Medical,6
 ProfessionCategory,Karui,Any,Religion,6
 ProfessionCategory,Karui,Any,Trade,4
+ProfessionCategory,Karui,Tukohama,Military,30
+ProfessionCategory,Karui,Tukohama,Tribal,24
+ProfessionCategory,Karui,Tukohama,Survival,14
+ProfessionCategory,Karui,Tukohama,Craftsman,10
+ProfessionCategory,Karui,Tukohama,Religion,10
+ProfessionCategory,Karui,Tukohama,Medical,5
+ProfessionCategory,Karui,Tukohama,Agriculture,4
+ProfessionCategory,Karui,Tukohama,Trade,3
+ProfessionCategory,Karui,Ngamahu,Craftsman,30
+ProfessionCategory,Karui,Ngamahu,Tribal,20
+ProfessionCategory,Karui,Ngamahu,Mining,14
+ProfessionCategory,Karui,Ngamahu,Military,10
+ProfessionCategory,Karui,Ngamahu,Religion,10
+ProfessionCategory,Karui,Ngamahu,Engineering,6
+ProfessionCategory,Karui,Ngamahu,Trade,6
+ProfessionCategory,Karui,Ngamahu,Survival,4
+ProfessionCategory,Karui,Valako,Agriculture,22
+ProfessionCategory,Karui,Valako,Military,20
+ProfessionCategory,Karui,Valako,Transport,16
+ProfessionCategory,Karui,Valako,Tribal,14
+ProfessionCategory,Karui,Valako,Survival,10
+ProfessionCategory,Karui,Valako,Religion,8
+ProfessionCategory,Karui,Valako,Craftsman,6
+ProfessionCategory,Karui,Valako,Trade,4
+ProfessionCategory,Karui,Tasalio,Transport,24
+ProfessionCategory,Karui,Tasalio,Survival,18
+ProfessionCategory,Karui,Tasalio,Tribal,17
+ProfessionCategory,Karui,Tasalio,Military,14
+ProfessionCategory,Karui,Tasalio,Religion,10
+ProfessionCategory,Karui,Tasalio,Medical,7
+ProfessionCategory,Karui,Tasalio,Craftsman,6
+ProfessionCategory,Karui,Tasalio,Trade,4
+ProfessionCategory,Karui,Ramako,Scholarly,20
+ProfessionCategory,Karui,Ramako,Agriculture,18
+ProfessionCategory,Karui,Ramako,Military,16
+ProfessionCategory,Karui,Ramako,Communications,14
+ProfessionCategory,Karui,Ramako,Tribal,12
+ProfessionCategory,Karui,Ramako,Religion,8
+ProfessionCategory,Karui,Ramako,Craftsman,7
+ProfessionCategory,Karui,Ramako,Trade,5
+ProfessionCategory,Karui,Rongokurai,Military,24
+ProfessionCategory,Karui,Rongokurai,Communications,18
+ProfessionCategory,Karui,Rongokurai,Tribal,16
+ProfessionCategory,Karui,Rongokurai,Survival,14
+ProfessionCategory,Karui,Rongokurai,Religion,12
+ProfessionCategory,Karui,Rongokurai,Medical,8
+ProfessionCategory,Karui,Rongokurai,Scholarly,5
+ProfessionCategory,Karui,Rongokurai,Craftsman,3
+ProfessionCategory,Karui,Arohongui,Transport,24
+ProfessionCategory,Karui,Arohongui,Magic,19
+ProfessionCategory,Karui,Arohongui,Tribal,17
+ProfessionCategory,Karui,Arohongui,Religion,14
+ProfessionCategory,Karui,Arohongui,Survival,10
+ProfessionCategory,Karui,Arohongui,Scholarly,8
+ProfessionCategory,Karui,Arohongui,Craftsman,5
+ProfessionCategory,Karui,Arohongui,Medical,3
 ProfessionCategory,Karui,Hinekora,Tribal,32
 ProfessionCategory,Karui,Hinekora,Religion,18
 ProfessionCategory,Karui,Hinekora,Survival,17
@@ -158,6 +229,30 @@ ProfessionCategory,Karui,Tawhoa,Military,10
 ProfessionCategory,Karui,Tawhoa,Medical,7
 ProfessionCategory,Karui,Tawhoa,Religion,4
 ProfessionCategory,Karui,Tawhoa,Trade,2
+ProfessionCategory,Karui,Kitava,Outcast,26
+ProfessionCategory,Karui,Kitava,Criminal,18
+ProfessionCategory,Karui,Kitava,Survival,16
+ProfessionCategory,Karui,Kitava,Tribal,14
+ProfessionCategory,Karui,Kitava,Military,10
+ProfessionCategory,Karui,Kitava,Religion,8
+ProfessionCategory,Karui,Kitava,Trade,5
+ProfessionCategory,Karui,Kitava,Commoner,3
+ProfessionCategory,Karui,Sione,Religion,22
+ProfessionCategory,Karui,Sione,Magic,20
+ProfessionCategory,Karui,Sione,Tribal,18
+ProfessionCategory,Karui,Sione,Agriculture,12
+ProfessionCategory,Karui,Sione,Medical,10
+ProfessionCategory,Karui,Sione,Military,8
+ProfessionCategory,Karui,Sione,Craftsman,6
+ProfessionCategory,Karui,Sione,Scholarly,4
+ProfessionCategory,Karui,Lani Lua,Magic,24
+ProfessionCategory,Karui,Lani Lua,Religion,20
+ProfessionCategory,Karui,Lani Lua,Tribal,17
+ProfessionCategory,Karui,Lani Lua,Scholarly,13
+ProfessionCategory,Karui,Lani Lua,Medical,9
+ProfessionCategory,Karui,Lani Lua,Survival,8
+ProfessionCategory,Karui,Lani Lua,Craftsman,5
+ProfessionCategory,Karui,Lani Lua,Communications,4
 ProfessionCategory,Vaal,Any,Magic,24
 ProfessionCategory,Vaal,Any,Scholarly,20
 ProfessionCategory,Vaal,Any,Royal Court,17
@@ -193,14 +288,39 @@ ProfessionCategory,Stygian,Any,Military,8
 ProfessionCategory,Stygian,Any,Trade,6
 ProfessionCategory,Stygian,Any,Magic,4
 ProfessionCategory,Stygian,Any,Religion,3
-ProfessionCategory,Stygian,Emberforged,Mining,24
-ProfessionCategory,Stygian,Emberforged,Engineering,20
-ProfessionCategory,Stygian,Emberforged,Craftsman,18
-ProfessionCategory,Stygian,Emberforged,Black Powder,16
-ProfessionCategory,Stygian,Emberforged,Military,10
-ProfessionCategory,Stygian,Emberforged,Trade,7
-ProfessionCategory,Stygian,Emberforged,Medical,3
-ProfessionCategory,Stygian,Emberforged,Scholarly,2
+ProfessionCategory,Stygian,Deepwardens,Construction,25
+ProfessionCategory,Stygian,Deepwardens,Engineering,22
+ProfessionCategory,Stygian,Deepwardens,Military,17
+ProfessionCategory,Stygian,Deepwardens,Mining,14
+ProfessionCategory,Stygian,Deepwardens,Craftsman,9
+ProfessionCategory,Stygian,Deepwardens,Survival,7
+ProfessionCategory,Stygian,Deepwardens,Medical,4
+ProfessionCategory,Stygian,Deepwardens,Scholarly,2
+ProfessionCategory,Stygian,Sulphite Syndicate,Black Powder,26
+ProfessionCategory,Stygian,Sulphite Syndicate,Engineering,22
+ProfessionCategory,Stygian,Sulphite Syndicate,Mining,17
+ProfessionCategory,Stygian,Sulphite Syndicate,Craftsman,13
+ProfessionCategory,Stygian,Sulphite Syndicate,Scholarly,8
+ProfessionCategory,Stygian,Sulphite Syndicate,Trade,7
+ProfessionCategory,Stygian,Sulphite Syndicate,Medical,4
+ProfessionCategory,Stygian,Sulphite Syndicate,Military,3
+ProfessionCategory,Stygian,Shadowborn,Scholarly,24
+ProfessionCategory,Stygian,Shadowborn,Exploration,22
+ProfessionCategory,Stygian,Shadowborn,Magic,18
+ProfessionCategory,Stygian,Shadowborn,Military,12
+ProfessionCategory,Stygian,Shadowborn,Survival,9
+ProfessionCategory,Stygian,Shadowborn,Religion,7
+ProfessionCategory,Stygian,Shadowborn,Mining,5
+ProfessionCategory,Stygian,Shadowborn,Outcast,3
+ProfessionCategory,Stygian,Emberforged,Trade,18
+ProfessionCategory,Stygian,Emberforged,Exploration,17
+ProfessionCategory,Stygian,Emberforged,Black Powder,15
+ProfessionCategory,Stygian,Emberforged,Engineering,13
+ProfessionCategory,Stygian,Emberforged,Communications,12
+ProfessionCategory,Stygian,Emberforged,Craftsman,10
+ProfessionCategory,Stygian,Emberforged,Survival,8
+ProfessionCategory,Stygian,Emberforged,Transport,4
+ProfessionCategory,Stygian,Emberforged,Military,3
 ProfessionCategory,Stygian,Hollowed Vein,Survival,24
 ProfessionCategory,Stygian,Hollowed Vein,Mining,18
 ProfessionCategory,Stygian,Hollowed Vein,Exploration,16

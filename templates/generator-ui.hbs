@@ -46,7 +46,7 @@
       </label>
 
       <label>
-        <span>Affiliation</span>
+        <span>Faction / affiliation</span>
         <span class="filter-row">
           <select name="affiliation" data-filter="affiliation">
             {{#each affiliations}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
@@ -54,6 +54,18 @@
           <button type="button" class="lock-button {{#if locks.affiliation}}active{{/if}}" data-action="toggleLock" data-field="affiliation" title="Toggle affiliation lock" aria-label="Toggle affiliation lock"><i class="fa-solid {{#if locks.affiliation}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
         </span>
       </label>
+
+      {{#if hasBranches}}
+      <label>
+        <span>{{branchLabel}}</span>
+        <span class="filter-row">
+          <select name="branch" data-filter="branch">
+            {{#each branches}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.branch}}active{{/if}}" data-action="toggleLock" data-field="branch" title="Toggle clan or subfaction lock" aria-label="Toggle clan or subfaction lock"><i class="fa-solid {{#if locks.branch}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+      {{/if}}
 
       <label>
         <span>Species</span>
@@ -126,7 +138,7 @@
       <header>
         <div>
           <h2>{{fullName}}</h2>
-          <p class="identity-line"><strong>{{culture}}</strong>{{#if showAffiliation}} · {{affiliation}}{{/if}} · {{species}} · {{age}} · {{alignment}}</p>
+          <p class="identity-line"><strong>{{culture}}</strong>{{#if showAffiliation}} · {{affiliation}}{{/if}}{{#if showBranch}} · {{branchDisplay}}{{/if}} · {{species}} · {{age}} · {{alignment}}</p>
           <p class="origin-line">{{socialOrigin}}</p>
         </div>
         <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="name" title="Reroll name" aria-label="Reroll name"><i class="fa-solid fa-rotate"></i></button>

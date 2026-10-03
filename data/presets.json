@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "presets": [
     {
       "id": "general",
@@ -74,16 +74,31 @@
     },
     {
       "id": "karui_tribe",
-      "label": "Karui tribes",
-      "description": "Members of the Hinekora and Tawhoa tribes, plus unaffiliated Karui.",
+      "label": "Karui clans",
+      "description": "Karui drawn from every god-clan in the campaign pantheon.",
       "cultures": {
         "Karui": 100
       },
       "affiliations": {
         "Karui": {
-          "Hinekora": 44,
-          "Tawhoa": 44,
-          "Unaffiliated": 12
+          "Karui": 100
+        }
+      },
+      "branches": {
+        "Karui": {
+          "Tukohama": 12,
+          "Ngamahu": 11,
+          "Valako": 9,
+          "Tasalio": 8,
+          "Ramako": 9,
+          "Rongokurai": 6,
+          "Arohongui": 4,
+          "Tawhoa": 10,
+          "Kitava": 2,
+          "Hinekora": 10,
+          "Sione": 4,
+          "Lani Lua": 5,
+          "Unaffiliated": 10
         }
       }
     },
@@ -104,15 +119,23 @@
     {
       "id": "stygian_mines",
       "label": "Stygian mines",
-      "description": "Drow, duergar, and deep gnomes of the Azurite Mines.",
+      "description": "Drow, duergar, and deep gnomes across all five internal Stygian factions.",
       "cultures": {
         "Stygian": 100
       },
       "affiliations": {
         "Stygian": {
-          "Emberforged": 65,
-          "Hollowed Vein": 20,
-          "Unaffiliated": 15
+          "Stygian": 100
+        }
+      },
+      "branches": {
+        "Stygian": {
+          "Deepwardens": 25,
+          "Sulphite Syndicate": 22,
+          "Shadowborn": 13,
+          "Emberforged": 18,
+          "Hollowed Vein": 10,
+          "Unaffiliated": 12
         }
       },
       "socialOrigins": {

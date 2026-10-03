@@ -1,6 +1,6 @@
 # Wraeclast NPC Generator
 
-A Foundry VTT 13 module for generating lore-aware NPCs for a Wraeclast D&D campaign. Version 2.0 separates culture from affiliation, prevents incompatible selections, previews results before publishing them, and adds full Stygian support.
+A Foundry VTT 13 module for generating lore-aware NPCs for a Wraeclast D&D campaign. Version 2.1 models culture, parent faction, and clan/subfaction as separate levels, prevents incompatible selections, and previews results before publishing them.
 
 ## Install in Foundry
 
@@ -29,12 +29,13 @@ The module never posts or creates documents merely because **Generate preview** 
 - **Azmeri:** Human-majority survivors and forest communities.
 - **Ezomyte:** Dwarf-majority, with Scottish/Gaelic-inspired names.
 - **Maraketh:** Halfling-majority, with Arabic/Persian-inspired names.
-- **Karui:** Half-orc-majority, Māori-inspired culture, with Hinekora and Tawhoa tribal affiliations.
+- **Karui:** Half-orc-majority, Māori-inspired culture. The Karui parent faction branches into a clan for each campaign god: Tukohama, Ngamahu, Valako, Tasalio, Ramako, Rongokurai, Arohongui, Tawhoa, Kitava, Hinekora, Sione, and Lani Lua.
 - **Vaal:** Gnome-majority and available through the historical Ancient Vaal preset or a direct culture selection.
 - **Kalguur:** High-elf-majority explorers in angular, spiked equipment. Their black-powder specialists reflect guarded trade with the Stygians.
-- **Stygian:** Drow, duergar, and deep gnomes of the Azurite Mines. Includes the Emberforged and lost Hollowed Vein factions, sulphite black-powder trades, rune lore, Kalguur trade hooks, and accented-Azmeri voice descriptors.
+- **Stygian:** Drow, duergar, and deep gnomes of the Azurite Mines. The Stygian parent faction branches into the Deepwardens, Sulphite Syndicate, Shadowborn, Emberforged, and Hollowed Vein. Their content includes sulphite black-powder trades, rune lore, Kalguur links, surface ambitions, and accented-Azmeri voice descriptors.
 
 Named campaign figures and titles are excluded from random name pools.
+Branch weights are generation tuning informed by the campaign notes, not asserted population counts.
 
 ## Presets
 
@@ -42,7 +43,7 @@ Named campaign figures and titles are excluded from random name pools.
 - Sarn survivor
 - Oriathan occupier
 - Forest Encampment
-- Karui tribes
+- Karui clans
 - Kalguur expedition
 - Stygian mines
 - Ancient Vaal
@@ -64,7 +65,8 @@ game.wraeclastGen.open();
 // Generate without opening the UI
 const npc = await game.wraeclastGen.generateNPC({
   preset: "stygian_mines",
-  affiliation: "Emberforged"
+  affiliation: "Stygian",
+  branch: "Emberforged"
 });
 
 // Generate up to ten NPCs
@@ -76,7 +78,7 @@ const group = await game.wraeclastGen.generateBatch(5, {
 await game.wraeclastGen.validate();
 ```
 
-Supported constraint keys are `preset`, `culture`, `affiliation`, `species`, `socialOrigin`, `age`, `alignment`, and `professionCategory`.
+Supported constraint keys are `preset`, `culture`, `affiliation`, `branch`, `species`, `socialOrigin`, `age`, `alignment`, and `professionCategory`. For compatibility, the old flattened `affiliation` values `Hinekora`, `Tawhoa`, `Emberforged`, and `Hollowed Vein` are automatically migrated to their correct parent faction and branch.
 
 For compatibility with the original module, `game.wraeclastGen.generate()` with no argument also opens the generator. Passing a constraint object returns one generated NPC.
 

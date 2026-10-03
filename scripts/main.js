@@ -2,7 +2,7 @@ import { NPCEngine } from "./npc-engine.js";
 
 const MODULE_ID = "wraeclast-npc-gen";
 const DATA_PATH = `modules/${MODULE_ID}/data`;
-const FILTER_FIELDS = ["culture", "affiliation", "species", "socialOrigin", "age", "alignment", "professionCategory"];
+const FILTER_FIELDS = ["culture", "affiliation", "branch", "species", "socialOrigin", "age", "alignment", "professionCategory"];
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -11,7 +11,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     id: "wraeclast-npc-generator",
     classes: ["wraeclast-npc-generator"],
     tag: "form",
-    position: { width: 860, height: 780 },
+    position: { width: 860, height: 800 },
     window: {
       title: "Wraeclast NPC Generator",
       icon: "fa-solid fa-skull",
@@ -77,6 +77,11 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
         presets: this.#options(available.presets.map((preset) => ({ value: preset.id, label: preset.label, description: preset.description })), this.filters.preset, false),
         cultures: this.#options(available.cultures, this.filters.culture),
         affiliations: this.#options(available.affiliations, this.filters.affiliation),
+        branches: this.#options(available.branches, this.filters.branch),
+        hasBranches: available.branches.length > 0,
+        branchLabel: this.filters.culture === "Karui"
+          ? "Clan"
+          : this.filters.culture === "Stygian" ? "Internal faction" : "Clan / subfaction",
         species: this.#options(available.species, this.filters.species),
         socialOrigins: this.#options(available.socialOrigins, this.filters.socialOrigin),
         ages: this.#options(available.ages, this.filters.age),
@@ -85,7 +90,9 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
         results: this.results.map((npc, index) => ({
           ...npc,
           index,
-          showAffiliation: npc.affiliation && npc.affiliation !== "Unaffiliated"
+          showAffiliation: npc.affiliation && npc.affiliation !== "Unaffiliated" && npc.affiliation !== npc.culture,
+          showBranch: npc.branch && npc.branch !== "Unaffiliated",
+          branchDisplay: this.#branchDisplay(npc)
         }))
       }, { inplace: false });
     } catch (error) {
@@ -168,6 +175,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
         ...this.filters,
         culture: npc.culture,
         affiliation: npc.affiliation,
+        branch: npc.branch,
         species: npc.species,
         socialOrigin: npc.socialOrigin,
         age: npc.age,
@@ -248,7 +256,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
 
   #inferredValue(field) {
     const key = {
-      culture: "cultures", affiliation: "affiliations", species: "species",
+      culture: "cultures", affiliation: "affiliations", branch: "branches", species: "species",
       socialOrigin: "socialOrigins", age: "ages", alignment: "alignments",
       professionCategory: "professionCategories"
     }[field];
@@ -261,8 +269,9 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
       this.filters[key] = "";
       this.locks[key] = false;
     });
-    if (field === "culture") clear("affiliation", "species", "professionCategory");
-    else if (field === "affiliation") clear("professionCategory");
+    if (field === "culture") clear("affiliation", "branch", "species", "professionCategory");
+    else if (field === "affiliation") clear("branch", "professionCategory");
+    else if (field === "branch") clear("professionCategory");
     else if (field === "species" && this.filters.age === "Ancient") clear("age");
     else if (field === "age") clear("professionCategory");
   }
@@ -276,7 +285,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     }
     const refreshed = NPCEngine.getOptions(this.tables, this.filters);
     for (const [field, rows] of [
-      ["affiliation", refreshed.affiliations], ["species", refreshed.species],
+      ["affiliation", refreshed.affiliations], ["branch", refreshed.branches], ["species", refreshed.species],
       ["socialOrigin", refreshed.socialOrigins], ["age", refreshed.ages],
       ["alignment", refreshed.alignments], ["professionCategory", refreshed.professionCategories]
     ]) {
@@ -296,6 +305,11 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     }));
     if (includeRandom) options.unshift({ value: "", label: "Random (weighted)", selected: !selected });
     return options;
+  }
+
+  #branchDisplay(npc) {
+    if (!npc.branch || npc.branch === "Unaffiliated") return "";
+    return npc.culture === "Karui" ? `${npc.branch} Clan` : npc.branch;
   }
 
   async #sendToChat(npc) {
@@ -340,10 +354,12 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
   }
 
   #plainText(npc) {
-    const affiliation = npc.affiliation && npc.affiliation !== "Unaffiliated" ? ` — ${npc.affiliation}` : "";
+    const affiliation = npc.affiliation && npc.affiliation !== "Unaffiliated" && npc.affiliation !== npc.culture
+      ? ` — ${npc.affiliation}` : "";
+    const branch = this.#branchDisplay(npc);
     return [
       npc.fullName,
-      `${npc.culture}${affiliation} | ${npc.species} | ${npc.age} | ${npc.alignment}`,
+      `${npc.culture}${affiliation}${branch ? ` — ${branch}` : ""} | ${npc.species} | ${npc.age} | ${npc.alignment}`,
       `Origin: ${npc.socialOrigin}`,
       `Profession: ${npc.profession}${npc.organization ? ` (${npc.organization})` : ""}`,
       `Appearance: ${npc.appearance.join(", ")}`,
@@ -359,11 +375,14 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
 
   #html(npc, compact) {
     const e = (value) => foundry.utils.escapeHTML(String(value ?? ""));
-    const affiliation = npc.affiliation && npc.affiliation !== "Unaffiliated" ? ` · ${e(npc.affiliation)}` : "";
+    const affiliation = npc.affiliation && npc.affiliation !== "Unaffiliated" && npc.affiliation !== npc.culture
+      ? ` · ${e(npc.affiliation)}` : "";
+    const branchDisplay = this.#branchDisplay(npc);
+    const branch = branchDisplay ? ` · ${e(branchDisplay)}` : "";
     const organization = npc.organization ? `<p><strong>Organisation:</strong> ${e(npc.organization)}</p>` : "";
     return `<article class="wraeclast-dossier${compact ? " compact" : ""}">
       <h2>${e(npc.fullName)}</h2>
-      <p class="identity"><strong>${e(npc.culture)}</strong>${affiliation} · ${e(npc.species)} · ${e(npc.age)} · ${e(npc.alignment)}</p>
+      <p class="identity"><strong>${e(npc.culture)}</strong>${affiliation}${branch} · ${e(npc.species)} · ${e(npc.age)} · ${e(npc.alignment)}</p>
       <p><strong>Origin:</strong> ${e(npc.socialOrigin)}</p>
       <p><strong>Profession:</strong> ${e(npc.profession)} <em>(${e(npc.professionCategory)})</em></p>
       ${organization}
@@ -402,7 +421,7 @@ Hooks.once("init", () => {
     scope: "client", config: true, type: String, default: "general",
     choices: {
       general: "All Wraeclast", sarn_survivor: "Sarn survivor", oriathan_occupier: "Oriathan occupier",
-      forest_encampment: "Forest Encampment", karui_tribe: "Karui tribes",
+      forest_encampment: "Forest Encampment", karui_tribe: "Karui clans",
       kalguur_expedition: "Kalguur expedition", stygian_mines: "Stygian mines", vaal_historical: "Ancient Vaal"
     }
   });

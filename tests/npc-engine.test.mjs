@@ -40,6 +40,24 @@ test("CSV parser handles quoted commas and escaped quotes", () => {
 test("campaign data passes structural and lore validation", () => {
   const report = NPCEngine.validateTables(tables);
   assert.deepEqual(report.errors, []);
+  const branches = (culture) => new Set(tables.main
+    .filter((entry) => entry.category === "Branch" && entry.parent === culture && entry.value !== "Unaffiliated")
+    .map((entry) => entry.value));
+  assert.deepEqual(branches("Karui"), new Set([
+    "Tukohama", "Ngamahu", "Valako", "Tasalio", "Ramako", "Rongokurai",
+    "Arohongui", "Tawhoa", "Kitava", "Hinekora", "Sione", "Lani Lua"
+  ]));
+  assert.deepEqual(branches("Stygian"), new Set([
+    "Deepwardens", "Sulphite Syndicate", "Shadowborn", "Emberforged", "Hollowed Vein"
+  ]));
+  assert.deepEqual(
+    tables.main.filter((entry) => entry.category === "Affiliation" && entry.parent === "Karui").map((entry) => entry.value),
+    ["Karui"]
+  );
+  assert.deepEqual(
+    tables.main.filter((entry) => entry.category === "Affiliation" && entry.parent === "Stygian").map((entry) => entry.value),
+    ["Stygian"]
+  );
   assert.ok(tables.names.filter((entry) => entry.parent === "Stygian").length >= 80);
   assert.ok(tables.professions.filter((entry) => entry.parent === "Stygian").length >= 20);
   assert.ok(tables.hooks.filter((entry) => entry.parent === "Stygian").length >= 30);
@@ -55,6 +73,11 @@ test("every preset generates complete and internally consistent NPCs", () => {
         assert.ok(npc[field], `${preset.id} produced a blank ${field}`);
       }
       assert.ok(tables.main.some((entry) => entry.category === "Affiliation" && entry.parent === npc.culture && entry.value === npc.affiliation));
+      const branchPool = tables.main.filter((entry) =>
+        entry.category === "Branch" && entry.parent === npc.culture && entry.subParent === npc.affiliation
+      );
+      if (branchPool.length) assert.ok(branchPool.some((entry) => entry.value === npc.branch));
+      else assert.equal(npc.branch, "");
       assert.ok(tables.main.some((entry) => entry.category === "Species" && entry.parent === npc.culture && entry.value === npc.species));
       assert.equal(NPCEngine.RESERVED_NAMES.has(npc.fullName.toLocaleLowerCase()), false);
       if (npc.age === "Child") assert.equal(npc.professionCategory, "Youth");
@@ -104,11 +127,63 @@ test("factions generate their own jobs, branches, and hooks", () => {
     const ring = NPCEngine.generateNPC({ culture: "Oriathan", affiliation: "The Ring", professionCategory: "The Ring" }, tables, random);
     assert.ok(ringJobs.has(ring.profession));
     assert.equal(ring.organization, "The Ring");
-    const stygian = NPCEngine.generateNPC({ culture: "Stygian", affiliation: "Emberforged" }, tables, random);
-    assert.equal(stygian.organization, "Emberforged");
+    const stygian = NPCEngine.generateNPC({ culture: "Stygian", affiliation: "Stygian", branch: "Emberforged" }, tables, random);
+    assert.equal(stygian.affiliation, "Stygian");
+    assert.equal(stygian.branch, "Emberforged");
+    const karui = NPCEngine.generateNPC({ culture: "Karui", affiliation: "Karui", branch: "Hinekora" }, tables, random);
+    assert.equal(karui.affiliation, "Karui");
+    assert.equal(karui.branch, "Hinekora");
   }
   assert.ok([...templarBranches].some((branch) => branch.includes("first Sarn legion")));
   assert.ok([...templarBranches].some((branch) => branch.includes("second Sarn legion")));
+});
+
+test("branch options preserve the faction hierarchy", () => {
+  const karui = NPCEngine.getOptions(tables, { culture: "Karui" });
+  assert.deepEqual(karui.affiliations.map((entry) => entry.value), ["Karui"]);
+  assert.equal(karui.branches.length, 13);
+  assert.ok(karui.branches.some((entry) => entry.value === "Lani Lua"));
+
+  const shadowborn = NPCEngine.getOptions(tables, { branch: "Shadowborn" });
+  assert.deepEqual(shadowborn.cultures.map((entry) => entry.value), ["Stygian"]);
+  assert.deepEqual(shadowborn.affiliations.map((entry) => entry.value), ["Stygian"]);
+
+  const oriathan = NPCEngine.getOptions(tables, { culture: "Oriathan" });
+  assert.deepEqual(oriathan.branches, []);
+});
+
+test("legacy flattened affiliation constraints migrate to branches", () => {
+  const stygian = NPCEngine.generateNPC({ affiliation: "Emberforged" }, tables, rng(11));
+  assert.equal(stygian.culture, "Stygian");
+  assert.equal(stygian.affiliation, "Stygian");
+  assert.equal(stygian.branch, "Emberforged");
+
+  const karui = NPCEngine.generateNPC({ affiliation: "Tawhoa" }, tables, rng(12));
+  assert.equal(karui.culture, "Karui");
+  assert.equal(karui.affiliation, "Karui");
+  assert.equal(karui.branch, "Tawhoa");
+});
+
+test("every named branch generates branch-specific hooks", () => {
+  const random = rng(551);
+  const namedBranches = tables.main.filter((entry) => entry.category === "Branch" && entry.value !== "Unaffiliated");
+  for (const branch of namedBranches) {
+    const npc = NPCEngine.generateNPC({
+      culture: branch.parent,
+      affiliation: branch.subParent,
+      branch: branch.value,
+      age: "Adult"
+    }, tables, random);
+    assert.equal(npc.branch, branch.value);
+    for (const [field, category] of [["ideal", "Ideal"], ["bond", "Bond"], ["flaw", "Flaw"]]) {
+      assert.ok(tables.hooks.some((entry) =>
+        entry.category === category
+        && entry.parent === branch.parent
+        && entry.subParent === branch.value
+        && entry.value === npc[field]
+      ), `${branch.parent}/${branch.value} did not use a branch-specific ${field}`);
+    }
+  }
 });
 
 test("Emerald Legion recruitment is approximately half non-human", () => {
@@ -145,6 +220,10 @@ test("locks and API constraints reject impossible combinations", () => {
     () => NPCEngine.generateNPC({ culture: "Stygian", affiliation: "Templar" }, tables, rng(1)),
     /not a valid Stygian affiliation/
   );
+  assert.throws(
+    () => NPCEngine.generateNPC({ culture: "Stygian", affiliation: "Stygian", branch: "Hinekora" }, tables, rng(1)),
+    /not a branch of Stygian/
+  );
   const overridden = NPCEngine.generateNPC({ preset: "general", professionCategory: "Royal Court", age: "Adult" }, tables, rng(2));
   assert.equal(overridden.culture, "Vaal");
   const youth = NPCEngine.generateNPC({ professionCategory: "Youth" }, tables, rng(3));
@@ -156,7 +235,7 @@ test("locks and API constraints reject impossible combinations", () => {
 test("section rerolls preserve identity", () => {
   const random = rng(777);
   const npc = NPCEngine.generateNPC({ preset: "stygian_mines" }, tables, random);
-  const identity = Object.fromEntries(["culture", "affiliation", "species", "socialOrigin", "age", "alignment"].map((key) => [key, npc[key]]));
+  const identity = Object.fromEntries(["culture", "affiliation", "branch", "species", "socialOrigin", "age", "alignment"].map((key) => [key, npc[key]]));
   for (const section of ["name", "profession", "appearance", "personality", "hooks"]) {
     const rerolled = NPCEngine.rerollSection(npc, section, identity, tables, random);
     for (const [key, value] of Object.entries(identity)) assert.equal(rerolled[key], value);
