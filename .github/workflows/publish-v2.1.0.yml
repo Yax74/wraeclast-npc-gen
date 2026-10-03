@@ -1,4 +1,4 @@
-name: Publish v2.1.0 once
+name: Dispatch v2.1.0 assets once
 
 on:
   push:
@@ -7,28 +7,14 @@ on:
       - ".github/workflows/publish-v2.1.0.yml"
 
 permissions:
-  contents: write
+  actions: write
+  contents: read
 
 jobs:
-  publish:
+  dispatch:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the release source
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Validate the module
-        run: npm run check
-
-      - name: Publish v2.1.0
+      - name: Run the permanent release builder
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release view v2.1.0 >/dev/null 2>&1 || gh release create v2.1.0 \
-            --target "$GITHUB_SHA" \
-            --title "Wraeclast NPC Generator 2.1.0" \
-            --notes "Adds a proper parent-faction and clan/subfaction hierarchy, all twelve Karui god-clans, and all five Stygian internal factions. Includes branch-aware filters, locks, professions, hooks, outputs, validation, and legacy macro compatibility."
+        run: gh workflow run release.yml --field tag=v2.1.0 --repo "$GITHUB_REPOSITORY"
