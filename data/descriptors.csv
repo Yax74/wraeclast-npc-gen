@@ -1,0 +1,112 @@
+Category,Parent,SubParent,Value,Weight
+Appearance,Any,Any,Acne-scarred,1
+Appearance,Any,Any,Athletic,1
+Appearance,Any,Any,Battered travel cloak,1
+Appearance,Any,Any,Beautiful,1
+Appearance,Any,Any,Blind in one eye,1
+Appearance,Any,Any,Broad-shouldered,1
+Appearance,Any,Any,Broken nose,1
+Appearance,Any,Any,Burn-scarred,1
+Appearance,Any,Any,Calloused hands,1
+Appearance,Any,Any,Carefully braided hair,1
+Appearance,Any,Any,Ceremonial tattoos,1
+Appearance,Any,Any,Close-cropped hair,1
+Appearance,Any,Any,Crooked smile,1
+Appearance,Any,Any,Frail,1
+Appearance,Any,Any,Freckled,1
+Appearance,Any,Any,Grime-streaked,1
+Appearance,Any,Any,Heavy-set,1
+Appearance,Any,Any,Immaculately groomed,1
+Appearance,Any,Any,Ink-stained fingers,1
+Appearance,Any,Any,Lean and corded,1
+Appearance,Any,Any,Missing finger,1
+Appearance,Any,Any,Narrow-shouldered,1
+Appearance,Any,Any,Old blade scars,1
+Appearance,Any,Any,Patchwork armour,1
+Appearance,Any,Any,Pierced ears,1
+Appearance,Any,Any,Powerfully built,1
+Appearance,Any,Any,Ritual scarification,1
+Appearance,Any,Any,Shaven-headed,1
+Appearance,Any,Any,Soot-blackened,1
+Appearance,Any,Any,Stooped,1
+Appearance,Any,Any,Sun-darkened,1
+Appearance,Any,Any,Towering,1
+Appearance,Any,Any,Very short,1
+Appearance,Any,Any,Waist-length hair,1
+Appearance,Any,Any,Weathered by decades,1
+Appearance,Any,Any,Youthful face,1
+Demeanor,Any,Any,Alert,1
+Demeanor,Any,Any,Boisterous,1
+Demeanor,Any,Any,Careful,1
+Demeanor,Any,Any,Cheerful,1
+Demeanor,Any,Any,Cold and distant,1
+Demeanor,Any,Any,Disciplined,1
+Demeanor,Any,Any,Dryly humorous,1
+Demeanor,Any,Any,Earnest,1
+Demeanor,Any,Any,Guarded,1
+Demeanor,Any,Any,Impatient,1
+Demeanor,Any,Any,Melancholy,1
+Demeanor,Any,Any,Mercurial,1
+Demeanor,Any,Any,Openly trusting,1
+Demeanor,Any,Any,Patient,1
+Demeanor,Any,Any,Proud,1
+Demeanor,Any,Any,Restless,1
+Demeanor,Any,Any,Sardonic,1
+Demeanor,Any,Any,Solemn,1
+Demeanor,Any,Any,Suspicious,1
+Demeanor,Any,Any,Unhurried,1
+Demeanor,Any,Any,Warm and welcoming,1
+Demeanor,Any,Any,Weary but resolute,1
+Attitude,Any,Any,Always bargaining,1
+Attitude,Any,Any,Assumes authority,1
+Attitude,Any,Any,Avoids eye contact,1
+Attitude,Any,Any,Challenges every claim,1
+Attitude,Any,Any,Eager to help,1
+Attitude,Any,Any,Expects betrayal,1
+Attitude,Any,Any,Fascinated by outsiders,1
+Attitude,Any,Any,Fiercely hospitable,1
+Attitude,Any,Any,Keeps emotional distance,1
+Attitude,Any,Any,Looks for an escape,1
+Attitude,Any,Any,Protective of the vulnerable,1
+Attitude,Any,Any,Quick to forgive,1
+Attitude,Any,Any,Quick to take offence,1
+Attitude,Any,Any,Respectful of custom,1
+Attitude,Any,Any,Studies everyone carefully,1
+Attitude,Any,Any,Treats danger as routine,1
+Attitude,Any,Any,Trust must be earned,1
+Attitude,Any,Any,Values practical results,1
+Voice,Any,Any,Breathy voice,1
+Voice,Any,Any,Booming voice,1
+Voice,Any,Any,Careful formal diction,1
+Voice,Any,Any,Clipped cadence,1
+Voice,Any,Any,Gravelly voice,1
+Voice,Any,Any,High musical voice,1
+Voice,Any,Any,Low resonant voice,1
+Voice,Any,Any,Measured voice,1
+Voice,Any,Any,Rapid speech,1
+Voice,Any,Any,Rasping voice,1
+Voice,Any,Any,Rough provincial accent,1
+Voice,Any,Any,Soft-spoken,1
+Voice,Any,Any,Whisper-soft voice,1
+Mannerism,Any,Any,Counts exits on entering a room,1
+Mannerism,Any,Any,Drums fingers in coded rhythms,1
+Mannerism,Any,Any,Folds arms when challenged,1
+Mannerism,Any,Any,Keeps one hand near a weapon,1
+Mannerism,Any,Any,Laughs at the wrong moment,1
+Mannerism,Any,Any,Murmurs an old prayer,1
+Mannerism,Any,Any,Never sits with a door behind them,1
+Mannerism,Any,Any,Polishes a keepsake while thinking,1
+Mannerism,Any,Any,Repeats the last word of a question,1
+Mannerism,Any,Any,Rolls a coin across the knuckles,1
+Mannerism,Any,Any,Sketches symbols in dust,1
+Mannerism,Any,Any,Speaks in short decisive phrases,1
+Mannerism,Any,Any,Touches a scar before answering,1
+Mannerism,Any,Any,Watches hands instead of faces,1
+Voice,Stygian,Any,Clipped low Azmeri with hardened consonants,2
+Voice,Stygian,Any,Shortened vowels and a low pitch,2
+Voice,Stygian,Any,Rune-reader's measured underground cadence,2
+Voice,Stygian,Any,A gravelly accent that turns t to th,2
+Voice,Stygian,Any,A terse accent that turns k to kh,2
+Voice,Stygian,Any,A soft accent that turns p to ph,2
+Voice,Stygian,Any,Resonant speech shaped by stone chambers,2
+Voice,Stygian,Any,Whispered Azmeri with sharply stressed consonants,2

@@ -1,0 +1,211 @@
+Category,Parent,SubParent,Value,Weight
+Culture,Global,None,Oriathan,28
+Culture,Global,None,Azmeri,14
+Culture,Global,None,Ezomyte,12
+Culture,Global,None,Maraketh,11
+Culture,Global,None,Karui,12
+Culture,Global,None,Vaal,5
+Culture,Global,None,Kalguur,10
+Culture,Global,None,Stygian,8
+Affiliation,Oriathan,Any,Unaffiliated,50
+Affiliation,Oriathan,Any,Templar,30
+Affiliation,Oriathan,Any,The Ring,20
+Affiliation,Azmeri,Any,Unaffiliated,100
+Affiliation,Ezomyte,Any,Unaffiliated,100
+Affiliation,Maraketh,Any,Unaffiliated,100
+Affiliation,Karui,Any,Hinekora,40
+Affiliation,Karui,Any,Tawhoa,40
+Affiliation,Karui,Any,Unaffiliated,20
+Affiliation,Vaal,Any,Unaffiliated,100
+Affiliation,Kalguur,Any,Kalguur Expedition,70
+Affiliation,Kalguur,Any,Unaffiliated,30
+Affiliation,Stygian,Any,Emberforged,60
+Affiliation,Stygian,Any,Hollowed Vein,15
+Affiliation,Stygian,Any,Unaffiliated,25
+Species,Oriathan,Any,Human,72
+Species,Oriathan,Any,Half-Elf,8
+Species,Oriathan,Any,Dwarf,5
+Species,Oriathan,Any,Halfling,5
+Species,Oriathan,Any,Gnome,4
+Species,Oriathan,Any,Elf,3
+Species,Oriathan,Any,Tiefling,3
+Species,Azmeri,Any,Human,70
+Species,Azmeri,Any,Half-Elf,10
+Species,Azmeri,Any,Dwarf,7
+Species,Azmeri,Any,Halfling,5
+Species,Azmeri,Any,Gnome,5
+Species,Azmeri,Any,Elf,3
+Species,Ezomyte,Any,Dwarf,75
+Species,Ezomyte,Any,Human,12
+Species,Ezomyte,Any,Half-Orc,5
+Species,Ezomyte,Any,Gnome,4
+Species,Ezomyte,Any,Halfling,4
+Species,Maraketh,Any,Halfling,76
+Species,Maraketh,Any,Human,12
+Species,Maraketh,Any,Half-Elf,5
+Species,Maraketh,Any,Dwarf,3
+Species,Maraketh,Any,Gnome,2
+Species,Maraketh,Any,Tiefling,2
+Species,Karui,Any,Half-Orc,72
+Species,Karui,Any,Orc,18
+Species,Karui,Any,Human,8
+Species,Karui,Any,Goliath,2
+Species,Vaal,Any,Gnome,82
+Species,Vaal,Any,Human,6
+Species,Vaal,Any,Tiefling,6
+Species,Vaal,Any,Elf,6
+Species,Kalguur,Any,Elf,82
+Species,Kalguur,Any,Half-Elf,10
+Species,Kalguur,Any,Human,5
+Species,Kalguur,Any,Gnome,3
+Species,Stygian,Any,Drow,50
+Species,Stygian,Any,Duergar,30
+Species,Stygian,Any,Deep Gnome,20
+SocialOrigin,Global,Any,Native,50
+SocialOrigin,Global,Any,Diaspora,14
+SocialOrigin,Global,Any,Refugee,18
+SocialOrigin,Global,Any,Exile,10
+SocialOrigin,Global,Any,Mixed heritage,8
+Age,Global,Any,Child,7
+Age,Global,Any,Young Adult,20
+Age,Global,Any,Adult,49
+Age,Global,Any,Elder,20
+Age,Global,Any,Ancient,4
+Alignment,Global,Any,Lawful Good,8
+Alignment,Global,Any,Neutral Good,15
+Alignment,Global,Any,Chaotic Good,10
+Alignment,Global,Any,Lawful Neutral,12
+Alignment,Global,Any,True Neutral,22
+Alignment,Global,Any,Chaotic Neutral,15
+Alignment,Global,Any,Lawful Evil,6
+Alignment,Global,Any,Neutral Evil,7
+Alignment,Global,Any,Chaotic Evil,5
+ProfessionCategory,Oriathan,Any,Commoner,14
+ProfessionCategory,Oriathan,Any,Agriculture,8
+ProfessionCategory,Oriathan,Any,Artist,5
+ProfessionCategory,Oriathan,Any,Communications,5
+ProfessionCategory,Oriathan,Any,Construction,7
+ProfessionCategory,Oriathan,Any,Craftsman,12
+ProfessionCategory,Oriathan,Any,Magic,6
+ProfessionCategory,Oriathan,Any,Medical,6
+ProfessionCategory,Oriathan,Any,Military,8
+ProfessionCategory,Oriathan,Any,Outcast,5
+ProfessionCategory,Oriathan,Any,Religion,4
+ProfessionCategory,Oriathan,Any,Scholarly,6
+ProfessionCategory,Oriathan,Any,Trade,10
+ProfessionCategory,Oriathan,Any,Transport,4
+ProfessionCategory,Oriathan,Templar,Templar Service,45
+ProfessionCategory,Oriathan,Templar,Religion,18
+ProfessionCategory,Oriathan,Templar,Military,17
+ProfessionCategory,Oriathan,Templar,Scholarly,10
+ProfessionCategory,Oriathan,Templar,Medical,5
+ProfessionCategory,Oriathan,Templar,Magic,5
+ProfessionCategory,Oriathan,The Ring,The Ring,55
+ProfessionCategory,Oriathan,The Ring,Criminal,25
+ProfessionCategory,Oriathan,The Ring,Trade,10
+ProfessionCategory,Oriathan,The Ring,Communications,5
+ProfessionCategory,Oriathan,The Ring,Transport,5
+ProfessionCategory,Azmeri,Any,Agriculture,16
+ProfessionCategory,Azmeri,Any,Commoner,13
+ProfessionCategory,Azmeri,Any,Craftsman,12
+ProfessionCategory,Azmeri,Any,Construction,8
+ProfessionCategory,Azmeri,Any,Medical,8
+ProfessionCategory,Azmeri,Any,Military,8
+ProfessionCategory,Azmeri,Any,Outcast,7
+ProfessionCategory,Azmeri,Any,Scholarly,5
+ProfessionCategory,Azmeri,Any,Survival,15
+ProfessionCategory,Azmeri,Any,Trade,5
+ProfessionCategory,Azmeri,Any,Transport,3
+ProfessionCategory,Ezomyte,Any,Mining,22
+ProfessionCategory,Ezomyte,Any,Craftsman,20
+ProfessionCategory,Ezomyte,Any,Military,13
+ProfessionCategory,Ezomyte,Any,Construction,12
+ProfessionCategory,Ezomyte,Any,Commoner,10
+ProfessionCategory,Ezomyte,Any,Agriculture,6
+ProfessionCategory,Ezomyte,Any,Medical,5
+ProfessionCategory,Ezomyte,Any,Trade,7
+ProfessionCategory,Ezomyte,Any,Transport,5
+ProfessionCategory,Maraketh,Any,Trade,21
+ProfessionCategory,Maraketh,Any,Transport,16
+ProfessionCategory,Maraketh,Any,Survival,13
+ProfessionCategory,Maraketh,Any,Military,11
+ProfessionCategory,Maraketh,Any,Craftsman,12
+ProfessionCategory,Maraketh,Any,Agriculture,8
+ProfessionCategory,Maraketh,Any,Commoner,7
+ProfessionCategory,Maraketh,Any,Medical,5
+ProfessionCategory,Maraketh,Any,Magic,4
+ProfessionCategory,Maraketh,Any,Religion,3
+ProfessionCategory,Karui,Any,Tribal,26
+ProfessionCategory,Karui,Any,Survival,22
+ProfessionCategory,Karui,Any,Military,16
+ProfessionCategory,Karui,Any,Craftsman,13
+ProfessionCategory,Karui,Any,Agriculture,7
+ProfessionCategory,Karui,Any,Medical,6
+ProfessionCategory,Karui,Any,Religion,6
+ProfessionCategory,Karui,Any,Trade,4
+ProfessionCategory,Karui,Hinekora,Tribal,32
+ProfessionCategory,Karui,Hinekora,Religion,18
+ProfessionCategory,Karui,Hinekora,Survival,17
+ProfessionCategory,Karui,Hinekora,Military,14
+ProfessionCategory,Karui,Hinekora,Craftsman,9
+ProfessionCategory,Karui,Hinekora,Medical,6
+ProfessionCategory,Karui,Hinekora,Trade,4
+ProfessionCategory,Karui,Tawhoa,Tribal,29
+ProfessionCategory,Karui,Tawhoa,Survival,20
+ProfessionCategory,Karui,Tawhoa,Craftsman,16
+ProfessionCategory,Karui,Tawhoa,Agriculture,12
+ProfessionCategory,Karui,Tawhoa,Military,10
+ProfessionCategory,Karui,Tawhoa,Medical,7
+ProfessionCategory,Karui,Tawhoa,Religion,4
+ProfessionCategory,Karui,Tawhoa,Trade,2
+ProfessionCategory,Vaal,Any,Magic,24
+ProfessionCategory,Vaal,Any,Scholarly,20
+ProfessionCategory,Vaal,Any,Royal Court,17
+ProfessionCategory,Vaal,Any,Religion,14
+ProfessionCategory,Vaal,Any,Craftsman,10
+ProfessionCategory,Vaal,Any,Military,8
+ProfessionCategory,Vaal,Any,Medical,4
+ProfessionCategory,Vaal,Any,Commoner,3
+ProfessionCategory,Kalguur,Any,Exploration,18
+ProfessionCategory,Kalguur,Any,Engineering,18
+ProfessionCategory,Kalguur,Any,Military,15
+ProfessionCategory,Kalguur,Any,Craftsman,14
+ProfessionCategory,Kalguur,Any,Black Powder,10
+ProfessionCategory,Kalguur,Any,Trade,10
+ProfessionCategory,Kalguur,Any,Mining,7
+ProfessionCategory,Kalguur,Any,Medical,5
+ProfessionCategory,Kalguur,Any,Scholarly,3
+ProfessionCategory,Kalguur,Kalguur Expedition,Exploration,23
+ProfessionCategory,Kalguur,Kalguur Expedition,Engineering,20
+ProfessionCategory,Kalguur,Kalguur Expedition,Military,17
+ProfessionCategory,Kalguur,Kalguur Expedition,Black Powder,14
+ProfessionCategory,Kalguur,Kalguur Expedition,Craftsman,10
+ProfessionCategory,Kalguur,Kalguur Expedition,Trade,7
+ProfessionCategory,Kalguur,Kalguur Expedition,Mining,5
+ProfessionCategory,Kalguur,Kalguur Expedition,Medical,3
+ProfessionCategory,Kalguur,Kalguur Expedition,Scholarly,1
+ProfessionCategory,Stygian,Any,Mining,25
+ProfessionCategory,Stygian,Any,Engineering,17
+ProfessionCategory,Stygian,Any,Craftsman,15
+ProfessionCategory,Stygian,Any,Black Powder,12
+ProfessionCategory,Stygian,Any,Survival,10
+ProfessionCategory,Stygian,Any,Military,8
+ProfessionCategory,Stygian,Any,Trade,6
+ProfessionCategory,Stygian,Any,Magic,4
+ProfessionCategory,Stygian,Any,Religion,3
+ProfessionCategory,Stygian,Emberforged,Mining,24
+ProfessionCategory,Stygian,Emberforged,Engineering,20
+ProfessionCategory,Stygian,Emberforged,Craftsman,18
+ProfessionCategory,Stygian,Emberforged,Black Powder,16
+ProfessionCategory,Stygian,Emberforged,Military,10
+ProfessionCategory,Stygian,Emberforged,Trade,7
+ProfessionCategory,Stygian,Emberforged,Medical,3
+ProfessionCategory,Stygian,Emberforged,Scholarly,2
+ProfessionCategory,Stygian,Hollowed Vein,Survival,24
+ProfessionCategory,Stygian,Hollowed Vein,Mining,18
+ProfessionCategory,Stygian,Hollowed Vein,Exploration,16
+ProfessionCategory,Stygian,Hollowed Vein,Outcast,14
+ProfessionCategory,Stygian,Hollowed Vein,Magic,10
+ProfessionCategory,Stygian,Hollowed Vein,Religion,8
+ProfessionCategory,Stygian,Hollowed Vein,Craftsman,6
+ProfessionCategory,Stygian,Hollowed Vein,Medical,4

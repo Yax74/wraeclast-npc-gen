@@ -1,0 +1,139 @@
+Category,Parent,SubParent,Value,Weight
+Ideal,Any,Any,I will rebuild what the Cataclysm destroyed.,1
+Ideal,Any,Any,No one survives alone.,1
+Ideal,Any,Any,Knowledge is a weapon against the nightmare.,1
+Ideal,Any,Any,The vulnerable deserve protection.,1
+Ideal,Any,Any,A promise matters most when keeping it hurts.,1
+Ideal,Any,Any,Freedom is worth every hardship.,1
+Ideal,Any,Any,Practical mercy saves more lives than pride.,1
+Ideal,Any,Any,The dead deserve to be remembered.,1
+Bond,Any,Any,I carry the last token of my household.,1
+Bond,Any,Any,A travelling companion once saved my life.,1
+Bond,Any,Any,I owe a dangerous debt for safe passage.,1
+Bond,Any,Any,I guard a map to a refuge no one else knows.,1
+Bond,Any,Any,My missing sibling may still be alive.,1
+Bond,Any,Any,I will restore a ruined shrine or home.,1
+Bond,Any,Any,A community depends on the supplies I bring.,1
+Bond,Any,Any,I promised to return an heirloom to its owner.,1
+Flaw,Any,Any,I hoard supplies long after danger has passed.,1
+Flaw,Any,Any,I mistake suspicion for wisdom.,1
+Flaw,Any,Any,I cannot leave forbidden relics untouched.,1
+Flaw,Any,Any,I answer insults with reckless escalation.,1
+Flaw,Any,Any,I conceal an illness or wound.,1
+Flaw,Any,Any,I abandon plans when omens turn against me.,1
+Flaw,Any,Any,I trust status more than character.,1
+Flaw,Any,Any,I would betray a stranger to protect my own.,1
+Ideal,Oriathan,Templar,Order must outlive the empire.,1
+Ideal,Oriathan,Templar,The Virtues must be defended from corruption.,1
+Ideal,Oriathan,Templar,Discipline is the first defence against nightmare.,1
+Ideal,Oriathan,Templar,Service can redeem the sins of Oriath.,1
+Ideal,Oriathan,Templar,The law must bind commanders as well as recruits.,1
+Bond,Oriathan,Templar,My legion is the only family I have left.,1
+Bond,Oriathan,Templar,I protect an Archivist carrying dangerous records.,1
+Bond,Oriathan,Templar,A fallen superior entrusted me with a sealed order.,1
+Bond,Oriathan,Templar,I owe my life to an Emerald volunteer from the lower strata.,1
+Bond,Oriathan,Templar,I must discover who corrupted my command.,1
+Flaw,Oriathan,Templar,I obey rank even when conscience objects.,1
+Flaw,Oriathan,Templar,I see dissent as the first sign of heresy.,1
+Flaw,Oriathan,Templar,I hide how frightened I am of thaumaturgy.,1
+Flaw,Oriathan,Templar,I judge non-Oriathans by imperial custom.,1
+Flaw,Oriathan,Templar,I falsified a report to protect my unit.,1
+Ideal,Oriathan,The Ring,Every bargain has a price and I name it.,1
+Ideal,Oriathan,The Ring,The Ring protects those the empire discards.,1
+Ideal,Oriathan,The Ring,Information is safer than steel.,1
+Ideal,Oriathan,The Ring,I will never be owned by church or crown.,1
+Ideal,Oriathan,The Ring,Profit means nothing without loyalty.,1
+Bond,Oriathan,The Ring,My Arena crew expects my cut by dawn.,1
+Bond,Oriathan,The Ring,A broker in Sarn holds proof of my innocence.,1
+Bond,Oriathan,The Ring,I run messages for the handler who kept me alive.,1
+Bond,Oriathan,The Ring,The Ring shelters my family.,1
+Bond,Oriathan,The Ring,I know which official takes which bribe.,1
+Flaw,Oriathan,The Ring,I treat every kindness as leverage.,1
+Flaw,Oriathan,The Ring,I gamble with money that is not mine.,1
+Flaw,Oriathan,The Ring,I keep a second ledger for blackmail.,1
+Flaw,Oriathan,The Ring,I cannot resist humiliating a rival.,1
+Flaw,Oriathan,The Ring,I sell secrets before weighing the cost.,1
+Ideal,Karui,Hinekora,The past speaks through every choice we make.,1
+Ideal,Karui,Hinekora,A true warning must be heard even when unwelcome.,1
+Ideal,Karui,Hinekora,The tribe survives by respecting ancestors and consequence.,1
+Ideal,Karui,Hinekora,Courage means facing the future without denying it.,1
+Bond,Karui,Hinekora,I carry a warning meant for my chieftain.,1
+Bond,Karui,Hinekora,My tattoo records a debt to the Hinekora tribe.,1
+Bond,Karui,Hinekora,An ancestor's unfinished task has become mine.,1
+Bond,Karui,Hinekora,I protect the keeper of our tribe's remembered deaths.,1
+Flaw,Karui,Hinekora,I read fate into every accident.,1
+Flaw,Karui,Hinekora,I confuse ancestral custom with infallible law.,1
+Flaw,Karui,Hinekora,I withhold warnings until people prove worthy.,1
+Flaw,Karui,Hinekora,I would sacrifice the present to settle an old debt.,1
+Ideal,Karui,Tawhoa,Life flourishes when strength protects growth.,1
+Ideal,Karui,Tawhoa,Land and people must be tended together.,1
+Ideal,Karui,Tawhoa,Craft and patience are forms of courage.,1
+Ideal,Karui,Tawhoa,What we take from the world must be returned.,1
+Bond,Karui,Tawhoa,I guard seeds from a homeland grove.,1
+Bond,Karui,Tawhoa,My canoe crew is my chosen family.,1
+Bond,Karui,Tawhoa,I must restore a place poisoned by thaumaturgy.,1
+Bond,Karui,Tawhoa,A Tawhoa elder taught me the craft that feeds my tribe.,1
+Flaw,Karui,Tawhoa,I refuse to abandon anything I have nurtured.,1
+Flaw,Karui,Tawhoa,I distrust metalwork made outside the tribe.,1
+Flaw,Karui,Tawhoa,I mistake patience for permission to delay.,1
+Flaw,Karui,Tawhoa,I take every damaged living thing into my care.,1
+Ideal,Kalguur,Kalguur Expedition,Discovery justifies hardship but never waste.,1
+Ideal,Kalguur,Kalguur Expedition,A sound fortification saves more lives than heroics.,1
+Ideal,Kalguur,Kalguur Expedition,Trade is strongest when both sides keep their word.,1
+Ideal,Kalguur,Kalguur Expedition,Innovation must be proved before it is praised.,1
+Ideal,Kalguur,Kalguur Expedition,The expedition succeeds or all of us fail.,1
+Bond,Kalguur,Kalguur Expedition,My crew depends on the design in my fieldbook.,1
+Bond,Kalguur,Kalguur Expedition,A Stygian powderwright trusted me with a guarded technique.,1
+Bond,Kalguur,Kalguur Expedition,I must return a fallen explorer's blade to their kin.,1
+Bond,Kalguur,Kalguur Expedition,I guard the expedition's remaining sulphite powder.,1
+Bond,Kalguur,Kalguur Expedition,A rival expedition stole my survey marks.,1
+Flaw,Kalguur,Kalguur Expedition,I treat people like parts in a machine.,1
+Flaw,Kalguur,Kalguur Expedition,I test dangerous designs before they are ready.,1
+Flaw,Kalguur,Kalguur Expedition,I underestimate customs I cannot measure.,1
+Flaw,Kalguur,Kalguur Expedition,I would risk a crew to preserve my reputation.,1
+Flaw,Kalguur,Kalguur Expedition,I keep too much powder too close at hand.,1
+Ideal,Stygian,Any,A spoken promise should be cut as deeply as a rune.,1
+Ideal,Stygian,Any,The mines remember what surface folk forget.,1
+Ideal,Stygian,Any,Useful craft is the surest proof of worth.,1
+Ideal,Stygian,Any,Our people must choose how the surface learns of us.,1
+Ideal,Stygian,Any,No secret is worth another cave-in.,1
+Bond,Stygian,Any,I carry a rune tablet naming a sealed gallery.,1
+Bond,Stygian,Any,A Kalguur trader once honoured an impossible bargain.,1
+Bond,Stygian,Any,My family maintains a ventilation shaft that saves hundreds.,1
+Bond,Stygian,Any,I seek a missing translation of an Azmeri oath.,1
+Bond,Stygian,Any,My clan's forge mark was stolen by a surface merchant.,1
+Flaw,Stygian,Any,I assume surface speech always hides an insult.,1
+Flaw,Stygian,Any,I would rather lose a bargain than explain our customs.,1
+Flaw,Stygian,Any,I keep dangerous ore because its runes intrigue me.,1
+Flaw,Stygian,Any,I speak too softly to warn others in time.,1
+Flaw,Stygian,Any,I measure every relationship as a debt.,1
+Ideal,Stygian,Emberforged,The forge turns isolation into strength.,1
+Ideal,Stygian,Emberforged,Sulphite powder belongs only in disciplined hands.,1
+Ideal,Stygian,Emberforged,Trade with Kalguur proves trust can be engineered.,1
+Ideal,Stygian,Emberforged,Oris's compact must outlast any single leader.,1
+Ideal,Stygian,Emberforged,A craft shared carelessly is a weapon surrendered.,1
+Bond,Stygian,Emberforged,My forge crew bears one mark between us.,1
+Bond,Stygian,Emberforged,I must deliver a powder ledger to a Kalguur factor.,1
+Bond,Stygian,Emberforged,A Steelhand decree saved my clan's claim.,1
+Bond,Stygian,Emberforged,I guard the original rune for a sulphite mixture.,1
+Bond,Stygian,Emberforged,My apprentice vanished with a trade caravan.,1
+Flaw,Stygian,Emberforged,I test loyalty with needless secrecy.,1
+Flaw,Stygian,Emberforged,I value a perfect tool above the worker using it.,1
+Flaw,Stygian,Emberforged,I cannot forgive anyone who wastes sulphite.,1
+Flaw,Stygian,Emberforged,I conceal a flaw in an important powder batch.,1
+Flaw,Stygian,Emberforged,I treat the Hollowed Vein as a caution rather than people.,1
+Ideal,Stygian,Hollowed Vein,What was lost below must not be erased above.,1
+Ideal,Stygian,Hollowed Vein,Survival is proof enough when history calls you broken.,1
+Ideal,Stygian,Hollowed Vein,No faction owns the truth of our disappearance.,1
+Ideal,Stygian,Hollowed Vein,"The abandoned deserve guides, not judgement.",1
+Ideal,Stygian,Hollowed Vein,A hidden path is freedom.,1
+Bond,Stygian,Hollowed Vein,I have a map drawn by the last returning scout.,1
+Bond,Stygian,Hollowed Vein,A voice in a sealed gallery knows my childhood name.,1
+Bond,Stygian,Hollowed Vein,I search for the descendants of my lost delve-team.,1
+Bond,Stygian,Hollowed Vein,I carry the broken rune of our final assembly.,1
+Bond,Stygian,Hollowed Vein,An Emberforged miner secretly supplies my people.,1
+Flaw,Stygian,Hollowed Vein,I vanish rather than explain myself.,1
+Flaw,Stygian,Hollowed Vein,I hear instructions in ordinary cave sounds.,1
+Flaw,Stygian,Hollowed Vein,I sabotage marked routes to keep them secret.,1
+Flaw,Stygian,Hollowed Vein,I reject help that carries Emberforged authority.,1
+Flaw,Stygian,Hollowed Vein,I would reopen a cursed gallery for proof.,1

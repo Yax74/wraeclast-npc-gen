@@ -1,0 +1,178 @@
+<div class="wraeclast-generator-body">
+  {{#if error}}
+  <div class="wraeclast-error" role="alert">
+    <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> {{error}}
+  </div>
+  {{/if}}
+
+  {{#if ready}}
+  <section class="wraeclast-controls" aria-label="Generator controls">
+    <div class="wraeclast-toolbar">
+      <label class="wide-field">
+        <span>Campaign preset</span>
+        <select name="preset">
+          {{#each presets}}
+          <option value="{{value}}" {{#if selected}}selected{{/if}} title="{{description}}">{{label}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label class="small-field">
+        <span>NPCs</span>
+        <input name="batchCount" type="number" min="1" max="10" step="1" value="{{batchCount}}">
+      </label>
+      <label class="wide-field">
+        <span>Chat visibility</span>
+        <select name="chatMode">
+          {{#each chatModes}}
+          <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+          {{/each}}
+        </select>
+      </label>
+    </div>
+
+    {{#if presetDescription}}<p class="preset-description">{{presetDescription}}</p>{{/if}}
+
+    <p class="hint"><i class="fa-solid fa-lock" aria-hidden="true"></i> Choosing a value locks it. Locking a random field captures the first preview; unlocking returns it to weighted random.</p>
+
+    <div class="wraeclast-filter-grid">
+      <label>
+        <span>Culture</span>
+        <span class="filter-row">
+          <select name="culture" data-filter="culture">
+            {{#each cultures}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.culture}}active{{/if}}" data-action="toggleLock" data-field="culture" title="Toggle culture lock" aria-label="Toggle culture lock"><i class="fa-solid {{#if locks.culture}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+
+      <label>
+        <span>Affiliation</span>
+        <span class="filter-row">
+          <select name="affiliation" data-filter="affiliation">
+            {{#each affiliations}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.affiliation}}active{{/if}}" data-action="toggleLock" data-field="affiliation" title="Toggle affiliation lock" aria-label="Toggle affiliation lock"><i class="fa-solid {{#if locks.affiliation}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+
+      <label>
+        <span>Species</span>
+        <span class="filter-row">
+          <select name="species" data-filter="species">
+            {{#each species}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.species}}active{{/if}}" data-action="toggleLock" data-field="species" title="Toggle species lock" aria-label="Toggle species lock"><i class="fa-solid {{#if locks.species}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+
+      <label>
+        <span>Social origin</span>
+        <span class="filter-row">
+          <select name="socialOrigin" data-filter="socialOrigin">
+            {{#each socialOrigins}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.socialOrigin}}active{{/if}}" data-action="toggleLock" data-field="socialOrigin" title="Toggle origin lock" aria-label="Toggle origin lock"><i class="fa-solid {{#if locks.socialOrigin}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+
+      <label>
+        <span>Age</span>
+        <span class="filter-row">
+          <select name="age" data-filter="age">
+            {{#each ages}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.age}}active{{/if}}" data-action="toggleLock" data-field="age" title="Toggle age lock" aria-label="Toggle age lock"><i class="fa-solid {{#if locks.age}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+
+      <label>
+        <span>Alignment</span>
+        <span class="filter-row">
+          <select name="alignment" data-filter="alignment">
+            {{#each alignments}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.alignment}}active{{/if}}" data-action="toggleLock" data-field="alignment" title="Toggle alignment lock" aria-label="Toggle alignment lock"><i class="fa-solid {{#if locks.alignment}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+
+      <label class="span-two">
+        <span>Profession category</span>
+        <span class="filter-row">
+          <select name="professionCategory" data-filter="professionCategory">
+            {{#each professionCategories}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.professionCategory}}active{{/if}}" data-action="toggleLock" data-field="professionCategory" title="Toggle profession lock" aria-label="Toggle profession lock"><i class="fa-solid {{#if locks.professionCategory}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+    </div>
+
+    <button type="button" class="generate-button" data-action="generate">
+      <i class="fa-solid fa-dice" aria-hidden="true"></i> Generate preview
+    </button>
+  </section>
+
+  {{#if results.length}}
+  <div class="wraeclast-batch-actions" aria-label="Batch output actions">
+    <span>All previews:</span>
+    <button type="button" data-action="outputAll" data-output="chat"><i class="fa-solid fa-comments"></i> Chat</button>
+    <button type="button" data-action="outputAll" data-output="journal"><i class="fa-solid fa-book-open"></i> Journals</button>
+    <button type="button" data-action="outputAll" data-output="copy"><i class="fa-solid fa-copy"></i> Copy</button>
+  </div>
+  {{/if}}
+
+  <section class="wraeclast-results" aria-live="polite">
+    {{#each results}}
+    <article class="npc-preview">
+      <header>
+        <div>
+          <h2>{{fullName}}</h2>
+          <p class="identity-line"><strong>{{culture}}</strong>{{#if showAffiliation}} · {{affiliation}}{{/if}} · {{species}} · {{age}} · {{alignment}}</p>
+          <p class="origin-line">{{socialOrigin}}</p>
+        </div>
+        <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="name" title="Reroll name" aria-label="Reroll name"><i class="fa-solid fa-rotate"></i></button>
+      </header>
+
+      <div class="preview-grid">
+        <section>
+          <h3>Profession <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="profession" title="Reroll profession" aria-label="Reroll profession"><i class="fa-solid fa-rotate"></i></button></h3>
+          <p>{{profession}} <em>({{professionCategory}})</em></p>
+          {{#if organization}}<p class="detail-line">{{organization}}</p>{{/if}}
+        </section>
+
+        <section>
+          <h3>Appearance <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="appearance" title="Reroll appearance" aria-label="Reroll appearance"><i class="fa-solid fa-rotate"></i></button></h3>
+          <p>{{#each appearance}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p>
+          <p class="detail-line">{{voice}}</p>
+        </section>
+
+        <section>
+          <h3>Personality <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="personality" title="Reroll personality" aria-label="Reroll personality"><i class="fa-solid fa-rotate"></i></button></h3>
+          <p><strong>Demeanor:</strong> {{#each demeanor}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p>
+          <p><strong>Attitude:</strong> {{#each attitude}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p>
+          <p class="detail-line">{{mannerism}}</p>
+        </section>
+
+        <section>
+          <h3>Hooks <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="hooks" title="Reroll hooks" aria-label="Reroll hooks"><i class="fa-solid fa-rotate"></i></button></h3>
+          <p><strong>Ideal:</strong> {{ideal}}</p>
+          <p><strong>Bond:</strong> {{bond}}</p>
+          <p><strong>Flaw:</strong> {{flaw}}</p>
+        </section>
+      </div>
+
+      <footer class="npc-actions">
+        <button type="button" data-action="sendChat" data-index="{{index}}"><i class="fa-solid fa-comment"></i> Chat</button>
+        <button type="button" data-action="saveJournal" data-index="{{index}}"><i class="fa-solid fa-book-open"></i> Journal</button>
+        {{#if ../canCreateActor}}<button type="button" data-action="createActor" data-index="{{index}}"><i class="fa-solid fa-user-plus"></i> Actor</button>{{/if}}
+        <button type="button" data-action="copyNpc" data-index="{{index}}"><i class="fa-solid fa-copy"></i> Copy</button>
+      </footer>
+    </article>
+    {{else}}
+    <div class="empty-preview">
+      <i class="fa-solid fa-skull" aria-hidden="true"></i>
+      <p>Choose a preset or any locks, then generate a preview. Nothing is posted or saved until you choose an output action.</p>
+    </div>
+    {{/each}}
+  </section>
+  {{/if}}
+</div>

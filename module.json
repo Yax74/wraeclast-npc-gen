@@ -1,0 +1,24 @@
+{
+  "id": "wraeclast-npc-gen",
+  "title": "Wraeclast NPC Generator",
+  "description": "A lore-aware, weighted NPC generator for a Wraeclast D&D campaign, with dependent filters, presets, preview rerolls, and Foundry outputs.",
+  "version": "2.0.0",
+  "url": "https://github.com/Yax74/wraeclast-npc-gen",
+  "manifest": "https://github.com/Yax74/wraeclast-npc-gen/releases/latest/download/module.json",
+  "download": "https://github.com/Yax74/wraeclast-npc-gen/releases/download/v2.0.0/wraeclast-npc-gen.zip",
+  "authors": [
+    {
+      "name": "Yax74",
+      "url": "https://github.com/Yax74"
+    }
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "esmodules": ["./scripts/main.js"],
+  "styles": ["./styles/module.css"],
+  "flags": {
+    "allowPopout": true
+  }
+}

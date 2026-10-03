@@ -1,0 +1,234 @@
+Category,Parent,SubParent,Value,Weight
+Agriculture,Any,Any,Apiarist,1
+Agriculture,Any,Any,Goatherd,1
+Agriculture,Any,Any,Grain farmer,1
+Agriculture,Any,Any,Herbal grower,1
+Agriculture,Any,Any,Orchard keeper,1
+Agriculture,Any,Any,Reed cutter,1
+Agriculture,Any,Any,Vintner,1
+Agriculture,Any,Any,Water tender,1
+Artist,Any,Any,Bone carver,1
+Artist,Any,Any,Chronicler,1
+Artist,Any,Any,Dyer,1
+Artist,Any,Any,Mosaic maker,1
+Artist,Any,Any,Muralist,1
+Artist,Any,Any,Poet,1
+Artist,Any,Any,Street musician,1
+Artist,Any,Any,Woodblock printer,1
+Communications,Any,Any,Bell keeper,1
+Communications,Any,Any,Cipher clerk,1
+Communications,Any,Any,Courier,1
+Communications,Any,Any,Herald,1
+Communications,Any,Any,Interpreter,1
+Communications,Any,Any,Message runner,1
+Communications,Any,Any,Scribe,1
+Communications,Any,Any,Signal-tower watcher,1
+Construction,Any,Any,Bricklayer,1
+Construction,Any,Any,Carpenter,1
+Construction,Any,Any,Fortification mason,1
+Construction,Any,Any,Roofer,1
+Construction,Any,Any,Scaffolder,1
+Construction,Any,Any,Stonecutter,1
+Construction,Any,Any,Surveyor,1
+Construction,Any,Any,Well digger,1
+Craftsman,Any,Any,Armourer,1
+Craftsman,Any,Any,Bowyer,1
+Craftsman,Any,Any,Brewer,1
+Craftsman,Any,Any,Cooper,1
+Craftsman,Any,Any,Glassworker,1
+Craftsman,Any,Any,Jeweller,1
+Craftsman,Any,Any,Leatherworker,1
+Craftsman,Any,Any,Potter,1
+Craftsman,Any,Any,Tailor,1
+Craftsman,Any,Any,Weaponsmith,1
+Criminal,Any,Any,Burglar,1
+Criminal,Any,Any,Counterfeiter,1
+Criminal,Any,Any,Fence,1
+Criminal,Any,Any,Grave robber,1
+Criminal,Any,Any,Highway raider,1
+Criminal,Any,Any,Pickpocket,1
+Criminal,Any,Any,Smuggler,1
+Criminal,Any,Any,Thief-taker gone rogue,1
+Commoner,Any,Any,Bath attendant,1
+Commoner,Any,Any,Cook,1
+Commoner,Any,Any,Dock labourer,1
+Commoner,Any,Any,House servant,1
+Commoner,Any,Any,Lamplighter,1
+Commoner,Any,Any,Laundry worker,1
+Commoner,Any,Any,Market porter,1
+Commoner,Any,Any,Rat catcher,1
+Commoner,Any,Any,Street vendor,1
+Commoner,Any,Any,Tavern keeper,1
+Magic,Any,Any,Apothecary thaumaturge,1
+Magic,Any,Any,Gem appraiser,1
+Magic,Any,Any,Hedge mage,1
+Magic,Any,Any,Relic examiner,1
+Magic,Any,Any,Ritual assistant,1
+Magic,Any,Any,Warding specialist,1
+Medical,Any,Any,Apothecary,1
+Medical,Any,Any,Battlefield chirurgeon,1
+Medical,Any,Any,Bone setter,1
+Medical,Any,Any,Herbalist,1
+Medical,Any,Any,Midwife,1
+Medical,Any,Any,Plague tender,1
+Medical,Any,Any,Surgeon's assistant,1
+Military,Any,Any,Armoury keeper,1
+Military,Any,Any,Camp quartermaster,1
+Military,Any,Any,City watch officer,1
+Military,Any,Any,Field scout,1
+Military,Any,Any,Fortress guard,1
+Military,Any,Any,Legion veteran,1
+Military,Any,Any,Militia captain,1
+Military,Any,Any,Sapper,1
+Outcast,Any,Any,Beachcomber,1
+Outcast,Any,Any,Beggar,1
+Outcast,Any,Any,Hermit,1
+Outcast,Any,Any,Prison escapee,1
+Outcast,Any,Any,Relic scavenger,1
+Outcast,Any,Any,Ruined noble,1
+Outcast,Any,Any,Wandering exile,1
+Outcast,Any,Any,Wasteland guide,1
+Religion,Any,Any,Bell priest,1
+Religion,Any,Any,Confessor,1
+Religion,Any,Any,Grave tender,1
+Religion,Any,Any,Lay preacher,1
+Religion,Any,Any,Relic custodian,1
+Religion,Any,Any,Shrine keeper,1
+Religion,Any,Any,Temple cantor,1
+Scholarly,Any,Any,Archivist,1
+Scholarly,Any,Any,Cartographer,1
+Scholarly,Any,Any,Historian,1
+Scholarly,Any,Any,Language scholar,1
+Scholarly,Any,Any,Legal clerk,1
+Scholarly,Any,Any,Natural philosopher,1
+Scholarly,Any,Any,Tutor,1
+Trade,Any,Any,Auction broker,1
+Trade,Any,Any,Cloth merchant,1
+Trade,Any,Any,Gem dealer,1
+Trade,Any,Any,Market factor,1
+Trade,Any,Any,Provisioner,1
+Trade,Any,Any,Salt trader,1
+Trade,Any,Any,Scrap dealer,1
+Trade,Any,Any,Wine merchant,1
+Transport,Any,Any,Barge pilot,1
+Transport,Any,Any,Caravan drover,1
+Transport,Any,Any,Cartwright,1
+Transport,Any,Any,Dockmaster,1
+Transport,Any,Any,Ferry keeper,1
+Transport,Any,Any,Pack-animal handler,1
+Transport,Any,Any,Sailor,1
+Survival,Any,Any,Forager,1
+Survival,Any,Any,Game hunter,1
+Survival,Any,Any,Monster tracker,1
+Survival,Any,Any,Pathfinder,1
+Survival,Any,Any,Ruin scout,1
+Survival,Any,Any,Trapper,1
+Survival,Any,Any,Wilderness cook,1
+Exploration,Any,Any,Cave mapper,1
+Exploration,Any,Any,Expedition outrider,1
+Exploration,Any,Any,Relic surveyor,1
+Exploration,Any,Any,Ruin delver,1
+Exploration,Any,Any,Trail finder,1
+Exploration,Any,Any,Vanguard scout,1
+Engineering,Any,Any,Bridgewright,1
+Engineering,Any,Any,Hoist engineer,1
+Engineering,Any,Any,Mechanism fitter,1
+Engineering,Any,Any,Pump keeper,1
+Engineering,Any,Any,Siege engineer,1
+Engineering,Any,Any,Ventilation keeper,1
+Mining,Any,Any,Azurite cutter,1
+Mining,Any,Any,Blaster's mate,1
+Mining,Any,Any,Mine foreman,1
+Mining,Any,Any,Ore grader,1
+Mining,Any,Any,Pick miner,1
+Mining,Any,Any,Prospector,1
+Mining,Any,Any,Shaft shorer,1
+Mining,Any,Any,Tunnel surveyor,1
+Black Powder,Any,Any,Powder measurer,1
+Black Powder,Any,Any,Shot caster,1
+Black Powder,Any,Any,Sulphite-powder maker,1
+Black Powder,Any,Any,Fuse braider,1
+Black Powder,Any,Any,Blast-hole setter,1
+Black Powder,Any,Any,Powder quartermaster,1
+Youth,Any,Any,Apprentice craftworker,1
+Youth,Any,Any,Family helper,1
+Youth,Any,Any,Market errand runner,1
+Youth,Any,Any,Mine sorter,1
+Youth,Any,Any,Shrine helper,1
+Youth,Any,Any,Stable hand,1
+Youth,Any,Any,Street scavenger,1
+Tribal,Karui,Any,Ancestor singer,1
+Tribal,Karui,Any,Canoe builder,1
+Tribal,Karui,Any,Hunt leader,1
+Tribal,Karui,Any,Ritual tattooist,1
+Tribal,Karui,Any,Spirit caller,1
+Tribal,Karui,Any,Tribal envoy,1
+Tribal,Karui,Any,Warband scout,1
+Tribal,Karui,Any,Weapon carver,1
+Royal Court,Vaal,Any,Astronomer-priest,1
+Royal Court,Vaal,Any,Calendar keeper,1
+Royal Court,Vaal,Any,Court artificer,1
+Royal Court,Vaal,Any,Glyph accountant,1
+Royal Court,Vaal,Any,Palace guard,1
+Royal Court,Vaal,Any,Royal diviner,1
+Royal Court,Vaal,Any,Temple engineer,1
+Templar Service,Oriathan,Templar,Field chaplain,1
+Templar Service,Oriathan,Templar,Inquisitorial aide,1
+Templar Service,Oriathan,Templar,Legionary,1
+Templar Service,Oriathan,Templar,Temple physician,1
+Templar Service,Oriathan,Templar,Thaumaturgical researcher,1
+Templar Service,Oriathan,Templar,Virtue instructor,1
+Templar Branch,Oriathan,Templar,"Ebony Legion (Primis, elite)",15
+Templar Branch,Oriathan,Templar,"Crimson Legion (Secundo, veteran)",20
+Templar Branch,Oriathan,Templar,"Azure Legion (Tertius, first Sarn legion)",12
+Templar Branch,Oriathan,Templar,"Azure Legion (Tertius, second Sarn legion)",12
+Templar Branch,Oriathan,Templar,"Emerald Legion (Quartus, recruit and volunteer)",26
+Templar Branch,Oriathan,Templar,Archivists,15
+The Ring,Oriathan,The Ring,Arena bookmaker,1
+The Ring,Oriathan,The Ring,Bribe courier,1
+The Ring,Oriathan,The Ring,Debt collector,1
+The Ring,Oriathan,The Ring,Enforcer,1
+The Ring,Oriathan,The Ring,Fence,1
+The Ring,Oriathan,The Ring,Information broker,1
+The Ring,Oriathan,The Ring,Pit-fight fixer,1
+The Ring,Oriathan,The Ring,Safehouse keeper,1
+The Ring,Oriathan,The Ring,Smuggler,1
+The Ring,Oriathan,The Ring,Street runner,1
+Mining,Stygian,Any,Azurite seam-reader,1
+Mining,Stygian,Any,Deep-shaft shorer,1
+Mining,Stygian,Any,Rune-face surveyor,1
+Mining,Stygian,Any,Sulphite prospector,1
+Mining,Stygian,Any,Vein singer,1
+Mining,Stygian,Any,Ventilation cutter,1
+Engineering,Stygian,Any,Azurite pumpwright,1
+Engineering,Stygian,Any,Deep-hoist keeper,1
+Engineering,Stygian,Any,Rune-mechanism fitter,1
+Engineering,Stygian,Any,Stone-pressure engineer,1
+Engineering,Stygian,Any,Tunnel bracewright,1
+Black Powder,Stygian,Any,Sulphite powderwright,1
+Black Powder,Stygian,Any,Blast-rune cutter,1
+Black Powder,Stygian,Any,Fuse-knotter,1
+Black Powder,Stygian,Any,Powder cask keeper,1
+Black Powder,Stygian,Any,Shot tester,1
+Black Powder,Stygian,Any,Trade powder measurer,1
+Craftsman,Stygian,Any,Angular armour smith,1
+Craftsman,Stygian,Any,Azurite lens grinder,1
+Craftsman,Stygian,Any,Rune chisel maker,1
+Craftsman,Stygian,Any,Deep-lantern maker,1
+Craftsman,Stygian,Any,Basalt mason,1
+Trade,Stygian,Emberforged,Kalguur powder factor,1
+Trade,Stygian,Emberforged,Azurite broker,1
+Trade,Stygian,Emberforged,Deep-market interpreter,1
+Trade,Stygian,Emberforged,Sulphite contract keeper,1
+Exploration,Stygian,Hollowed Vein,Lost-gallery mapper,1
+Exploration,Stygian,Hollowed Vein,Hollowed pathfinder,1
+Exploration,Stygian,Hollowed Vein,Collapsed-shaft delver,1
+Exploration,Stygian,Hollowed Vein,Surface route seeker,1
+Black Powder,Kalguur,Kalguur Expedition,Stygian liaison,1
+Black Powder,Kalguur,Kalguur Expedition,Sulphite-powder quartermaster,1
+Black Powder,Kalguur,Kalguur Expedition,Field bombard engineer,1
+Black Powder,Kalguur,Kalguur Expedition,Powder proof-master,1
+Engineering,Kalguur,Kalguur Expedition,Expedition bridgewright,1
+Engineering,Kalguur,Kalguur Expedition,Spiked bulwark engineer,1
+Engineering,Kalguur,Kalguur Expedition,Powder-lock designer,1
+Engineering,Kalguur,Kalguur Expedition,Mobile forge keeper,1

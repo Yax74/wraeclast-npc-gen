@@ -1,0 +1,12 @@
+{
+  "name": "wraeclast-npc-gen",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:data": "node tools/build-data.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check scripts/npc-engine.js && node --check scripts/main.js && npm test",
+    "release:check": "node tools/validate-release.mjs"
+  }
+}

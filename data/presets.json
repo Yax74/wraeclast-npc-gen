@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "presets": [
+    {
+      "id": "general",
+      "label": "All Wraeclast",
+      "description": "A broad present-day Wraeclast mix; ancient Vaal are excluded unless selected.",
+      "cultures": {
+        "Oriathan": 29,
+        "Azmeri": 15,
+        "Ezomyte": 13,
+        "Maraketh": 12,
+        "Karui": 13,
+        "Kalguur": 10,
+        "Stygian": 8
+      }
+    },
+    {
+      "id": "sarn_survivor",
+      "label": "Sarn survivor",
+      "description": "Civilians, refugees, opportunists, and occupiers around ruined Sarn.",
+      "cultures": {
+        "Oriathan": 48,
+        "Azmeri": 17,
+        "Ezomyte": 10,
+        "Maraketh": 8,
+        "Karui": 7,
+        "Kalguur": 5,
+        "Stygian": 5
+      },
+      "socialOrigins": {
+        "Refugee": 40,
+        "Native": 25,
+        "Exile": 20,
+        "Diaspora": 10,
+        "Mixed heritage": 5
+      }
+    },
+    {
+      "id": "oriathan_occupier",
+      "label": "Oriathan occupier",
+      "description": "Imperial, Templar, and Ring presence in and around Sarn.",
+      "cultures": {
+        "Oriathan": 100
+      },
+      "affiliations": {
+        "Oriathan": {
+          "Templar": 60,
+          "The Ring": 15,
+          "Unaffiliated": 25
+        }
+      }
+    },
+    {
+      "id": "forest_encampment",
+      "label": "Forest Encampment",
+      "description": "Azmeri locals, Ezomyte neighbours, exiles, and travellers.",
+      "cultures": {
+        "Azmeri": 47,
+        "Ezomyte": 22,
+        "Oriathan": 10,
+        "Maraketh": 7,
+        "Karui": 6,
+        "Kalguur": 4,
+        "Stygian": 4
+      },
+      "socialOrigins": {
+        "Native": 48,
+        "Refugee": 22,
+        "Exile": 18,
+        "Diaspora": 8,
+        "Mixed heritage": 4
+      }
+    },
+    {
+      "id": "karui_tribe",
+      "label": "Karui tribes",
+      "description": "Members of the Hinekora and Tawhoa tribes, plus unaffiliated Karui.",
+      "cultures": {
+        "Karui": 100
+      },
+      "affiliations": {
+        "Karui": {
+          "Hinekora": 44,
+          "Tawhoa": 44,
+          "Unaffiliated": 12
+        }
+      }
+    },
+    {
+      "id": "kalguur_expedition",
+      "label": "Kalguur expedition",
+      "description": "High-elven explorers, engineers, soldiers, and powder specialists.",
+      "cultures": {
+        "Kalguur": 100
+      },
+      "affiliations": {
+        "Kalguur": {
+          "Kalguur Expedition": 90,
+          "Unaffiliated": 10
+        }
+      }
+    },
+    {
+      "id": "stygian_mines",
+      "label": "Stygian mines",
+      "description": "Drow, duergar, and deep gnomes of the Azurite Mines.",
+      "cultures": {
+        "Stygian": 100
+      },
+      "affiliations": {
+        "Stygian": {
+          "Emberforged": 65,
+          "Hollowed Vein": 20,
+          "Unaffiliated": 15
+        }
+      },
+      "socialOrigins": {
+        "Native": 65,
+        "Diaspora": 10,
+        "Refugee": 15,
+        "Exile": 7,
+        "Mixed heritage": 3
+      }
+    },
+    {
+      "id": "vaal_historical",
+      "label": "Ancient Vaal",
+      "description": "A historical Vaal gnome from before the civilisation's fall.",
+      "cultures": {
+        "Vaal": 100
+      },
+      "affiliations": {
+        "Vaal": {
+          "Unaffiliated": 100
+        }
+      },
+      "socialOrigins": {
+        "Native": 90,
+        "Diaspora": 5,
+        "Exile": 5
+      }
+    }
+  ]
+}
