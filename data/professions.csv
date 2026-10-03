@@ -157,6 +157,355 @@ Youth,Any,Any,Mine sorter,1
 Youth,Any,Any,Shrine helper,1
 Youth,Any,Any,Stable hand,1
 Youth,Any,Any,Street scavenger,1
+Agriculture,Any,Any,Bean grower,1
+Agriculture,Any,Any,Cattle drover,1
+Agriculture,Any,Any,Charcoal coppicer,1
+Agriculture,Any,Any,Fungus cultivator,1
+Agriculture,Any,Any,Irrigation keeper,1
+Agriculture,Any,Any,Mushroom farmer,1
+Agriculture,Any,Any,Olive tender,1
+Agriculture,Any,Any,Root-cellar keeper,1
+Agriculture,Any,Any,Seed keeper,1
+Agriculture,Any,Any,Shepherd,1
+Agriculture,Any,Any,Terrace farmer,1
+Agriculture,Any,Any,Vermin catcher,1
+Artist,Any,Any,Actor,1
+Artist,Any,Any,Banner painter,1
+Artist,Any,Any,Calligrapher,1
+Artist,Any,Any,Choir singer,1
+Artist,Any,Any,Dancer,1
+Artist,Any,Any,Engraver,1
+Artist,Any,Any,Illuminator,1
+Artist,Any,Any,Mask maker,1
+Artist,Any,Any,Puppeteer,1
+Artist,Any,Any,Sculptor,1
+Artist,Any,Any,Storyteller,1
+Artist,Any,Any,Tattoo artist,1
+Communications,Any,Any,Beacon tender,1
+Communications,Any,Any,Dispatch rider,1
+Communications,Any,Any,Drum signaller,1
+Communications,Any,Any,Flag signaller,1
+Communications,Any,Any,Letter writer,1
+Communications,Any,Any,Map courier,1
+Communications,Any,Any,News crier,1
+Communications,Any,Any,Pigeon keeper,1
+Communications,Any,Any,Sign painter,1
+Communications,Any,Any,Town crier,1
+Communications,Any,Any,Trail messenger,1
+Communications,Any,Any,Whisper-network contact,1
+Construction,Any,Any,Aqueduct mason,1
+Construction,Any,Any,Bridge carpenter,1
+Construction,Any,Any,Canal digger,1
+Construction,Any,Any,Plasterer,1
+Construction,Any,Any,Road paver,1
+Construction,Any,Any,Sewer mason,1
+Construction,Any,Any,Shipwright,1
+Construction,Any,Any,Stair cutter,1
+Construction,Any,Any,Tile layer,1
+Construction,Any,Any,Timber framer,1
+Construction,Any,Any,Tunnel bracer,1
+Construction,Any,Any,Wall engineer,1
+Craftsman,Any,Any,Basket weaver,1
+Craftsman,Any,Any,Blacksmith,1
+Craftsman,Any,Any,Candlemaker,1
+Craftsman,Any,Any,Cobbler,1
+Craftsman,Any,Any,Cutler,1
+Craftsman,Any,Any,Feltmaker,1
+Craftsman,Any,Any,Fletcher,1
+Craftsman,Any,Any,Instrument maker,1
+Craftsman,Any,Any,Rope maker,1
+Craftsman,Any,Any,Saddle maker,1
+Craftsman,Any,Any,Soap boiler,1
+Craftsman,Any,Any,Spinner,1
+Craftsman,Any,Any,Tinker,1
+Craftsman,Any,Any,Wheelwright,1
+Craftsman,Any,Any,Woodcarver,1
+Criminal,Any,Any,Blackmailer,1
+Criminal,Any,Any,Confidence trickster,1
+Criminal,Any,Any,Contraband runner,1
+Criminal,Any,Any,Cutpurse,1
+Criminal,Any,Any,Forger,1
+Criminal,Any,Any,Kidnapper,1
+Criminal,Any,Any,Loan shark,1
+Criminal,Any,Any,Poacher,1
+Criminal,Any,Any,Protection collector,1
+Criminal,Any,Any,Safe-breaker,1
+Criminal,Any,Any,Tunnel smuggler,1
+Criminal,Any,Any,Vice-den keeper,1
+Commoner,Any,Any,Brewer's drudge,1
+Commoner,Any,Any,Candle lighter,1
+Commoner,Any,Any,Chimney sweep,1
+Commoner,Any,Any,Cistern cleaner,1
+Commoner,Any,Any,Corpse collector,1
+Commoner,Any,Any,Fishmonger,1
+Commoner,Any,Any,Gong farmer,1
+Commoner,Any,Any,Kitchen scullion,1
+Commoner,Any,Any,Mine-canteen keeper,1
+Commoner,Any,Any,Refuse picker,1
+Commoner,Any,Any,Tannery hand,1
+Commoner,Any,Any,Washer,1
+Magic,Any,Any,Curse breaker,1
+Magic,Any,Any,Divination reader,1
+Magic,Any,Any,Glyph inscriber,1
+Magic,Any,Any,Ley surveyor,1
+Magic,Any,Any,Occult translator,1
+Magic,Any,Any,Reagent gatherer,1
+Magic,Any,Any,Rune warder,1
+Magic,Any,Any,Scrying assistant,1
+Magic,Any,Any,Spirit medium,1
+Magic,Any,Any,Thaumaturgic mechanic,1
+Magic,Any,Any,Ward painter,1
+Magic,Any,Any,Witch finder,1
+Medical,Any,Any,Barber-surgeon,1
+Medical,Any,Any,Battlefield stretcher-bearer,1
+Medical,Any,Any,Bloodletter,1
+Medical,Any,Any,Corpse examiner,1
+Medical,Any,Any,Dentist,1
+Medical,Any,Any,Fever nurse,1
+Medical,Any,Any,Leech keeper,1
+Medical,Any,Any,Mortuary washer,1
+Medical,Any,Any,Poison healer,1
+Medical,Any,Any,Prosthetic maker,1
+Medical,Any,Any,Quarantine keeper,1
+Medical,Any,Any,Wound stitcher,1
+Military,Any,Any,Archer,1
+Military,Any,Any,Battlemage,1
+Military,Any,Any,Cavalry scout,1
+Military,Any,Any,Crossbowman,1
+Military,Any,Any,Gate sergeant,1
+Military,Any,Any,Patrol leader,1
+Military,Any,Any,Shield bearer,1
+Military,Any,Any,Standard bearer,1
+Military,Any,Any,Trench captain,1
+Military,Any,Any,War-beast handler,1
+Military,Any,Any,Watch recruit,1
+Military,Any,Any,Weapons-drill instructor,1
+Outcast,Any,Any,Curse-marked wanderer,1
+Outcast,Any,Any,Deserter,1
+Outcast,Any,Any,Dispossessed farmer,1
+Outcast,Any,Any,Escaped thrall,1
+Outcast,Any,Any,Failed initiate,1
+Outcast,Any,Any,Forbidden scholar,1
+Outcast,Any,Any,Fugitive,1
+Outcast,Any,Any,Plague exile,1
+Outcast,Any,Any,Proscribed mage,1
+Outcast,Any,Any,Shipwreck survivor,1
+Outcast,Any,Any,Squatter,1
+Outcast,Any,Any,Unlicensed thaumaturge,1
+Religion,Any,Any,Almoner,1
+Religion,Any,Any,Burial priest,1
+Religion,Any,Any,Exorcist,1
+Religion,Any,Any,Flagellant,1
+Religion,Any,Any,Funerary singer,1
+Religion,Any,Any,Oracle attendant,1
+Religion,Any,Any,Pilgrim guide,1
+Religion,Any,Any,Ritual drummer,1
+Religion,Any,Any,Sacristan,1
+Religion,Any,Any,Temple cook,1
+Religion,Any,Any,Votive maker,1
+Religion,Any,Any,Wandering monk,1
+Scholarly,Any,Any,Anatomist,1
+Scholarly,Any,Any,Antiquarian,1
+Scholarly,Any,Any,Astronomer,1
+Scholarly,Any,Any,Census keeper,1
+Scholarly,Any,Any,Genealogist,1
+Scholarly,Any,Any,Geographer,1
+Scholarly,Any,Any,Librarian,1
+Scholarly,Any,Any,Mathematician,1
+Scholarly,Any,Any,Monster anatomist,1
+Scholarly,Any,Any,Rune scholar,1
+Scholarly,Any,Any,Theologian,1
+Scholarly,Any,Any,Translator,1
+Trade,Any,Any,Arms dealer,1
+Trade,Any,Any,Caravan factor,1
+Trade,Any,Any,Fish seller,1
+Trade,Any,Any,Grain factor,1
+Trade,Any,Any,Horse trader,1
+Trade,Any,Any,Lamp-oil merchant,1
+Trade,Any,Any,Money changer,1
+Trade,Any,Any,Ore broker,1
+Trade,Any,Any,Relic dealer,1
+Trade,Any,Any,Spice merchant,1
+Trade,Any,Any,Timber merchant,1
+Trade,Any,Any,Travelling peddler,1
+Transport,Any,Any,Canal boatman,1
+Transport,Any,Any,Coach driver,1
+Transport,Any,Any,Litter bearer,1
+Transport,Any,Any,Muleteer,1
+Transport,Any,Any,River pilot,1
+Transport,Any,Any,Road warden,1
+Transport,Any,Any,Ship's mate,1
+Transport,Any,Any,Sled driver,1
+Transport,Any,Any,Stablemaster,1
+Transport,Any,Any,Teamster,1
+Transport,Any,Any,Wagon guard,1
+Transport,Any,Any,Wharf hauler,1
+Survival,Any,Any,Cliff guide,1
+Survival,Any,Any,Fire keeper,1
+Survival,Any,Any,Herbal forager,1
+Survival,Any,Any,Ice scout,1
+Survival,Any,Any,Marsh guide,1
+Survival,Any,Any,Mountain guide,1
+Survival,Any,Any,Mushroom gatherer,1
+Survival,Any,Any,River tracker,1
+Survival,Any,Any,Shelter builder,1
+Survival,Any,Any,Snare maker,1
+Survival,Any,Any,Water finder,1
+Survival,Any,Any,Weather reader,1
+Exploration,Any,Any,Abyss scout,1
+Exploration,Any,Any,Cavern guide,1
+Exploration,Any,Any,Expedition chronicler,1
+Exploration,Any,Any,Frontier surveyor,1
+Exploration,Any,Any,Relic mapper,1
+Exploration,Any,Any,Rope specialist,1
+Exploration,Any,Any,Ruin cartographer,1
+Exploration,Any,Any,Scout captain,1
+Exploration,Any,Any,Trail marker,1
+Exploration,Any,Any,Treasure seeker,1
+Exploration,Any,Any,Undercity guide,1
+Exploration,Any,Any,Vault examiner,1
+Engineering,Any,Any,Aqueduct engineer,1
+Engineering,Any,Any,Blast-shield designer,1
+Engineering,Any,Any,Crane keeper,1
+Engineering,Any,Any,Floodgate keeper,1
+Engineering,Any,Any,Forge mechanic,1
+Engineering,Any,Any,Lift operator,1
+Engineering,Any,Any,Lockwright,1
+Engineering,Any,Any,Millwright,1
+Engineering,Any,Any,Siege machinist,1
+Engineering,Any,Any,Trap engineer,1
+Engineering,Any,Any,Waterwheel keeper,1
+Engineering,Any,Any,Winchwright,1
+Mining,Any,Any,Assayer,1
+Mining,Any,Any,Cart hauler,1
+Mining,Any,Any,Crystal picker,1
+Mining,Any,Any,Gem miner,1
+Mining,Any,Any,Lamp tender,1
+Mining,Any,Any,Ore washer,1
+Mining,Any,Any,Pit surveyor,1
+Mining,Any,Any,Quarryman,1
+Mining,Any,Any,Salt miner,1
+Mining,Any,Any,Seam tester,1
+Mining,Any,Any,Slag sorter,1
+Mining,Any,Any,Ventilation watcher,1
+Black Powder,Any,Any,Bomb maker,1
+Black Powder,Any,Any,Charge setter,1
+Black Powder,Any,Any,Cinder tester,1
+Black Powder,Any,Any,Grenade filler,1
+Black Powder,Any,Any,Powder courier,1
+Black Powder,Any,Any,Powder dryer,1
+Black Powder,Any,Any,Powder miller,1
+Black Powder,Any,Any,Proofing officer,1
+Black Powder,Any,Any,Sulphite chemist,1
+Black Powder,Any,Any,Tunnelling blaster,1
+Youth,Any,Any,Animal minder,1
+Youth,Any,Any,Berry gatherer,1
+Youth,Any,Any,Candle runner,1
+Youth,Any,Any,Charcoal sorter,1
+Youth,Any,Any,Fisher's helper,1
+Youth,Any,Any,Kitchen page,1
+Youth,Any,Any,Lamp carrier,1
+Youth,Any,Any,Message runner's apprentice,1
+Youth,Any,Any,Net mender,1
+Youth,Any,Any,Ore picker,1
+Youth,Any,Any,Workshop page,1
+Youth,Any,Any,Water carrier,1
+Commoner,Oriathan,Any,Amphitheatre usher,1
+Commoner,Oriathan,Any,Bathhouse steward,1
+Commoner,Oriathan,Any,Canal porter,1
+Commoner,Oriathan,Any,Forum vendor,1
+Commoner,Oriathan,Any,Insula caretaker,1
+Commoner,Oriathan,Any,Public-cistern keeper,1
+Commoner,Oriathan,Any,Road-station host,1
+Commoner,Oriathan,Any,Temple-square sweeper,1
+Scholarly,Oriathan,Any,Imperial census clerk,1
+Scholarly,Oriathan,Any,Legion records keeper,1
+Scholarly,Oriathan,Any,Oriathan legal commentator,1
+Scholarly,Oriathan,Any,Patrician tutor,1
+Scholarly,Oriathan,Any,Provincial tax scribe,1
+Scholarly,Oriathan,Any,Temple genealogist,1
+Scholarly,Oriathan,Any,Thaumaturgical copyist,1
+Scholarly,Oriathan,Any,Virtue historian,1
+Agriculture,Azmeri,Any,Forest apiary keeper,1
+Agriculture,Azmeri,Any,Grove tender,1
+Agriculture,Azmeri,Any,Hazel coppicer,1
+Agriculture,Azmeri,Any,Medicinal-moss grower,1
+Agriculture,Azmeri,Any,Orchard grafter,1
+Agriculture,Azmeri,Any,Riverbank gardener,1
+Agriculture,Azmeri,Any,Root-crop keeper,1
+Agriculture,Azmeri,Any,Woodland swineherd,1
+Survival,Azmeri,Any,Blackwood pathfinder,1
+Survival,Azmeri,Any,Forest-omen reader,1
+Survival,Azmeri,Any,Nightwood scout,1
+Survival,Azmeri,Any,River-ford keeper,1
+Survival,Azmeri,Any,Ruin-edge forager,1
+Survival,Azmeri,Any,Sacred-grove guide,1
+Survival,Azmeri,Any,Wild-beast tracker,1
+Survival,Azmeri,Any,Wicker-shelter builder,1
+Mining,Ezomyte,Any,Clan seam master,1
+Mining,Ezomyte,Any,Deep-iron prospector,1
+Mining,Ezomyte,Any,Granite breaker,1
+Mining,Ezomyte,Any,Highland quarry boss,1
+Mining,Ezomyte,Any,Ore-song caller,1
+Mining,Ezomyte,Any,Pit brace inspector,1
+Mining,Ezomyte,Any,Slate cutter,1
+Mining,Ezomyte,Any,Vein-right assessor,1
+Craftsman,Ezomyte,Any,Cairn mason,1
+Craftsman,Ezomyte,Any,Clan armour smith,1
+Craftsman,Ezomyte,Any,Highland cooper,1
+Craftsman,Ezomyte,Any,Iron-brooch maker,1
+Craftsman,Ezomyte,Any,Stone-ale brewer,1
+Craftsman,Ezomyte,Any,Tartan dyer,1
+Craftsman,Ezomyte,Any,Tunnel timberer,1
+Craftsman,Ezomyte,Any,War-pick smith,1
+Trade,Maraketh,Any,Caravan auctioneer,1
+Trade,Maraketh,Any,Carpet factor,1
+Trade,Maraketh,Any,Dried-fruit broker,1
+Trade,Maraketh,Any,Oasis factor,1
+Trade,Maraketh,Any,Salt-road merchant,1
+Trade,Maraketh,Any,Silk appraiser,1
+Trade,Maraketh,Any,Spice broker,1
+Trade,Maraketh,Any,Water-right trader,1
+Transport,Maraketh,Any,Beast-caravan master,1
+Transport,Maraketh,Any,Desert outrider,1
+Transport,Maraketh,Any,Dune pathfinder,1
+Transport,Maraketh,Any,Oasis courier,1
+Transport,Maraketh,Any,Pack-train marshal,1
+Transport,Maraketh,Any,Salt-road guide,1
+Transport,Maraketh,Any,Silk-road drover,1
+Transport,Maraketh,Any,Water-caravan guide,1
+Magic,Vaal,Any,Blood-geometry assistant,1
+Magic,Vaal,Any,Gem-circuit architect,1
+Magic,Vaal,Any,Glyph-energy calibrator,1
+Magic,Vaal,Any,Sacrifice registrar,1
+Magic,Vaal,Any,Serpent-ward engineer,1
+Magic,Vaal,Any,Sun-engine attendant,1
+Magic,Vaal,Any,Temple-current reader,1
+Magic,Vaal,Any,Vaal gemwright,1
+Scholarly,Vaal,Any,Calendar calculator,1
+Scholarly,Vaal,Any,Dynastic chronicler,1
+Scholarly,Vaal,Any,Glyph grammarian,1
+Scholarly,Vaal,Any,Observatory keeper,1
+Scholarly,Vaal,Any,Ritual mathematician,1
+Scholarly,Vaal,Any,Serpent-cult historian,1
+Scholarly,Vaal,Any,Temple surveyor,1
+Scholarly,Vaal,Any,Ziggurat archivist,1
+Exploration,Kalguur,Any,Expedition surveyor,1
+Exploration,Kalguur,Any,Frozen-pass scout,1
+Exploration,Kalguur,Any,Mobile-camp pathfinder,1
+Exploration,Kalguur,Any,Relic-recovery leader,1
+Exploration,Kalguur,Any,Shore-party navigator,1
+Exploration,Kalguur,Any,Spiked-camp outrider,1
+Exploration,Kalguur,Any,Unknown-coast mapper,1
+Exploration,Kalguur,Any,Winter-route finder,1
+Craftsman,Kalguur,Any,Angular-armour smith,1
+Craftsman,Kalguur,Any,Quillon blade smith,1
+Craftsman,Kalguur,Any,Rimeglass cutter,1
+Craftsman,Kalguur,Any,Silver-spike jeweller,1
+Craftsman,Kalguur,Any,Spiked-bulwark maker,1
+Craftsman,Kalguur,Any,Stormproof leatherworker,1
+Craftsman,Kalguur,Any,Thorn-plate fitter,1
+Craftsman,Kalguur,Any,Winter-forge keeper,1
 Tribal,Karui,Any,Ancestor singer,1
 Tribal,Karui,Any,Canoe builder,1
 Tribal,Karui,Any,Hunt leader,1

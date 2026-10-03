@@ -23,9 +23,58 @@ export class NPCEngine {
     ["Powerfully built", "Frail"],
     ["Immaculately groomed", "Grime-streaked"],
     ["Shaven-headed", "Waist-length hair"],
+    ["Shaven-headed", "Bead-threaded braids"],
+    ["Shaven-headed", "Grey-streaked hair"],
+    ["Shaven-headed", "Oiled hair"],
+    ["Shaven-headed", "Shoulder-length curls"],
+    ["Shaven-headed", "Silver-streaked hair"],
+    ["Shaven-headed", "Tangled hair"],
+    ["Shaven-headed", "White lock of hair"],
+    ["Shaven-headed", "Wind-tossed hair"],
+    ["Clean-shaven", "Closely trimmed beard"],
+    ["Clean-shaven", "Full braided beard"],
+    ["Clean-shaven", "Long braided beard"],
+    ["Freshly shaved jaw", "Closely trimmed beard"],
+    ["Freshly shaved jaw", "Full braided beard"],
+    ["Freshly shaved jaw", "Long braided beard"],
+    ["Long braided beard", "Full braided beard"],
+    ["Narrow face", "Round face"],
+    ["Shaved eyebrows", "Thick eyebrows"],
+    ["Barefoot", "Dust-caked boots"],
+    ["Barefoot", "Iron-shod boots"],
+    ["Barefoot", "Travel-worn boots"],
+    ["Broken nose", "Flattened nose"],
+    ["Broken nose", "Sharp nose"],
+    ["Crooked nose", "Flattened nose"],
+    ["Crooked nose", "Sharp nose"],
+    ["Clouded eye", "Milky left eye"],
+    ["Missing finger", "Missing two fingers"],
+    ["Grey-streaked hair", "Silver-streaked hair"],
     ["Booming voice", "Whisper-soft voice"],
     ["Restless", "Unhurried"],
+    ["Patient", "Impatient"],
+    ["Cheerful", "Melancholy"],
+    ["Boisterous", "Laconic"],
+    ["Calm under pressure", "Tense"],
+    ["Commanding", "Self-effacing"],
+    ["Compassionate", "Vindictive"],
+    ["Cautiously optimistic", "Bitter"],
+    ["Eager", "Resigned"],
+    ["Formal", "Irreverent"],
+    ["Jovial", "Severe"],
+    ["Nervously energetic", "Unflappable"],
+    ["Shy", "Talkative"],
     ["Openly trusting", "Suspicious"],
+    ["Openly trusting", "Distrustful"],
+    ["Bows to visible authority", "Questions every order"],
+    ["Demands evidence", "Sees omens everywhere"],
+    ["Expects payment in advance", "Offers help before being asked"],
+    ["Fears organised religion", "Trusts priests"],
+    ["Mocks formal titles", "Treats titles seriously"],
+    ["Never raises their voice", "Raises their voice to seize control"],
+    ["Prioritises clan over law", "Prioritises law over friendship"],
+    ["Shares supplies freely", "Counts every ration"],
+    ["Assumes strangers are spies", "Treats strangers as potential kin"],
     ["Warm and welcoming", "Cold and distant"]
   ]);
 
@@ -37,6 +86,8 @@ export class NPCEngine {
   });
 
   static #cache = new Map();
+  static #indexes = new WeakMap();
+  static #contradictionIndex = null;
 
   /** Parse RFC-4180-style CSV, including quoted commas and escaped quotes. */
   static parseCSVText(text, source = "CSV") {
@@ -113,6 +164,7 @@ export class NPCEngine {
 
   static clearCache() {
     this.#cache.clear();
+    this.#indexes = new WeakMap();
   }
 
   static rollWeighted(options, rng = Math.random) {
@@ -216,7 +268,7 @@ export class NPCEngine {
     const species = this.#resolveSpecies(requested, preset, culture, tables, rng, organization);
     const socialOrigin = requested.socialOrigin
       || this.#pickValue(this.#presetRows(preset?.socialOrigins), rng)
-      || this.#pickValue(tables.main.filter((row) => row.category === "SocialOrigin"), rng)
+      || this.#pickValue(this.#categoryRows(tables, "main", "SocialOrigin"), rng)
       || "Native";
     let agePool = this.#agePool(tables, species);
     if (requested.professionCategory && requested.professionCategory !== "Youth") {
@@ -224,7 +276,7 @@ export class NPCEngine {
     }
     const age = requested.age || (requested.professionCategory === "Youth" ? "Child" : this.#pickValue(agePool, rng)) || "Adult";
     const alignment = requested.alignment
-      || this.#pickValue(tables.main.filter((row) => row.category === "Alignment"), rng)
+      || this.#pickValue(this.#categoryRows(tables, "main", "Alignment"), rng)
       || "True Neutral";
 
     const npc = { culture, affiliation, branch, species, socialOrigin, age, alignment, organization, preset: preset?.id ?? "general" };
@@ -266,12 +318,14 @@ export class NPCEngine {
     for (const culture of cultures) {
       const hasAffiliation = tables.main.some((row) => row.category === "Affiliation" && row.parent === culture);
       const hasSpecies = tables.main.some((row) => row.category === "Species" && row.parent === culture);
-      const hasFirst = tables.names.some((row) => row.category === "Name" && row.parent === culture);
-      const hasSurname = tables.names.some((row) => row.category === "Surname" && row.parent === culture);
+      const firstNames = tables.names.filter((row) => row.category === "Name" && row.parent === culture);
+      const surnames = tables.names.filter((row) => row.category === "Surname" && row.parent === culture);
       const hasProfession = tables.main.some((row) => row.category === "ProfessionCategory" && row.parent === culture);
       if (!hasAffiliation) errors.push(`${culture} has no affiliation pool`);
       if (!hasSpecies) errors.push(`${culture} has no species pool`);
-      if (!hasFirst || !hasSurname) errors.push(`${culture} has incomplete name pools`);
+      if (!firstNames.length || !surnames.length) errors.push(`${culture} has incomplete name pools`);
+      if (firstNames.length < 60) errors.push(`${culture} has fewer than 60 first names`);
+      if (surnames.length < 40) errors.push(`${culture} has fewer than 40 surnames`);
       if (!hasProfession) errors.push(`${culture} has no profession categories`);
     }
 
@@ -329,6 +383,11 @@ export class NPCEngine {
     if (!(tables.names ?? []).some((row) => row.parent === "Stygian")) errors.push("missing Stygian name pool");
     if (!(tables.hooks ?? []).some((row) => row.parent === "Stygian")) errors.push("missing Stygian hooks");
     if (!(tables.professions ?? []).some((row) => row.parent === "Stygian")) errors.push("missing Stygian professions");
+    if ((tables.professions ?? []).length < 600) errors.push("profession library has fewer than 600 entries");
+    for (const [category, minimum] of Object.entries({ Appearance: 120, Demeanor: 80, Attitude: 80, Voice: 140, Mannerism: 100 })) {
+      const count = (tables.descriptors ?? []).filter((row) => row.category === category).length;
+      if (count < minimum) errors.push(`${category} descriptor pool has fewer than ${minimum} entries`);
+    }
     return { errors, warnings };
   }
 
@@ -341,19 +400,20 @@ export class NPCEngine {
     const applyFilters = (source) => {
       let candidates = source;
       if (requested.affiliation) {
-        const valid = new Set(tables.main.filter((row) => row.category === "Affiliation" && row.value === requested.affiliation).map((row) => row.parent));
+        const valid = new Set(this.#categoryRows(tables, "main", "Affiliation")
+          .filter((row) => row.value === requested.affiliation).map((row) => row.parent));
         candidates = candidates.filter((row) => valid.has(row.value));
       }
       if (requested.branch) {
-        const valid = new Set(tables.main.filter((row) =>
-          row.category === "Branch"
-          && row.value === requested.branch
+        const valid = new Set(this.#categoryRows(tables, "main", "Branch").filter((row) =>
+          row.value === requested.branch
           && (!requested.affiliation || this.#isAny(row.subParent) || row.subParent === requested.affiliation)
         ).map((row) => row.parent));
         candidates = candidates.filter((row) => valid.has(row.value));
       }
       if (requested.species) {
-        const valid = new Set(tables.main.filter((row) => row.category === "Species" && row.value === requested.species).map((row) => row.parent));
+        const valid = new Set(this.#categoryRows(tables, "main", "Species")
+          .filter((row) => row.value === requested.species).map((row) => row.parent));
         candidates = candidates.filter((row) => valid.has(row.value));
       }
       if (requested.professionCategory && requested.professionCategory !== "Youth" && requested.age !== "Child") {
@@ -362,12 +422,13 @@ export class NPCEngine {
         ));
       }
       if (requested.age === "Ancient") {
-        const valid = new Set(tables.main.filter((row) => row.category === "Species" && this.#isLongLived(row.value)).map((row) => row.parent));
+        const valid = new Set(this.#categoryRows(tables, "main", "Species")
+          .filter((row) => this.#isLongLived(row.value)).map((row) => row.parent));
         candidates = candidates.filter((row) => valid.has(row.value));
       }
       return candidates;
     };
-    const globalPool = tables.main.filter((row) => row.category === "Culture");
+    const globalPool = this.#categoryRows(tables, "main", "Culture");
     const presetPool = this.#presetRows(preset?.cultures);
     let pool = applyFilters(presetPool.length ? presetPool : globalPool);
     if (!pool.length && (requested.affiliation || requested.branch || requested.species || requested.professionCategory || requested.age)) {
@@ -379,20 +440,19 @@ export class NPCEngine {
   }
 
   static #resolveAffiliation(requested, preset, culture, tables, rng) {
-    let pool = tables.main.filter((row) => row.category === "Affiliation" && row.parent === culture);
+    let pool = this.#categoryRows(tables, "main", "Affiliation").filter((row) => row.parent === culture);
     if (requested.affiliation) {
       if (!pool.some((row) => row.value === requested.affiliation)) throw new Error(`${requested.affiliation} is not a valid ${culture} affiliation`);
-      if (requested.branch && !tables.main.some((row) =>
-        row.category === "Branch"
-        && row.parent === culture
+      if (requested.branch && !this.#categoryRows(tables, "main", "Branch").some((row) =>
+        row.parent === culture
         && row.value === requested.branch
         && (this.#isAny(row.subParent) || row.subParent === requested.affiliation)
       )) throw new Error(`${requested.branch} is not a branch of ${requested.affiliation}`);
       return requested.affiliation;
     }
     if (requested.branch) {
-      const parents = new Set(tables.main.filter((row) =>
-        row.category === "Branch" && row.parent === culture && row.value === requested.branch
+      const parents = new Set(this.#categoryRows(tables, "main", "Branch").filter((row) =>
+        row.parent === culture && row.value === requested.branch
       ).map((row) => row.subParent));
       pool = pool.filter((row) => parents.has(row.value) || [...parents].some((parent) => this.#isAny(parent)));
     }
@@ -402,9 +462,8 @@ export class NPCEngine {
   }
 
   static #resolveBranch(requested, preset, culture, affiliation, tables, rng) {
-    let pool = tables.main.filter((row) =>
-      row.category === "Branch"
-      && row.parent === culture
+    let pool = this.#categoryRows(tables, "main", "Branch").filter((row) =>
+      row.parent === culture
       && (this.#isAny(row.subParent) || row.subParent === affiliation)
     );
     if (requested.branch) {
@@ -425,9 +484,8 @@ export class NPCEngine {
   }
 
   static #resolveSpecies(requested, preset, culture, tables, rng, organization = "") {
-    const pool = tables.main.filter((row) =>
-      row.category === "Species"
-      && row.parent === culture
+    const pool = this.#categoryRows(tables, "main", "Species").filter((row) =>
+      row.parent === culture
       && (requested.age !== "Ancient" || this.#isLongLived(row.value))
     );
     if (requested.species) {
@@ -454,8 +512,8 @@ export class NPCEngine {
   }
 
   static #generateName(npc, tables, rng) {
-    const firstPool = this.#mostSpecific(tables.names.filter((row) => row.category === "Name"), npc);
-    const surnamePool = this.#mostSpecific(tables.names.filter((row) => row.category === "Surname"), npc);
+    const firstPool = this.#selectedRows(tables, "names", "Name", npc);
+    const surnamePool = this.#selectedRows(tables, "names", "Surname", npc);
     let firstName = this.#pickValue(firstPool, rng) || "Unnamed";
     let surname = this.#pickValue(surnamePool, rng) || "";
     let fullName = `${firstName} ${surname}`.trim();
@@ -476,7 +534,7 @@ export class NPCEngine {
       throw new Error(`${requestedCategory} is not valid for ${[npc.culture, npc.affiliation, npc.branch].filter(Boolean).join(" / ")}`);
     }
     const professionCategory = requestedCategory || this.#pickValue(pool, rng) || "Commoner";
-    const jobPool = this.#mostSpecific(tables.professions.filter((row) => row.category === professionCategory), npc);
+    const jobPool = this.#selectedRows(tables, "professions", professionCategory, npc, true);
     const profession = this.#pickValue(jobPool, rng) || `${professionCategory} worker`;
 
     return { professionCategory, profession, organization: npc.organization || "" };
@@ -484,9 +542,8 @@ export class NPCEngine {
 
   static #resolveOrganization(npc, tables, rng) {
     if (npc.affiliation === "Templar") {
-      return this.#pickValue(this.#mostSpecific(
-        tables.professions.filter((row) => row.category === "Templar Branch"), npc
-      ), rng) || "Emerald Legion (Quartus, recruit and volunteer)";
+      return this.#pickValue(this.#selectedRows(tables, "professions", "Templar Branch", npc), rng)
+        || "Emerald Legion (Quartus, recruit and volunteer)";
     }
     if (npc.affiliation === "The Ring") return "The Ring";
     if (["Kalguur Expedition"].includes(npc.affiliation)) return npc.affiliation;
@@ -509,13 +566,13 @@ export class NPCEngine {
   }
 
   static #generateHooks(npc, tables, rng) {
-    const pick = (category) => this.#pickValue(this.#mostSpecific(tables.hooks.filter((row) => row.category === category), npc), rng)
+    const pick = (category) => this.#pickValue(this.#selectedRows(tables, "hooks", category, npc), rng)
       || "Survival comes first.";
     return { ideal: pick("Ideal"), bond: pick("Bond"), flaw: pick("Flaw") };
   }
 
   static #rollDescriptors(tables, category, count, npc, rng) {
-    let pool = this.#mostSpecific(tables.descriptors.filter((row) => row.category === category), npc);
+    let pool = this.#selectedRows(tables, "descriptors", category, npc, true);
     pool = pool.filter((row) => this.#ageAllowsDescriptor(npc.age, row.value));
     const chosen = [];
     while (chosen.length < count) {
@@ -528,24 +585,32 @@ export class NPCEngine {
   }
 
   static #professionCategoryPool(tables, culture, affiliation, branch = "") {
-    const rows = tables.main.filter((row) => row.category === "ProfessionCategory" && row.parent === culture);
+    const index = this.#dataIndex(tables);
+    const cacheKey = [culture, affiliation, branch].join("|");
+    if (index.professionPools.has(cacheKey)) return index.professionPools.get(cacheKey);
+    const rows = this.#categoryRows(tables, "main", "ProfessionCategory").filter((row) => row.parent === culture);
     const branchExact = branch ? rows.filter((row) => row.subParent === branch) : [];
-    if (branchExact.length) return this.#uniqueRows(branchExact);
+    if (branchExact.length) {
+      const result = this.#uniqueRows(branchExact);
+      index.professionPools.set(cacheKey, result);
+      return result;
+    }
     const affiliationExact = affiliation ? rows.filter((row) => row.subParent === affiliation) : [];
     const general = rows.filter((row) => this.#isAny(row.subParent));
-    return this.#uniqueRows(affiliationExact.length ? affiliationExact : general);
+    const result = this.#uniqueRows(affiliationExact.length ? affiliationExact : general);
+    index.professionPools.set(cacheKey, result);
+    return result;
   }
 
   static #professionOptions(tables, culture, affiliation = "", branch = "") {
     if (branch) return this.#professionCategoryPool(tables, culture, affiliation, branch);
     const affiliations = affiliation
       ? [{ value: affiliation }]
-      : tables.main.filter((row) => row.category === "Affiliation" && row.parent === culture);
+      : this.#categoryRows(tables, "main", "Affiliation").filter((row) => row.parent === culture);
     const pools = [];
     for (const affiliationRow of affiliations) {
-      const branches = tables.main.filter((row) =>
-        row.category === "Branch"
-        && row.parent === culture
+      const branches = this.#categoryRows(tables, "main", "Branch").filter((row) =>
+        row.parent === culture
         && (this.#isAny(row.subParent) || row.subParent === affiliationRow.value)
       );
       if (branches.length) {
@@ -564,9 +629,40 @@ export class NPCEngine {
   }
 
   static #agePool(tables, species = "") {
-    let pool = tables.main.filter((row) => row.category === "Age");
+    let pool = this.#categoryRows(tables, "main", "Age");
     if (species && !this.#isLongLived(species)) pool = pool.filter((row) => row.value !== "Ancient");
     return pool;
+  }
+
+  static #dataIndex(tables) {
+    let index = this.#indexes.get(tables);
+    if (index) return index;
+    const categories = new Map();
+    for (const tableName of ["main", "names", "descriptors", "professions", "hooks"]) {
+      const byCategory = new Map();
+      for (const row of tables[tableName] ?? []) {
+        if (!byCategory.has(row.category)) byCategory.set(row.category, []);
+        byCategory.get(row.category).push(row);
+      }
+      categories.set(tableName, byCategory);
+    }
+    index = { categories, selections: new Map(), professionPools: new Map() };
+    this.#indexes.set(tables, index);
+    return index;
+  }
+
+  static #categoryRows(tables, tableName, category) {
+    return this.#dataIndex(tables).categories.get(tableName)?.get(category) ?? [];
+  }
+
+  static #selectedRows(tables, tableName, category, npc, layered = false) {
+    const index = this.#dataIndex(tables);
+    const cacheKey = [layered ? "layered" : "exact", tableName, category, npc.culture, npc.affiliation, npc.branch].join("|");
+    if (index.selections.has(cacheKey)) return index.selections.get(cacheKey);
+    const rows = this.#categoryRows(tables, tableName, category);
+    const result = layered ? this.#layeredRows(rows, npc) : this.#mostSpecific(rows, npc);
+    index.selections.set(cacheKey, result);
+    return result;
   }
 
   static #mostSpecific(rows, npc) {
@@ -587,6 +683,20 @@ export class NPCEngine {
     return scored.filter(({ score }) => score === max).map(({ row }) => row);
   }
 
+  static #layeredRows(rows, npc) {
+    return rows.filter((row) => {
+      if (!this.#isAny(row.parent) && row.parent !== npc.culture) return false;
+      return this.#isAny(row.subParent)
+        || (npc.branch && row.subParent === npc.branch)
+        || (npc.affiliation && row.subParent === npc.affiliation);
+    }).map((row) => {
+      let multiplier = row.parent === npc.culture ? 3 : 1;
+      if (npc.branch && row.subParent === npc.branch) multiplier *= 4;
+      else if (npc.affiliation && row.subParent === npc.affiliation) multiplier *= 3;
+      return { ...row, weight: row.weight * multiplier };
+    });
+  }
+
   static #presetRows(weightMap) {
     if (!weightMap || Array.isArray(weightMap)) return [];
     return Object.entries(weightMap).map(([value, weight]) => ({ value, weight: Number(weight) || 0 }));
@@ -603,13 +713,22 @@ export class NPCEngine {
   }
 
   static #ageAllowsDescriptor(age, value) {
-    if (age === "Child" && /(wrinkled|grey|grizzled|stooped|weathered by decades|ancient)/i.test(value)) return false;
-    if (["Elder", "Ancient"].includes(age) && /(childlike|youthful face|adolescent)/i.test(value)) return false;
+    if (age === "Child" && /(wrinkled|grey-streaked|silver-streaked|grizzled|stooped|weathered by decades|ancient)/i.test(value)) return false;
+    if (["Elder", "Ancient"].includes(age) && /(childlike|youthful face|adolescent|fresh-faced)/i.test(value)) return false;
     return true;
   }
 
   static #contradicts(left, right) {
-    return this.CONTRADICTIONS.some((pair) => pair.includes(left) && pair.includes(right));
+    if (!this.#contradictionIndex) {
+      this.#contradictionIndex = new Map();
+      for (const pair of this.CONTRADICTIONS) {
+        for (const value of pair) {
+          if (!this.#contradictionIndex.has(value)) this.#contradictionIndex.set(value, new Set());
+          for (const other of pair) if (other !== value) this.#contradictionIndex.get(value).add(other);
+        }
+      }
+    }
+    return this.#contradictionIndex.get(left)?.has(right) ?? false;
   }
 
   static #cleanConstraints(constraints = {}) {

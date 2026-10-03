@@ -58,8 +58,15 @@ test("campaign data passes structural and lore validation", () => {
     tables.main.filter((entry) => entry.category === "Affiliation" && entry.parent === "Stygian").map((entry) => entry.value),
     ["Stygian"]
   );
-  assert.ok(tables.names.filter((entry) => entry.parent === "Stygian").length >= 80);
-  assert.ok(tables.professions.filter((entry) => entry.parent === "Stygian").length >= 20);
+  assert.equal(tables.names.length, 830);
+  assert.equal(tables.professions.length, 659);
+  assert.equal(tables.descriptors.length, 598);
+  for (const culture of ["Oriathan", "Azmeri", "Ezomyte", "Maraketh", "Karui", "Vaal", "Kalguur", "Stygian"]) {
+    assert.ok(tables.names.filter((entry) => entry.parent === culture && entry.category === "Name").length >= 60);
+    assert.ok(tables.names.filter((entry) => entry.parent === culture && entry.category === "Surname").length >= 40);
+    assert.ok(tables.descriptors.filter((entry) => entry.parent === culture && entry.category === "Voice").length >= 12);
+  }
+  assert.ok(tables.professions.filter((entry) => entry.parent === "Stygian").length >= 50);
   assert.ok(tables.hooks.filter((entry) => entry.parent === "Stygian").length >= 30);
 });
 
@@ -80,10 +87,42 @@ test("every preset generates complete and internally consistent NPCs", () => {
       else assert.equal(npc.branch, "");
       assert.ok(tables.main.some((entry) => entry.category === "Species" && entry.parent === npc.culture && entry.value === npc.species));
       assert.equal(NPCEngine.RESERVED_NAMES.has(npc.fullName.toLocaleLowerCase()), false);
+      assert.notEqual(npc.firstName, "Unnamed");
+      assert.notEqual(npc.profession, `${npc.professionCategory} worker`);
       if (npc.age === "Child") assert.equal(npc.professionCategory, "Youth");
       if (npc.age === "Ancient") assert.ok(["Elf", "Dwarf", "Gnome", "Drow", "Duergar", "Deep Gnome"].includes(npc.species));
-      for (const [left, right] of contradictions) assert.equal(npc.appearance.includes(left) && npc.appearance.includes(right), false);
+      const descriptors = [...npc.appearance, ...npc.demeanor, ...npc.attitude, npc.voice, npc.mannerism];
+      for (const pair of contradictions) {
+        assert.ok(pair.filter((value) => descriptors.includes(value)).length < 2, `contradictory descriptors: ${pair.join(" / ")}`);
+      }
     }
+  }
+});
+
+test("expanded pools produce broad cultural variety", () => {
+  const random = rng(90210);
+  for (const culture of ["Oriathan", "Azmeri", "Ezomyte", "Maraketh", "Karui", "Vaal", "Kalguur", "Stygian"]) {
+    const seen = {
+      firstNames: new Set(), surnames: new Set(), professions: new Set(), appearance: new Set(),
+      demeanor: new Set(), attitude: new Set(), voices: new Set()
+    };
+    for (let i = 0; i < 1200; i += 1) {
+      const npc = NPCEngine.generateNPC({ culture, age: "Adult" }, tables, random);
+      seen.firstNames.add(npc.firstName);
+      seen.surnames.add(npc.surname);
+      seen.professions.add(npc.profession);
+      npc.appearance.forEach((value) => seen.appearance.add(value));
+      npc.demeanor.forEach((value) => seen.demeanor.add(value));
+      npc.attitude.forEach((value) => seen.attitude.add(value));
+      seen.voices.add(npc.voice);
+    }
+    assert.ok(seen.firstNames.size >= 55, `${culture} first-name variety was ${seen.firstNames.size}`);
+    assert.ok(seen.surnames.size >= 35, `${culture} surname variety was ${seen.surnames.size}`);
+    assert.ok(seen.professions.size >= 100, `${culture} profession variety was ${seen.professions.size}`);
+    assert.ok(seen.appearance.size >= 120, `${culture} appearance variety was ${seen.appearance.size}`);
+    assert.ok(seen.demeanor.size >= 80, `${culture} demeanor variety was ${seen.demeanor.size}`);
+    assert.ok(seen.attitude.size >= 75, `${culture} attitude variety was ${seen.attitude.size}`);
+    assert.ok(seen.voices.size >= 55, `${culture} voice variety was ${seen.voices.size}`);
   }
 });
 

@@ -1,6 +1,6 @@
 # Wraeclast NPC Generator
 
-A Foundry VTT 13 module for generating lore-aware NPCs for a Wraeclast D&D campaign. Version 2.1 models culture, parent faction, and clan/subfaction as separate levels, prevents incompatible selections, and previews results before publishing them.
+A Foundry VTT 13 module for generating lore-aware NPCs for a Wraeclast D&D campaign. Version 2.2 models culture, parent faction, and clan/subfaction as separate levels, provides substantially expanded identity and description pools, prevents incompatible selections, and previews results before publishing them.
 
 ## Install in Foundry
 
@@ -36,6 +36,14 @@ The module never posts or creates documents merely because **Generate preview** 
 
 Named campaign figures and titles are excluded from random name pools.
 Branch weights are generation tuning informed by the campaign notes, not asserted population counts.
+
+## Content depth
+
+- **830 names:** every culture has at least 60 first names and 40 surnames.
+- **659 professions:** broad common occupations plus culture-, faction-, expedition-, legion-, and clan-specific work.
+- **598 descriptors:** 137 appearance traits, 92 demeanors, 89 attitudes, 162 voices, and 118 mannerisms.
+- Every culture has its own weighted voice pool while retaining access to broadly applicable voices.
+- Cultural professions supplement the general profession library rather than replacing it, keeping results distinctive without becoming repetitive.
 
 ## Presets
 
@@ -94,7 +102,7 @@ npm run check
 npm run build:data
 ```
 
-The test suite validates compatibility rules and reserved names, then simulates tens of thousands of NPCs across every preset.
+The test suite validates compatibility rules, pool depth, reserved names, contradictory descriptors, and cultural variety, then simulates tens of thousands of NPCs across every preset.
 
 ## Publishing an update
 

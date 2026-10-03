@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.2.0
+
+### Content expansion
+
+- Expanded the name library from 415 to 830 entries.
+- Every culture now has at least 60 first names and 40 surnames; Stygian pools contain 70 first names and 55 surnames.
+- Expanded the profession library from 310 to 659 entries.
+- Added more than 250 broadly applicable setting occupations and new cultural roles for Oriathans, Azmeri, Ezomytes, Maraketh, Vaal, and Kalguur.
+- Expanded the descriptor library from 111 to 598 entries: 137 appearance traits, 92 demeanors, 89 attitudes, 162 voices, and 118 mannerisms.
+- Added dedicated weighted voice pools for all eight cultures.
+
+### Quality and performance
+
+- Cultural and branch-specific professions now enrich the general occupation pool with stronger weights instead of replacing its variety.
+- Added compatibility rules for the expanded appearance, demeanor, and attitude pools.
+- Strengthened age filtering for grey- and silver-haired descriptors.
+- Added indexed table lookups, cached specificity selections, cached profession pools, and constant-time contradiction checks.
+- Expanded validation to enforce minimum name, profession, and descriptor pool sizes.
+- Added deterministic diversity simulations across every culture; all 15 tests pass.
+
 ## 2.1.0
 
 ### Faction hierarchy and lore
