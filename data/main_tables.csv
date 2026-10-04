@@ -7,9 +7,10 @@ Culture,Global,None,Karui,12
 Culture,Global,None,Vaal,5
 Culture,Global,None,Kalguur,10
 Culture,Global,None,Stygian,8
-Affiliation,Oriathan,Any,Unaffiliated,50
-Affiliation,Oriathan,Any,Templar,30
-Affiliation,Oriathan,Any,The Ring,20
+Affiliation,Oriathan,Any,Unaffiliated,40
+Affiliation,Oriathan,Any,Templar,27
+Affiliation,Oriathan,Any,Oriath Militia,18
+Affiliation,Oriathan,Any,The Ring,15
 Affiliation,Azmeri,Any,Unaffiliated,100
 Affiliation,Ezomyte,Any,Unaffiliated,100
 Affiliation,Maraketh,Any,Unaffiliated,100
@@ -76,11 +77,19 @@ Species,Kalguur,Any,Gnome,3
 Species,Stygian,Any,Drow,50
 Species,Stygian,Any,Duergar,30
 Species,Stygian,Any,Deep Gnome,20
-SocialOrigin,Global,Any,Native,50
-SocialOrigin,Global,Any,Diaspora,14
-SocialOrigin,Global,Any,Refugee,18
-SocialOrigin,Global,Any,Exile,10
-SocialOrigin,Global,Any,Mixed heritage,8
+SocialOrigin,Global,Any,Native,30
+SocialOrigin,Global,Any,Diaspora,9
+SocialOrigin,Global,Any,Refugee,13
+SocialOrigin,Global,Any,Exile,8
+SocialOrigin,Global,Any,Mixed heritage,6
+SocialOrigin,Global,Any,Settler,6
+SocialOrigin,Global,Any,Nomad,5
+SocialOrigin,Global,Any,Urban poor,7
+SocialOrigin,Global,Any,Merchant household,5
+SocialOrigin,Global,Any,Military household,4
+SocialOrigin,Global,Any,Religious household,3
+SocialOrigin,Global,Any,Freed captive,2
+SocialOrigin,Global,Any,Displaced survivor,6
 Age,Global,Any,Child,7
 Age,Global,Any,Young Adult,20
 Age,Global,Any,Adult,49
@@ -95,6 +104,28 @@ Alignment,Global,Any,Chaotic Neutral,15
 Alignment,Global,Any,Lawful Evil,6
 Alignment,Global,Any,Neutral Evil,7
 Alignment,Global,Any,Chaotic Evil,5
+Location,Global,Any,Lioneye's Watch,1
+Location,Global,Any,Forest Encampment,1
+Location,Global,Any,Sarn Slums,1
+Location,Global,Any,Sarn Arena,1
+Location,Global,Any,Sarn Upper City,1
+Location,Global,Any,Sarn Docks,1
+Location,Global,Any,Theopolis,1
+Location,Global,Any,Oriath port town,1
+Location,Global,Any,Karui Archipelago,1
+Location,Global,Any,Highgate and the Vastiri,1
+Location,Global,Any,Kalguur expedition camp,1
+Location,Global,Any,Azurite Mines,1
+Location,Global,Any,Ancient Vaal city,1
+Location,Global,Any,Wraeclast road or wilderness,1
+Era,Global,Any,1599 IC,1
+Era,Global,Any,Eternal Empire,1
+Era,Global,Any,Ancient Vaal,1
+CapabilityTier,Global,Any,Civilian,1
+CapabilityTier,Global,Any,Skilled,1
+CapabilityTier,Global,Any,Trained,1
+CapabilityTier,Global,Any,Veteran,1
+CapabilityTier,Global,Any,Elite,1
 ProfessionCategory,Oriathan,Any,Commoner,14
 ProfessionCategory,Oriathan,Any,Agriculture,8
 ProfessionCategory,Oriathan,Any,Artist,5
@@ -115,6 +146,13 @@ ProfessionCategory,Oriathan,Templar,Military,17
 ProfessionCategory,Oriathan,Templar,Scholarly,10
 ProfessionCategory,Oriathan,Templar,Medical,5
 ProfessionCategory,Oriathan,Templar,Magic,5
+ProfessionCategory,Oriathan,Oriath Militia,Militia Service,58
+ProfessionCategory,Oriathan,Oriath Militia,Military,14
+ProfessionCategory,Oriathan,Oriath Militia,Communications,8
+ProfessionCategory,Oriathan,Oriath Militia,Medical,5
+ProfessionCategory,Oriathan,Oriath Militia,Criminal,5
+ProfessionCategory,Oriathan,Oriath Militia,Commoner,5
+ProfessionCategory,Oriathan,Oriath Militia,Transport,5
 ProfessionCategory,Oriathan,The Ring,The Ring,55
 ProfessionCategory,Oriathan,The Ring,Criminal,25
 ProfessionCategory,Oriathan,The Ring,Trade,10

@@ -1,599 +1,861 @@
-Category,Parent,SubParent,Value,Weight
-Appearance,Any,Any,Acne-scarred,1
-Appearance,Any,Any,Athletic,1
-Appearance,Any,Any,Battered travel cloak,1
-Appearance,Any,Any,Beautiful,1
-Appearance,Any,Any,Blind in one eye,1
-Appearance,Any,Any,Broad-shouldered,1
-Appearance,Any,Any,Broken nose,1
-Appearance,Any,Any,Burn-scarred,1
-Appearance,Any,Any,Calloused hands,1
-Appearance,Any,Any,Carefully braided hair,1
-Appearance,Any,Any,Ceremonial tattoos,1
-Appearance,Any,Any,Close-cropped hair,1
-Appearance,Any,Any,Crooked smile,1
-Appearance,Any,Any,Frail,1
-Appearance,Any,Any,Freckled,1
-Appearance,Any,Any,Grime-streaked,1
-Appearance,Any,Any,Heavy-set,1
-Appearance,Any,Any,Immaculately groomed,1
-Appearance,Any,Any,Ink-stained fingers,1
-Appearance,Any,Any,Lean and corded,1
-Appearance,Any,Any,Missing finger,1
-Appearance,Any,Any,Narrow-shouldered,1
-Appearance,Any,Any,Old blade scars,1
-Appearance,Any,Any,Patchwork armour,1
-Appearance,Any,Any,Pierced ears,1
-Appearance,Any,Any,Powerfully built,1
-Appearance,Any,Any,Ritual scarification,1
-Appearance,Any,Any,Shaven-headed,1
-Appearance,Any,Any,Soot-blackened,1
-Appearance,Any,Any,Stooped,1
-Appearance,Any,Any,Sun-darkened,1
-Appearance,Any,Any,Towering,1
-Appearance,Any,Any,Very short,1
-Appearance,Any,Any,Waist-length hair,1
-Appearance,Any,Any,Weathered by decades,1
-Appearance,Any,Any,Youthful face,1
-Demeanor,Any,Any,Alert,1
-Demeanor,Any,Any,Boisterous,1
-Demeanor,Any,Any,Careful,1
-Demeanor,Any,Any,Cheerful,1
-Demeanor,Any,Any,Cold and distant,1
-Demeanor,Any,Any,Disciplined,1
-Demeanor,Any,Any,Dryly humorous,1
-Demeanor,Any,Any,Earnest,1
-Demeanor,Any,Any,Guarded,1
-Demeanor,Any,Any,Impatient,1
-Demeanor,Any,Any,Melancholy,1
-Demeanor,Any,Any,Mercurial,1
-Demeanor,Any,Any,Openly trusting,1
-Demeanor,Any,Any,Patient,1
-Demeanor,Any,Any,Proud,1
-Demeanor,Any,Any,Restless,1
-Demeanor,Any,Any,Sardonic,1
-Demeanor,Any,Any,Solemn,1
-Demeanor,Any,Any,Suspicious,1
-Demeanor,Any,Any,Unhurried,1
-Demeanor,Any,Any,Warm and welcoming,1
-Demeanor,Any,Any,Weary but resolute,1
-Attitude,Any,Any,Always bargaining,1
-Attitude,Any,Any,Assumes authority,1
-Attitude,Any,Any,Avoids eye contact,1
-Attitude,Any,Any,Challenges every claim,1
-Attitude,Any,Any,Eager to help,1
-Attitude,Any,Any,Expects betrayal,1
-Attitude,Any,Any,Fascinated by outsiders,1
-Attitude,Any,Any,Fiercely hospitable,1
-Attitude,Any,Any,Keeps emotional distance,1
-Attitude,Any,Any,Looks for an escape,1
-Attitude,Any,Any,Protective of the vulnerable,1
-Attitude,Any,Any,Quick to forgive,1
-Attitude,Any,Any,Quick to take offence,1
-Attitude,Any,Any,Respectful of custom,1
-Attitude,Any,Any,Studies everyone carefully,1
-Attitude,Any,Any,Treats danger as routine,1
-Attitude,Any,Any,Trust must be earned,1
-Attitude,Any,Any,Values practical results,1
-Voice,Any,Any,Breathy voice,1
-Voice,Any,Any,Booming voice,1
-Voice,Any,Any,Careful formal diction,1
-Voice,Any,Any,Clipped cadence,1
-Voice,Any,Any,Gravelly voice,1
-Voice,Any,Any,High musical voice,1
-Voice,Any,Any,Low resonant voice,1
-Voice,Any,Any,Measured voice,1
-Voice,Any,Any,Rapid speech,1
-Voice,Any,Any,Rasping voice,1
-Voice,Any,Any,Rough provincial accent,1
-Voice,Any,Any,Soft-spoken,1
-Voice,Any,Any,Whisper-soft voice,1
-Mannerism,Any,Any,Counts exits on entering a room,1
-Mannerism,Any,Any,Drums fingers in coded rhythms,1
-Mannerism,Any,Any,Folds arms when challenged,1
-Mannerism,Any,Any,Keeps one hand near a weapon,1
-Mannerism,Any,Any,Laughs at the wrong moment,1
-Mannerism,Any,Any,Murmurs an old prayer,1
-Mannerism,Any,Any,Never sits with a door behind them,1
-Mannerism,Any,Any,Polishes a keepsake while thinking,1
-Mannerism,Any,Any,Repeats the last word of a question,1
-Mannerism,Any,Any,Rolls a coin across the knuckles,1
-Mannerism,Any,Any,Sketches symbols in dust,1
-Mannerism,Any,Any,Speaks in short decisive phrases,1
-Mannerism,Any,Any,Touches a scar before answering,1
-Mannerism,Any,Any,Watches hands instead of faces,1
-Voice,Stygian,Any,Clipped low Azmeri with hardened consonants,2
-Voice,Stygian,Any,Shortened vowels and a low pitch,2
-Voice,Stygian,Any,Rune-reader's measured underground cadence,2
-Voice,Stygian,Any,A gravelly accent that turns t to th,2
-Voice,Stygian,Any,A terse accent that turns k to kh,2
-Voice,Stygian,Any,A soft accent that turns p to ph,2
-Voice,Stygian,Any,Resonant speech shaped by stone chambers,2
-Voice,Stygian,Any,Whispered Azmeri with sharply stressed consonants,2
-Appearance,Any,Any,Ash-grey complexion,1
-Appearance,Any,Any,Azurite dust in the hair,1
-Appearance,Any,Any,Bandaged forearm,1
-Appearance,Any,Any,Barefoot,1
-Appearance,Any,Any,Bead-threaded braids,1
-Appearance,Any,Any,Bent posture,1
-Appearance,Any,Any,Birthmark across one cheek,1
-Appearance,Any,Any,Blackened fingernails,1
-Appearance,Any,Any,Bone-charm necklace,1
-Appearance,Any,Any,Bronze skin,1
-Appearance,Any,Any,Broken front tooth,1
-Appearance,Any,Any,Burned eyebrows,1
-Appearance,Any,Any,Carefully mended clothing,1
-Appearance,Any,Any,Chalk ward marks,1
-Appearance,Any,Any,Chipped tooth,1
-Appearance,Any,Any,Clean-shaven,1
-Appearance,Any,Any,Closely trimmed beard,1
-Appearance,Any,Any,Clouded eye,1
-Appearance,Any,Any,Copper-toned skin,1
-Appearance,Any,Any,Cracked spectacles,1
-Appearance,Any,Any,Crooked fingers,1
-Appearance,Any,Any,Crooked nose,1
-Appearance,Any,Any,Dark circles under the eyes,1
-Appearance,Any,Any,Deep-set eyes,1
-Appearance,Any,Any,Delicate hands,1
-Appearance,Any,Any,Dust-caked boots,1
-Appearance,Any,Any,Elaborate ear cuffs,1
-Appearance,Any,Any,Faded facial tattoo,1
-Appearance,Any,Any,Fine-boned features,1
-Appearance,Any,Any,Flattened nose,1
-Appearance,Any,Any,Freshly shaved jaw,1
-Appearance,Any,Any,Frostbitten fingertips,1
-Appearance,Any,Any,Full braided beard,1
-Appearance,Any,Any,Gap-toothed grin,1
-Appearance,Any,Any,Gem-glow beneath the skin,1
-Appearance,Any,Any,Gold-capped tooth,1
-Appearance,Any,Any,Grease-stained sleeves,1
-Appearance,Any,Any,Grey-streaked hair,1
-Appearance,Any,Any,Hardened knuckles,1
-Appearance,Any,Any,Heavy brow,1
-Appearance,Any,Any,Hollow cheeks,1
-Appearance,Any,Any,Hood shadowing the face,1
-Appearance,Any,Any,Inked knuckles,1
-Appearance,Any,Any,Iron-shod boots,1
-Appearance,Any,Any,Jagged scalp scar,1
-Appearance,Any,Any,Layered travel scarves,1
-Appearance,Any,Any,Limping gait,1
-Appearance,Any,Any,Long braided beard,1
-Appearance,Any,Any,Long-limbed,1
-Appearance,Any,Any,Metal finger splint,1
-Appearance,Any,Any,Milky left eye,1
-Appearance,Any,Any,Missing ear tip,1
-Appearance,Any,Any,Missing two fingers,1
-Appearance,Any,Any,Mud-spattered hem,1
-Appearance,Any,Any,Narrow face,1
-Appearance,Any,Any,Needle-thin scar on the lip,1
-Appearance,Any,Any,Oiled hair,1
-Appearance,Any,Any,Oil-darkened hands,1
-Appearance,Any,Any,Old manacle scars,1
-Appearance,Any,Any,One eyebrow split by a scar,1
-Appearance,Any,Any,One side of the head shaved,1
-Appearance,Any,Any,Oversized coat,1
-Appearance,Any,Any,Pale complexion,1
-Appearance,Any,Any,Patch over one eye,1
-Appearance,Any,Any,Patched gloves,1
-Appearance,Any,Any,Pierced brow,1
-Appearance,Any,Any,Powder-burned hands,1
-Appearance,Any,Any,Prominent cheekbones,1
-Appearance,Any,Any,Ritual paint on the cheeks,1
-Appearance,Any,Any,Rope-burned palms,1
-Appearance,Any,Any,Round face,1
-Appearance,Any,Any,Ruddy complexion,1
-Appearance,Any,Any,Salt-stiff cloak,1
-Appearance,Any,Any,Sand-scoured skin,1
-Appearance,Any,Any,Scarred palms,1
-Appearance,Any,Any,Sharp nose,1
-Appearance,Any,Any,Shaved eyebrows,1
-Appearance,Any,Any,Shoulder-length curls,1
-Appearance,Any,Any,Silver-streaked hair,1
-Appearance,Any,Any,Six-fingered left hand,1
-Appearance,Any,Any,Sleeves rolled to the elbows,1
-Appearance,Any,Any,Smoke-yellowed nails,1
-Appearance,Any,Any,Square jaw,1
-Appearance,Any,Any,Stitched leather coat,1
-Appearance,Any,Any,Sunken eyes,1
-Appearance,Any,Any,Tangled hair,1
-Appearance,Any,Any,Tarnished jewellery,1
-Appearance,Any,Any,Tattooed scalp,1
-Appearance,Any,Any,Thick eyebrows,1
-Appearance,Any,Any,Thick calluses,1
-Appearance,Any,Any,Travel-worn boots,1
-Appearance,Any,Any,Uneven haircut,1
-Appearance,Any,Any,Violet eyes,1
-Appearance,Any,Any,Wax-sealed braid,1
-Appearance,Any,Any,Weather-cracked lips,1
-Appearance,Any,Any,Web of fine scars,1
-Appearance,Any,Any,White lock of hair,1
-Appearance,Any,Any,Wind-tossed hair,1
-Appearance,Any,Any,Worn prayer cords,1
-Appearance,Any,Any,Carved wooden prosthetic,1
-Appearance,Any,Any,Ritual brands on both palms,1
-Demeanor,Any,Any,Absent-minded,1
-Demeanor,Any,Any,Abrupt,1
-Demeanor,Any,Any,Amiably cynical,1
-Demeanor,Any,Any,Anxiously polite,1
-Demeanor,Any,Any,Barely contained anger,1
-Demeanor,Any,Any,Bitter,1
-Demeanor,Any,Any,Blunt,1
-Demeanor,Any,Any,Brisk,1
-Demeanor,Any,Any,Calm under pressure,1
-Demeanor,Any,Any,Candid,1
-Demeanor,Any,Any,Careworn,1
-Demeanor,Any,Any,Cautiously optimistic,1
-Demeanor,Any,Any,Commanding,1
-Demeanor,Any,Any,Compassionate,1
-Demeanor,Any,Any,Condescending,1
-Demeanor,Any,Any,Contemplative,1
-Demeanor,Any,Any,Courtly,1
-Demeanor,Any,Any,Defensive,1
-Demeanor,Any,Any,Deliberate,1
-Demeanor,Any,Any,Distrustful,1
-Demeanor,Any,Any,Dutiful,1
-Demeanor,Any,Any,Eager,1
-Demeanor,Any,Any,Easily distracted,1
-Demeanor,Any,Any,Elusive,1
-Demeanor,Any,Any,Fervent,1
-Demeanor,Any,Any,Formal,1
-Demeanor,Any,Any,Gentle,1
-Demeanor,Any,Any,Grimly amused,1
-Demeanor,Any,Any,Haunted,1
-Demeanor,Any,Any,Haughty,1
-Demeanor,Any,Any,Hypervigilant,1
-Demeanor,Any,Any,Inquisitive,1
-Demeanor,Any,Any,Intense,1
-Demeanor,Any,Any,Irreverent,1
-Demeanor,Any,Any,Jaded,1
-Demeanor,Any,Any,Jovial,1
-Demeanor,Any,Any,Kindly,1
-Demeanor,Any,Any,Laconic,1
-Demeanor,Any,Any,Level-headed,1
-Demeanor,Any,Any,Methodical,1
-Demeanor,Any,Any,Morbidly cheerful,1
-Demeanor,Any,Any,Nervously energetic,1
-Demeanor,Any,Any,Obsequious,1
-Demeanor,Any,Any,Overconfident,1
-Demeanor,Any,Any,Perpetually apologetic,1
-Demeanor,Any,Any,Precise,1
-Demeanor,Any,Any,Quietly defiant,1
-Demeanor,Any,Any,Reassuring,1
-Demeanor,Any,Any,Recklessly confident,1
-Demeanor,Any,Any,Reserved,1
-Demeanor,Any,Any,Resigned,1
-Demeanor,Any,Any,Ruthlessly practical,1
-Demeanor,Any,Any,Secretive,1
-Demeanor,Any,Any,Self-effacing,1
-Demeanor,Any,Any,Severe,1
-Demeanor,Any,Any,Shy,1
-Demeanor,Any,Any,Soft-hearted,1
-Demeanor,Any,Any,Stoic,1
-Demeanor,Any,Any,Talkative,1
-Demeanor,Any,Any,Tender,1
-Demeanor,Any,Any,Tense,1
-Demeanor,Any,Any,Thoughtful,1
-Demeanor,Any,Any,Uncertain,1
-Demeanor,Any,Any,Unflappable,1
-Demeanor,Any,Any,Vindictive,1
-Demeanor,Any,Any,Wary,1
-Demeanor,Any,Any,Watchful,1
-Demeanor,Any,Any,World-weary,1
-Demeanor,Any,Any,Wry,1
-Demeanor,Any,Any,Zealous,1
-Attitude,Any,Any,Answers questions with questions,1
-Attitude,Any,Any,Assumes everyone wants something,1
-Attitude,Any,Any,Assumes strangers are spies,1
-Attitude,Any,Any,Becomes friendlier over food,1
-Attitude,Any,Any,Believes rank must be earned,1
-Attitude,Any,Any,Bows to visible authority,1
-Attitude,Any,Any,Bribes before asking favours,1
-Attitude,Any,Any,Cannot ignore a challenge,1
-Attitude,Any,Any,Challenges pessimism,1
-Attitude,Any,Any,Changes the subject around family,1
-Attitude,Any,Any,Compliments useful equipment,1
-Attitude,Any,Any,Counts every ration,1
-Attitude,Any,Any,Defends local custom,1
-Attitude,Any,Any,Defers to elders,1
-Attitude,Any,Any,Demands evidence,1
-Attitude,Any,Any,Distrusts magic,1
-Attitude,Any,Any,Distrusts soldiers,1
-Attitude,Any,Any,Eager to trade stories,1
-Attitude,Any,Any,Expects payment in advance,1
-Attitude,Any,Any,Expects the worst,1
-Attitude,Any,Any,Fears organised religion,1
-Attitude,Any,Any,Finds outsiders entertaining,1
-Attitude,Any,Any,Flatters the powerful,1
-Attitude,Any,Any,Forgives honest mistakes,1
-Attitude,Any,Any,Greets danger with jokes,1
-Attitude,Any,Any,Hates being pitied,1
-Attitude,Any,Any,Hides kindness behind insults,1
-Attitude,Any,Any,Insists on formal introductions,1
-Attitude,Any,Any,Keeps promises literally,1
-Attitude,Any,Any,Looks down on city dwellers,1
-Attitude,Any,Any,Looks down on rural folk,1
-Attitude,Any,Any,Makes decisions by omen,1
-Attitude,Any,Any,Mocks formal titles,1
-Attitude,Any,Any,Never raises their voice,1
-Attitude,Any,Any,Never refuses hospitality,1
-Attitude,Any,Any,Offers advice unasked,1
-Attitude,Any,Any,Offers help before being asked,1
-Attitude,Any,Any,Only respects proven skill,1
-Attitude,Any,Any,Openly dislikes criminals,1
-Attitude,Any,Any,Openly dislikes nobles,1
-Attitude,Any,Any,Praises courage loudly,1
-Attitude,Any,Any,Prefers barter to coin,1
-Attitude,Any,Any,Prioritises clan over law,1
-Attitude,Any,Any,Prioritises law over friendship,1
-Attitude,Any,Any,Protects children instinctively,1
-Attitude,Any,Any,Questions every order,1
-Attitude,Any,Any,Quick to make wagers,1
-Attitude,Any,Any,Raises their voice to seize control,1
-Attitude,Any,Any,Records every debt,1
-Attitude,Any,Any,Refuses gifts,1
-Attitude,Any,Any,Rejects praise,1
-Attitude,Any,Any,Resents interruption,1
-Attitude,Any,Any,Respects craftsmanship,1
-Attitude,Any,Any,Seeks approval,1
-Attitude,Any,Any,Seeks common ground,1
-Attitude,Any,Any,Sees omens everywhere,1
-Attitude,Any,Any,Shares supplies freely,1
-Attitude,Any,Any,Speaks for quieter companions,1
-Attitude,Any,Any,Tests newcomers with teasing,1
-Attitude,Any,Any,Treats strangers as potential kin,1
-Attitude,Any,Any,Treats titles seriously,1
-Attitude,Any,Any,Treats wounds before questions,1
-Attitude,Any,Any,Trusts priests,1
-Attitude,Any,Any,Turns every topic to work,1
-Attitude,Any,Any,Values education,1
-Attitude,Any,Any,Views law as a tool,1
-Attitude,Any,Any,Views mercy as weakness,1
-Attitude,Any,Any,Welcomes gossip,1
-Attitude,Any,Any,Will not discuss the past,1
-Attitude,Any,Any,Worries over every expense,1
-Attitude,Any,Any,Avoids religious topics,1
-Voice,Any,Any,Abrasive whisper,1
-Voice,Any,Any,Barely audible murmur,1
-Voice,Any,Any,Breath caught between sentences,1
-Voice,Any,Any,Bright clear voice,1
-Voice,Any,Any,Broken rasp,1
-Voice,Any,Any,Calm contralto,1
-Voice,Any,Any,Careful second-language diction,1
-Voice,Any,Any,Careful whisper,1
-Voice,Any,Any,Commanding parade-ground voice,1
-Voice,Any,Any,Cracked tenor,1
-Voice,Any,Any,Cultivated formal accent,1
-Voice,Any,Any,Deep chest voice,1
-Voice,Any,Any,Dry monotone,1
-Voice,Any,Any,Even baritone,1
-Voice,Any,Any,Faltering speech,1
-Voice,Any,Any,Gentle lilt,1
-Voice,Any,Any,Habitual stage whisper,1
-Voice,Any,Any,Hoarse from dust,1
-Voice,Any,Any,Hushed intensity,1
-Voice,Any,Any,Laughing cadence,1
-Voice,Any,Any,Low alto,1
-Voice,Any,Any,Low conspiratorial tone,1
-Voice,Any,Any,Musical laugh between phrases,1
-Voice,Any,Any,Nasal drawl,1
-Voice,Any,Any,Precise enunciation,1
-Voice,Any,Any,Quick breathless delivery,1
-Voice,Any,Any,Reedy tenor,1
-Voice,Any,Any,Resonant storyteller's cadence,1
-Voice,Any,Any,Rolling cadence,1
-Voice,Any,Any,Rumbling bass,1
-Voice,Any,Any,Sharp clipped voice,1
-Voice,Any,Any,Singing lilt,1
-Voice,Any,Any,Slow deliberate speech,1
-Voice,Any,Any,Smoky alto,1
-Voice,Any,Any,Sonorous baritone,1
-Voice,Any,Any,Staccato delivery,1
-Voice,Any,Any,Strained whisper,1
-Voice,Any,Any,Thin wavering voice,1
-Voice,Any,Any,Thunderous laugh,1
-Voice,Any,Any,Tremulous voice,1
-Voice,Any,Any,Voice roughened by smoke,1
-Voice,Any,Any,Warm bass,1
-Voice,Any,Any,Warm contralto,1
-Voice,Any,Any,Wheezing rasp,1
-Voice,Any,Any,Words run together,1
-Mannerism,Any,Any,Adjusts a bracelet before speaking,1
-Mannerism,Any,Any,Always checks the ceiling,1
-Mannerism,Any,Any,Avoids stepping on cracks,1
-Mannerism,Any,Any,Bites the inside of one cheek,1
-Mannerism,Any,Any,Bows their head at doorways,1
-Mannerism,Any,Any,Breathes out slowly before lying,1
-Mannerism,Any,Any,Brushes dust from their shoulders,1
-Mannerism,Any,Any,Carves notches into scrap wood,1
-Mannerism,Any,Any,Checks their pulse when nervous,1
-Mannerism,Any,Any,Clicks their tongue while counting,1
-Mannerism,Any,Any,Closes one eye to judge distance,1
-Mannerism,Any,Any,Collects loose nails,1
-Mannerism,Any,Any,Combs fingers through their hair,1
-Mannerism,Any,Any,Counts coins twice,1
-Mannerism,Any,Any,Cracks their knuckles before decisions,1
-Mannerism,Any,Any,Draws maps on tabletops,1
-Mannerism,Any,Any,Eats only after others begin,1
-Mannerism,Any,Any,Folds paper into sharp shapes,1
-Mannerism,Any,Any,Glances toward the nearest window,1
-Mannerism,Any,Any,Grips their collar during silence,1
-Mannerism,Any,Any,Hums a three-note refrain,1
-Mannerism,Any,Any,Keeps their boots pointed toward the exit,1
-Mannerism,Any,Any,Keeps both hands hidden in their sleeves,1
-Mannerism,Any,Any,Knocks twice on wood,1
-Mannerism,Any,Any,Licks a thumb before turning a page,1
-Mannerism,Any,Any,Lines up nearby objects,1
-Mannerism,Any,Any,Listens with their head tilted,1
-Mannerism,Any,Any,Marks doorframes with chalk,1
-Mannerism,Any,Any,Mends clothing while talking,1
-Mannerism,Any,Any,Mouths names silently,1
-Mannerism,Any,Any,Never uses a person's name,1
-Mannerism,Any,Any,Nods before disagreeing,1
-Mannerism,Any,Any,Opens and closes a locket,1
-Mannerism,Any,Any,Paces in exact circles,1
-Mannerism,Any,Any,Plucks loose threads,1
-Mannerism,Any,Any,Presses thumb to each fingertip,1
-Mannerism,Any,Any,Quotes old proverbs,1
-Mannerism,Any,Any,Rearranges cups by size,1
-Mannerism,Any,Any,Rolls their shoulders before answering,1
-Mannerism,Any,Any,Rubs their hands for warmth,1
-Mannerism,Any,Any,Scratches notes onto their forearm,1
-Mannerism,Any,Any,Shields every candle flame,1
-Mannerism,Any,Any,Smooths their eyebrows,1
-Mannerism,Any,Any,Sniffs every drink,1
-Mannerism,Any,Any,Spins a ring around one finger,1
-Mannerism,Any,Any,Stares at their shoes while thinking,1
-Mannerism,Any,Any,Straightens crooked objects,1
-Mannerism,Any,Any,Taps a tooth with one fingernail,1
-Mannerism,Any,Any,Tests every chair before sitting,1
-Mannerism,Any,Any,Touches their forehead in greeting,1
-Mannerism,Any,Any,Traces the edge of a tattoo,1
-Mannerism,Any,Any,Turns every cup handle outward,1
-Mannerism,Any,Any,Unlaces and relaces one glove,1
-Mannerism,Any,Any,Whispers numbers under their breath,1
-Mannerism,Any,Any,Wraps their cloak tightly,1
-Mannerism,Any,Any,Writes names in dust,1
-Mannerism,Any,Any,Yawns when nervous,1
-Mannerism,Any,Any,Balances a coin on each knuckle,1
-Mannerism,Any,Any,Chews dried herbs while listening,1
-Mannerism,Any,Any,Cleans beneath their nails with a knife,1
-Mannerism,Any,Any,Counts door hinges,1
-Mannerism,Any,Any,Draws a circle around spilled liquid,1
-Mannerism,Any,Any,Drums a marching cadence on their thigh,1
-Mannerism,Any,Any,Flicks ash from spotless sleeves,1
-Mannerism,Any,Any,Folds their hands behind their back,1
-Mannerism,Any,Any,Holds eye contact a moment too long,1
-Mannerism,Any,Any,Keeps a tally on a cord,1
-Mannerism,Any,Any,Leaves the last mouthful untouched,1
-Mannerism,Any,Any,Measures rooms in paces,1
-Mannerism,Any,Any,Memorises every visible face,1
-Mannerism,Any,Any,Polishes their boots with a sleeve,1
-Mannerism,Any,Any,Rests two fingers against their throat,1
-Mannerism,Any,Any,Rocks gently on their heels,1
-Mannerism,Any,Any,Rolls up maps from the wrong end,1
-Mannerism,Any,Any,Saves bits of string,1
-Mannerism,Any,Any,Scrapes mud from their soles immediately,1
-Mannerism,Any,Any,Signs words unconsciously with one hand,1
-Mannerism,Any,Any,Smiles before delivering bad news,1
-Mannerism,Any,Any,Snaps twigs into equal lengths,1
-Mannerism,Any,Any,Speaks to animals as if they answer,1
-Mannerism,Any,Any,Stacks pebbles while waiting,1
-Mannerism,Any,Any,Taps each pocket in sequence,1
-Mannerism,Any,Any,Touches iron before making a promise,1
-Mannerism,Any,Any,Turns rings inward when worried,1
-Mannerism,Any,Any,Twists a lock of hair around one finger,1
-Mannerism,Any,Any,Watches reflections instead of faces,1
-Mannerism,Any,Any,Wets their lips before every answer,1
-Mannerism,Any,Any,Whistles when the room goes quiet,1
-Mannerism,Any,Any,Wipes fingerprints from handled objects,1
-Mannerism,Any,Any,Counts breaths during arguments,1
-Mannerism,Any,Any,Cups one ear when concentrating,1
-Mannerism,Any,Any,Doodles repeated spirals,1
-Mannerism,Any,Any,Examines every knot,1
-Mannerism,Any,Any,Fidgets with a broken key,1
-Mannerism,Any,Any,Keeps their back against a wall,1
-Mannerism,Any,Any,Murmurs the date at sunrise,1
-Mannerism,Any,Any,Offers a small bow after introductions,1
-Mannerism,Any,Any,Presses flowers between book pages,1
-Mannerism,Any,Any,Rubs an old coin for luck,1
-Mannerism,Any,Any,Salutes absent-mindedly,1
-Mannerism,Any,Any,Sketches faces from memory,1
-Mannerism,Any,Any,Taps twice before opening any box,1
-Mannerism,Any,Any,Touches the ground after stumbling,1
-Mannerism,Any,Any,Uses a different nickname for everyone,1
-Voice,Oriathan,Any,Crisp Theopolis court diction,2
-Voice,Oriathan,Any,Clipped legionary cadence,2
-Voice,Oriathan,Any,Measured temple oratory,2
-Voice,Oriathan,Any,Rapid forum-debater delivery,2
-Voice,Oriathan,Any,Patrician vowels polished by tutors,2
-Voice,Oriathan,Any,Rough Sarn dockside accent,2
-Voice,Oriathan,Any,Formal legalistic phrasing,2
-Voice,Oriathan,Any,Low barracks growl,2
-Voice,Oriathan,Any,Sing-song market cry,2
-Voice,Oriathan,Any,Provincial Oriathan drawl,2
-Voice,Oriathan,Any,Whispered confessional cadence,2
-Voice,Oriathan,Any,Careful Archivist enunciation,2
-Voice,Azmeri,Any,Soft forest-set cadence,2
-Voice,Azmeri,Any,Lilting western valleys accent,2
-Voice,Azmeri,Any,Quiet speech broken by long pauses,2
-Voice,Azmeri,Any,Warm fireside storyteller's rhythm,2
-Voice,Azmeri,Any,Breathy woodland whisper,2
-Voice,Azmeri,Any,Rough frontier Azmeri,2
-Voice,Azmeri,Any,Measured grove-keeper's voice,2
-Voice,Azmeri,Any,Quick river-settlement chatter,2
-Voice,Azmeri,Any,Low chant-like delivery,2
-Voice,Azmeri,Any,Old rural vowels,2
-Voice,Azmeri,Any,Gentle consonants and rising questions,2
-Voice,Azmeri,Any,Cautious speech shaped by exile camps,2
-Voice,Ezomyte,Any,Broad highland burr,2
-Voice,Ezomyte,Any,Rolling r sounds and clipped endings,2
-Voice,Ezomyte,Any,Deep clan-hall resonance,2
-Voice,Ezomyte,Any,Quick Gaelic lilt,2
-Voice,Ezomyte,Any,Gravelly mining-camp accent,2
-Voice,Ezomyte,Any,Booming feast-hall cadence,2
-Voice,Ezomyte,Any,Soft-spoken mountain dialect,2
-Voice,Ezomyte,Any,Sharp drill-yard bark,2
-Voice,Ezomyte,Any,Slow cairnside storytelling voice,2
-Voice,Ezomyte,Any,Musical island inflection,2
-Voice,Ezomyte,Any,Weathered lowland drawl,2
-Voice,Ezomyte,Any,Measured oath-speaking tone,2
-Voice,Maraketh,Any,Flowing caravan cadence,2
-Voice,Maraketh,Any,Clear oasis-court diction,2
-Voice,Maraketh,Any,Low desert whisper,2
-Voice,Maraketh,Any,Rhythmic market bargaining tone,2
-Voice,Maraketh,Any,Warm story-weaver's voice,2
-Voice,Maraketh,Any,Crisp outrider commands,2
-Voice,Maraketh,Any,Patient road-guide delivery,2
-Voice,Maraketh,Any,Musical campfire phrasing,2
-Voice,Maraketh,Any,Dry salt-road rasp,2
-Voice,Maraketh,Any,Formal Faridun recitation,2
-Voice,Maraketh,Any,Swift pack-train calls,2
-Voice,Maraketh,Any,Soft speech with elongated vowels,2
-Voice,Karui,Any,Open vowels and a steady rhythm,2
-Voice,Karui,Any,Resonant ancestral chant,2
-Voice,Karui,Any,Sharp war-host commands,2
-Voice,Karui,Any,Warm canoe-song cadence,2
-Voice,Karui,Any,Measured marae oratory,2
-Voice,Karui,Any,Quiet omen-reader's voice,2
-Voice,Karui,Any,Rolling ceremonial phrasing,2
-Voice,Karui,Any,Deep chest-led speech,2
-Voice,Karui,Any,Rapid clan banter,2
-Voice,Karui,Any,Soft tide-like intonation,2
-Voice,Karui,Any,Forceful challenge cadence,2
-Voice,Karui,Any,Patient elder's storytelling rhythm,2
-Voice,Vaal,Any,Precise glyph-priest diction,2
-Voice,Vaal,Any,Measured astronomical recitation,2
-Voice,Vaal,Any,Sibilant temple cadence,2
-Voice,Vaal,Any,Quiet mathematical phrasing,2
-Voice,Vaal,Any,Resonant ziggurat proclamation,2
-Voice,Vaal,Any,Clipped artisan notation spoken aloud,2
-Voice,Vaal,Any,Formal dynastic court accent,2
-Voice,Vaal,Any,Soft serpent-cult whisper,2
-Voice,Vaal,Any,Rhythmic calendar chant,2
-Voice,Vaal,Any,Breathy gem-engine litany,2
-Voice,Vaal,Any,Ancient vowels pronounced with care,2
-Voice,Vaal,Any,Detached scholarly monotone,2
-Voice,Kalguur,Any,Cool high-elven precision,2
-Voice,Kalguur,Any,Crisp expedition commands,2
-Voice,Kalguur,Any,Low northern lilt,2
-Voice,Kalguur,Any,Measured engineer's cadence,2
-Voice,Kalguur,Any,Sharp consonants softened by long vowels,2
-Voice,Kalguur,Any,Formal guildhall diction,2
-Voice,Kalguur,Any,Dry shipboard drawl,2
-Voice,Kalguur,Any,Quiet winter-camp speech,2
-Voice,Kalguur,Any,Rapid technical jargon,2
-Voice,Kalguur,Any,Melodic old-country accent,2
-Voice,Kalguur,Any,Controlled battlefield projection,2
-Voice,Kalguur,Any,Patient surveyor's narration,2
-Voice,Stygian,Any,Stone-softened whisper,2
-Voice,Stygian,Any,Deep subterranean resonance,2
-Voice,Stygian,Any,Azurite miner's terse cadence,2
-Voice,Stygian,Any,Formal rune-court diction,2
-Voice,Stygian,Any,Quick deep-market bargaining tone,2
-Voice,Stygian,Any,Breathless vent-runner speech,2
-Voice,Stygian,Any,Measured powderwright terminology,2
-Voice,Stygian,Any,Hollow gallery echo in every word,2
-Voice,Stygian,Any,Guarded surface-trade accent,2
-Voice,Stygian,Any,Slow oath-cutting cadence,2
-Voice,Stygian,Any,Rasping sulphite-lab voice,2
-Voice,Stygian,Any,Low clan-assembly chant,2
+Category,Parent,SubParent,Value,Weight,Species,Ages,ProfessionCategories
+Appearance,Any,Any,Acne-scarred,1,,,
+Appearance,Any,Any,Athletic,1,,,
+Appearance,Any,Any,Battered travel cloak,1,,,
+Appearance,Any,Any,Beautiful,1,,,
+Appearance,Any,Any,Blind in one eye,1,,,
+Appearance,Any,Any,Broad-shouldered,1,,,
+Appearance,Any,Any,Broken nose,1,,,
+Appearance,Any,Any,Burn-scarred,1,,,
+Appearance,Any,Any,Calloused hands,1,,,
+Appearance,Any,Any,Carefully braided hair,1,,,
+Appearance,Any,Any,Ceremonial tattoos,1,,,
+Appearance,Any,Any,Close-cropped hair,1,,,
+Appearance,Any,Any,Crooked smile,1,,,
+Appearance,Any,Any,Frail,1,,,
+Appearance,Any,Any,Freckled,1,,,
+Appearance,Any,Any,Grime-streaked,1,,,
+Appearance,Any,Any,Heavy-set,1,,,
+Appearance,Any,Any,Immaculately groomed,1,,,
+Appearance,Any,Any,Ink-stained fingers,1,,,
+Appearance,Any,Any,Lean and corded,1,,,
+Appearance,Any,Any,Missing finger,1,,,
+Appearance,Any,Any,Narrow-shouldered,1,,,
+Appearance,Any,Any,Old blade scars,1,,,
+Appearance,Any,Any,Patchwork armour,1,,,
+Appearance,Any,Any,Pierced ears,1,,,
+Appearance,Any,Any,Powerfully built,1,,,
+Appearance,Any,Any,Ritual scarification,1,,,
+Appearance,Any,Any,Shaven-headed,1,,,
+Appearance,Any,Any,Soot-blackened,1,,,
+Appearance,Any,Any,Stooped,1,,,
+Appearance,Any,Any,Sun-darkened,1,,,
+Appearance,Any,Any,Towering,1,,,
+Appearance,Any,Any,Very short,1,,,
+Appearance,Any,Any,Waist-length hair,1,,,
+Appearance,Any,Any,Weathered by decades,1,,,
+Appearance,Any,Any,Youthful face,1,,,
+Demeanor,Any,Any,Alert,1,,,
+Demeanor,Any,Any,Boisterous,1,,,
+Demeanor,Any,Any,Careful,1,,,
+Demeanor,Any,Any,Cheerful,1,,,
+Demeanor,Any,Any,Cold and distant,1,,,
+Demeanor,Any,Any,Disciplined,1,,,
+Demeanor,Any,Any,Dryly humorous,1,,,
+Demeanor,Any,Any,Earnest,1,,,
+Demeanor,Any,Any,Guarded,1,,,
+Demeanor,Any,Any,Impatient,1,,,
+Demeanor,Any,Any,Melancholy,1,,,
+Demeanor,Any,Any,Mercurial,1,,,
+Demeanor,Any,Any,Openly trusting,1,,,
+Demeanor,Any,Any,Patient,1,,,
+Demeanor,Any,Any,Proud,1,,,
+Demeanor,Any,Any,Restless,1,,,
+Demeanor,Any,Any,Sardonic,1,,,
+Demeanor,Any,Any,Solemn,1,,,
+Demeanor,Any,Any,Suspicious,1,,,
+Demeanor,Any,Any,Unhurried,1,,,
+Demeanor,Any,Any,Warm and welcoming,1,,,
+Demeanor,Any,Any,Weary but resolute,1,,,
+Attitude,Any,Any,Always bargaining,1,,,
+Attitude,Any,Any,Assumes authority,1,,,
+Attitude,Any,Any,Avoids eye contact,1,,,
+Attitude,Any,Any,Challenges every claim,1,,,
+Attitude,Any,Any,Eager to help,1,,,
+Attitude,Any,Any,Expects betrayal,1,,,
+Attitude,Any,Any,Fascinated by outsiders,1,,,
+Attitude,Any,Any,Fiercely hospitable,1,,,
+Attitude,Any,Any,Keeps emotional distance,1,,,
+Attitude,Any,Any,Looks for an escape,1,,,
+Attitude,Any,Any,Protective of the vulnerable,1,,,
+Attitude,Any,Any,Quick to forgive,1,,,
+Attitude,Any,Any,Quick to take offence,1,,,
+Attitude,Any,Any,Respectful of custom,1,,,
+Attitude,Any,Any,Studies everyone carefully,1,,,
+Attitude,Any,Any,Treats danger as routine,1,,,
+Attitude,Any,Any,Trust must be earned,1,,,
+Attitude,Any,Any,Values practical results,1,,,
+Voice,Any,Any,Breathy voice,1,,,
+Voice,Any,Any,Booming voice,1,,,
+Voice,Any,Any,Careful formal diction,1,,,
+Voice,Any,Any,Clipped cadence,1,,,
+Voice,Any,Any,Gravelly voice,1,,,
+Voice,Any,Any,High musical voice,1,,,
+Voice,Any,Any,Low resonant voice,1,,,
+Voice,Any,Any,Measured voice,1,,,
+Voice,Any,Any,Rapid speech,1,,,
+Voice,Any,Any,Rasping voice,1,,,
+Voice,Any,Any,Rough provincial accent,1,,,
+Voice,Any,Any,Soft-spoken,1,,,
+Voice,Any,Any,Whisper-soft voice,1,,,
+Mannerism,Any,Any,Counts exits on entering a room,1,,,
+Mannerism,Any,Any,Drums fingers in coded rhythms,1,,,
+Mannerism,Any,Any,Folds arms when challenged,1,,,
+Mannerism,Any,Any,Keeps one hand near a weapon,1,,,
+Mannerism,Any,Any,Laughs at the wrong moment,1,,,
+Mannerism,Any,Any,Murmurs an old prayer,1,,,
+Mannerism,Any,Any,Never sits with a door behind them,1,,,
+Mannerism,Any,Any,Polishes a keepsake while thinking,1,,,
+Mannerism,Any,Any,Repeats the last word of a question,1,,,
+Mannerism,Any,Any,Rolls a coin across the knuckles,1,,,
+Mannerism,Any,Any,Sketches symbols in dust,1,,,
+Mannerism,Any,Any,Speaks in short decisive phrases,1,,,
+Mannerism,Any,Any,Touches a scar before answering,1,,,
+Mannerism,Any,Any,Watches hands instead of faces,1,,,
+Voice,Stygian,Any,Clipped low Azmeri with hardened consonants,2,,,
+Voice,Stygian,Any,Shortened vowels and a low pitch,2,,,
+Voice,Stygian,Any,Rune-reader's measured underground cadence,2,,,
+Voice,Stygian,Any,A gravelly accent that turns t to th,2,,,
+Voice,Stygian,Any,A terse accent that turns k to kh,2,,,
+Voice,Stygian,Any,A soft accent that turns p to ph,2,,,
+Voice,Stygian,Any,Resonant speech shaped by stone chambers,2,,,
+Voice,Stygian,Any,Whispered Azmeri with sharply stressed consonants,2,,,
+Appearance,Any,Any,Ash-grey complexion,1,,,
+Appearance,Any,Any,Azurite dust in the hair,1,,,
+Appearance,Any,Any,Bandaged forearm,1,,,
+Appearance,Any,Any,Barefoot,1,,,
+Appearance,Any,Any,Bead-threaded braids,1,,,
+Appearance,Any,Any,Bent posture,1,,,
+Appearance,Any,Any,Birthmark across one cheek,1,,,
+Appearance,Any,Any,Blackened fingernails,1,,,
+Appearance,Any,Any,Bone-charm necklace,1,,,
+Appearance,Any,Any,Bronze skin,1,,,
+Appearance,Any,Any,Broken front tooth,1,,,
+Appearance,Any,Any,Burned eyebrows,1,,,
+Appearance,Any,Any,Carefully mended clothing,1,,,
+Appearance,Any,Any,Chalk ward marks,1,,,
+Appearance,Any,Any,Chipped tooth,1,,,
+Appearance,Any,Any,Clean-shaven,1,,,
+Appearance,Any,Any,Closely trimmed beard,1,,,
+Appearance,Any,Any,Clouded eye,1,,,
+Appearance,Any,Any,Copper-toned skin,1,,,
+Appearance,Any,Any,Cracked spectacles,1,,,
+Appearance,Any,Any,Crooked fingers,1,,,
+Appearance,Any,Any,Crooked nose,1,,,
+Appearance,Any,Any,Dark circles under the eyes,1,,,
+Appearance,Any,Any,Deep-set eyes,1,,,
+Appearance,Any,Any,Delicate hands,1,,,
+Appearance,Any,Any,Dust-caked boots,1,,,
+Appearance,Any,Any,Elaborate ear cuffs,1,,,
+Appearance,Any,Any,Faded facial tattoo,1,,,
+Appearance,Any,Any,Fine-boned features,1,,,
+Appearance,Any,Any,Flattened nose,1,,,
+Appearance,Any,Any,Freshly shaved jaw,1,,,
+Appearance,Any,Any,Frostbitten fingertips,1,,,
+Appearance,Any,Any,Full braided beard,1,,,
+Appearance,Any,Any,Gap-toothed grin,1,,,
+Appearance,Any,Any,Gem-glow beneath the skin,1,,,
+Appearance,Any,Any,Gold-capped tooth,1,,,
+Appearance,Any,Any,Grease-stained sleeves,1,,,
+Appearance,Any,Any,Grey-streaked hair,1,,,
+Appearance,Any,Any,Hardened knuckles,1,,,
+Appearance,Any,Any,Heavy brow,1,,,
+Appearance,Any,Any,Hollow cheeks,1,,,
+Appearance,Any,Any,Hood shadowing the face,1,,,
+Appearance,Any,Any,Inked knuckles,1,,,
+Appearance,Any,Any,Iron-shod boots,1,,,
+Appearance,Any,Any,Jagged scalp scar,1,,,
+Appearance,Any,Any,Layered travel scarves,1,,,
+Appearance,Any,Any,Limping gait,1,,,
+Appearance,Any,Any,Long braided beard,1,,,
+Appearance,Any,Any,Long-limbed,1,,,
+Appearance,Any,Any,Metal finger splint,1,,,
+Appearance,Any,Any,Milky left eye,1,,,
+Appearance,Any,Any,Missing ear tip,1,,,
+Appearance,Any,Any,Missing two fingers,1,,,
+Appearance,Any,Any,Mud-spattered hem,1,,,
+Appearance,Any,Any,Narrow face,1,,,
+Appearance,Any,Any,Needle-thin scar on the lip,1,,,
+Appearance,Any,Any,Oiled hair,1,,,
+Appearance,Any,Any,Oil-darkened hands,1,,,
+Appearance,Any,Any,Old manacle scars,1,,,
+Appearance,Any,Any,One eyebrow split by a scar,1,,,
+Appearance,Any,Any,One side of the head shaved,1,,,
+Appearance,Any,Any,Oversized coat,1,,,
+Appearance,Any,Any,Pale complexion,1,,,
+Appearance,Any,Any,Patch over one eye,1,,,
+Appearance,Any,Any,Patched gloves,1,,,
+Appearance,Any,Any,Pierced brow,1,,,
+Appearance,Any,Any,Powder-burned hands,1,,,
+Appearance,Any,Any,Prominent cheekbones,1,,,
+Appearance,Any,Any,Ritual paint on the cheeks,1,,,
+Appearance,Any,Any,Rope-burned palms,1,,,
+Appearance,Any,Any,Round face,1,,,
+Appearance,Any,Any,Ruddy complexion,1,,,
+Appearance,Any,Any,Salt-stiff cloak,1,,,
+Appearance,Any,Any,Sand-scoured skin,1,,,
+Appearance,Any,Any,Scarred palms,1,,,
+Appearance,Any,Any,Sharp nose,1,,,
+Appearance,Any,Any,Shaved eyebrows,1,,,
+Appearance,Any,Any,Shoulder-length curls,1,,,
+Appearance,Any,Any,Silver-streaked hair,1,,,
+Appearance,Any,Any,Six-fingered left hand,1,,,
+Appearance,Any,Any,Sleeves rolled to the elbows,1,,,
+Appearance,Any,Any,Smoke-yellowed nails,1,,,
+Appearance,Any,Any,Square jaw,1,,,
+Appearance,Any,Any,Stitched leather coat,1,,,
+Appearance,Any,Any,Sunken eyes,1,,,
+Appearance,Any,Any,Tangled hair,1,,,
+Appearance,Any,Any,Tarnished jewellery,1,,,
+Appearance,Any,Any,Tattooed scalp,1,,,
+Appearance,Any,Any,Thick eyebrows,1,,,
+Appearance,Any,Any,Thick calluses,1,,,
+Appearance,Any,Any,Travel-worn boots,1,,,
+Appearance,Any,Any,Uneven haircut,1,,,
+Appearance,Any,Any,Violet eyes,1,,,
+Appearance,Any,Any,Wax-sealed braid,1,,,
+Appearance,Any,Any,Weather-cracked lips,1,,,
+Appearance,Any,Any,Web of fine scars,1,,,
+Appearance,Any,Any,White lock of hair,1,,,
+Appearance,Any,Any,Wind-tossed hair,1,,,
+Appearance,Any,Any,Worn prayer cords,1,,,
+Appearance,Any,Any,Carved wooden prosthetic,1,,,
+Appearance,Any,Any,Ritual brands on both palms,1,,,
+Demeanor,Any,Any,Absent-minded,1,,,
+Demeanor,Any,Any,Abrupt,1,,,
+Demeanor,Any,Any,Amiably cynical,1,,,
+Demeanor,Any,Any,Anxiously polite,1,,,
+Demeanor,Any,Any,Barely contained anger,1,,,
+Demeanor,Any,Any,Bitter,1,,,
+Demeanor,Any,Any,Blunt,1,,,
+Demeanor,Any,Any,Brisk,1,,,
+Demeanor,Any,Any,Calm under pressure,1,,,
+Demeanor,Any,Any,Candid,1,,,
+Demeanor,Any,Any,Careworn,1,,,
+Demeanor,Any,Any,Cautiously optimistic,1,,,
+Demeanor,Any,Any,Commanding,1,,,
+Demeanor,Any,Any,Compassionate,1,,,
+Demeanor,Any,Any,Condescending,1,,,
+Demeanor,Any,Any,Contemplative,1,,,
+Demeanor,Any,Any,Courtly,1,,,
+Demeanor,Any,Any,Defensive,1,,,
+Demeanor,Any,Any,Deliberate,1,,,
+Demeanor,Any,Any,Distrustful,1,,,
+Demeanor,Any,Any,Dutiful,1,,,
+Demeanor,Any,Any,Eager,1,,,
+Demeanor,Any,Any,Easily distracted,1,,,
+Demeanor,Any,Any,Elusive,1,,,
+Demeanor,Any,Any,Fervent,1,,,
+Demeanor,Any,Any,Formal,1,,,
+Demeanor,Any,Any,Gentle,1,,,
+Demeanor,Any,Any,Grimly amused,1,,,
+Demeanor,Any,Any,Haunted,1,,,
+Demeanor,Any,Any,Haughty,1,,,
+Demeanor,Any,Any,Hypervigilant,1,,,
+Demeanor,Any,Any,Inquisitive,1,,,
+Demeanor,Any,Any,Intense,1,,,
+Demeanor,Any,Any,Irreverent,1,,,
+Demeanor,Any,Any,Jaded,1,,,
+Demeanor,Any,Any,Jovial,1,,,
+Demeanor,Any,Any,Kindly,1,,,
+Demeanor,Any,Any,Laconic,1,,,
+Demeanor,Any,Any,Level-headed,1,,,
+Demeanor,Any,Any,Methodical,1,,,
+Demeanor,Any,Any,Morbidly cheerful,1,,,
+Demeanor,Any,Any,Nervously energetic,1,,,
+Demeanor,Any,Any,Obsequious,1,,,
+Demeanor,Any,Any,Overconfident,1,,,
+Demeanor,Any,Any,Perpetually apologetic,1,,,
+Demeanor,Any,Any,Precise,1,,,
+Demeanor,Any,Any,Quietly defiant,1,,,
+Demeanor,Any,Any,Reassuring,1,,,
+Demeanor,Any,Any,Recklessly confident,1,,,
+Demeanor,Any,Any,Reserved,1,,,
+Demeanor,Any,Any,Resigned,1,,,
+Demeanor,Any,Any,Ruthlessly practical,1,,,
+Demeanor,Any,Any,Secretive,1,,,
+Demeanor,Any,Any,Self-effacing,1,,,
+Demeanor,Any,Any,Severe,1,,,
+Demeanor,Any,Any,Shy,1,,,
+Demeanor,Any,Any,Soft-hearted,1,,,
+Demeanor,Any,Any,Stoic,1,,,
+Demeanor,Any,Any,Talkative,1,,,
+Demeanor,Any,Any,Tender,1,,,
+Demeanor,Any,Any,Tense,1,,,
+Demeanor,Any,Any,Thoughtful,1,,,
+Demeanor,Any,Any,Uncertain,1,,,
+Demeanor,Any,Any,Unflappable,1,,,
+Demeanor,Any,Any,Vindictive,1,,,
+Demeanor,Any,Any,Wary,1,,,
+Demeanor,Any,Any,Watchful,1,,,
+Demeanor,Any,Any,World-weary,1,,,
+Demeanor,Any,Any,Wry,1,,,
+Demeanor,Any,Any,Zealous,1,,,
+Attitude,Any,Any,Answers questions with questions,1,,,
+Attitude,Any,Any,Assumes everyone wants something,1,,,
+Attitude,Any,Any,Assumes strangers are spies,1,,,
+Attitude,Any,Any,Becomes friendlier over food,1,,,
+Attitude,Any,Any,Believes rank must be earned,1,,,
+Attitude,Any,Any,Bows to visible authority,1,,,
+Attitude,Any,Any,Bribes before asking favours,1,,,
+Attitude,Any,Any,Cannot ignore a challenge,1,,,
+Attitude,Any,Any,Challenges pessimism,1,,,
+Attitude,Any,Any,Changes the subject around family,1,,,
+Attitude,Any,Any,Compliments useful equipment,1,,,
+Attitude,Any,Any,Counts every ration,1,,,
+Attitude,Any,Any,Defends local custom,1,,,
+Attitude,Any,Any,Defers to elders,1,,,
+Attitude,Any,Any,Demands evidence,1,,,
+Attitude,Any,Any,Distrusts magic,1,,,
+Attitude,Any,Any,Distrusts soldiers,1,,,
+Attitude,Any,Any,Eager to trade stories,1,,,
+Attitude,Any,Any,Expects payment in advance,1,,,
+Attitude,Any,Any,Expects the worst,1,,,
+Attitude,Any,Any,Fears organised religion,1,,,
+Attitude,Any,Any,Finds outsiders entertaining,1,,,
+Attitude,Any,Any,Flatters the powerful,1,,,
+Attitude,Any,Any,Forgives honest mistakes,1,,,
+Attitude,Any,Any,Greets danger with jokes,1,,,
+Attitude,Any,Any,Hates being pitied,1,,,
+Attitude,Any,Any,Hides kindness behind insults,1,,,
+Attitude,Any,Any,Insists on formal introductions,1,,,
+Attitude,Any,Any,Keeps promises literally,1,,,
+Attitude,Any,Any,Looks down on city dwellers,1,,,
+Attitude,Any,Any,Looks down on rural folk,1,,,
+Attitude,Any,Any,Makes decisions by omen,1,,,
+Attitude,Any,Any,Mocks formal titles,1,,,
+Attitude,Any,Any,Never raises their voice,1,,,
+Attitude,Any,Any,Never refuses hospitality,1,,,
+Attitude,Any,Any,Offers advice unasked,1,,,
+Attitude,Any,Any,Offers help before being asked,1,,,
+Attitude,Any,Any,Only respects proven skill,1,,,
+Attitude,Any,Any,Openly dislikes criminals,1,,,
+Attitude,Any,Any,Openly dislikes nobles,1,,,
+Attitude,Any,Any,Praises courage loudly,1,,,
+Attitude,Any,Any,Prefers barter to coin,1,,,
+Attitude,Any,Any,Prioritises clan over law,1,,,
+Attitude,Any,Any,Prioritises law over friendship,1,,,
+Attitude,Any,Any,Protects children instinctively,1,,,
+Attitude,Any,Any,Questions every order,1,,,
+Attitude,Any,Any,Quick to make wagers,1,,,
+Attitude,Any,Any,Raises their voice to seize control,1,,,
+Attitude,Any,Any,Records every debt,1,,,
+Attitude,Any,Any,Refuses gifts,1,,,
+Attitude,Any,Any,Rejects praise,1,,,
+Attitude,Any,Any,Resents interruption,1,,,
+Attitude,Any,Any,Respects craftsmanship,1,,,
+Attitude,Any,Any,Seeks approval,1,,,
+Attitude,Any,Any,Seeks common ground,1,,,
+Attitude,Any,Any,Sees omens everywhere,1,,,
+Attitude,Any,Any,Shares supplies freely,1,,,
+Attitude,Any,Any,Speaks for quieter companions,1,,,
+Attitude,Any,Any,Tests newcomers with teasing,1,,,
+Attitude,Any,Any,Treats strangers as potential kin,1,,,
+Attitude,Any,Any,Treats titles seriously,1,,,
+Attitude,Any,Any,Treats wounds before questions,1,,,
+Attitude,Any,Any,Trusts priests,1,,,
+Attitude,Any,Any,Turns every topic to work,1,,,
+Attitude,Any,Any,Values education,1,,,
+Attitude,Any,Any,Views law as a tool,1,,,
+Attitude,Any,Any,Views mercy as weakness,1,,,
+Attitude,Any,Any,Welcomes gossip,1,,,
+Attitude,Any,Any,Will not discuss the past,1,,,
+Attitude,Any,Any,Worries over every expense,1,,,
+Attitude,Any,Any,Avoids religious topics,1,,,
+Voice,Any,Any,Abrasive whisper,1,,,
+Voice,Any,Any,Barely audible murmur,1,,,
+Voice,Any,Any,Breath caught between sentences,1,,,
+Voice,Any,Any,Bright clear voice,1,,,
+Voice,Any,Any,Broken rasp,1,,,
+Voice,Any,Any,Calm contralto,1,,,
+Voice,Any,Any,Careful second-language diction,1,,,
+Voice,Any,Any,Careful whisper,1,,,
+Voice,Any,Any,Commanding parade-ground voice,1,,,
+Voice,Any,Any,Cracked tenor,1,,,
+Voice,Any,Any,Cultivated formal accent,1,,,
+Voice,Any,Any,Deep chest voice,1,,,
+Voice,Any,Any,Dry monotone,1,,,
+Voice,Any,Any,Even baritone,1,,,
+Voice,Any,Any,Faltering speech,1,,,
+Voice,Any,Any,Gentle lilt,1,,,
+Voice,Any,Any,Habitual stage whisper,1,,,
+Voice,Any,Any,Hoarse from dust,1,,,
+Voice,Any,Any,Hushed intensity,1,,,
+Voice,Any,Any,Laughing cadence,1,,,
+Voice,Any,Any,Low alto,1,,,
+Voice,Any,Any,Low conspiratorial tone,1,,,
+Voice,Any,Any,Musical laugh between phrases,1,,,
+Voice,Any,Any,Nasal drawl,1,,,
+Voice,Any,Any,Precise enunciation,1,,,
+Voice,Any,Any,Quick breathless delivery,1,,,
+Voice,Any,Any,Reedy tenor,1,,,
+Voice,Any,Any,Resonant storyteller's cadence,1,,,
+Voice,Any,Any,Rolling cadence,1,,,
+Voice,Any,Any,Rumbling bass,1,,,
+Voice,Any,Any,Sharp clipped voice,1,,,
+Voice,Any,Any,Singing lilt,1,,,
+Voice,Any,Any,Slow deliberate speech,1,,,
+Voice,Any,Any,Smoky alto,1,,,
+Voice,Any,Any,Sonorous baritone,1,,,
+Voice,Any,Any,Staccato delivery,1,,,
+Voice,Any,Any,Strained whisper,1,,,
+Voice,Any,Any,Thin wavering voice,1,,,
+Voice,Any,Any,Thunderous laugh,1,,,
+Voice,Any,Any,Tremulous voice,1,,,
+Voice,Any,Any,Voice roughened by smoke,1,,,
+Voice,Any,Any,Warm bass,1,,,
+Voice,Any,Any,Warm contralto,1,,,
+Voice,Any,Any,Wheezing rasp,1,,,
+Voice,Any,Any,Words run together,1,,,
+Mannerism,Any,Any,Adjusts a bracelet before speaking,1,,,
+Mannerism,Any,Any,Always checks the ceiling,1,,,
+Mannerism,Any,Any,Avoids stepping on cracks,1,,,
+Mannerism,Any,Any,Bites the inside of one cheek,1,,,
+Mannerism,Any,Any,Bows their head at doorways,1,,,
+Mannerism,Any,Any,Breathes out slowly before lying,1,,,
+Mannerism,Any,Any,Brushes dust from their shoulders,1,,,
+Mannerism,Any,Any,Carves notches into scrap wood,1,,,
+Mannerism,Any,Any,Checks their pulse when nervous,1,,,
+Mannerism,Any,Any,Clicks their tongue while counting,1,,,
+Mannerism,Any,Any,Closes one eye to judge distance,1,,,
+Mannerism,Any,Any,Collects loose nails,1,,,
+Mannerism,Any,Any,Combs fingers through their hair,1,,,
+Mannerism,Any,Any,Counts coins twice,1,,,
+Mannerism,Any,Any,Cracks their knuckles before decisions,1,,,
+Mannerism,Any,Any,Draws maps on tabletops,1,,,
+Mannerism,Any,Any,Eats only after others begin,1,,,
+Mannerism,Any,Any,Folds paper into sharp shapes,1,,,
+Mannerism,Any,Any,Glances toward the nearest window,1,,,
+Mannerism,Any,Any,Grips their collar during silence,1,,,
+Mannerism,Any,Any,Hums a three-note refrain,1,,,
+Mannerism,Any,Any,Keeps their boots pointed toward the exit,1,,,
+Mannerism,Any,Any,Keeps both hands hidden in their sleeves,1,,,
+Mannerism,Any,Any,Knocks twice on wood,1,,,
+Mannerism,Any,Any,Licks a thumb before turning a page,1,,,
+Mannerism,Any,Any,Lines up nearby objects,1,,,
+Mannerism,Any,Any,Listens with their head tilted,1,,,
+Mannerism,Any,Any,Marks doorframes with chalk,1,,,
+Mannerism,Any,Any,Mends clothing while talking,1,,,
+Mannerism,Any,Any,Mouths names silently,1,,,
+Mannerism,Any,Any,Never uses a person's name,1,,,
+Mannerism,Any,Any,Nods before disagreeing,1,,,
+Mannerism,Any,Any,Opens and closes a locket,1,,,
+Mannerism,Any,Any,Paces in exact circles,1,,,
+Mannerism,Any,Any,Plucks loose threads,1,,,
+Mannerism,Any,Any,Presses thumb to each fingertip,1,,,
+Mannerism,Any,Any,Quotes old proverbs,1,,,
+Mannerism,Any,Any,Rearranges cups by size,1,,,
+Mannerism,Any,Any,Rolls their shoulders before answering,1,,,
+Mannerism,Any,Any,Rubs their hands for warmth,1,,,
+Mannerism,Any,Any,Scratches notes onto their forearm,1,,,
+Mannerism,Any,Any,Shields every candle flame,1,,,
+Mannerism,Any,Any,Smooths their eyebrows,1,,,
+Mannerism,Any,Any,Sniffs every drink,1,,,
+Mannerism,Any,Any,Spins a ring around one finger,1,,,
+Mannerism,Any,Any,Stares at their shoes while thinking,1,,,
+Mannerism,Any,Any,Straightens crooked objects,1,,,
+Mannerism,Any,Any,Taps a tooth with one fingernail,1,,,
+Mannerism,Any,Any,Tests every chair before sitting,1,,,
+Mannerism,Any,Any,Touches their forehead in greeting,1,,,
+Mannerism,Any,Any,Traces the edge of a tattoo,1,,,
+Mannerism,Any,Any,Turns every cup handle outward,1,,,
+Mannerism,Any,Any,Unlaces and relaces one glove,1,,,
+Mannerism,Any,Any,Whispers numbers under their breath,1,,,
+Mannerism,Any,Any,Wraps their cloak tightly,1,,,
+Mannerism,Any,Any,Writes names in dust,1,,,
+Mannerism,Any,Any,Yawns when nervous,1,,,
+Mannerism,Any,Any,Balances a coin on each knuckle,1,,,
+Mannerism,Any,Any,Chews dried herbs while listening,1,,,
+Mannerism,Any,Any,Cleans beneath their nails with a knife,1,,,
+Mannerism,Any,Any,Counts door hinges,1,,,
+Mannerism,Any,Any,Draws a circle around spilled liquid,1,,,
+Mannerism,Any,Any,Drums a marching cadence on their thigh,1,,,
+Mannerism,Any,Any,Flicks ash from spotless sleeves,1,,,
+Mannerism,Any,Any,Folds their hands behind their back,1,,,
+Mannerism,Any,Any,Holds eye contact a moment too long,1,,,
+Mannerism,Any,Any,Keeps a tally on a cord,1,,,
+Mannerism,Any,Any,Leaves the last mouthful untouched,1,,,
+Mannerism,Any,Any,Measures rooms in paces,1,,,
+Mannerism,Any,Any,Memorises every visible face,1,,,
+Mannerism,Any,Any,Polishes their boots with a sleeve,1,,,
+Mannerism,Any,Any,Rests two fingers against their throat,1,,,
+Mannerism,Any,Any,Rocks gently on their heels,1,,,
+Mannerism,Any,Any,Rolls up maps from the wrong end,1,,,
+Mannerism,Any,Any,Saves bits of string,1,,,
+Mannerism,Any,Any,Scrapes mud from their soles immediately,1,,,
+Mannerism,Any,Any,Signs words unconsciously with one hand,1,,,
+Mannerism,Any,Any,Smiles before delivering bad news,1,,,
+Mannerism,Any,Any,Snaps twigs into equal lengths,1,,,
+Mannerism,Any,Any,Speaks to animals as if they answer,1,,,
+Mannerism,Any,Any,Stacks pebbles while waiting,1,,,
+Mannerism,Any,Any,Taps each pocket in sequence,1,,,
+Mannerism,Any,Any,Touches iron before making a promise,1,,,
+Mannerism,Any,Any,Turns rings inward when worried,1,,,
+Mannerism,Any,Any,Twists a lock of hair around one finger,1,,,
+Mannerism,Any,Any,Watches reflections instead of faces,1,,,
+Mannerism,Any,Any,Wets their lips before every answer,1,,,
+Mannerism,Any,Any,Whistles when the room goes quiet,1,,,
+Mannerism,Any,Any,Wipes fingerprints from handled objects,1,,,
+Mannerism,Any,Any,Counts breaths during arguments,1,,,
+Mannerism,Any,Any,Cups one ear when concentrating,1,,,
+Mannerism,Any,Any,Doodles repeated spirals,1,,,
+Mannerism,Any,Any,Examines every knot,1,,,
+Mannerism,Any,Any,Fidgets with a broken key,1,,,
+Mannerism,Any,Any,Keeps their back against a wall,1,,,
+Mannerism,Any,Any,Murmurs the date at sunrise,1,,,
+Mannerism,Any,Any,Offers a small bow after introductions,1,,,
+Mannerism,Any,Any,Presses flowers between book pages,1,,,
+Mannerism,Any,Any,Rubs an old coin for luck,1,,,
+Mannerism,Any,Any,Salutes absent-mindedly,1,,,
+Mannerism,Any,Any,Sketches faces from memory,1,,,
+Mannerism,Any,Any,Taps twice before opening any box,1,,,
+Mannerism,Any,Any,Touches the ground after stumbling,1,,,
+Mannerism,Any,Any,Uses a different nickname for everyone,1,,,
+Voice,Oriathan,Any,Crisp Theopolis court diction,2,,,
+Voice,Oriathan,Any,Clipped legionary cadence,2,,,
+Voice,Oriathan,Any,Measured temple oratory,2,,,
+Voice,Oriathan,Any,Rapid forum-debater delivery,2,,,
+Voice,Oriathan,Any,Patrician vowels polished by tutors,2,,,
+Voice,Oriathan,Any,Rough Sarn dockside accent,2,,,
+Voice,Oriathan,Any,Formal legalistic phrasing,2,,,
+Voice,Oriathan,Any,Low barracks growl,2,,,
+Voice,Oriathan,Any,Sing-song market cry,2,,,
+Voice,Oriathan,Any,Provincial Oriathan drawl,2,,,
+Voice,Oriathan,Any,Whispered confessional cadence,2,,,
+Voice,Oriathan,Any,Careful Archivist enunciation,2,,,
+Voice,Azmeri,Any,Soft forest-set cadence,2,,,
+Voice,Azmeri,Any,Lilting western valleys accent,2,,,
+Voice,Azmeri,Any,Quiet speech broken by long pauses,2,,,
+Voice,Azmeri,Any,Warm fireside storyteller's rhythm,2,,,
+Voice,Azmeri,Any,Breathy woodland whisper,2,,,
+Voice,Azmeri,Any,Rough frontier Azmeri,2,,,
+Voice,Azmeri,Any,Measured grove-keeper's voice,2,,,
+Voice,Azmeri,Any,Quick river-settlement chatter,2,,,
+Voice,Azmeri,Any,Low chant-like delivery,2,,,
+Voice,Azmeri,Any,Old rural vowels,2,,,
+Voice,Azmeri,Any,Gentle consonants and rising questions,2,,,
+Voice,Azmeri,Any,Cautious speech shaped by exile camps,2,,,
+Voice,Ezomyte,Any,Broad highland burr,2,,,
+Voice,Ezomyte,Any,Rolling r sounds and clipped endings,2,,,
+Voice,Ezomyte,Any,Deep clan-hall resonance,2,,,
+Voice,Ezomyte,Any,Quick Gaelic lilt,2,,,
+Voice,Ezomyte,Any,Gravelly mining-camp accent,2,,,
+Voice,Ezomyte,Any,Booming feast-hall cadence,2,,,
+Voice,Ezomyte,Any,Soft-spoken mountain dialect,2,,,
+Voice,Ezomyte,Any,Sharp drill-yard bark,2,,,
+Voice,Ezomyte,Any,Slow cairnside storytelling voice,2,,,
+Voice,Ezomyte,Any,Musical island inflection,2,,,
+Voice,Ezomyte,Any,Weathered lowland drawl,2,,,
+Voice,Ezomyte,Any,Measured oath-speaking tone,2,,,
+Voice,Maraketh,Any,Flowing caravan cadence,2,,,
+Voice,Maraketh,Any,Clear oasis-court diction,2,,,
+Voice,Maraketh,Any,Low desert whisper,2,,,
+Voice,Maraketh,Any,Rhythmic market bargaining tone,2,,,
+Voice,Maraketh,Any,Warm story-weaver's voice,2,,,
+Voice,Maraketh,Any,Crisp outrider commands,2,,,
+Voice,Maraketh,Any,Patient road-guide delivery,2,,,
+Voice,Maraketh,Any,Musical campfire phrasing,2,,,
+Voice,Maraketh,Any,Dry salt-road rasp,2,,,
+Voice,Maraketh,Any,Formal Faridun recitation,2,,,
+Voice,Maraketh,Any,Swift pack-train calls,2,,,
+Voice,Maraketh,Any,Soft speech with elongated vowels,2,,,
+Voice,Karui,Any,Open vowels and a steady rhythm,2,,,
+Voice,Karui,Any,Resonant ancestral chant,2,,,
+Voice,Karui,Any,Sharp war-host commands,2,,,
+Voice,Karui,Any,Warm canoe-song cadence,2,,,
+Voice,Karui,Any,Measured marae oratory,2,,,
+Voice,Karui,Any,Quiet omen-reader's voice,2,,,
+Voice,Karui,Any,Rolling ceremonial phrasing,2,,,
+Voice,Karui,Any,Deep chest-led speech,2,,,
+Voice,Karui,Any,Rapid clan banter,2,,,
+Voice,Karui,Any,Soft tide-like intonation,2,,,
+Voice,Karui,Any,Forceful challenge cadence,2,,,
+Voice,Karui,Any,Patient elder's storytelling rhythm,2,,,
+Voice,Vaal,Any,Precise glyph-priest diction,2,,,
+Voice,Vaal,Any,Measured astronomical recitation,2,,,
+Voice,Vaal,Any,Sibilant temple cadence,2,,,
+Voice,Vaal,Any,Quiet mathematical phrasing,2,,,
+Voice,Vaal,Any,Resonant ziggurat proclamation,2,,,
+Voice,Vaal,Any,Clipped artisan notation spoken aloud,2,,,
+Voice,Vaal,Any,Formal dynastic court accent,2,,,
+Voice,Vaal,Any,Soft serpent-cult whisper,2,,,
+Voice,Vaal,Any,Rhythmic calendar chant,2,,,
+Voice,Vaal,Any,Breathy gem-engine litany,2,,,
+Voice,Vaal,Any,Ancient vowels pronounced with care,2,,,
+Voice,Vaal,Any,Detached scholarly monotone,2,,,
+Voice,Kalguur,Any,Cool high-elven precision,2,,,
+Voice,Kalguur,Any,Crisp expedition commands,2,,,
+Voice,Kalguur,Any,Low northern lilt,2,,,
+Voice,Kalguur,Any,Measured engineer's cadence,2,,,
+Voice,Kalguur,Any,Sharp consonants softened by long vowels,2,,,
+Voice,Kalguur,Any,Formal guildhall diction,2,,,
+Voice,Kalguur,Any,Dry shipboard drawl,2,,,
+Voice,Kalguur,Any,Quiet winter-camp speech,2,,,
+Voice,Kalguur,Any,Rapid technical jargon,2,,,
+Voice,Kalguur,Any,Melodic old-country accent,2,,,
+Voice,Kalguur,Any,Controlled battlefield projection,2,,,
+Voice,Kalguur,Any,Patient surveyor's narration,2,,,
+Voice,Stygian,Any,Stone-softened whisper,2,,,
+Voice,Stygian,Any,Deep subterranean resonance,2,,,
+Voice,Stygian,Any,Azurite miner's terse cadence,2,,,
+Voice,Stygian,Any,Formal rune-court diction,2,,,
+Voice,Stygian,Any,Quick deep-market bargaining tone,2,,,
+Voice,Stygian,Any,Breathless vent-runner speech,2,,,
+Voice,Stygian,Any,Measured powderwright terminology,2,,,
+Voice,Stygian,Any,Hollow gallery echo in every word,2,,,
+Voice,Stygian,Any,Guarded surface-trade accent,2,,,
+Voice,Stygian,Any,Slow oath-cutting cadence,2,,,
+Voice,Stygian,Any,Rasping sulphite-lab voice,2,,,
+Voice,Stygian,Any,Low clan-assembly chant,2,,,
+Build,Any,Any,Compact and wiry,1,Any,Any,Any
+Build,Any,Any,Lean and long-limbed,1,Any,Any,Any
+Build,Any,Any,Broad and heavy-set,1,Any,Any,Any
+Build,Any,Any,Powerfully built,1,Any,Any,Any
+Build,Any,Any,Narrow-shouldered,1,Any,Any,Any
+Build,Any,Any,Solid and square-framed,1,Any,Any,Any
+Build,Any,Any,Lithe and balanced,1,Any,Any,Any
+Build,Any,Any,Short and muscular,1,Any,Any,Any
+Build,Any,Any,Tall and spare,1,Any,Any,Any
+Build,Any,Any,Soft-bodied,1,Any,Any,Any
+Build,Any,Any,Thick-necked,1,Any,Any,Any
+Build,Any,Any,Fine-boned,1,Any,Any,Any
+Build,Any,Any,Stooped but sturdy,1,Any,Any,Any
+Build,Any,Any,Athletic,1,Any,Any,Any
+Build,Any,Any,Frail-looking,1,Any,Any,Any
+Build,Any,Any,Barrel-chested,1,Any,Any,Any
+Build,Any,Any,Quick-footed,1,Any,Any,Any
+Build,Any,Any,Heavy-footed,1,Any,Any,Any
+Build,Any,Any,Bent by labour,1,Any,Any,Any
+Build,Any,Any,Gracefully poised,1,Any,Any,Any
+Build,Any,Any,Restless in stance,1,Any,Any,Any
+Build,Any,Any,Rigidly upright,1,Any,Any,Any
+Build,Any,Any,Relaxed and loose-limbed,1,Any,Any,Any
+Build,Any,Any,Slight and quick,1,Any,Any,Any
+Build,Any,Any,Weathered but strong,1,Any,Any,Any
+Build,Any,Any,Deliberately imposing,1,Any,Any,Any
+Build,Any,Any,Unusually still,1,Any,Any,Any
+Build,Any,Any,Careful with one leg,1,Any,Any,Any
+Build,Any,Any,Strong-backed,1,Any,Any,Any
+Build,Any,Any,Underfed and angular,1,Any,Any,Any
+Features,Any,Any,Deep-set eyes,1,Any,Any,Any
+Features,Any,Any,Round face,1,Any,Any,Any
+Features,Any,Any,Narrow face,1,Any,Any,Any
+Features,Any,Any,Square jaw,1,Any,Any,Any
+Features,Any,Any,Prominent cheekbones,1,Any,Any,Any
+Features,Any,Any,Heavy brow,1,Any,Any,Any
+Features,Any,Any,Thick eyebrows,1,Any,Any,Any
+Features,Any,Any,Shaved eyebrows,1,Any,Any,Any
+Features,Any,Any,Crooked nose,1,Any,Any,Any
+Features,Any,Any,Sharp nose,1,Any,Any,Any
+Features,Any,Any,Flattened nose,1,Any,Any,Any
+Features,Any,Any,Freckled cheeks,1,Any,Any,Any
+Features,Any,Any,Weather-cracked lips,1,Any,Any,Any
+Features,Any,Any,Gap-toothed grin,1,Any,Any,Any
+Features,Any,Any,Gold-capped tooth,1,Any,Any,Any
+Features,Any,Any,Broken front tooth,1,Any,Any,Any
+Features,Any,Any,Close-cropped hair,1,Any,Any,Any
+Features,Any,Any,Shoulder-length curls,1,Any,Any,Any
+Features,Any,Any,Waist-length hair,1,Any,Any,Any
+Features,Any,Any,Carefully braided hair,1,Any,Any,Any
+Features,Any,Any,Bead-threaded braids,1,Any,Any,Any
+Features,Any,Any,Shaven head,1,Any,Any,Any
+Features,Any,Any,One side of the head shaved,1,Any,Any,Any
+Features,Any,Any,Grey-streaked hair,1,Any,Any,Any
+Features,Any,Any,Silver-streaked hair,1,Any,Any,Any
+Features,Any,Any,White lock of hair,1,Any,Any,Any
+Features,Any,Any,Oiled hair,1,Any,Any,Any
+Features,Any,Any,Tangled hair,1,Any,Any,Any
+Features,Any,Any,Wind-tossed hair,1,Any,Any,Any
+Features,Any,Any,Clean-shaven jaw,1,Any,Any,Any
+Features,Any,Any,Closely trimmed beard,1,Any,Any,Any
+Features,Any,Any,Full braided beard,1,Any,Any,Any
+Features,Any,Any,Long braided beard,1,Any,Any,Any
+Features,Any,Any,Dark circles beneath the eyes,1,Any,Any,Any
+Features,Any,Any,Sunken eyes,1,Any,Any,Any
+Features,Any,Any,Clouded eye,1,Any,Any,Any
+Features,Any,Any,Milky left eye,1,Any,Any,Any
+Features,Any,Any,Pierced brow,1,Any,Any,Any
+Features,Any,Any,Elaborate ear cuffs,1,Any,Any,Any
+Features,Any,Any,Crooked smile,1,Any,Any,Any
+Features,Any,Any,Youthful face,1,Any,Any,Any
+Features,Any,Any,Weathered face,1,Any,Any,Any
+Features,Any,Any,Immaculately groomed,1,Any,Any,Any
+Features,Any,Any,Grime-streaked,1,Any,Any,Any
+Features,Any,Any,Soot-blackened,1,Any,Any,Any
+Features,Any,Any,Sun-darkened complexion,1,Any,Any,Any
+Features,Any,Any,Pale complexion,1,Any,Any,Any
+Features,Any,Any,Ruddy complexion,1,Any,Any,Any
+Features,Any,Any,Copper-toned complexion,1,Any,Any,Any
+Features,Any,Any,Bronze complexion,1,Any,Any,Any
+Features,Any,Any,Ash-grey complexion,1,Any,Any,Any
+Features,Any,Any,Violet eyes,1,Any,Any,Any
+Features,Any,Any,Fine web of facial scars,1,Any,Any,Any
+Features,Any,Any,Faded facial tattoo,1,Any,Any,Any
+Features,Any,Any,Ritual paint on the cheeks,1,Any,Any,Any
+Features,Any,Any,Tattooed scalp,1,Any,Any,Any
+Features,Any,Any,Freshly shaved jaw,1,Any,Any,Any
+Features,Any,Any,Burned eyebrows,1,Any,Any,Any
+Features,Any,Any,Chipped tooth,1,Any,Any,Any
+Features,Any,Any,One eyebrow split by a scar,1,Any,Any,Any
+Attire,Any,Any,Battered travel cloak,1,Any,Any,Any
+Attire,Any,Any,Carefully mended work clothes,1,Any,Any,Any
+Attire,Any,Any,Layered travel scarves,1,Any,Any,Any
+Attire,Any,Any,Oversized coat,1,Any,Any,Any
+Attire,Any,Any,Patchwork armour,1,Any,Any,Any
+Attire,Any,Any,Salt-stiff cloak,1,Any,Any,Any
+Attire,Any,Any,Stitched leather coat,1,Any,Any,Any
+Attire,Any,Any,Mud-spattered hem,1,Any,Any,Any
+Attire,Any,Any,Dust-caked boots,1,Any,Any,Any
+Attire,Any,Any,Travel-worn boots,1,Any,Any,Any
+Attire,Any,Any,Iron-shod boots,1,Any,Any,Any
+Attire,Any,Any,Patched gloves,1,Any,Any,Any
+Attire,Any,Any,Sleeves rolled to the elbows,1,Any,Any,Any
+Attire,Any,Any,Worn prayer cords,1,Any,Any,Any
+Attire,Any,Any,Tarnished jewellery,1,Any,Any,Any
+Attire,Any,Any,Plain undyed linen,1,Any,Any,Any
+Attire,Any,Any,Faded guild colours,1,Any,Any,Any
+Attire,Any,Any,Oilskin cape,1,Any,Any,Any
+Attire,Any,Any,Tool-heavy leather belt,1,Any,Any,Any
+Attire,Any,Any,Weatherproof hooded mantle,1,Any,Any,Any
+Attire,Any,Any,Formal coat past its prime,1,Any,Any,Any
+Attire,Any,Any,Borrowed armour that fits poorly,1,Any,Any,Any
+Attire,Any,Any,Practical clothes with hidden pockets,1,Any,Any,Any
+Attire,Any,Any,Brightly repaired garments,1,Any,Any,Any
+Attire,Any,Any,Heavy wool travelling clothes,1,Any,Any,Any
+Attire,Any,Any,A clean apron over stained clothes,1,Any,Any,Any
+Attire,Any,Any,Ceremonial sash worn with daily clothes,1,Any,Any,Any
+Attire,Any,Any,Multiple belts and pouches,1,Any,Any,Any
+Attire,Any,Any,A scarf covering the lower face,1,Any,Any,Any
+Attire,Any,Any,A long coat fastened to one side,1,Any,Any,Any
+Attire,Any,Any,A breastplate polished only at the front,1,Any,Any,Any
+Attire,Any,Any,Simple robes reinforced at the elbows,1,Any,Any,Any
+Attire,Any,Any,A cloak pinned with a family token,1,Any,Any,Any
+Attire,Any,Any,Soft boots wrapped against dust,1,Any,Any,Any
+Attire,Any,Any,A broad hat with a repaired brim,1,Any,Any,Any
+Attire,Any,Any,A hood lined with stitched charms,1,Any,Any,Any
+Attire,Any,Any,A coat marked by old rank insignia,1,Any,Any,Any
+Attire,Any,Any,A sleeveless work vest,1,Any,Any,Any
+Attire,Any,Any,A carefully folded headcloth,1,Any,Any,Any
+Attire,Any,Any,A short cape over fitted armour,1,Any,Any,Any
+Distinguishing,Any,Any,Old blade scars,1,Any,Any,Any
+Distinguishing,Any,Any,Burn scar across one arm,1,Any,Any,Any
+Distinguishing,Any,Any,Birthmark across one cheek,1,Any,Any,Any
+Distinguishing,Any,Any,Missing finger,1,Any,Any,Any
+Distinguishing,Any,Any,Missing two fingers,1,Any,Any,Any
+Distinguishing,Any,Any,Missing ear tip,1,Any,Any,Any
+Distinguishing,Any,Any,Blind in one eye,1,Any,Any,Any
+Distinguishing,Any,Any,Jagged scalp scar,1,Any,Any,Any
+Distinguishing,Any,Any,Needle-thin scar on the lip,1,Any,Any,Any
+Distinguishing,Any,Any,Old manacle scars,1,Any,Any,Any
+Distinguishing,Any,Any,Ritual scarification,1,Any,Any,Any
+Distinguishing,Any,Any,Ceremonial tattoos,1,Any,Any,Any
+Distinguishing,Any,Any,Inked knuckles,1,Any,Any,Any
+Distinguishing,Any,Any,Ritual brands on both palms,1,Any,Any,Any
+Distinguishing,Any,Any,Powder-burned hands,1,Any,Any,Any
+Distinguishing,Any,Any,Oil-darkened hands,1,Any,Any,Any
+Distinguishing,Any,Any,Ink-stained fingers,1,Any,Any,Any
+Distinguishing,Any,Any,Calloused hands,1,Any,Any,Any
+Distinguishing,Any,Any,Hardened knuckles,1,Any,Any,Any
+Distinguishing,Any,Any,Rope-burned palms,1,Any,Any,Any
+Distinguishing,Any,Any,Scarred palms,1,Any,Any,Any
+Distinguishing,Any,Any,Frostbitten fingertips,1,Any,Any,Any
+Distinguishing,Any,Any,Blackened fingernails,1,Any,Any,Any
+Distinguishing,Any,Any,Smoke-yellowed nails,1,Any,Any,Any
+Distinguishing,Any,Any,Metal finger splint,1,Any,Any,Any
+Distinguishing,Any,Any,Bandaged forearm,1,Any,Any,Any
+Distinguishing,Any,Any,Carved wooden prosthetic,1,Any,Any,Any
+Distinguishing,Any,Any,Limping gait,1,Any,Any,Any
+Distinguishing,Any,Any,Cracked spectacles,1,Any,Any,Any
+Distinguishing,Any,Any,Bone-charm necklace,1,Any,Any,Any
+Distinguishing,Any,Any,Chalk ward marks,1,Any,Any,Any
+Distinguishing,Any,Any,Gem-glow beneath the skin,1,Any,Any,Any
+Distinguishing,Any,Any,Wax-sealed braid,1,Any,Any,Any
+Distinguishing,Any,Any,Six-fingered left hand,1,Any,Any,Any
+Distinguishing,Any,Any,Pierced ears linked by a fine chain,1,Any,Any,Any
+Distinguishing,Any,Any,A branded number at the wrist,1,Any,Any,Any
+Distinguishing,Any,Any,A missing tooth replaced with carved bone,1,Any,Any,Any
+Distinguishing,Any,Any,A tremor in one hand,1,Any,Any,Any
+Distinguishing,Any,Any,A faded unit tattoo,1,Any,Any,Any
+Distinguishing,Any,Any,A carefully concealed throat scar,1,Any,Any,Any
+Distinguishing,Any,Any,A ritual cord for each dead relative,1,Any,Any,Any
+Distinguishing,Any,Any,A chipped lens held in a wire frame,1,Any,Any,Any
+Distinguishing,Any,Any,A permanent sulphite stain,1,Any,Any,Any
+Distinguishing,Any,Any,A cluster of small alchemical burns,1,Any,Any,Any
+Distinguishing,Any,Any,A line of script tattooed along the jaw,1,Any,Any,Any
+Distinguishing,Any,Any,A hand that never fully closes,1,Any,Any,Any
+Distinguishing,Any,Any,A bright patch sewn over an old heraldic badge,1,Any,Any,Any
+Distinguishing,Any,Any,A prayer token tied around the wrist,1,Any,Any,Any
+Distinguishing,Any,Any,A tool used as a hairpin,1,Any,Any,Any
+Distinguishing,Any,Any,A small bell that never rings,1,Any,Any,Any
+Attire,Oriathan,Any,A severe white-and-red civic tunic,3,Any,Any,Any
+Attire,Oriathan,Any,A dark legionary cloak with the badge removed,3,Any,Any,Any
+Attire,Oriathan,Any,A finely pleated Theopolis robe,3,Any,Any,Any
+Attire,Oriathan,Any,A practical militia coat with a tarnished badge,3,Any,Any,Any
+Attire,Oriathan,Any,A temple stole worked with the Descry,3,Any,Any,Any
+Attire,Oriathan,Any,A patrician mantle repaired by a cheaper tailor,3,Any,Any,Any
+Attire,Azmeri,Any,A wool cloak dyed with forest plants,3,Any,Any,Any
+Attire,Azmeri,Any,A mantle fastened with carved antler,3,Any,Any,Any
+Attire,Azmeri,Any,Layered homespun suited to woodland travel,3,Any,Any,Any
+Attire,Azmeri,Any,A belt hung with herb packets,3,Any,Any,Any
+Attire,Azmeri,Any,A weathered tartan-like shoulder wrap,3,Any,Any,Any
+Attire,Azmeri,Any,A cloak embroidered with old Azmeri suns,3,Any,Any,Any
+Attire,Ezomyte,Any,A heavy clan tartan over mail,3,Any,Any,Any
+Attire,Ezomyte,Any,A stone-dust leather apron,3,Any,Any,Any
+Attire,Ezomyte,Any,A broad belt bearing a clan clasp,3,Any,Any,Any
+Attire,Ezomyte,Any,A thick highland cloak pinned at one shoulder,3,Any,Any,Any
+Attire,Ezomyte,Any,A mail shirt repaired with mismatched rings,3,Any,Any,Any
+Attire,Ezomyte,Any,A carved animal-totem brooch,3,Any,Any,Any
+Attire,Maraketh,Any,Layered desert robes secured for riding,3,Any,Any,Any
+Attire,Maraketh,Any,A bright sash marking caravan duty,3,Any,Any,Any
+Attire,Maraketh,Any,A wrapped headcloth against grit,3,Any,Any,Any
+Attire,Maraketh,Any,A fitted riding coat with embroidered cuffs,3,Any,Any,Any
+Attire,Maraketh,Any,A veil of fine chain and dyed cloth,3,Any,Any,Any
+Attire,Maraketh,Any,A weathered cloak decorated with rhoa feathers,3,Any,Any,Any
+Attire,Karui,Any,A flax cloak fastened with carved bone,3,Any,Any,Any
+Attire,Karui,Any,A woven shoulder mantle marked for a god-clan,3,Any,Any,Any
+Attire,Karui,Any,A practical wrap suited to canoe travel,3,Any,Any,Any
+Attire,Karui,Any,A wooden breastguard over tattooed skin,3,Any,Any,Any
+Attire,Karui,Any,A feathered cord showing clan service,3,Any,Any,Any
+Attire,Karui,Any,A rain cape woven from dark reeds,3,Any,Any,Any
+Attire,Vaal,Any,A geometric mantle clasped with jade,3,Any,Any,Any
+Attire,Vaal,Any,A pleated robe traced with calendar glyphs,3,Any,Any,Any
+Attire,Vaal,Any,A gem-set collar over severe linen,3,Any,Any,Any
+Attire,Vaal,Any,A lacquered ceremonial harness,3,Any,Any,Any
+Attire,Vaal,Any,A scholar's robe patterned with serpents,3,Any,Any,Any
+Attire,Vaal,Any,A court sash worked in obsidian beads,3,Any,Any,Any
+Attire,Kalguur,Any,Angular plate beneath a rune-cut cloak,3,Any,Any,Any
+Attire,Kalguur,Any,A high-collared expedition coat,3,Any,Any,Any
+Attire,Kalguur,Any,Spiked pauldrons designed to shed climbing ropes,3,Any,Any,Any
+Attire,Kalguur,Any,A fitted surveyor's mantle with metal corners,3,Any,Any,Any
+Attire,Kalguur,Any,A rune-stitched coat reinforced with bright scales,3,Any,Any,Any
+Attire,Kalguur,Any,A severe elven cuirass with narrow gilded edges,3,Any,Any,Any
+Attire,Stygian,Any,A soot-dark coat stitched with rune thread,3,Any,Any,Any
+Attire,Stygian,Any,Layered mine leathers with a lamp harness,3,Any,Any,Any
+Attire,Stygian,Any,A stone-grey mantle weighted at the hem,3,Any,Any,Any
+Attire,Stygian,Any,A powder-resistant apron over dark mail,3,Any,Any,Any
+Attire,Stygian,Any,A hooded cloak designed for low tunnels,3,Any,Any,Any
+Attire,Stygian,Any,A surface-trade coat worn over traditional underlayers,3,Any,Any,Any
+Attire,Oriathan,Templar,A white Templar tabard over serviceable armour,4,Any,Any,Any
+Attire,Oriathan,Templar,An ordained robe without family heraldry,4,Any,Any,Any
+Attire,Oriathan,Templar,A legion coat bearing an orderly row of honours,4,Any,Any,Any
+Attire,Oriathan,Templar,A chaplain's mantle singed at the hem,4,Any,Any,Any
+Attire,Oriathan,Templar,A severe Archivist robe with waxed document pockets,4,Any,Any,Any
+Attire,Oriathan,Oriath Militia,A weathered leather coat and tarnished badge,4,Any,Any,Any
+Attire,Oriathan,Oriath Militia,A port-watch cloak smelling faintly of salt,4,Any,Any,Any
+Attire,Oriathan,Oriath Militia,A patched uniform bought from a former constable,4,Any,Any,Any
+Attire,Oriathan,Oriath Militia,A clean militia sash over civilian clothes,4,Any,Any,Any
+Attire,Oriathan,Oriath Militia,A reinforced watch coat with Ring stitching hidden inside,4,Any,Any,Any
+Attire,Stygian,Emberforged,A surface-cut coat adapted for mine work,4,Any,Any,Any
+Attire,Stygian,Emberforged,A powderproof apron bearing the Emberforged mark,4,Any,Any,Any
+Attire,Stygian,Emberforged,A travel mantle concealing trade ledgers,4,Any,Any,Any
+Attire,Stygian,Emberforged,A reinforced smuggler's coat with hidden sample tubes,4,Any,Any,Any
+Distinguishing,Any,Any,Small lower tusks,1,Half-Orc|Orc,Any,Any
+Distinguishing,Any,Any,A broken tusk capped in copper,1,Half-Orc|Orc,Any,Any
+Distinguishing,Any,Any,A beard clasped with a stone clan-ring,1,Dwarf|Duergar,Any,Any
+Distinguishing,Any,Any,Pale stone dust caught permanently in the beard,1,Dwarf|Duergar,Any,Any
+Distinguishing,Any,Any,Long ears pierced near the tips,1,Elf|Half-Elf|Drow,Any,Any
+Distinguishing,Any,Any,One pointed ear bears an old tear,1,Elf|Half-Elf|Drow,Any,Any
+Distinguishing,Any,Any,Fine azurite freckles glow beneath the skin,1,Drow|Duergar|Deep Gnome,Any,Any
+Distinguishing,Any,Any,A mining rune branded behind one ear,1,Drow|Duergar|Deep Gnome,Any,Any
+Features,Any,Any,Grey hair worn in a severe knot,1,Any,Elder|Ancient,Any
+Features,Any,Any,White brows above clear eyes,1,Any,Elder|Ancient,Any
+Features,Any,Any,Deep age lines around the mouth,1,Any,Elder|Ancient,Any
+Features,Any,Any,A round youthful face,1,Any,Child|Young Adult,Any
+Features,Any,Any,Patchy first beard,1,Any,Child|Young Adult,Any
+Features,Any,Any,Unlined skin and watchful eyes,1,Any,Child|Young Adult,Any
+Attire,Any,Any,A tool harness arranged for immediate use,1,Any,Any,Craftsman|Engineering|Mining|Black Powder|Construction
+Attire,Any,Any,A protective apron covered in careful repairs,1,Any,Any,Craftsman|Engineering|Mining|Black Powder|Construction
+Attire,Any,Any,A coat whose pockets contain measuring tools,1,Any,Any,Craftsman|Engineering|Mining|Black Powder|Construction
+Attire,Any,Any,Layered armour with repaired straps,1,Any,Any,Military|Templar Service|Militia Service|Tribal
+Attire,Any,Any,A weapon belt maintained better than the clothing,1,Any,Any,Military|Templar Service|Militia Service|Tribal
+Attire,Any,Any,A service cloak worn over practical armour,1,Any,Any,Military|Templar Service|Militia Service|Tribal

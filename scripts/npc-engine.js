@@ -8,13 +8,19 @@ export class NPCEngine {
     names: "names.csv",
     descriptors: "descriptors.csv",
     professions: "professions.csv",
-    hooks: "hooks.csv"
+    hooks: "hooks.csv",
+    drives: "drives.csv"
   });
 
   static RESERVED_NAMES = new Set([
     "atziri", "doryani", "innocence", "kitava", "piety", "oak", "haku",
     "irasha", "tasuni", "cassia", "clarissa", "hargan", "dannig", "gwennen",
-    "rog", "tujen", "sekhema", "arohongui", "oris steelhand", "ceilia steelhand"
+    "rog", "tujen", "sekhema", "arohongui", "oris steelhand", "ceilia steelhand",
+    "dominus", "avarius", "venarius", "gravicius", "divinia", "zana", "alira",
+    "kraityn", "kaom", "hyrri", "lani", "utula", "oyun", "kira", "yeena",
+    "greust", "silk", "oshabi", "grigor", "einhar", "rigwald", "zerphi",
+    "vorana", "olroth", "uhtred", "medved", "niko", "dialla", "siosa",
+    "maramoa", "tarkleigh", "nessa", "bestel", "tane", "cato", "lucan"
   ]);
 
   static CONTRADICTIONS = Object.freeze([
@@ -143,10 +149,15 @@ export class NPCEngine {
         if (!response.ok) throw new Error(`${filename}: HTTP ${response.status} ${response.statusText}`);
         return [key, this.parseCSVText(await response.text(), filename)];
       }));
-      const presetResponse = await fetch(`${cacheKey}/presets.json`);
+      const [presetResponse, factionResponse] = await Promise.all([
+        fetch(`${cacheKey}/presets.json`),
+        fetch(`${cacheKey}/factions.json`)
+      ]);
       if (!presetResponse.ok) throw new Error(`presets.json: HTTP ${presetResponse.status} ${presetResponse.statusText}`);
+      if (!factionResponse.ok) throw new Error(`factions.json: HTTP ${factionResponse.status} ${factionResponse.statusText}`);
       const tables = Object.fromEntries(entries);
       tables.presets = await presetResponse.json();
+      tables.factions = await factionResponse.json();
       const report = this.validateTables(tables);
       if (report.errors.length) throw new Error(`Invalid NPC data:\n- ${report.errors.join("\n- ")}`);
       tables.validation = report;
@@ -165,6 +176,63 @@ export class NPCEngine {
   static clearCache() {
     this.#cache.clear();
     this.#indexes = new WeakMap();
+  }
+
+  /** Apply world-local JSON overrides without changing the bundled campaign data. */
+  static applyOverrides(tables, overrides = {}) {
+    if (!overrides || typeof overrides !== "object" || Array.isArray(overrides)) {
+      throw new Error("Custom data overrides must be a JSON object");
+    }
+    const next = structuredClone(tables);
+    const tableKeys = Object.keys(this.DATA_FILES);
+    const additions = overrides.add ?? overrides;
+    const removals = overrides.remove ?? {};
+    const identity = (row) => [row.category, row.parent, row.subParent, row.value]
+      .map((value) => String(value ?? "").toLocaleLowerCase()).join("|");
+
+    for (const key of tableKeys) {
+      if (removals[key] !== undefined && !Array.isArray(removals[key])) throw new Error(`remove.${key} must be an array`);
+      const removeIds = new Set((removals[key] ?? []).map(identity));
+      next[key] = (next[key] ?? []).filter((row) => !removeIds.has(identity(row)));
+      if (additions[key] === undefined) continue;
+      if (!Array.isArray(additions[key])) throw new Error(`${key} overrides must be an array`);
+      const positions = new Map(next[key].map((row, index) => [identity(row), index]));
+      for (const input of additions[key]) {
+        if (!input || typeof input !== "object" || !input.category || !input.value) {
+          throw new Error(`${key} override rows require category and value`);
+        }
+        const row = {
+          ...input,
+          parent: input.parent || "Any",
+          subParent: input.subParent || "Any",
+          weight: this.#weight(input.weight, `custom ${key}`)
+        };
+        const rowId = identity(row);
+        if (positions.has(rowId)) next[key][positions.get(rowId)] = row;
+        else {
+          positions.set(rowId, next[key].length);
+          next[key].push(row);
+        }
+      }
+    }
+
+    if (additions.presets !== undefined) {
+      const supplied = Array.isArray(additions.presets) ? additions.presets : additions.presets?.presets;
+      if (!Array.isArray(supplied)) throw new Error("presets overrides must be an array or { presets: [] }");
+      const presets = next.presets?.presets ?? [];
+      const positions = new Map(presets.map((preset, index) => [preset.id, index]));
+      for (const preset of supplied) {
+        if (!preset?.id || !preset?.label) throw new Error("custom presets require id and label");
+        if (positions.has(preset.id)) presets[positions.get(preset.id)] = preset;
+        else presets.push(preset);
+      }
+      next.presets = { ...(next.presets ?? {}), presets };
+    }
+    this.#indexes.delete(next);
+    const report = this.validateTables(next);
+    if (report.errors.length) throw new Error(`Invalid custom NPC data:\n- ${report.errors.join("\n- ")}`);
+    next.validation = report;
+    return next;
   }
 
   static rollWeighted(options, rng = Math.random) {
@@ -252,6 +320,9 @@ export class NPCEngine {
       socialOrigins: this.#uniqueRows(tables.main.filter((row) => row.category === "SocialOrigin")),
       ages,
       alignments: this.#uniqueRows(tables.main.filter((row) => row.category === "Alignment")),
+      locations: this.#uniqueRows(tables.main.filter((row) => row.category === "Location")),
+      eras: this.#uniqueRows(tables.main.filter((row) => row.category === "Era")),
+      capabilityTiers: this.#uniqueRows(tables.main.filter((row) => row.category === "CapabilityTier")),
       professionCategories: constraints.age === "Child" ? [{ value: "Youth", weight: 1 }] : professionCategories,
       presets: tables.presets?.presets ?? []
     };
@@ -265,6 +336,7 @@ export class NPCEngine {
     const affiliation = this.#resolveAffiliation(requested, preset, culture, tables, rng);
     const branch = this.#resolveBranch(requested, preset, culture, affiliation, tables, rng);
     const organization = this.#resolveOrganization({ culture, affiliation, branch }, tables, rng);
+    const ordination = this.#resolveOrdination({ culture, affiliation, branch, organization }, rng);
     const species = this.#resolveSpecies(requested, preset, culture, tables, rng, organization);
     const socialOrigin = requested.socialOrigin
       || this.#pickValue(this.#presetRows(preset?.socialOrigins), rng)
@@ -278,13 +350,26 @@ export class NPCEngine {
     const alignment = requested.alignment
       || this.#pickValue(this.#categoryRows(tables, "main", "Alignment"), rng)
       || "True Neutral";
+    const location = requested.location
+      || (culture === "Vaal" ? "Ancient Vaal city" : this.#pickValue(this.#presetRows(preset?.locations), rng))
+      || this.#defaultLocation(culture);
+    const era = requested.era
+      || (culture === "Vaal" ? "Ancient Vaal" : this.#pickValue(this.#presetRows(preset?.eras), rng))
+      || (culture === "Vaal" ? "Ancient Vaal" : "1599 IC");
+    const rank = this.#resolveRank({ affiliation, organization, ordination }, rng);
 
-    const npc = { culture, affiliation, branch, species, socialOrigin, age, alignment, organization, preset: preset?.id ?? "general" };
+    const npc = {
+      culture, affiliation, branch, species, socialOrigin, age, alignment, organization,
+      ordination, rank, location, era, preset: preset?.id ?? "general"
+    };
+    Object.assign(npc, this.#resolveFactionIds(npc, tables));
     Object.assign(npc, this.#generateName(npc, tables, rng));
     Object.assign(npc, this.#generateProfession(npc, tables, requested, rng));
+    npc.capabilityTier = this.#resolveCapabilityTier(npc, requested.capabilityTier, rng);
     Object.assign(npc, this.#generateAppearance(npc, tables, rng));
     Object.assign(npc, this.#generatePersonality(npc, tables, rng));
     Object.assign(npc, this.#generateHooks(npc, tables, rng));
+    Object.assign(npc, this.#generateDrives(npc, tables, rng));
     return npc;
   }
 
@@ -300,6 +385,7 @@ export class NPCEngine {
     else if (section === "appearance") Object.assign(next, this.#generateAppearance(next, tables, rng));
     else if (section === "personality") Object.assign(next, this.#generatePersonality(next, tables, rng));
     else if (section === "hooks") Object.assign(next, this.#generateHooks(next, tables, rng));
+    else if (section === "drives") Object.assign(next, this.#generateDrives(next, tables, rng));
     else throw new Error(`Unknown reroll section: ${section}`);
     return next;
   }
@@ -307,9 +393,10 @@ export class NPCEngine {
   static validateTables(tables) {
     const errors = [];
     const warnings = [];
-    for (const key of ["main", "names", "descriptors", "professions", "hooks"]) {
+    for (const key of ["main", "names", "descriptors", "professions", "hooks", "drives"]) {
       if (!Array.isArray(tables[key]) || !tables[key].length) errors.push(`${key} has no rows`);
     }
+    if (!Array.isArray(tables.factions?.factions)) errors.push("factions registry has no entries");
 
     const cultures = new Set((tables.main ?? []).filter((row) => row.category === "Culture").map((row) => row.value));
     for (const required of ["Oriathan", "Azmeri", "Ezomyte", "Maraketh", "Karui", "Vaal", "Kalguur", "Stygian"]) {
@@ -383,10 +470,59 @@ export class NPCEngine {
     if (!(tables.names ?? []).some((row) => row.parent === "Stygian")) errors.push("missing Stygian name pool");
     if (!(tables.hooks ?? []).some((row) => row.parent === "Stygian")) errors.push("missing Stygian hooks");
     if (!(tables.professions ?? []).some((row) => row.parent === "Stygian")) errors.push("missing Stygian professions");
+    if (!(tables.main ?? []).some((row) => row.category === "Affiliation" && row.parent === "Oriathan" && row.value === "Oriath Militia")) {
+      errors.push("missing Oriath Militia affiliation");
+    }
+    if (!(tables.professions ?? []).some((row) => row.parent === "Oriathan" && row.subParent === "Oriath Militia")) {
+      errors.push("missing Oriath Militia professions");
+    }
+    if (!(tables.hooks ?? []).some((row) => row.parent === "Oriathan" && row.subParent === "Oriath Militia")) {
+      errors.push("missing Oriath Militia hooks");
+    }
+    if ((tables.names ?? []).filter((row) => row.category === "OrdainedName" && row.parent === "Oriathan" && row.subParent === "Templar").length < 30) {
+      errors.push("Templar ordained-name pool has fewer than 30 entries");
+    }
     if ((tables.professions ?? []).length < 600) errors.push("profession library has fewer than 600 entries");
     for (const [category, minimum] of Object.entries({ Appearance: 120, Demeanor: 80, Attitude: 80, Voice: 140, Mannerism: 100 })) {
       const count = (tables.descriptors ?? []).filter((row) => row.category === category).length;
       if (count < minimum) errors.push(`${category} descriptor pool has fewer than ${minimum} entries`);
+    }
+    for (const [category, minimum] of Object.entries({ Build: 25, Features: 45, Attire: 45, Distinguishing: 40 })) {
+      const count = (tables.descriptors ?? []).filter((row) => row.category === category).length;
+      if (count < minimum) errors.push(`${category} structured descriptor pool has fewer than ${minimum} entries`);
+    }
+    for (const category of ["Goal", "Problem", "Secret", "Knowledge", "Offer", "Disposition"]) {
+      if ((tables.drives ?? []).filter((row) => row.category === category).length < 35) {
+        errors.push(`${category} narrative pool has fewer than 35 entries`);
+      }
+    }
+    for (const culture of cultures) {
+      for (const category of ["Ideal", "Bond", "Flaw"]) {
+        if ((tables.hooks ?? []).filter((row) => row.parent === culture && row.category === category).length < 6) {
+          errors.push(`${culture} has fewer than 6 ${category.toLocaleLowerCase()} hooks`);
+        }
+      }
+    }
+
+    const factionRows = tables.factions?.factions ?? [];
+    const factionIds = new Set();
+    for (const faction of factionRows) {
+      if (!faction.id || !faction.label || !faction.type || !faction.culture) errors.push("faction registry entry is incomplete");
+      if (factionIds.has(faction.id)) errors.push(`duplicate faction id: ${faction.id}`);
+      factionIds.add(faction.id);
+    }
+    for (const faction of factionRows.filter((entry) => entry.type === "branch")) {
+      if (!faction.parentId || !factionIds.has(faction.parentId)) errors.push(`branch registry ${faction.id} has unknown parentId`);
+    }
+    for (const row of (tables.main ?? []).filter((entry) => entry.category === "Affiliation" && entry.value !== "Unaffiliated")) {
+      if (!factionRows.some((entry) => entry.type === "affiliation" && entry.culture === row.parent && entry.label === row.value)) {
+        errors.push(`faction registry is missing ${row.parent}/${row.value}`);
+      }
+    }
+    for (const row of (tables.main ?? []).filter((entry) => entry.category === "Branch" && entry.value !== "Unaffiliated")) {
+      if (!factionRows.some((entry) => entry.type === "branch" && entry.culture === row.parent && entry.label === row.value)) {
+        errors.push(`faction registry is missing ${row.parent}/${row.value}`);
+      }
     }
     return { errors, warnings };
   }
@@ -512,17 +648,31 @@ export class NPCEngine {
   }
 
   static #generateName(npc, tables, rng) {
+    if (npc.ordination === "Ordained") {
+      const virtuePool = this.#selectedRows(tables, "names", "OrdainedName", npc);
+      const virtueName = this.#pickValue(virtuePool, rng) || "Abnegation";
+      return {
+        firstName: virtueName,
+        surname: "",
+        fullName: `Templar ${virtueName}`,
+        nameStyle: "Bestowed virtue-name"
+      };
+    }
     const firstPool = this.#selectedRows(tables, "names", "Name", npc);
     const surnamePool = this.#selectedRows(tables, "names", "Surname", npc);
     let firstName = this.#pickValue(firstPool, rng) || "Unnamed";
-    let surname = this.#pickValue(surnamePool, rng) || "";
+    const surnameChance = {
+      Oriathan: 0.95, Azmeri: 0.85, Ezomyte: 0.9, Maraketh: 0.55,
+      Karui: 0.8, Vaal: 0.4, Kalguur: 0.4, Stygian: 0.9
+    }[npc.culture] ?? 0.85;
+    let surname = rng() < surnameChance ? this.#pickValue(surnamePool, rng) : "";
     let fullName = `${firstName} ${surname}`.trim();
     for (let attempt = 0; attempt < 8 && this.RESERVED_NAMES.has(fullName.toLocaleLowerCase()); attempt += 1) {
       firstName = this.#pickValue(firstPool, rng) || "Unnamed";
-      surname = this.#pickValue(surnamePool, rng) || "";
+      surname = rng() < surnameChance ? this.#pickValue(surnamePool, rng) : "";
       fullName = `${firstName} ${surname}`.trim();
     }
-    return { firstName, surname, fullName };
+    return { firstName, surname, fullName, nameStyle: "Birth name" };
   }
 
   static #generateProfession(npc, tables, constraints, rng) {
@@ -546,13 +696,86 @@ export class NPCEngine {
         || "Emerald Legion (Quartus, recruit and volunteer)";
     }
     if (npc.affiliation === "The Ring") return "The Ring";
+    if (npc.affiliation === "Oriath Militia") return "Oriath Militia";
     if (["Kalguur Expedition"].includes(npc.affiliation)) return npc.affiliation;
     return "";
   }
 
-  static #generateAppearance(npc, tables, rng) {
+  static #resolveOrdination(npc, rng) {
+    if (npc.affiliation !== "Templar") return "";
+    if (npc.organization === "Archivists") return "Ordained";
+    const rate = npc.organization.startsWith("Ebony Legion") ? 0.15
+      : npc.organization.startsWith("Crimson Legion") ? 0.07
+        : npc.organization.startsWith("Azure Legion") ? 0.06
+          : npc.organization.startsWith("Emerald Legion") ? 0.03
+            : 0.08;
+    return rng() < rate ? "Ordained" : "Lay";
+  }
+
+  static #resolveRank(npc, rng) {
+    const pick = (rows) => this.#pickValue(rows.map(([value, weight]) => ({ value, weight })), rng);
+    if (npc.affiliation === "Oriath Militia") {
+      return pick([["Militia Guard", 62], ["Constable", 22], ["Watch Sergeant", 13], ["Militia Captain", 3]]);
+    }
+    if (npc.affiliation !== "Templar") return "";
+    if (npc.organization === "Archivists") {
+      return pick([["Initiate", 45], ["Archivist", 40], ["Lord Archivist", 13], ["High Archivist", 2]]);
+    }
+    if (npc.ordination === "Ordained") {
+      return pick([["Initiate Templar", 44], ["Templar", 35], ["Templar Captain", 18], ["Lord Templar General", 3]]);
+    }
+    return pick([["Guard", 80], ["Sergeant", 17], ["Senior Sergeant", 3]]);
+  }
+
+  static #resolveCapabilityTier(npc, requested, rng) {
+    if (requested) return requested;
+    const pick = (rows) => this.#pickValue(rows.map(([value, weight]) => ({ value, weight })), rng);
+    if (npc.age === "Child") return "Civilian";
+    if (npc.ordination === "Ordained") return pick([["Veteran", 70], ["Elite", 30]]);
+    if (npc.affiliation === "Oriath Militia") return pick([["Trained", 68], ["Veteran", 25], ["Elite", 7]]);
+    if (npc.affiliation === "Templar" || npc.professionCategory === "Military") {
+      return pick([["Trained", 57], ["Veteran", 34], ["Elite", 9]]);
+    }
+    if (["Magic", "Medical", "Scholarly", "Craftsman", "Religion"].includes(npc.professionCategory)) {
+      return pick([["Skilled", 68], ["Trained", 24], ["Veteran", 8]]);
+    }
+    return pick([["Civilian", 54], ["Skilled", 35], ["Trained", 9], ["Veteran", 2]]);
+  }
+
+  static #resolveFactionIds(npc, tables) {
+    const factions = tables.factions?.factions ?? [];
+    const affiliation = factions.find((entry) =>
+      entry.type === "affiliation" && entry.culture === npc.culture && entry.label === npc.affiliation
+    );
+    const branch = factions.find((entry) =>
+      entry.type === "branch" && entry.culture === npc.culture && entry.label === npc.branch
+    );
+    return { factionId: affiliation?.id ?? "", branchId: branch?.id ?? "" };
+  }
+
+  static #defaultLocation(culture) {
     return {
-      appearance: this.#rollDescriptors(tables, "Appearance", 3, npc, rng),
+      Oriathan: "Theopolis", Azmeri: "Forest Encampment", Ezomyte: "Wraeclast road or wilderness",
+      Maraketh: "Highgate and the Vastiri", Karui: "Karui Archipelago", Vaal: "Ancient Vaal city",
+      Kalguur: "Kalguur expedition camp", Stygian: "Azurite Mines"
+    }[culture] ?? "Wraeclast road or wilderness";
+  }
+
+  static #generateAppearance(npc, tables, rng) {
+    const build = this.#rollDescriptors(tables, "Build", 1, npc, rng)[0]
+      || this.#rollDescriptors(tables, "Appearance", 1, npc, rng)[0] || "Average build";
+    const features = this.#rollDescriptors(tables, "Features", 1, npc, rng)[0]
+      || this.#rollDescriptors(tables, "Appearance", 1, npc, rng)[0] || "Weathered features";
+    const attire = this.#rollDescriptors(tables, "Attire", 1, npc, rng)[0]
+      || this.#rollDescriptors(tables, "Appearance", 1, npc, rng)[0] || "Practical clothing";
+    const distinguishingMark = this.#rollDescriptors(tables, "Distinguishing", 1, npc, rng)[0]
+      || this.#rollDescriptors(tables, "Appearance", 1, npc, rng)[0] || "Watchful eyes";
+    return {
+      build,
+      features,
+      attire,
+      distinguishingMark,
+      appearance: [build, features, attire, distinguishingMark],
       voice: this.#rollDescriptors(tables, "Voice", 1, npc, rng)[0] || "Measured voice"
     };
   }
@@ -571,9 +794,23 @@ export class NPCEngine {
     return { ideal: pick("Ideal"), bond: pick("Bond"), flaw: pick("Flaw") };
   }
 
+  static #generateDrives(npc, tables, rng) {
+    const pick = (category) => this.#pickValue(this.#selectedRows(tables, "drives", category, npc), rng)
+      || "They keep their reasons private.";
+    return {
+      goal: pick("Goal"),
+      problem: pick("Problem"),
+      secret: pick("Secret"),
+      knowledge: pick("Knowledge"),
+      offer: pick("Offer"),
+      disposition: pick("Disposition")
+    };
+  }
+
   static #rollDescriptors(tables, category, count, npc, rng) {
     let pool = this.#selectedRows(tables, "descriptors", category, npc, true);
-    pool = pool.filter((row) => this.#ageAllowsDescriptor(npc.age, row.value));
+    pool = pool.filter((row) => this.#descriptorCompatible(row, npc)
+      && this.#ageAllowsDescriptor(npc.age, row.value));
     const chosen = [];
     while (chosen.length < count) {
       const available = pool.filter((row) => !chosen.includes(row.value) && !chosen.some((value) => this.#contradicts(value, row.value)));
@@ -638,7 +875,7 @@ export class NPCEngine {
     let index = this.#indexes.get(tables);
     if (index) return index;
     const categories = new Map();
-    for (const tableName of ["main", "names", "descriptors", "professions", "hooks"]) {
+    for (const tableName of ["main", "names", "descriptors", "professions", "hooks", "drives"]) {
       const byCategory = new Map();
       for (const row of tables[tableName] ?? []) {
         if (!byCategory.has(row.category)) byCategory.set(row.category, []);
@@ -657,7 +894,11 @@ export class NPCEngine {
 
   static #selectedRows(tables, tableName, category, npc, layered = false) {
     const index = this.#dataIndex(tables);
-    const cacheKey = [layered ? "layered" : "exact", tableName, category, npc.culture, npc.affiliation, npc.branch].join("|");
+    const cacheKey = [
+      layered ? "layered" : "exact", tableName, category, npc.culture, npc.affiliation,
+      npc.branch, npc.organization, npc.ordination, npc.professionCategory, npc.location, npc.era,
+      npc.species, npc.age
+    ].join("|");
     if (index.selections.has(cacheKey)) return index.selections.get(cacheKey);
     const rows = this.#categoryRows(tables, tableName, category);
     const result = layered ? this.#layeredRows(rows, npc) : this.#mostSpecific(rows, npc);
@@ -666,35 +907,48 @@ export class NPCEngine {
   }
 
   static #mostSpecific(rows, npc) {
+    const targets = this.#specificityTargets(npc);
     const matches = rows.filter((row) => {
       if (!this.#isAny(row.parent) && row.parent !== npc.culture) return false;
-      return this.#isAny(row.subParent)
-        || (npc.branch && row.subParent === npc.branch)
-        || (npc.affiliation && row.subParent === npc.affiliation);
+      return this.#isAny(row.subParent) || targets.includes(row.subParent);
     });
     if (!matches.length) return [];
     const scored = matches.map((row) => ({
       row,
       score: (row.parent === npc.culture ? 4 : 0)
-        + (npc.branch && row.subParent === npc.branch ? 2 : 0)
-        + (npc.affiliation && row.subParent === npc.affiliation ? 1 : 0)
+        + (npc.branch && row.subParent === npc.branch ? 8 : 0)
+        + (npc.organization && row.subParent === npc.organization ? 7 : 0)
+        + (npc.affiliation && row.subParent === npc.affiliation ? 6 : 0)
+        + (npc.professionCategory && row.subParent === npc.professionCategory ? 5 : 0)
+        + (npc.ordination && row.subParent === npc.ordination ? 4 : 0)
+        + (npc.location && row.subParent === npc.location ? 3 : 0)
+        + (npc.era && row.subParent === npc.era ? 2 : 0)
     }));
     const max = Math.max(...scored.map(({ score }) => score));
     return scored.filter(({ score }) => score === max).map(({ row }) => row);
   }
 
   static #layeredRows(rows, npc) {
+    const targets = this.#specificityTargets(npc);
     return rows.filter((row) => {
       if (!this.#isAny(row.parent) && row.parent !== npc.culture) return false;
-      return this.#isAny(row.subParent)
-        || (npc.branch && row.subParent === npc.branch)
-        || (npc.affiliation && row.subParent === npc.affiliation);
+      return this.#isAny(row.subParent) || targets.includes(row.subParent);
     }).map((row) => {
       let multiplier = row.parent === npc.culture ? 3 : 1;
       if (npc.branch && row.subParent === npc.branch) multiplier *= 4;
+      else if (npc.organization && row.subParent === npc.organization) multiplier *= 4;
       else if (npc.affiliation && row.subParent === npc.affiliation) multiplier *= 3;
+      else if (npc.professionCategory && row.subParent === npc.professionCategory) multiplier *= 3;
+      else if (npc.ordination && row.subParent === npc.ordination) multiplier *= 3;
       return { ...row, weight: row.weight * multiplier };
     });
+  }
+
+  static #specificityTargets(npc) {
+    return [
+      npc.branch, npc.organization, npc.affiliation, npc.professionCategory,
+      npc.ordination, npc.location, npc.era
+    ].filter(Boolean);
   }
 
   static #presetRows(weightMap) {
@@ -718,6 +972,17 @@ export class NPCEngine {
     return true;
   }
 
+  static #descriptorCompatible(row, npc) {
+    const allows = (raw, value) => {
+      if (!raw || !value) return true;
+      const accepted = String(raw).split("|").map((entry) => entry.trim()).filter(Boolean);
+      return accepted.some((entry) => this.#isAny(entry)) || accepted.includes(value);
+    };
+    return allows(row.species, npc.species)
+      && allows(row.ages, npc.age)
+      && allows(row.professionCategories, npc.professionCategory);
+  }
+
   static #contradicts(left, right) {
     if (!this.#contradictionIndex) {
       this.#contradictionIndex = new Map();
@@ -732,7 +997,10 @@ export class NPCEngine {
   }
 
   static #cleanConstraints(constraints = {}) {
-    const allowed = ["preset", "culture", "affiliation", "branch", "species", "socialOrigin", "age", "alignment", "professionCategory"];
+    const allowed = [
+      "preset", "culture", "affiliation", "branch", "species", "socialOrigin", "age", "alignment",
+      "professionCategory", "location", "era", "capabilityTier"
+    ];
     const cleaned = Object.fromEntries(allowed.map((key) => [key, String(constraints[key] ?? "").trim()]));
     const legacy = this.LEGACY_BRANCH_AFFILIATIONS[cleaned.affiliation];
     if (!cleaned.branch && legacy && (!cleaned.culture || cleaned.culture === legacy.culture)) {
@@ -747,7 +1015,10 @@ export class NPCEngine {
     if (requested.preset && !(tables.presets?.presets ?? []).some((preset) => preset.id === requested.preset)) {
       throw new Error(`Unknown preset: ${requested.preset}`);
     }
-    for (const [field, category] of [["socialOrigin", "SocialOrigin"], ["age", "Age"], ["alignment", "Alignment"]]) {
+    for (const [field, category] of [
+      ["socialOrigin", "SocialOrigin"], ["age", "Age"], ["alignment", "Alignment"],
+      ["location", "Location"], ["era", "Era"], ["capabilityTier", "CapabilityTier"]
+    ]) {
       if (requested[field] && !tables.main.some((row) => row.category === category && row.value === requested[field])) {
         throw new Error(`Unknown ${field}: ${requested[field]}`);
       }

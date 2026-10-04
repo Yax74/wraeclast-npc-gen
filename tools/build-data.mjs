@@ -9,13 +9,13 @@ const addValues = (target, category, parent, subParent, values, weight = 1) => {
   for (const value of values) target.push(row(category, parent, subParent, value, weight));
 };
 const split = (value) => value.split("|").map((item) => item.trim()).filter(Boolean);
-const csv = (rows) => {
-  const fields = ["Category", "Parent", "SubParent", "Value", "Weight"];
+const csv = (rows, fields = ["Category", "Parent", "SubParent", "Value", "Weight"]) => {
+  const keys = fields.map((field) => field[0].toLowerCase() + field.slice(1));
   const escape = (value) => {
     const text = String(value ?? "");
     return /[",\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
   };
-  return `${fields.join(",")}\n${rows.map((item) => [item.category, item.parent, item.subParent, item.value, item.weight].map(escape).join(",")).join("\n")}\n`;
+  return `${fields.join(",")}\n${rows.map((item) => keys.map((key) => item[key]).map(escape).join(",")).join("\n")}\n`;
 };
 
 const main = [];
@@ -23,7 +23,7 @@ for (const [value, weight] of Object.entries({ Oriathan: 28, Azmeri: 14, Ezomyte
   main.push(row("Culture", "Global", "None", value, weight));
 }
 const affiliationPools = {
-  Oriathan: { Unaffiliated: 50, Templar: 30, "The Ring": 20 },
+  Oriathan: { Unaffiliated: 40, Templar: 27, "Oriath Militia": 18, "The Ring": 15 },
   Azmeri: { Unaffiliated: 100 },
   Ezomyte: { Unaffiliated: 100 },
   Maraketh: { Unaffiliated: 100 },
@@ -70,7 +70,12 @@ const speciesPools = {
 for (const [culture, values] of Object.entries(speciesPools)) {
   for (const [value, weight] of Object.entries(values)) main.push(row("Species", culture, "Any", value, weight));
 }
-for (const [value, weight] of Object.entries({ Native: 50, Diaspora: 14, Refugee: 18, Exile: 10, "Mixed heritage": 8 })) {
+for (const [value, weight] of Object.entries({
+  Native: 30, Diaspora: 9, Refugee: 13, Exile: 8, "Mixed heritage": 6,
+  Settler: 6, Nomad: 5, "Urban poor": 7, "Merchant household": 5,
+  "Military household": 4, "Religious household": 3, "Freed captive": 2,
+  "Displaced survivor": 6
+})) {
   main.push(row("SocialOrigin", "Global", "Any", value, weight));
 }
 for (const [value, weight] of Object.entries({ Child: 7, "Young Adult": 20, Adult: 49, Elder: 20, Ancient: 4 })) {
@@ -81,11 +86,23 @@ for (const [value, weight] of Object.entries({
   "Lawful Neutral": 12, "True Neutral": 22, "Chaotic Neutral": 15,
   "Lawful Evil": 6, "Neutral Evil": 7, "Chaotic Evil": 5
 })) main.push(row("Alignment", "Global", "Any", value, weight));
+for (const value of [
+  "Lioneye's Watch", "Forest Encampment", "Sarn Slums", "Sarn Arena", "Sarn Upper City",
+  "Sarn Docks", "Theopolis", "Oriath port town", "Karui Archipelago", "Highgate and the Vastiri",
+  "Kalguur expedition camp", "Azurite Mines", "Ancient Vaal city", "Wraeclast road or wilderness"
+]) main.push(row("Location", "Global", "Any", value, 1));
+for (const value of ["1599 IC", "Eternal Empire", "Ancient Vaal"]) {
+  main.push(row("Era", "Global", "Any", value, 1));
+}
+for (const value of ["Civilian", "Skilled", "Trained", "Veteran", "Elite"]) {
+  main.push(row("CapabilityTier", "Global", "Any", value, 1));
+}
 
 const categoryPools = {
   Oriathan: {
     Any: { Commoner: 14, Agriculture: 8, Artist: 5, Communications: 5, Construction: 7, Craftsman: 12, Magic: 6, Medical: 6, Military: 8, Outcast: 5, Religion: 4, Scholarly: 6, Trade: 10, Transport: 4 },
     Templar: { "Templar Service": 45, Religion: 18, Military: 17, Scholarly: 10, Medical: 5, Magic: 5 },
+    "Oriath Militia": { "Militia Service": 58, Military: 14, Communications: 8, Medical: 5, Criminal: 5, Commoner: 5, Transport: 5 },
     "The Ring": { "The Ring": 55, Criminal: 25, Trade: 10, Communications: 5, Transport: 5 }
   },
   Azmeri: { Any: { Agriculture: 16, Commoner: 13, Craftsman: 12, Construction: 8, Medical: 8, Military: 8, Outcast: 7, Scholarly: 5, Survival: 15, Trade: 5, Transport: 3 } },
@@ -129,11 +146,11 @@ for (const [culture, affiliations] of Object.entries(categoryPools)) {
 const names = [];
 const namePools = {
   Oriathan: {
-    Name: "Aelia|Aemilia|Agrippa|Albinus|Anthea|Aquila|Aurelia|Cassian|Crispin|Decima|Drusus|Fausta|Flavia|Gaius|Helvia|Junia|Laelia|Livia|Lucan|Marcellus|Octavia|Quintus|Sabina|Severin|Tertia|Tullia|Valeria|Varro|Vesta|Vitus",
+    Name: "Aelia|Aemilia|Agrippa|Albinus|Anthea|Aquila|Aurelia|Cassian|Crispin|Decima|Drusus|Fausta|Flavia|Gaius|Helvia|Junia|Laelia|Livia|Livius|Marcellus|Livilla|Quintus|Sabina|Severin|Tertia|Tullia|Valeria|Varro|Vesta|Vitus",
     Surname: "Aquilinus|Calpurnius|Cassidor|Cornelian|Domitian|Fabrian|Falconer|Flavian|Galenus|Horatian|Junian|Laelian|Marcellan|Nerian|Octavian|Praetoran|Quillian|Rufian|Sabinian|Severian|Tertian|Valerian|Varrian|Vespian|Vigilan"
   },
   Azmeri: {
-    Name: "Aldren|Anwen|Brenna|Cadoc|Cerys|Deryn|Elowen|Emrys|Enid|Gareth|Gwenna|Ianto|Idris|Kellan|Lowri|Mabon|Mared|Nerys|Owain|Rhiannon|Rhodri|Seren|Tegan|Tudor|Wenna",
+    Name: "Aldren|Anwen|Briallen|Cadoc|Cerys|Deryn|Elowen|Emrys|Enid|Gareth|Gwenna|Ianto|Idris|Kellan|Lowri|Mabon|Mared|Nerys|Owain|Rhiannon|Rhodri|Seren|Tegan|Tudor|Wenna",
     Surname: "Ashdown|Blackbriar|Brambleward|Cairnwell|Dunmere|Elderfield|Ferncross|Glenward|Greyfen|Harthill|Hawthorn|Heatherby|Moorcroft|Oakrest|Redbrook|Rowanfield|Stonecross|Thornmere|Valeheart|Willowfen"
   },
   Ezomyte: {
@@ -142,15 +159,15 @@ const namePools = {
   },
   Maraketh: {
     Name: "Adila|Arash|Azra|Bahram|Darya|Farid|Golnar|Hadi|Jahan|Kamran|Kaveh|Laleh|Mahin|Mehrdad|Nadia|Nasrin|Parisa|Ramin|Roxana|Samira|Shahin|Soraya|Tahira|Yasmin|Zahir",
-    Surname: "Amberstep|Caravanborn|Dawnpath|Dunewalker|Farstrider|Goldsaddle|Moonreins|Oasisward|Redcairn|Roadwise|Saltwind|Sandlark|Silkroad|Starbridle|Sunveil|Swiftspur|Waterfinder|Windrider|Zarinfar|Zharavan"
+    Surname: "Al-Sahir|Ashari|Badiya|Daryan|Farouqi|Haddari|Jaziri|Kharif|Marwani|Nadiri|Qasimi|Rahmani|Safiri|Shafran|Tazir|Vardani|Yazdan|Zahiri|Zareen|Zayani"
   },
   Karui: {
     Name: "Arihi|Hauiti|Hinewai|Kaewa|Kahurangi|Karewa|Kiriata|Korihau|Mairehau|Marama|Matiu|Ngarimu|Paora|Raukiri|Rawiri|Rereahu|Rauheke|Taika|Tamaio|Tamakiri|Mauwera|Waimaru|Wiremu|Whaireka|Whareka",
-    Surname: "Ancestor-Singer|Ash-Spear|Cliff-Warden|Ember-Paddle|Flax-Binder|Greenstone-Hand|Iron-Tide|Reef-Born|Red-Feather|Salt-Blood|Shell-Carver|Sky-Drummer|Storm-Prow|Tide-Walker|War-Canoe|Wave-Breaker|Whale-Rider|White-Shark|Wind-Spear|Wood-Smoke"
+    Surname: "Arahura|Hauwhenua|Kahumaru|Kaitoa|Kerewai|Koromiko|Mahuta|Manutahi|Mataora|Ngahere|Ngataha|Pounamu|Raukura|Rerewaka|Taharoa|Takiri|Tamure|Te Awa|Te Kahu|Whaitiri"
   },
   Vaal: {
     Name: "Aqama|Azqel|Calqet|Chimal|Eztan|Ixtara|Izqel|Mazatl|Metzli|Nahuac|Nexali|Ocelan|Qalchi|Qetza|Tecuani|Tezma|Tizoc|Xalua|Xical|Ximara|Yaret|Yoltzin|Zaqal|Zeltan|Zyanya",
-    Surname: "Ashen Glyph|Blood Calendar|Coil Scribe|Fifth Sun|Glass Serpent|Jade Circuit|Moon Cipher|Obsidian Eye|Quetzal Mark|Red Ziggurat|Ritual Gear|Serpent Seal|Sun Engine|Temple Key|Veiled Axis|Void Calendar|Wheel Keeper|Xoac Line|Ziggurat Born|Zodiac Hand"
+    Surname: "Acatl|Acolmec|Chalca|Cihuatl|Cozcatl|Cuauhtli|Ehecatl|Itzcali|Mazahua|Mictlan|Mixcoatl|Nahuatl|Ocelotl|Quetzal|Tenochtli|Teotl|Tlalocan|Xochiya|Yaotzin|Yohualli"
   },
   Kalguur: {
     Name: "Aelrik|Alvaine|Brynja|Caelvar|Dagnyr|Eirlys|Elvarin|Freydis|Halvyr|Hildra|Iskell|Jorunn|Kaelith|Leifran|Maelvir|Njalda|Orlenn|Ragniel|Sigrune|Solveig|Thalrik|Valdis|Veyra|Yrsael|Zevran",
@@ -167,7 +184,7 @@ for (const [culture, categories] of Object.entries(namePools)) {
 
 const expandedNamePools = {
   Oriathan: {
-    Name: "Appia|Arrius|Caelia|Caeso|Calista|Camilla|Cato|Claudia|Corvin|Domitia|Fabia|Felix|Gallus|Honoria|Horatia|Justina|Licinia|Lucilla|Magnus|Marcia|Nerva|Otho|Petronia|Prisca|Rufus|Sergia|Silvanus|Tacita|Titus|Vibia",
+    Name: "Appia|Arrius|Caelia|Caeso|Calista|Camilla|Cotta|Claudia|Corvin|Domitia|Fabia|Felix|Gallus|Honoria|Horatia|Justina|Licinia|Lucilla|Magnus|Marcia|Nerva|Otho|Petronia|Prisca|Rufus|Sergia|Silvanus|Tacita|Titus|Vibia",
     Surname: "Aurelian|Caelian|Catonian|Claudian|Corvian|Decian|Fulvian|Gallian|Helvian|Licinian|Lucillian|Marcian|Petronian|Priscian|Sergian|Silvanian|Tacitian|Vitellian|Volusian|Cassianus"
   },
   Azmeri: {
@@ -180,28 +197,31 @@ const expandedNamePools = {
   },
   Maraketh: {
     Name: "Afsaneh|Amira|Anahita|Arman|Banu|Behzad|Delara|Esmail|Faran|Farzana|Firuz|Hamid|Homa|Jaleh|Jamshid|Kian|Leila|Mahan|Marjan|Mina|Navid|Niloofar|Nima|Omid|Parvin|Payam|Rashid|Roya|Sahar|Sepideh|Shirin|Sohrab|Sorush|Taraneh|Zubin",
-    Surname: "Brassreins|Cedarshade|Copperstep|Dunerose|Dustmantle|Eastwind|Emberveil|Falconpath|Glassdune|Goldenbridle|Ivoryroad|Lapisveil|Miragestep|Nightcaravan|Redoasis|Saffronwind|Sandglass|Starreins|Sunroad|Zaffarid"
+    Surname: "Al-Hadir|Bahari|Darvazi|Emiri|Ghazali|Hakimi|Isfari|Khamsin|Mazari|Nahrin|Qadiri|Rihani|Sabiri|Tabari|Vaziri|Yashar|Zaffari|Zarandi|Zarrin|Zulfi"
   },
   Karui: {
-    Name: "Anahera|Ariki|Aroha|Atarangi|Awhina|Eruera|Hana|Hemi|Hinerangi|Hoani|Ihaia|Kahu|Kaia|Kereama|Kiri|Manaia|Manawa|Maru|Miriama|Nikora|Pania|Parekura|Rangi|Ripeka|Rongo|Ropata|Rua|Tane|Teina|Tiare|Tipene|Tui|Waiora|Whetu|Wikitoria",
-    Surname: "Bone-Hook|Cloud-Paddle|Dawn-Spear|Deep-Current|Fern-Tattoo|Flame-Weaver|Greenstone-Eye|Kelp-Binder|Moon-Canoe|Obsidian-Tooth|Reef-Singer|River-Guard|Shark-Spear|Shell-Drum|Storm-Hunter|Sun-Prow|Tide-Carver|Whale-Song|Wind-Carver|Woven-Flax"
+    Name: "Anahera|Ariki|Aroha|Atarangi|Awhina|Eruera|Hana|Hemi|Hinerangi|Hirini|Hoani|Ihaia|Kahu|Kaia|Kereama|Kiri|Manaia|Manawa|Maru|Miriama|Nikora|Pania|Parekura|Rangi|Ripeka|Rongo|Ropata|Rua|Teina|Tiare|Tipene|Tui|Whaitua|Whetu|Wikitoria",
+    Surname: "Awarua|Hautapu|Hinerau|Kaipara|Kōwhai|Makiri|Maruata|Moturua|Ngakoro|Pukara|Rangitahi|Rerewai|Taiaroa|Tamarau|Te Kohu|Te Miro|Te Rangi|Tuhoro|Wairua|Whakaroa"
   },
   Vaal: {
     Name: "Acatzin|Acolmiz|Ameyal|Chalchi|Citlali|Citlalin|Cozamal|Cualli|Eloxoch|Icnoyotl|Izel|Malinal|Matlal|Miztli|Necalli|Nelli|Nenetl|Ohtli|Ocelotl|Quiauh|Tenoch|Tepin|Teyac|Tlalli|Tlanextli|Xihuitl|Xipilli|Xochitl|Yaotl|Yohualli|Yolotli|Zolin|Amoxtli|Ceyac|Itzamar",
-    Surname: "Amber Codex|Broken Sun|Cinnabar Gear|Coiled Calendar|Copper Jaguar|Dawn Glyph|Eclipse Scribe|Emerald Serpent|Fourth Wheel|Golden Axis|Hollow Sun|Jade Numeral|Mirror Glyph|Night Engine|Obsidian Gear|Red Equation|Serpent Wheel|Star Calendar|Turquoise Eye|Void Numeral"
+    Surname: "Amoxli|Atlahua|Cenzon|Chalchiu|Citlal|Coatec|Huemac|Icnoya|Itzama|Matlali|Necahua|Ohtlan|Tecpatl|Teyolia|Tlacotl|Xihua|Xilotl|Yolcatl|Zacatl|Zolin"
   },
   Kalguur: {
     Name: "Aedrin|Aelwyn|Alfhild|Astrid|Baldren|Branniel|Brynjar|Caelwyn|Dagrin|Eirik|Eydis|Fenrik|Fjorra|Galdor|Gudrun|Haldis|Hroald|Ingrith|Jarlon|Kelvar|Livra|Maerith|Nyrvald|Odrin|Ragnhild|Runa|Sifrael|Skaldi|Thora|Torvald|Ulfren|Vaelrun|Vigdis|Ylva|Yrven",
     Surname: "Ashenspire|Blackquillon|Bronzethorn|Coldlance|Frostquillon|Galespike|Gildedthorn|Icebriar|Ironpetal|Moonspear|Palequillon|Rimebarb|Silverquillon|Skysteel|Snowlance|Starquillon|Stormbriar|Thornlance|Whitebarb|Winterspike"
   },
   Stygian: {
-    Name: "Akhesh|Bhezra|Chavra|Dhrak|Ezzra|Ghaelin|Hekhra|Ishvek|Khavra|Lhevik|Mharra|Nhezr|Phaela|Qhadr|Rhelk|Shyra|Therv|Vhessa|Yhevik|Zhaela",
-    Surname: "Blackdelve|Cindervein|Darkchime|Deepbrand|Gloomrune|Ironwhisper|Nightforge|Obsidianvein|Phosphorbrand|Shalemark|Smokevein|Stonewhisper|Underchime|Voidrune|Whisperforge"
+    Name: "Akhessia|Aurekh|Casshra|Dhecima|Fhaustr|Ghaius|Helvhra|Iunekh|Khlavdia|Livhra|Lukhan|Marzellus|Nerhva|Okhthar|Phetronia|Prhiska|Rufhar|Sevherin|Thullia|Vharro",
+    Surname: "Akhvilin|Khalphurn|Khassidor|Khornelian|Domithian|Fhabrian|Fhlavian|Ghalenus|Horathian|Iunian|Laelian|Marzellan|Nherian|Okhthavian|Vhalerian"
   }
 };
 for (const [culture, categories] of Object.entries(expandedNamePools)) {
   for (const [category, values] of Object.entries(categories)) addValues(names, category, culture, "Any", split(values));
 }
+addValues(names, "OrdainedName", "Oriathan", "Templar", split(
+  "Abnegation|Adherence|Ardour|Candour|Chastity|Clemency|Concord|Constancy|Contrition|Devotion|Diligence|Discipline|Duty|Fidelity|Fortitude|Grace|Humility|Judgement|Mercy|Obedience|Patience|Penance|Providence|Purity|Rectitude|Remorse|Resolve|Reverence|Sacrifice|Temperance|Truth|Valour|Verity|Vigilance|Zeal|Charity|Forbearance|Honour|Radiance|Steadfastness"
+), 1);
 
 const descriptors = [];
 const descriptorPools = {
@@ -238,6 +258,43 @@ const culturalVoicePools = {
 for (const [culture, values] of Object.entries(culturalVoicePools)) {
   addValues(descriptors, "Voice", culture, "Any", split(values), 2);
 }
+
+const addStructuredDescriptors = (category, parent, subParent, values, {
+  weight = 1, species = "Any", ages = "Any", professionCategories = "Any"
+} = {}) => {
+  for (const value of split(values)) {
+    descriptors.push({ ...row(category, parent, subParent, value, weight), species, ages, professionCategories });
+  }
+};
+addStructuredDescriptors("Build", "Any", "Any", "Compact and wiry|Lean and long-limbed|Broad and heavy-set|Powerfully built|Narrow-shouldered|Solid and square-framed|Lithe and balanced|Short and muscular|Tall and spare|Soft-bodied|Thick-necked|Fine-boned|Stooped but sturdy|Athletic|Frail-looking|Barrel-chested|Quick-footed|Heavy-footed|Bent by labour|Gracefully poised|Restless in stance|Rigidly upright|Relaxed and loose-limbed|Slight and quick|Weathered but strong|Deliberately imposing|Unusually still|Careful with one leg|Strong-backed|Underfed and angular");
+addStructuredDescriptors("Features", "Any", "Any", "Deep-set eyes|Round face|Narrow face|Square jaw|Prominent cheekbones|Heavy brow|Thick eyebrows|Shaved eyebrows|Crooked nose|Sharp nose|Flattened nose|Freckled cheeks|Weather-cracked lips|Gap-toothed grin|Gold-capped tooth|Broken front tooth|Close-cropped hair|Shoulder-length curls|Waist-length hair|Carefully braided hair|Bead-threaded braids|Shaven head|One side of the head shaved|Grey-streaked hair|Silver-streaked hair|White lock of hair|Oiled hair|Tangled hair|Wind-tossed hair|Clean-shaven jaw|Closely trimmed beard|Full braided beard|Long braided beard|Dark circles beneath the eyes|Sunken eyes|Clouded eye|Milky left eye|Pierced brow|Elaborate ear cuffs|Crooked smile|Youthful face|Weathered face|Immaculately groomed|Grime-streaked|Soot-blackened|Sun-darkened complexion|Pale complexion|Ruddy complexion|Copper-toned complexion|Bronze complexion|Ash-grey complexion|Violet eyes|Fine web of facial scars|Faded facial tattoo|Ritual paint on the cheeks|Tattooed scalp|Freshly shaved jaw|Burned eyebrows|Chipped tooth|One eyebrow split by a scar");
+addStructuredDescriptors("Attire", "Any", "Any", "Battered travel cloak|Carefully mended work clothes|Layered travel scarves|Oversized coat|Patchwork armour|Salt-stiff cloak|Stitched leather coat|Mud-spattered hem|Dust-caked boots|Travel-worn boots|Iron-shod boots|Patched gloves|Sleeves rolled to the elbows|Worn prayer cords|Tarnished jewellery|Plain undyed linen|Faded guild colours|Oilskin cape|Tool-heavy leather belt|Weatherproof hooded mantle|Formal coat past its prime|Borrowed armour that fits poorly|Practical clothes with hidden pockets|Brightly repaired garments|Heavy wool travelling clothes|A clean apron over stained clothes|Ceremonial sash worn with daily clothes|Multiple belts and pouches|A scarf covering the lower face|A long coat fastened to one side|A breastplate polished only at the front|Simple robes reinforced at the elbows|A cloak pinned with a family token|Soft boots wrapped against dust|A broad hat with a repaired brim|A hood lined with stitched charms|A coat marked by old rank insignia|A sleeveless work vest|A carefully folded headcloth|A short cape over fitted armour");
+addStructuredDescriptors("Distinguishing", "Any", "Any", "Old blade scars|Burn scar across one arm|Birthmark across one cheek|Missing finger|Missing two fingers|Missing ear tip|Blind in one eye|Jagged scalp scar|Needle-thin scar on the lip|Old manacle scars|Ritual scarification|Ceremonial tattoos|Inked knuckles|Ritual brands on both palms|Powder-burned hands|Oil-darkened hands|Ink-stained fingers|Calloused hands|Hardened knuckles|Rope-burned palms|Scarred palms|Frostbitten fingertips|Blackened fingernails|Smoke-yellowed nails|Metal finger splint|Bandaged forearm|Carved wooden prosthetic|Limping gait|Cracked spectacles|Bone-charm necklace|Chalk ward marks|Gem-glow beneath the skin|Wax-sealed braid|Six-fingered left hand|Pierced ears linked by a fine chain|A branded number at the wrist|A missing tooth replaced with carved bone|A tremor in one hand|A faded unit tattoo|A carefully concealed throat scar|A ritual cord for each dead relative|A chipped lens held in a wire frame|A permanent sulphite stain|A cluster of small alchemical burns|A line of script tattooed along the jaw|A hand that never fully closes|A bright patch sewn over an old heraldic badge|A prayer token tied around the wrist|A tool used as a hairpin|A small bell that never rings");
+
+const culturalAttire = {
+  Oriathan: "A severe white-and-red civic tunic|A dark legionary cloak with the badge removed|A finely pleated Theopolis robe|A practical militia coat with a tarnished badge|A temple stole worked with the Descry|A patrician mantle repaired by a cheaper tailor",
+  Azmeri: "A wool cloak dyed with forest plants|A mantle fastened with carved antler|Layered homespun suited to woodland travel|A belt hung with herb packets|A weathered tartan-like shoulder wrap|A cloak embroidered with old Azmeri suns",
+  Ezomyte: "A heavy clan tartan over mail|A stone-dust leather apron|A broad belt bearing a clan clasp|A thick highland cloak pinned at one shoulder|A mail shirt repaired with mismatched rings|A carved animal-totem brooch",
+  Maraketh: "Layered desert robes secured for riding|A bright sash marking caravan duty|A wrapped headcloth against grit|A fitted riding coat with embroidered cuffs|A veil of fine chain and dyed cloth|A weathered cloak decorated with rhoa feathers",
+  Karui: "A flax cloak fastened with carved bone|A woven shoulder mantle marked for a god-clan|A practical wrap suited to canoe travel|A wooden breastguard over tattooed skin|A feathered cord showing clan service|A rain cape woven from dark reeds",
+  Vaal: "A geometric mantle clasped with jade|A pleated robe traced with calendar glyphs|A gem-set collar over severe linen|A lacquered ceremonial harness|A scholar's robe patterned with serpents|A court sash worked in obsidian beads",
+  Kalguur: "Angular plate beneath a rune-cut cloak|A high-collared expedition coat|Spiked pauldrons designed to shed climbing ropes|A fitted surveyor's mantle with metal corners|A rune-stitched coat reinforced with bright scales|A severe elven cuirass with narrow gilded edges",
+  Stygian: "A soot-dark coat stitched with rune thread|Layered mine leathers with a lamp harness|A stone-grey mantle weighted at the hem|A powder-resistant apron over dark mail|A hooded cloak designed for low tunnels|A surface-trade coat worn over traditional underlayers"
+};
+for (const [culture, values] of Object.entries(culturalAttire)) {
+  addStructuredDescriptors("Attire", culture, "Any", values, { weight: 3 });
+}
+addStructuredDescriptors("Attire", "Oriathan", "Templar", "A white Templar tabard over serviceable armour|An ordained robe without family heraldry|A legion coat bearing an orderly row of honours|A chaplain's mantle singed at the hem|A severe Archivist robe with waxed document pockets", { weight: 4 });
+addStructuredDescriptors("Attire", "Oriathan", "Oriath Militia", "A weathered leather coat and tarnished badge|A port-watch cloak smelling faintly of salt|A patched uniform bought from a former constable|A clean militia sash over civilian clothes|A reinforced watch coat with Ring stitching hidden inside", { weight: 4 });
+addStructuredDescriptors("Attire", "Stygian", "Emberforged", "A surface-cut coat adapted for mine work|A powderproof apron bearing the Emberforged mark|A travel mantle concealing trade ledgers|A reinforced smuggler's coat with hidden sample tubes", { weight: 4 });
+addStructuredDescriptors("Distinguishing", "Any", "Any", "Small lower tusks|A broken tusk capped in copper", { species: "Half-Orc|Orc" });
+addStructuredDescriptors("Distinguishing", "Any", "Any", "A beard clasped with a stone clan-ring|Pale stone dust caught permanently in the beard", { species: "Dwarf|Duergar" });
+addStructuredDescriptors("Distinguishing", "Any", "Any", "Long ears pierced near the tips|One pointed ear bears an old tear", { species: "Elf|Half-Elf|Drow" });
+addStructuredDescriptors("Distinguishing", "Any", "Any", "Fine azurite freckles glow beneath the skin|A mining rune branded behind one ear", { species: "Drow|Duergar|Deep Gnome" });
+addStructuredDescriptors("Features", "Any", "Any", "Grey hair worn in a severe knot|White brows above clear eyes|Deep age lines around the mouth", { ages: "Elder|Ancient" });
+addStructuredDescriptors("Features", "Any", "Any", "A round youthful face|Patchy first beard|Unlined skin and watchful eyes", { ages: "Child|Young Adult" });
+addStructuredDescriptors("Attire", "Any", "Any", "A tool harness arranged for immediate use|A protective apron covered in careful repairs|A coat whose pockets contain measuring tools", { professionCategories: "Craftsman|Engineering|Mining|Black Powder|Construction" });
+addStructuredDescriptors("Attire", "Any", "Any", "Layered armour with repaired straps|A weapon belt maintained better than the clothing|A service cloak worn over practical armour", { professionCategories: "Military|Templar Service|Militia Service|Tribal" });
 
 const professions = [];
 const addJobs = (category, values, parent = "Any", subParent = "Any") => addValues(professions, category, parent, subParent, split(values));
@@ -313,6 +370,7 @@ addJobs("Religion", "Dawn chanter|Radiant shrine keeper|Sunfire ritualist|Sione 
 addJobs("Magic", "Moon seer|Dream interpreter|Serenity keeper|Lani Lua mystic", "Karui", "Lani Lua");
 addJobs("Royal Court", "Astronomer-priest|Calendar keeper|Court artificer|Glyph accountant|Palace guard|Royal diviner|Temple engineer", "Vaal", "Any");
 addJobs("Templar Service", "Field chaplain|Inquisitorial aide|Legionary|Temple physician|Thaumaturgical researcher|Virtue instructor", "Oriathan", "Templar");
+addJobs("Templar Service", "Adjunct archivist|Barracks confessor|Cohort secretary|Doctrinal examiner|Initiate Magus|Initiate Templar|Legion armourer|Legion scout|Magus|Reliquary guard|Temple quartermaster|Templar investigator", "Oriathan", "Templar");
 for (const [value, weight] of Object.entries({
   "Ebony Legion (Primis, elite)": 15,
   "Crimson Legion (Secundo, veteran)": 20,
@@ -321,6 +379,7 @@ for (const [value, weight] of Object.entries({
   "Emerald Legion (Quartus, recruit and volunteer)": 26,
   Archivists: 15
 })) professions.push(row("Templar Branch", "Oriathan", "Templar", value, weight));
+addJobs("Militia Service", "Beat constable|Dock watchman|Gate constable|Harbour patrol guard|Jailer|Market warder|Militia clerk|Militia investigator|Night watchman|Patrol runner|Prison escort|Public-order sergeant|Riot shield bearer|Road checkpoint guard|Tollhouse constable|Warrant officer|Watch captain|Watch sergeant|Witness escort|Wardhouse quartermaster", "Oriathan", "Oriath Militia");
 addJobs("The Ring", "Arena bookmaker|Bribe courier|Debt collector|Enforcer|Fence|Information broker|Pit-fight fixer|Safehouse keeper|Smuggler|Street runner", "Oriathan", "The Ring");
 addJobs("Mining", "Azurite seam-reader|Deep-shaft shorer|Rune-face surveyor|Sulphite prospector|Vein singer|Ventilation cutter", "Stygian", "Any");
 addJobs("Engineering", "Azurite pumpwright|Deep-hoist keeper|Rune-mechanism fitter|Stone-pressure engineer|Tunnel bracewright", "Stygian", "Any");
@@ -344,9 +403,40 @@ addHooks("Ideal", "Any", "Any", "I will rebuild what the Cataclysm destroyed.|No
 addHooks("Bond", "Any", "Any", "I carry the last token of my household.|A travelling companion once saved my life.|I owe a dangerous debt for safe passage.|I guard a map to a refuge no one else knows.|My missing sibling may still be alive.|I will restore a ruined shrine or home.|A community depends on the supplies I bring.|I promised to return an heirloom to its owner.");
 addHooks("Flaw", "Any", "Any", "I hoard supplies long after danger has passed.|I mistake suspicion for wisdom.|I cannot leave forbidden relics untouched.|I answer insults with reckless escalation.|I conceal an illness or wound.|I abandon plans when omens turn against me.|I trust status more than character.|I would betray a stranger to protect my own.");
 
+addHooks("Ideal", "Oriathan", "Any", "Civil order is the wall between survival and ruin.|Education should serve the whole city, not only its patricians.|A household's reputation is built by daily conduct.|Law deserves respect only when it protects the weak.|Oriath must answer honestly for what it did in Wraeclast.|Public duty matters more than private comfort.|Trade and civic works can rebuild what conquest destroyed.|No priest or noble stands above consequence.");
+addHooks("Bond", "Oriathan", "Any", "My family still occupies one room of our former estate.|A port neighbourhood sheltered me during a purge.|I carry the account book of a ruined household.|A former servant knows the truth about my family.|I send every spare coin to relatives in Theopolis.|A civic mentor taught me to read forbidden records.|I promised to clear an innocent person's name.|My livelihood depends on a fragile licence from the authorities.");
+addHooks("Flaw", "Oriathan", "Any", "I treat refinement as evidence of competence.|I conceal my family's loss of status.|I assume bureaucracy can solve a human crisis.|I speak of Wraeclast as though Oriath still owns it.|I avoid offending authority until resistance is too late.|I confuse education with wisdom.|I preserve appearances at ruinous cost.|I instinctively rank people by accent and clothing.");
+
+addHooks("Ideal", "Azmeri", "Any", "A community survives by remembering who cared for it.|The forest is a neighbour rather than a possession.|Old knowledge should be tested, not merely obeyed.|Hospitality is sacred when roads are dangerous.|A leader earns trust by sharing hardship.|Every ruin carries a warning for the living.|Healing the land is more important than claiming it.|Stories keep a scattered people together.");
+addHooks("Bond", "Azmeri", "Any", "I tend the grove where my family marks its dead.|A hunter who vanished taught me every safe path I know.|I carry a song known by only three surviving elders.|The Forest Encampment gave me refuge when no one else would.|A child in my care believes I can solve anything.|I owe a life-debt to an outsider the tribe distrusts.|I guard the route to an untouched medicinal spring.|I must recover a relic taken from an old Azmeri shrine.");
+addHooks("Flaw", "Azmeri", "Any", "I treat unfamiliar customs as signs of corruption.|I refuse to abandon land that has become unsafe.|I hide bad omens to prevent panic.|I give too much authority to tradition.|I resent descendants of the Empire for forgetting us.|I mistake secrecy for protection.|I take responsibility for problems no one person can mend.|I trust the forest's signs more than clear evidence.");
+
+addHooks("Ideal", "Ezomyte", "Any", "An oath spoken before the clan must survive fear.|Craft and song preserve what conquerors try to erase.|Courage includes admitting when a feud must end.|No ruler has the right to own another person.|The First Ones teach survival, not mindless cruelty.|A guest under one's roof must be defended.|History belongs in living memory rather than imperial archives.|A clan is strongest when its weakest member stands with it.");
+addHooks("Bond", "Ezomyte", "Any", "I carry a brooch from a clanhold lost to war.|My teacher's final poem contains a hidden warning.|I swore to return a weapon to the family of its maker.|A sibling joined a rival clan after an old dispute.|I know the true account of a celebrated battle.|A mine community depends on my judgement.|I owe freedom to someone whose name my clan curses.|I seek the burial cairn of an ancestor taken in chains.");
+addHooks("Flaw", "Ezomyte", "Any", "I keep feuds alive long after their cause is forgotten.|I would rather suffer than admit an oath was foolish.|I dismiss quiet people as lacking courage.|I drink or boast when grief becomes difficult.|I assume fine speech conceals dishonesty.|I measure worth through endurance alone.|I cannot leave an insult unanswered.|I romanticise a past that was harsher than I admit.");
+
+addHooks("Ideal", "Maraketh", "Any", "The caravan survives when every rider fulfils their duty.|Strength must protect the road, not prey upon it.|Water offered to a traveller is never wasted.|Tradition must remain strong enough to endure honest change.|A promise made before the akhara binds the whole self.|Skill deserves recognition regardless of birth.|The desert punishes waste and rewards preparation.|A leader listens before choosing the road.");
+addHooks("Bond", "Maraketh", "Any", "My akhara entrusted me with a route known to few outsiders.|I raise a rhoa descended from my family's finest mount.|A Faridun saved me when custom said they should not.|I carry a message for a Sekhema who may already be dead.|My caravan partner disappeared beyond a dust storm.|I must repay water taken from a rival camp.|A family tattoo records a shame I intend to redeem.|I guard the last trade token of a broken caravan.");
+addHooks("Flaw", "Maraketh", "Any", "I treat endurance as proof that a decision was right.|I cannot forgive a public challenge to my competence.|I hide doubt behind formal tradition.|I judge settled people as soft and shortsighted.|I accept dangerous wagers to defend my honour.|I obey an akhara custom I privately know is cruel.|I read every gift as an attempted obligation.|I would abandon an outsider before risking my caravan.");
+
+addHooks("Ideal", "Karui", "Any", "Mana is earned through service rather than claimed by birth.|Ancestors should guide the living without ruling them.|Hospitality and courage are both measures of strength.|The clan survives when each generation adds to its knowledge.|A challenge answered honestly prevents a hidden feud.|Land and sea are inheritances held in trust.|A warrior's first duty is to bring their people home.|No foreign empire will define Karui worth.");
+addHooks("Bond", "Karui", "Any", "My family canoe carries repairs from five generations.|I bear a carving that records my line's migrations.|A rival clan fostered me during a season of hunger.|I promised an elder to learn why our ancestors left this shore.|A younger relative copies everything I do.|I carry the name of someone denied proper funerary rites.|A warband companion once chose my life over victory.|I must return a stolen heirloom before the next gathering.");
+addHooks("Flaw", "Karui", "Any", "I turn disagreement into a test of courage.|I invoke ancestors to avoid admitting personal fear.|I expect outsiders to misunderstand before they speak.|I protect clan reputation by hiding serious failures.|I treat retreat as shame even when it saves lives.|I carry inherited grudges as though they were my own.|I confuse directness with permission to be cruel.|I will risk too much to avoid appearing dependent.");
+
+addHooks("Ideal", "Vaal", "Any", "Knowledge has value only when its cost is understood.|A civilisation should be judged by what it refuses to sacrifice.|Order is revealed through number, season and celestial motion.|Power must be recorded so later generations can question it.|Beauty and precision are forms of sacred discipline.|Death is a boundary to study, not an excuse for cruelty.|The court exists to preserve civilisation beyond one ruler.|No discovery excuses the erasure of its victims.");
+addHooks("Bond", "Vaal", "Any", "My calculations protect a district from a failing gem-engine.|A rival scholar possesses the missing half of my proof.|I owe my position to a courtier I no longer trust.|My family maintains a shrine older than the present dynasty.|I carry testimony from subjects selected for sacrifice.|A construct recognises a command word only I know.|I must warn a city that refuses to hear its own future.|A sealed laboratory contains my mentor's unfinished work.");
+addHooks("Flaw", "Vaal", "Any", "I value a complete experiment over the people endangered by it.|I assume mathematical elegance proves moral worth.|I conceal failed predictions to preserve my standing.|I treat servants as invisible parts of a system.|I mistake ritual repetition for safety.|I am fascinated by precisely what should frighten me.|I would sacrifice truth to prevent public disorder.|I believe my education makes me resistant to corruption.");
+
+addHooks("Ideal", "Kalguur", "Any", "A lineage is honoured by adding knowledge to it.|An expedition leader is responsible for every return journey.|Runes should preserve truth rather than decorate authority.|A tested design matters more than a glorious theory.|Trade creates obligations on both sides.|History must be sung accurately even when it shames the victors.|Preparation is a form of respect for danger.|No discovery belongs solely to the person who found it.");
+addHooks("Bond", "Kalguur", "Any", "My family expects me to add a verse to its lineage song.|I inherited a rune-tool whose maker is officially forgotten.|A shipmate took the blame for my failed design.|I promised to map the last route of a lost expedition.|A rival house holds the legal claim to my best discovery.|I carry letters for people who may never see Aesclast again.|My crew saved an archive others wanted burned.|I must return proof that an ancestor was wrongly condemned.");
+addHooks("Flaw", "Kalguur", "Any", "I dismiss knowledge that cannot be measured.|I protect family prestige by hiding useful discoveries.|I treat every conversation as a negotiation.|I take excessive risks to produce a complete survey.|I confuse emotional restraint with objectivity.|I refuse to abandon equipment even when lives are at risk.|I assume other cultures misuse anything they do not understand.|I would rather repair a plan than admit it should be discarded.");
+
 addHooks("Ideal", "Oriathan", "Templar", "Order must outlive the empire.|The Virtues must be defended from corruption.|Discipline is the first defence against nightmare.|Service can redeem the sins of Oriath.|The law must bind commanders as well as recruits.");
 addHooks("Bond", "Oriathan", "Templar", "My legion is the only family I have left.|I protect an Archivist carrying dangerous records.|A fallen superior entrusted me with a sealed order.|I owe my life to an Emerald volunteer from the lower strata.|I must discover who corrupted my command.");
 addHooks("Flaw", "Oriathan", "Templar", "I obey rank even when conscience objects.|I see dissent as the first sign of heresy.|I hide how frightened I am of thaumaturgy.|I judge non-Oriathans by imperial custom.|I falsified a report to protect my unit.");
+addHooks("Ideal", "Oriathan", "Oriath Militia", "Law should protect the street before it protects the palace.|A badge is a public trust rather than a private privilege.|Local knowledge is worth more than distant orders.|A peaceful arrest is better than a heroic funeral.|The militia must answer to the neighbourhoods it patrols.|No legion understands Oriath's streets as we do.");
+addHooks("Bond", "Oriathan", "Oriath Militia", "My patrol partner covered for my worst mistake.|A market district knows me by name.|I keep evidence against a watch captain in a sealed box.|The Ring paid for medicine my family could not afford.|I promised a victim's family that the case would remain open.|My badge belonged to the constable who trained me.");
+addHooks("Flaw", "Oriathan", "Oriath Militia", "I accept small bribes and insist they change nothing.|I resent legionaries who treat us as amateurs.|I protect familiar offenders from outside investigators.|I use procedure to avoid difficult judgement.|I assume poverty is evidence of criminal intent.|I let loyalty to my patrol override the truth.");
 addHooks("Ideal", "Oriathan", "The Ring", "Every bargain has a price and I name it.|The Ring protects those the empire discards.|Information is safer than steel.|I will never be owned by church or crown.|Profit means nothing without loyalty.");
 addHooks("Bond", "Oriathan", "The Ring", "My Arena crew expects my cut by dawn.|A broker in Sarn holds proof of my innocence.|I run messages for the handler who kept me alive.|The Ring shelters my family.|I know which official takes which bribe.");
 addHooks("Flaw", "Oriathan", "The Ring", "I treat every kindness as leverage.|I gamble with money that is not mine.|I keep a second ledger for blackmail.|I cannot resist humiliating a rival.|I sell secrets before weighing the cost.");
@@ -411,19 +501,113 @@ addHooks("Ideal", "Stygian", "Hollowed Vein", "What was lost below must not be e
 addHooks("Bond", "Stygian", "Hollowed Vein", "I have a map drawn by the last returning scout.|A voice in a sealed gallery knows my childhood name.|I search for the descendants of my lost delve-team.|I carry the broken rune of our final assembly.|An Emberforged miner secretly supplies my people.");
 addHooks("Flaw", "Stygian", "Hollowed Vein", "I vanish rather than explain myself.|I hear instructions in ordinary cave sounds.|I sabotage marked routes to keep them secret.|I reject help that carries Emberforged authority.|I would reopen a cursed gallery for proof.");
 
+const drives = [];
+const addDrives = (category, parent, subParent, values, weight = 1) => addValues(drives, category, parent, subParent, split(values), weight);
+addDrives("Goal", "Any", "Any", "Find a missing relative before the trail goes cold.|Secure safe passage for a vulnerable traveller.|Earn enough coin to clear a dangerous debt.|Recover a stolen keepsake with no obvious monetary value.|Expose the person sabotaging their work.|Reach a settlement before worsening weather closes the route.|Obtain medicine that cannot be bought locally.|Convince someone powerful to hear an unwelcome truth.|Repair a damaged refuge before nightfall.|Leave their current employer without retaliation.|Return a body or token to its community.|Learn whether a recurring rumour is true.");
+addDrives("Problem", "Any", "Any", "Someone is following them but has not yet acted.|Their travel papers or credentials are false.|A dependent has vanished after an argument.|They promised the same valuable object to two people.|An untreated wound is becoming dangerous.|Their supplies were stolen during the previous night.|A witness has mistaken them for someone else.|They are carrying an item that attracts corrupted creatures.|Their employer has stopped answering messages.|A route they guaranteed safe is now blocked.|They have discovered evidence they cannot safely keep.|A former ally is demanding repayment at the worst possible time.");
+addDrives("Secret", "Any", "Any", "They know the official account of a recent death is false.|They once served the faction they now condemn.|They possess a map copied from a forbidden source.|Their apparent family name is borrowed.|They caused an accident blamed on someone else.|They have been feeding information to protect a captive.|They recognised a supposedly unknown relic immediately.|Their injury came from an ally rather than an enemy.|They are planning to disappear after completing one final duty.|They have hidden symptoms of corruption.|They stole the resources used to help their community.|They have already met the person everyone is searching for.");
+addDrives("Knowledge", "Any", "Any", "A safe route that avoids the main road.|Which local official accepts bribes and which does not.|Where supplies were cached before the last evacuation.|The identifying mark used by a nearby smuggling network.|Why a recently abandoned camp was left intact.|Which ruin is occupied despite appearing empty.|A password that was valid within the last week.|The real source of a shortage blamed on outsiders.|A creature's predictable hunting pattern.|The location of an unrecorded shrine or memorial.|Which two local leaders secretly communicate.|The warning sign that appears before a nearby hazard.");
+addDrives("Offer", "Any", "Any", "A defensible place to rest for one night.|An introduction to a cautious local contact.|A hand-drawn route map with one uncertain section.|Basic treatment and clean bandages.|A small cache of food and lamp oil.|A convincing disguise suited to local labour.|Translation of a short inscription or coded message.|A rumour they can partially verify.|Repair of ordinary weapons, armour or tools.|A temporary escort through familiar territory.|A favour owed by a minor official.|First choice from goods they are not supposed to possess.");
+addDrives("Disposition", "Any", "Any", "Wary but willing to listen.|Friendly until authority is mentioned.|Hurried and initially dismissive.|Polite while carefully assessing every answer.|Openly relieved to see capable outsiders.|Suspicious of the party's motives.|Eager to trade information rather than coin.|Defensive because they expect an accusation.|Calmly professional and difficult to impress.|Warm toward anyone who helps first.|Afraid but attempting to appear composed.|Amused by the party and willing to indulge them.");
+
+const culturalDrives = {
+  Oriathan: {
+    Goal: "Restore their household's legal standing.|Obtain a sealed civic record before it is altered.|Move relatives out of a district marked for Templar action.|Prove that a public official is working for the Ring.",
+    Problem: "Their family is divided between Templar and civic loyalties.|A magistrate has frozen their property without charge.|Their accent reveals a background they are concealing.|A militia patrol keeps returning to search their rooms.",
+    Secret: "Their household once profited from Karui slavery.|They forged a priest's authorisation seal.|They know which patrician finances a Ring crew.|Their family archives contradict an accepted Templar history.",
+    Knowledge: "The service passages beneath an Oriathan civic building.|Which militia ward is controlled by the Ring.|How legion supply orders are authenticated.|The identity of a Templar using their discarded birth-name.",
+    Offer: "A temporary civic permit bearing a genuine seal.|Lodging in a discreet Oriathan household.|An introduction to a militia sergeant or junior clerk.|Clothing and manners suitable for passing as household staff.",
+    Disposition: "Formally courteous but conscious of status.|Relieved the party is not another official delegation.|Testing whether the party respects Oriathan law.|Cautiously sympathetic to anyone harmed by the Templars."
+  },
+  Azmeri: {
+    Goal: "Protect a grove threatened by careless scavengers.|Carry an oral history to another scattered settlement.|Recover medicinal plants before corruption reaches them.|Reconcile two families before a seasonal gathering.",
+    Problem: "A trusted forest sign now points in two directions.|Their community blames an outsider they believe innocent.|An old shrine has begun answering prayers incorrectly.|Their best hunter has not returned from a familiar path.",
+    Secret: "They guided bandits through a route used by refugees.|They removed an artefact from a place declared sacred.|They can read more Eternal script than their elders know.|They believe an honoured local story deliberately hides a betrayal.",
+    Knowledge: "Which plants remain safe near corrupted ground.|A concealed ford usable after heavy rain.|The call used by a nearby Azmeri watch.|Which forest ruin predates the Eternal Empire.",
+    Offer: "A hidden woodland shelter stocked for winter.|A herbal treatment for fatigue or fever.|Guidance through paths absent from imperial maps.|A trusted introduction at the Forest Encampment.",
+    Disposition: "Quietly hospitable after customary greetings.|Protective of local knowledge around outsiders.|Curious whether the party listens more than it speaks.|Initially cold toward anyone displaying imperial symbols."
+  },
+  Ezomyte: {
+    Goal: "Settle an old clan debt without renewing the feud.|Recover a song-tablet taken from a ruined hold.|Prove the safety of a mine others have abandoned.|Deliver the last work of a dead clan poet.",
+    Problem: "Two oaths demand incompatible actions.|Their clan rejects a warning from a traditional enemy.|A tunnel collapse exposed something deliberately buried.|Their tools bear a maker's mark associated with treason.",
+    Secret: "They broke a clan oath to save a captive.|They know a celebrated ancestor surrendered willingly.|They have sold ore from a forbidden seam.|Their version of a famous ballad names a different killer.",
+    Knowledge: "How to identify unsafe stone by sound.|A clan challenge that can delay formal violence.|Where a rebel cache survived the Purity Rebellion.|The verse that proves ownership of a disputed heirloom.",
+    Offer: "Repair by a skilled clan craftsperson.|Shelter within a guarded mine community.|A formal oath of safe conduct.|A song carrying news faster than written messages.",
+    Disposition: "Bluntly welcoming once names are exchanged.|Sceptical until the party demonstrates practical skill.|Ready to argue but slow to take genuine offence.|Respectful toward anyone who keeps an inconvenient promise."
+  },
+  Maraketh: {
+    Goal: "Bring a delayed caravan safely to water.|Win permission to change an akhara custom.|Locate a rider lost beyond the marked route.|Repay hospitality received from a rival caravan.",
+    Problem: "Their water tally does not match the remaining stores.|A rhoa refuses to approach the next camp.|They carry orders disputed by two senior riders.|A dust storm erased the route markers they placed.",
+    Secret: "They have sheltered a Faridun against orders.|They falsified a caravan pedigree to gain rank.|They know a Sekhema's public challenge was staged.|Their tattoos conceal an older mark of shame.",
+    Knowledge: "A water source omitted from common route maps.|The greeting required by a suspicious akhara.|How to tell a true sandstorm from thaumaturgic weather.|Which caravan secretly trades with Oriathan smugglers.",
+    Offer: "A place within a guarded caravan.|Fresh mounts and an experienced outrider.|A water-right recognised by nearby akharas.|An introduction to a caravan factor or healer.",
+    Disposition: "Reserved until hospitality has been formally exchanged.|Directly assessing the party's supplies and readiness.|Warm toward competent travellers.|Alert for disrespect toward Maraketh custom."
+  },
+  Karui: {
+    Goal: "Return a funerary token to its god-clan.|Prevent a challenge from becoming a blood feud.|Find a safe harbour for an approaching canoe fleet.|Recover a carving that records a disputed lineage.",
+    Problem: "An omen has been interpreted differently by two elders.|Their warband refuses a necessary retreat.|A clan guest vanished while under their protection.|Their inherited grievance targets someone who saved them.",
+    Secret: "They changed clans without completing the expected rites.|They know an ancestral victory was actually negotiated.|They have spoken with a devotee of Kitava in secret.|They broke a tapu to save an outsider.",
+    Knowledge: "A challenge formula that allows both sides to withdraw with honour.|The landing place used by a hidden war canoe.|Which clan elder privately favours negotiation.|A funerary custom that identifies a false Karui claimant.",
+    Offer: "Formal guest-right under their clan's protection.|A skilled navigator for coastal travel.|A carved token recognised by another god-clan.|Instruction in a Karui challenge or greeting ritual.",
+    Disposition: "Direct and attentive to signs of courage.|Warm after the party observes basic hospitality.|Guarded around anyone wearing Oriathan insignia.|Curious whether outsiders understand clan responsibility."
+  },
+  Vaal: {
+    Goal: "Complete a celestial calculation before the next conjunction.|Prevent a court sacrifice selected through false records.|Recover a stolen component from a gem-engine.|Present evidence that a revered experiment is failing.",
+    Problem: "Their calculations predict an impossible result.|A construct obeys an unknown second authority.|Their patron demands a successful demonstration too soon.|A rival has inserted false glyphs into their work.",
+    Secret: "They removed a name from a sacrificial register.|They have corresponded with an enemy court faction.|Their discovery depends on proscribed work by Zerphi's contemporaries.|They know a temple miracle is engineered.",
+    Knowledge: "The shutdown sequence for a common Vaal mechanism.|Which calendar glyph marks deliberately omitted days.|A court sign indicating someone is under observation.|The safe interval between pulses of a gem circuit.",
+    Offer: "A charged but limited Vaal ward.|Accurate translation of a glyph sequence.|Access to a minor archive or observatory.|A court token granting temporary passage.",
+    Disposition: "Intellectually curious but socially remote.|Concerned chiefly with whether the party will disrupt the work.|Formal and conscious of court protocol.|Fascinated by people from outside the expected historical record."
+  },
+  Kalguur: {
+    Goal: "Finish a survey before a rival expedition claims it.|Return a recovered rune-stone to the correct lineage.|Prove a Stygian powder design can be transported safely.|Locate a crew missing from an abandoned dig.",
+    Problem: "Their measurements disagree with every known map.|A critical rune-tool was replaced with a convincing copy.|The expedition leader is concealing its true losses.|Their family expects a discovery worthy of a lineage song.",
+    Secret: "They privately trade findings with the Stygians.|They erased evidence that an ancestor failed an expedition.|Their most successful design copies a Vaal mechanism.|They intend to defect rather than return to Aesclast.",
+    Knowledge: "How to identify a genuine Kalguuran expedition marker.|The location of a sealed Stygian trade cache.|Which runes indicate structural stress rather than ownership.|A northern sailing method unknown to local pilots.",
+    Offer: "Precise surveying of a route or structure.|Repair of runed or mechanical equipment.|A place with a Kalguuran expedition crew.|Controlled access to a small quantity of black powder.",
+    Disposition: "Coolly professional and attentive to competence.|Friendly but unwilling to discuss expedition objectives.|Impatient with claims unsupported by evidence.|More interested in the party's equipment than its reputation."
+  },
+  Stygian: {
+    Goal: "Open a safe route to the surface without exposing the enclave.|Recover a rune record from a collapsed gallery.|Stop an unsafe sulphite process before it spreads.|Find a missing traveller from the Hollowed Vein.",
+    Problem: "Their lamp supply has been deliberately contaminated.|A surface word they mistranslated caused a serious offence.|Their faction has sealed the route they need.|A familiar tunnel now carries an impossible echo.",
+    Secret: "They have visited the surface without permission.|They sold a powder sample to someone other than the Kalguur.|Their family descends from a proscribed Eternal official.|They can understand a voice heard only near the Lightless depths.",
+    Knowledge: "The rune sequence marking a structurally safe gallery.|A ventilation path that bypasses a faction checkpoint.|Which Kalguur factor can be trusted with powder trade.|The accented-Azmeri phrase used to invoke an old mine compact.",
+    Offer: "A safe lamp and instructions for keeping it lit.|A guide through mapped sections of the Azurite Mines.|Repair of stonework, runes or powder equipment.|A guarded introduction to a Stygian trade contact.",
+    Disposition: "Carefully formal with surface strangers.|Interested but alert for mockery of their accent.|More trusting underground than beneath open sky.|Relieved to meet outsiders who respect negotiated boundaries."
+  }
+};
+for (const [culture, categories] of Object.entries(culturalDrives)) {
+  for (const [category, values] of Object.entries(categories)) addDrives(category, culture, "Any", values, 2);
+}
+
+const militiaDrives = {
+  Goal: "Identify the Ring paymaster inside their wardhouse.|Bring a violent constable to trial without the evidence disappearing.|Keep a street festival peaceful despite Templar provocation.|Find a missing patrol before the watch captain writes them off.|Earn enough trust to command a permanent neighbourhood post.|Move civilians out of a district before a legion sweep begins.",
+  Problem: "Their patrol roster was altered after they signed it.|The only witness is protected by the Ring.|A Templar officer has ordered an arrest without a charge.|Their partner has started accepting increasingly serious bribes.|The wardhouse armoury is missing weapons before a riot.|Residents know the badge but no longer trust the person wearing it.",
+  Secret: "They accepted Ring money once to pay for medicine.|They destroyed evidence to prevent a wrongful Templar execution.|Their captain falsifies crime figures for Theopolis officials.|They are sheltering a wanted former constable.|They warned a neighbourhood before an authorised raid.|Their promotion came through a patrician favour they did not request.",
+  Knowledge: "Which alleys a full legion patrol cannot enter in formation.|The watchword used at Oriath's civic lockups this week.|Which militia officers are loyal to the Ring.|Where confiscated weapons are stored before auction.|The patrol timing around a restricted harbour gate.|Which magistrate still reviews militia misconduct honestly.",
+  Offer: "A temporary militia escort through a tense district.|A genuine copy of a patrol warrant.|Access to a wardhouse holding cell or evidence room.|A badge-backed introduction to a local shopkeeper network.|A warning before the next Templar street sweep.|The location of an unregistered civic safehouse.",
+  Disposition: "Professionally helpful while watching for signs of bribery.|Defensive about the militia's poor reputation.|Relieved to meet outsiders with no wardhouse loyalties.|Suspicious that the party is working for the Templars.|Friendly in public but guarded when colleagues can hear.|Quietly testing whether the party protects ordinary residents."
+};
+for (const [category, values] of Object.entries(militiaDrives)) {
+  addDrives(category, "Oriathan", "Oriath Militia", values, 3);
+}
+
 const presets = {
-  schemaVersion: 2,
+  schemaVersion: 3,
   presets: [
-    { id: "general", label: "All Wraeclast", description: "A broad present-day Wraeclast mix; ancient Vaal are excluded unless selected.", cultures: { Oriathan: 29, Azmeri: 15, Ezomyte: 13, Maraketh: 12, Karui: 13, Kalguur: 10, Stygian: 8 } },
-    { id: "sarn_survivor", label: "Sarn survivor", description: "Civilians, refugees, opportunists, and occupiers around ruined Sarn.", cultures: { Oriathan: 48, Azmeri: 17, Ezomyte: 10, Maraketh: 8, Karui: 7, Kalguur: 5, Stygian: 5 }, socialOrigins: { Refugee: 40, Native: 25, Exile: 20, Diaspora: 10, "Mixed heritage": 5 } },
-    { id: "oriathan_occupier", label: "Oriathan occupier", description: "Imperial, Templar, and Ring presence in and around Sarn.", cultures: { Oriathan: 100 }, affiliations: { Oriathan: { Templar: 60, "The Ring": 15, Unaffiliated: 25 } } },
-    { id: "forest_encampment", label: "Forest Encampment", description: "Azmeri locals, Ezomyte neighbours, exiles, and travellers.", cultures: { Azmeri: 47, Ezomyte: 22, Oriathan: 10, Maraketh: 7, Karui: 6, Kalguur: 4, Stygian: 4 }, socialOrigins: { Native: 48, Refugee: 22, Exile: 18, Diaspora: 8, "Mixed heritage": 4 } },
+    { id: "general", label: "All Wraeclast", description: "A broad 1599 IC Wraeclast mix; ancient Vaal are excluded unless selected.", cultures: { Oriathan: 29, Azmeri: 15, Ezomyte: 13, Maraketh: 12, Karui: 13, Kalguur: 10, Stygian: 8 }, eras: { "1599 IC": 100 }, locations: { "Wraeclast road or wilderness": 25, "Lioneye's Watch": 10, "Forest Encampment": 13, "Sarn Slums": 12, "Sarn Arena": 8, "Sarn Docks": 8, "Sarn Upper City": 5, "Highgate and the Vastiri": 7, "Kalguur expedition camp": 5, "Azurite Mines": 7 } },
+    { id: "sarn_survivor", label: "Sarn survivor", description: "Civilians, refugees, opportunists, militia and occupiers around ruined Sarn.", cultures: { Oriathan: 48, Azmeri: 17, Ezomyte: 10, Maraketh: 8, Karui: 7, Kalguur: 5, Stygian: 5 }, socialOrigins: { Refugee: 30, Native: 20, Exile: 15, Diaspora: 8, "Mixed heritage": 5, "Urban poor": 12, "Displaced survivor": 10 }, eras: { "1599 IC": 100 }, locations: { "Sarn Slums": 35, "Sarn Arena": 25, "Sarn Docks": 20, "Sarn Upper City": 10, "Wraeclast road or wilderness": 10 } },
+    { id: "oriathan_occupier", label: "Oriathan occupier", description: "Templar, legion, militia and Ring presence in and around Sarn.", cultures: { Oriathan: 100 }, affiliations: { Oriathan: { Templar: 55, "Oriath Militia": 20, "The Ring": 10, Unaffiliated: 15 } }, eras: { "1599 IC": 100 }, locations: { "Sarn Upper City": 45, "Sarn Docks": 20, "Sarn Slums": 15, "Sarn Arena": 10, "Wraeclast road or wilderness": 10 } },
+    { id: "theopolis", label: "Theopolis and Oriath", description: "Residents, militia, Templars and criminal interests across Oriath.", cultures: { Oriathan: 90, Karui: 3, Ezomyte: 2, Maraketh: 2, Azmeri: 1, Kalguur: 1, Stygian: 1 }, affiliations: { Oriathan: { Unaffiliated: 40, "Oriath Militia": 28, Templar: 22, "The Ring": 10 } }, eras: { "1599 IC": 100 }, locations: { Theopolis: 75, "Oriath port town": 25 } },
+    { id: "forest_encampment", label: "Forest Encampment", description: "Azmeri locals, Ezomyte neighbours, exiles, and travellers.", cultures: { Azmeri: 47, Ezomyte: 22, Oriathan: 10, Maraketh: 7, Karui: 6, Kalguur: 4, Stygian: 4 }, socialOrigins: { Native: 38, Refugee: 18, Exile: 14, Diaspora: 8, "Mixed heritage": 4, "Displaced survivor": 10, Nomad: 8 }, eras: { "1599 IC": 100 }, locations: { "Forest Encampment": 85, "Wraeclast road or wilderness": 15 } },
     {
       id: "karui_tribe",
       label: "Karui clans",
       description: "Karui drawn from every god-clan in the campaign pantheon.",
       cultures: { Karui: 100 },
       affiliations: { Karui: { Karui: 100 } },
+      eras: { "1599 IC": 100 },
+      locations: { "Karui Archipelago": 85, "Wraeclast road or wilderness": 15 },
       branches: {
         Karui: {
           Tukohama: 12, Ngamahu: 11, Valako: 9, Tasalio: 8, Ramako: 9, Rongokurai: 6,
@@ -432,13 +616,15 @@ const presets = {
         }
       }
     },
-    { id: "kalguur_expedition", label: "Kalguur expedition", description: "High-elven explorers, engineers, soldiers, and powder specialists.", cultures: { Kalguur: 100 }, affiliations: { Kalguur: { "Kalguur Expedition": 90, Unaffiliated: 10 } } },
+    { id: "kalguur_expedition", label: "Kalguur expedition", description: "High-elven explorers, engineers, soldiers, and powder specialists.", cultures: { Kalguur: 100 }, affiliations: { Kalguur: { "Kalguur Expedition": 90, Unaffiliated: 10 } }, eras: { "1599 IC": 100 }, locations: { "Kalguur expedition camp": 90, "Wraeclast road or wilderness": 10 } },
     {
       id: "stygian_mines",
       label: "Stygian mines",
       description: "Drow, duergar, and deep gnomes across all five internal Stygian factions.",
       cultures: { Stygian: 100 },
       affiliations: { Stygian: { Stygian: 100 } },
+      eras: { "1599 IC": 100 },
+      locations: { "Azurite Mines": 100 },
       branches: {
         Stygian: {
           Deepwardens: 25, "Sulphite Syndicate": 22, Shadowborn: 13,
@@ -447,17 +633,49 @@ const presets = {
       },
       socialOrigins: { Native: 65, Diaspora: 10, Refugee: 15, Exile: 7, "Mixed heritage": 3 }
     },
-    { id: "vaal_historical", label: "Ancient Vaal", description: "A historical Vaal gnome from before the civilisation's fall.", cultures: { Vaal: 100 }, affiliations: { Vaal: { Unaffiliated: 100 } }, socialOrigins: { Native: 90, Diaspora: 5, Exile: 5 } }
+    { id: "vaal_historical", label: "Ancient Vaal", description: "A historical Vaal gnome from before the civilisation's fall.", cultures: { Vaal: 100 }, affiliations: { Vaal: { Unaffiliated: 100 } }, socialOrigins: { Native: 75, Diaspora: 5, Exile: 5, "Religious household": 5, "Merchant household": 5, "Military household": 5 }, eras: { "Ancient Vaal": 100 }, locations: { "Ancient Vaal city": 100 } }
+  ]
+};
+
+const factions = {
+  schemaVersion: 1,
+  checkedAgainstNotion: "2026-10-04",
+  sourceDatabase: "Campaign Factions database",
+  factions: [
+    { id: "oriath.templar", label: "Templar", type: "affiliation", culture: "Oriathan", sourceEntry: "Order Templar" },
+    { id: "oriath.militia", label: "Oriath Militia", type: "affiliation", culture: "Oriathan", sourceEntry: "Militia" },
+    { id: "oriath.ring", label: "The Ring", type: "affiliation", culture: "Oriathan", sourceEntry: "The Ring" },
+    { id: "kalguur.expedition", label: "Kalguur Expedition", type: "affiliation", culture: "Kalguur", sourceEntry: "Wraeclast Cultures" },
+    { id: "karui", label: "Karui", type: "affiliation", culture: "Karui", sourceEntry: "Wraeclast Cultures" },
+    ...Object.keys(branchPools.Karui.values).filter((label) => label !== "Unaffiliated").map((label) => ({
+      id: `karui.${label.toLowerCase().replaceAll(" ", "-")}`,
+      label,
+      type: "branch",
+      culture: "Karui",
+      parentId: "karui",
+      sourceEntry: ["Hinekora", "Tawhoa"].includes(label) ? label : "Wraeclast Cultures"
+    })),
+    { id: "stygian", label: "Stygian", type: "affiliation", culture: "Stygian", sourceEntry: "Stygian / Azurite Miners" },
+    ...Object.keys(branchPools.Stygian.values).filter((label) => label !== "Unaffiliated").map((label) => ({
+      id: `stygian.${label.toLowerCase().replaceAll(" ", "-")}`,
+      label,
+      type: "branch",
+      culture: "Stygian",
+      parentId: "stygian",
+      sourceEntry: "Stygian / Azurite Miners"
+    }))
   ]
 };
 
 await Promise.all([
   writeFile(path.join(dataDir, "main_tables.csv"), csv(main), "utf8"),
   writeFile(path.join(dataDir, "names.csv"), csv(names), "utf8"),
-  writeFile(path.join(dataDir, "descriptors.csv"), csv(descriptors), "utf8"),
+  writeFile(path.join(dataDir, "descriptors.csv"), csv(descriptors, ["Category", "Parent", "SubParent", "Value", "Weight", "Species", "Ages", "ProfessionCategories"]), "utf8"),
   writeFile(path.join(dataDir, "professions.csv"), csv(professions), "utf8"),
   writeFile(path.join(dataDir, "hooks.csv"), csv(hooks), "utf8"),
-  writeFile(path.join(dataDir, "presets.json"), `${JSON.stringify(presets, null, 2)}\n`, "utf8")
+  writeFile(path.join(dataDir, "drives.csv"), csv(drives), "utf8"),
+  writeFile(path.join(dataDir, "presets.json"), `${JSON.stringify(presets, null, 2)}\n`, "utf8"),
+  writeFile(path.join(dataDir, "factions.json"), `${JSON.stringify(factions, null, 2)}\n`, "utf8")
 ]);
 
-console.log(`Wrote ${main.length} main rows, ${names.length} names, ${descriptors.length} descriptors, ${professions.length} professions, and ${hooks.length} hooks.`);
+console.log(`Wrote ${main.length} main rows, ${names.length} names, ${descriptors.length} descriptors, ${professions.length} professions, ${hooks.length} hooks, and ${drives.length} narrative drives.`);

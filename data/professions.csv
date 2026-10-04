@@ -575,12 +575,44 @@ Templar Service,Oriathan,Templar,Legionary,1
 Templar Service,Oriathan,Templar,Temple physician,1
 Templar Service,Oriathan,Templar,Thaumaturgical researcher,1
 Templar Service,Oriathan,Templar,Virtue instructor,1
+Templar Service,Oriathan,Templar,Adjunct archivist,1
+Templar Service,Oriathan,Templar,Barracks confessor,1
+Templar Service,Oriathan,Templar,Cohort secretary,1
+Templar Service,Oriathan,Templar,Doctrinal examiner,1
+Templar Service,Oriathan,Templar,Initiate Magus,1
+Templar Service,Oriathan,Templar,Initiate Templar,1
+Templar Service,Oriathan,Templar,Legion armourer,1
+Templar Service,Oriathan,Templar,Legion scout,1
+Templar Service,Oriathan,Templar,Magus,1
+Templar Service,Oriathan,Templar,Reliquary guard,1
+Templar Service,Oriathan,Templar,Temple quartermaster,1
+Templar Service,Oriathan,Templar,Templar investigator,1
 Templar Branch,Oriathan,Templar,"Ebony Legion (Primis, elite)",15
 Templar Branch,Oriathan,Templar,"Crimson Legion (Secundo, veteran)",20
 Templar Branch,Oriathan,Templar,"Azure Legion (Tertius, first Sarn legion)",12
 Templar Branch,Oriathan,Templar,"Azure Legion (Tertius, second Sarn legion)",12
 Templar Branch,Oriathan,Templar,"Emerald Legion (Quartus, recruit and volunteer)",26
 Templar Branch,Oriathan,Templar,Archivists,15
+Militia Service,Oriathan,Oriath Militia,Beat constable,1
+Militia Service,Oriathan,Oriath Militia,Dock watchman,1
+Militia Service,Oriathan,Oriath Militia,Gate constable,1
+Militia Service,Oriathan,Oriath Militia,Harbour patrol guard,1
+Militia Service,Oriathan,Oriath Militia,Jailer,1
+Militia Service,Oriathan,Oriath Militia,Market warder,1
+Militia Service,Oriathan,Oriath Militia,Militia clerk,1
+Militia Service,Oriathan,Oriath Militia,Militia investigator,1
+Militia Service,Oriathan,Oriath Militia,Night watchman,1
+Militia Service,Oriathan,Oriath Militia,Patrol runner,1
+Militia Service,Oriathan,Oriath Militia,Prison escort,1
+Militia Service,Oriathan,Oriath Militia,Public-order sergeant,1
+Militia Service,Oriathan,Oriath Militia,Riot shield bearer,1
+Militia Service,Oriathan,Oriath Militia,Road checkpoint guard,1
+Militia Service,Oriathan,Oriath Militia,Tollhouse constable,1
+Militia Service,Oriathan,Oriath Militia,Warrant officer,1
+Militia Service,Oriathan,Oriath Militia,Watch captain,1
+Militia Service,Oriathan,Oriath Militia,Watch sergeant,1
+Militia Service,Oriathan,Oriath Militia,Witness escort,1
+Militia Service,Oriathan,Oriath Militia,Wardhouse quartermaster,1
 The Ring,Oriathan,The Ring,Arena bookmaker,1
 The Ring,Oriathan,The Ring,Bribe courier,1
 The Ring,Oriathan,The Ring,Debt collector,1

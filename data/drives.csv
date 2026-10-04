@@ -1,0 +1,301 @@
+Category,Parent,SubParent,Value,Weight
+Goal,Any,Any,Find a missing relative before the trail goes cold.,1
+Goal,Any,Any,Secure safe passage for a vulnerable traveller.,1
+Goal,Any,Any,Earn enough coin to clear a dangerous debt.,1
+Goal,Any,Any,Recover a stolen keepsake with no obvious monetary value.,1
+Goal,Any,Any,Expose the person sabotaging their work.,1
+Goal,Any,Any,Reach a settlement before worsening weather closes the route.,1
+Goal,Any,Any,Obtain medicine that cannot be bought locally.,1
+Goal,Any,Any,Convince someone powerful to hear an unwelcome truth.,1
+Goal,Any,Any,Repair a damaged refuge before nightfall.,1
+Goal,Any,Any,Leave their current employer without retaliation.,1
+Goal,Any,Any,Return a body or token to its community.,1
+Goal,Any,Any,Learn whether a recurring rumour is true.,1
+Problem,Any,Any,Someone is following them but has not yet acted.,1
+Problem,Any,Any,Their travel papers or credentials are false.,1
+Problem,Any,Any,A dependent has vanished after an argument.,1
+Problem,Any,Any,They promised the same valuable object to two people.,1
+Problem,Any,Any,An untreated wound is becoming dangerous.,1
+Problem,Any,Any,Their supplies were stolen during the previous night.,1
+Problem,Any,Any,A witness has mistaken them for someone else.,1
+Problem,Any,Any,They are carrying an item that attracts corrupted creatures.,1
+Problem,Any,Any,Their employer has stopped answering messages.,1
+Problem,Any,Any,A route they guaranteed safe is now blocked.,1
+Problem,Any,Any,They have discovered evidence they cannot safely keep.,1
+Problem,Any,Any,A former ally is demanding repayment at the worst possible time.,1
+Secret,Any,Any,They know the official account of a recent death is false.,1
+Secret,Any,Any,They once served the faction they now condemn.,1
+Secret,Any,Any,They possess a map copied from a forbidden source.,1
+Secret,Any,Any,Their apparent family name is borrowed.,1
+Secret,Any,Any,They caused an accident blamed on someone else.,1
+Secret,Any,Any,They have been feeding information to protect a captive.,1
+Secret,Any,Any,They recognised a supposedly unknown relic immediately.,1
+Secret,Any,Any,Their injury came from an ally rather than an enemy.,1
+Secret,Any,Any,They are planning to disappear after completing one final duty.,1
+Secret,Any,Any,They have hidden symptoms of corruption.,1
+Secret,Any,Any,They stole the resources used to help their community.,1
+Secret,Any,Any,They have already met the person everyone is searching for.,1
+Knowledge,Any,Any,A safe route that avoids the main road.,1
+Knowledge,Any,Any,Which local official accepts bribes and which does not.,1
+Knowledge,Any,Any,Where supplies were cached before the last evacuation.,1
+Knowledge,Any,Any,The identifying mark used by a nearby smuggling network.,1
+Knowledge,Any,Any,Why a recently abandoned camp was left intact.,1
+Knowledge,Any,Any,Which ruin is occupied despite appearing empty.,1
+Knowledge,Any,Any,A password that was valid within the last week.,1
+Knowledge,Any,Any,The real source of a shortage blamed on outsiders.,1
+Knowledge,Any,Any,A creature's predictable hunting pattern.,1
+Knowledge,Any,Any,The location of an unrecorded shrine or memorial.,1
+Knowledge,Any,Any,Which two local leaders secretly communicate.,1
+Knowledge,Any,Any,The warning sign that appears before a nearby hazard.,1
+Offer,Any,Any,A defensible place to rest for one night.,1
+Offer,Any,Any,An introduction to a cautious local contact.,1
+Offer,Any,Any,A hand-drawn route map with one uncertain section.,1
+Offer,Any,Any,Basic treatment and clean bandages.,1
+Offer,Any,Any,A small cache of food and lamp oil.,1
+Offer,Any,Any,A convincing disguise suited to local labour.,1
+Offer,Any,Any,Translation of a short inscription or coded message.,1
+Offer,Any,Any,A rumour they can partially verify.,1
+Offer,Any,Any,"Repair of ordinary weapons, armour or tools.",1
+Offer,Any,Any,A temporary escort through familiar territory.,1
+Offer,Any,Any,A favour owed by a minor official.,1
+Offer,Any,Any,First choice from goods they are not supposed to possess.,1
+Disposition,Any,Any,Wary but willing to listen.,1
+Disposition,Any,Any,Friendly until authority is mentioned.,1
+Disposition,Any,Any,Hurried and initially dismissive.,1
+Disposition,Any,Any,Polite while carefully assessing every answer.,1
+Disposition,Any,Any,Openly relieved to see capable outsiders.,1
+Disposition,Any,Any,Suspicious of the party's motives.,1
+Disposition,Any,Any,Eager to trade information rather than coin.,1
+Disposition,Any,Any,Defensive because they expect an accusation.,1
+Disposition,Any,Any,Calmly professional and difficult to impress.,1
+Disposition,Any,Any,Warm toward anyone who helps first.,1
+Disposition,Any,Any,Afraid but attempting to appear composed.,1
+Disposition,Any,Any,Amused by the party and willing to indulge them.,1
+Goal,Oriathan,Any,Restore their household's legal standing.,2
+Goal,Oriathan,Any,Obtain a sealed civic record before it is altered.,2
+Goal,Oriathan,Any,Move relatives out of a district marked for Templar action.,2
+Goal,Oriathan,Any,Prove that a public official is working for the Ring.,2
+Problem,Oriathan,Any,Their family is divided between Templar and civic loyalties.,2
+Problem,Oriathan,Any,A magistrate has frozen their property without charge.,2
+Problem,Oriathan,Any,Their accent reveals a background they are concealing.,2
+Problem,Oriathan,Any,A militia patrol keeps returning to search their rooms.,2
+Secret,Oriathan,Any,Their household once profited from Karui slavery.,2
+Secret,Oriathan,Any,They forged a priest's authorisation seal.,2
+Secret,Oriathan,Any,They know which patrician finances a Ring crew.,2
+Secret,Oriathan,Any,Their family archives contradict an accepted Templar history.,2
+Knowledge,Oriathan,Any,The service passages beneath an Oriathan civic building.,2
+Knowledge,Oriathan,Any,Which militia ward is controlled by the Ring.,2
+Knowledge,Oriathan,Any,How legion supply orders are authenticated.,2
+Knowledge,Oriathan,Any,The identity of a Templar using their discarded birth-name.,2
+Offer,Oriathan,Any,A temporary civic permit bearing a genuine seal.,2
+Offer,Oriathan,Any,Lodging in a discreet Oriathan household.,2
+Offer,Oriathan,Any,An introduction to a militia sergeant or junior clerk.,2
+Offer,Oriathan,Any,Clothing and manners suitable for passing as household staff.,2
+Disposition,Oriathan,Any,Formally courteous but conscious of status.,2
+Disposition,Oriathan,Any,Relieved the party is not another official delegation.,2
+Disposition,Oriathan,Any,Testing whether the party respects Oriathan law.,2
+Disposition,Oriathan,Any,Cautiously sympathetic to anyone harmed by the Templars.,2
+Goal,Azmeri,Any,Protect a grove threatened by careless scavengers.,2
+Goal,Azmeri,Any,Carry an oral history to another scattered settlement.,2
+Goal,Azmeri,Any,Recover medicinal plants before corruption reaches them.,2
+Goal,Azmeri,Any,Reconcile two families before a seasonal gathering.,2
+Problem,Azmeri,Any,A trusted forest sign now points in two directions.,2
+Problem,Azmeri,Any,Their community blames an outsider they believe innocent.,2
+Problem,Azmeri,Any,An old shrine has begun answering prayers incorrectly.,2
+Problem,Azmeri,Any,Their best hunter has not returned from a familiar path.,2
+Secret,Azmeri,Any,They guided bandits through a route used by refugees.,2
+Secret,Azmeri,Any,They removed an artefact from a place declared sacred.,2
+Secret,Azmeri,Any,They can read more Eternal script than their elders know.,2
+Secret,Azmeri,Any,They believe an honoured local story deliberately hides a betrayal.,2
+Knowledge,Azmeri,Any,Which plants remain safe near corrupted ground.,2
+Knowledge,Azmeri,Any,A concealed ford usable after heavy rain.,2
+Knowledge,Azmeri,Any,The call used by a nearby Azmeri watch.,2
+Knowledge,Azmeri,Any,Which forest ruin predates the Eternal Empire.,2
+Offer,Azmeri,Any,A hidden woodland shelter stocked for winter.,2
+Offer,Azmeri,Any,A herbal treatment for fatigue or fever.,2
+Offer,Azmeri,Any,Guidance through paths absent from imperial maps.,2
+Offer,Azmeri,Any,A trusted introduction at the Forest Encampment.,2
+Disposition,Azmeri,Any,Quietly hospitable after customary greetings.,2
+Disposition,Azmeri,Any,Protective of local knowledge around outsiders.,2
+Disposition,Azmeri,Any,Curious whether the party listens more than it speaks.,2
+Disposition,Azmeri,Any,Initially cold toward anyone displaying imperial symbols.,2
+Goal,Ezomyte,Any,Settle an old clan debt without renewing the feud.,2
+Goal,Ezomyte,Any,Recover a song-tablet taken from a ruined hold.,2
+Goal,Ezomyte,Any,Prove the safety of a mine others have abandoned.,2
+Goal,Ezomyte,Any,Deliver the last work of a dead clan poet.,2
+Problem,Ezomyte,Any,Two oaths demand incompatible actions.,2
+Problem,Ezomyte,Any,Their clan rejects a warning from a traditional enemy.,2
+Problem,Ezomyte,Any,A tunnel collapse exposed something deliberately buried.,2
+Problem,Ezomyte,Any,Their tools bear a maker's mark associated with treason.,2
+Secret,Ezomyte,Any,They broke a clan oath to save a captive.,2
+Secret,Ezomyte,Any,They know a celebrated ancestor surrendered willingly.,2
+Secret,Ezomyte,Any,They have sold ore from a forbidden seam.,2
+Secret,Ezomyte,Any,Their version of a famous ballad names a different killer.,2
+Knowledge,Ezomyte,Any,How to identify unsafe stone by sound.,2
+Knowledge,Ezomyte,Any,A clan challenge that can delay formal violence.,2
+Knowledge,Ezomyte,Any,Where a rebel cache survived the Purity Rebellion.,2
+Knowledge,Ezomyte,Any,The verse that proves ownership of a disputed heirloom.,2
+Offer,Ezomyte,Any,Repair by a skilled clan craftsperson.,2
+Offer,Ezomyte,Any,Shelter within a guarded mine community.,2
+Offer,Ezomyte,Any,A formal oath of safe conduct.,2
+Offer,Ezomyte,Any,A song carrying news faster than written messages.,2
+Disposition,Ezomyte,Any,Bluntly welcoming once names are exchanged.,2
+Disposition,Ezomyte,Any,Sceptical until the party demonstrates practical skill.,2
+Disposition,Ezomyte,Any,Ready to argue but slow to take genuine offence.,2
+Disposition,Ezomyte,Any,Respectful toward anyone who keeps an inconvenient promise.,2
+Goal,Maraketh,Any,Bring a delayed caravan safely to water.,2
+Goal,Maraketh,Any,Win permission to change an akhara custom.,2
+Goal,Maraketh,Any,Locate a rider lost beyond the marked route.,2
+Goal,Maraketh,Any,Repay hospitality received from a rival caravan.,2
+Problem,Maraketh,Any,Their water tally does not match the remaining stores.,2
+Problem,Maraketh,Any,A rhoa refuses to approach the next camp.,2
+Problem,Maraketh,Any,They carry orders disputed by two senior riders.,2
+Problem,Maraketh,Any,A dust storm erased the route markers they placed.,2
+Secret,Maraketh,Any,They have sheltered a Faridun against orders.,2
+Secret,Maraketh,Any,They falsified a caravan pedigree to gain rank.,2
+Secret,Maraketh,Any,They know a Sekhema's public challenge was staged.,2
+Secret,Maraketh,Any,Their tattoos conceal an older mark of shame.,2
+Knowledge,Maraketh,Any,A water source omitted from common route maps.,2
+Knowledge,Maraketh,Any,The greeting required by a suspicious akhara.,2
+Knowledge,Maraketh,Any,How to tell a true sandstorm from thaumaturgic weather.,2
+Knowledge,Maraketh,Any,Which caravan secretly trades with Oriathan smugglers.,2
+Offer,Maraketh,Any,A place within a guarded caravan.,2
+Offer,Maraketh,Any,Fresh mounts and an experienced outrider.,2
+Offer,Maraketh,Any,A water-right recognised by nearby akharas.,2
+Offer,Maraketh,Any,An introduction to a caravan factor or healer.,2
+Disposition,Maraketh,Any,Reserved until hospitality has been formally exchanged.,2
+Disposition,Maraketh,Any,Directly assessing the party's supplies and readiness.,2
+Disposition,Maraketh,Any,Warm toward competent travellers.,2
+Disposition,Maraketh,Any,Alert for disrespect toward Maraketh custom.,2
+Goal,Karui,Any,Return a funerary token to its god-clan.,2
+Goal,Karui,Any,Prevent a challenge from becoming a blood feud.,2
+Goal,Karui,Any,Find a safe harbour for an approaching canoe fleet.,2
+Goal,Karui,Any,Recover a carving that records a disputed lineage.,2
+Problem,Karui,Any,An omen has been interpreted differently by two elders.,2
+Problem,Karui,Any,Their warband refuses a necessary retreat.,2
+Problem,Karui,Any,A clan guest vanished while under their protection.,2
+Problem,Karui,Any,Their inherited grievance targets someone who saved them.,2
+Secret,Karui,Any,They changed clans without completing the expected rites.,2
+Secret,Karui,Any,They know an ancestral victory was actually negotiated.,2
+Secret,Karui,Any,They have spoken with a devotee of Kitava in secret.,2
+Secret,Karui,Any,They broke a tapu to save an outsider.,2
+Knowledge,Karui,Any,A challenge formula that allows both sides to withdraw with honour.,2
+Knowledge,Karui,Any,The landing place used by a hidden war canoe.,2
+Knowledge,Karui,Any,Which clan elder privately favours negotiation.,2
+Knowledge,Karui,Any,A funerary custom that identifies a false Karui claimant.,2
+Offer,Karui,Any,Formal guest-right under their clan's protection.,2
+Offer,Karui,Any,A skilled navigator for coastal travel.,2
+Offer,Karui,Any,A carved token recognised by another god-clan.,2
+Offer,Karui,Any,Instruction in a Karui challenge or greeting ritual.,2
+Disposition,Karui,Any,Direct and attentive to signs of courage.,2
+Disposition,Karui,Any,Warm after the party observes basic hospitality.,2
+Disposition,Karui,Any,Guarded around anyone wearing Oriathan insignia.,2
+Disposition,Karui,Any,Curious whether outsiders understand clan responsibility.,2
+Goal,Vaal,Any,Complete a celestial calculation before the next conjunction.,2
+Goal,Vaal,Any,Prevent a court sacrifice selected through false records.,2
+Goal,Vaal,Any,Recover a stolen component from a gem-engine.,2
+Goal,Vaal,Any,Present evidence that a revered experiment is failing.,2
+Problem,Vaal,Any,Their calculations predict an impossible result.,2
+Problem,Vaal,Any,A construct obeys an unknown second authority.,2
+Problem,Vaal,Any,Their patron demands a successful demonstration too soon.,2
+Problem,Vaal,Any,A rival has inserted false glyphs into their work.,2
+Secret,Vaal,Any,They removed a name from a sacrificial register.,2
+Secret,Vaal,Any,They have corresponded with an enemy court faction.,2
+Secret,Vaal,Any,Their discovery depends on proscribed work by Zerphi's contemporaries.,2
+Secret,Vaal,Any,They know a temple miracle is engineered.,2
+Knowledge,Vaal,Any,The shutdown sequence for a common Vaal mechanism.,2
+Knowledge,Vaal,Any,Which calendar glyph marks deliberately omitted days.,2
+Knowledge,Vaal,Any,A court sign indicating someone is under observation.,2
+Knowledge,Vaal,Any,The safe interval between pulses of a gem circuit.,2
+Offer,Vaal,Any,A charged but limited Vaal ward.,2
+Offer,Vaal,Any,Accurate translation of a glyph sequence.,2
+Offer,Vaal,Any,Access to a minor archive or observatory.,2
+Offer,Vaal,Any,A court token granting temporary passage.,2
+Disposition,Vaal,Any,Intellectually curious but socially remote.,2
+Disposition,Vaal,Any,Concerned chiefly with whether the party will disrupt the work.,2
+Disposition,Vaal,Any,Formal and conscious of court protocol.,2
+Disposition,Vaal,Any,Fascinated by people from outside the expected historical record.,2
+Goal,Kalguur,Any,Finish a survey before a rival expedition claims it.,2
+Goal,Kalguur,Any,Return a recovered rune-stone to the correct lineage.,2
+Goal,Kalguur,Any,Prove a Stygian powder design can be transported safely.,2
+Goal,Kalguur,Any,Locate a crew missing from an abandoned dig.,2
+Problem,Kalguur,Any,Their measurements disagree with every known map.,2
+Problem,Kalguur,Any,A critical rune-tool was replaced with a convincing copy.,2
+Problem,Kalguur,Any,The expedition leader is concealing its true losses.,2
+Problem,Kalguur,Any,Their family expects a discovery worthy of a lineage song.,2
+Secret,Kalguur,Any,They privately trade findings with the Stygians.,2
+Secret,Kalguur,Any,They erased evidence that an ancestor failed an expedition.,2
+Secret,Kalguur,Any,Their most successful design copies a Vaal mechanism.,2
+Secret,Kalguur,Any,They intend to defect rather than return to Aesclast.,2
+Knowledge,Kalguur,Any,How to identify a genuine Kalguuran expedition marker.,2
+Knowledge,Kalguur,Any,The location of a sealed Stygian trade cache.,2
+Knowledge,Kalguur,Any,Which runes indicate structural stress rather than ownership.,2
+Knowledge,Kalguur,Any,A northern sailing method unknown to local pilots.,2
+Offer,Kalguur,Any,Precise surveying of a route or structure.,2
+Offer,Kalguur,Any,Repair of runed or mechanical equipment.,2
+Offer,Kalguur,Any,A place with a Kalguuran expedition crew.,2
+Offer,Kalguur,Any,Controlled access to a small quantity of black powder.,2
+Disposition,Kalguur,Any,Coolly professional and attentive to competence.,2
+Disposition,Kalguur,Any,Friendly but unwilling to discuss expedition objectives.,2
+Disposition,Kalguur,Any,Impatient with claims unsupported by evidence.,2
+Disposition,Kalguur,Any,More interested in the party's equipment than its reputation.,2
+Goal,Stygian,Any,Open a safe route to the surface without exposing the enclave.,2
+Goal,Stygian,Any,Recover a rune record from a collapsed gallery.,2
+Goal,Stygian,Any,Stop an unsafe sulphite process before it spreads.,2
+Goal,Stygian,Any,Find a missing traveller from the Hollowed Vein.,2
+Problem,Stygian,Any,Their lamp supply has been deliberately contaminated.,2
+Problem,Stygian,Any,A surface word they mistranslated caused a serious offence.,2
+Problem,Stygian,Any,Their faction has sealed the route they need.,2
+Problem,Stygian,Any,A familiar tunnel now carries an impossible echo.,2
+Secret,Stygian,Any,They have visited the surface without permission.,2
+Secret,Stygian,Any,They sold a powder sample to someone other than the Kalguur.,2
+Secret,Stygian,Any,Their family descends from a proscribed Eternal official.,2
+Secret,Stygian,Any,They can understand a voice heard only near the Lightless depths.,2
+Knowledge,Stygian,Any,The rune sequence marking a structurally safe gallery.,2
+Knowledge,Stygian,Any,A ventilation path that bypasses a faction checkpoint.,2
+Knowledge,Stygian,Any,Which Kalguur factor can be trusted with powder trade.,2
+Knowledge,Stygian,Any,The accented-Azmeri phrase used to invoke an old mine compact.,2
+Offer,Stygian,Any,A safe lamp and instructions for keeping it lit.,2
+Offer,Stygian,Any,A guide through mapped sections of the Azurite Mines.,2
+Offer,Stygian,Any,"Repair of stonework, runes or powder equipment.",2
+Offer,Stygian,Any,A guarded introduction to a Stygian trade contact.,2
+Disposition,Stygian,Any,Carefully formal with surface strangers.,2
+Disposition,Stygian,Any,Interested but alert for mockery of their accent.,2
+Disposition,Stygian,Any,More trusting underground than beneath open sky.,2
+Disposition,Stygian,Any,Relieved to meet outsiders who respect negotiated boundaries.,2
+Goal,Oriathan,Oriath Militia,Identify the Ring paymaster inside their wardhouse.,3
+Goal,Oriathan,Oriath Militia,Bring a violent constable to trial without the evidence disappearing.,3
+Goal,Oriathan,Oriath Militia,Keep a street festival peaceful despite Templar provocation.,3
+Goal,Oriathan,Oriath Militia,Find a missing patrol before the watch captain writes them off.,3
+Goal,Oriathan,Oriath Militia,Earn enough trust to command a permanent neighbourhood post.,3
+Goal,Oriathan,Oriath Militia,Move civilians out of a district before a legion sweep begins.,3
+Problem,Oriathan,Oriath Militia,Their patrol roster was altered after they signed it.,3
+Problem,Oriathan,Oriath Militia,The only witness is protected by the Ring.,3
+Problem,Oriathan,Oriath Militia,A Templar officer has ordered an arrest without a charge.,3
+Problem,Oriathan,Oriath Militia,Their partner has started accepting increasingly serious bribes.,3
+Problem,Oriathan,Oriath Militia,The wardhouse armoury is missing weapons before a riot.,3
+Problem,Oriathan,Oriath Militia,Residents know the badge but no longer trust the person wearing it.,3
+Secret,Oriathan,Oriath Militia,They accepted Ring money once to pay for medicine.,3
+Secret,Oriathan,Oriath Militia,They destroyed evidence to prevent a wrongful Templar execution.,3
+Secret,Oriathan,Oriath Militia,Their captain falsifies crime figures for Theopolis officials.,3
+Secret,Oriathan,Oriath Militia,They are sheltering a wanted former constable.,3
+Secret,Oriathan,Oriath Militia,They warned a neighbourhood before an authorised raid.,3
+Secret,Oriathan,Oriath Militia,Their promotion came through a patrician favour they did not request.,3
+Knowledge,Oriathan,Oriath Militia,Which alleys a full legion patrol cannot enter in formation.,3
+Knowledge,Oriathan,Oriath Militia,The watchword used at Oriath's civic lockups this week.,3
+Knowledge,Oriathan,Oriath Militia,Which militia officers are loyal to the Ring.,3
+Knowledge,Oriathan,Oriath Militia,Where confiscated weapons are stored before auction.,3
+Knowledge,Oriathan,Oriath Militia,The patrol timing around a restricted harbour gate.,3
+Knowledge,Oriathan,Oriath Militia,Which magistrate still reviews militia misconduct honestly.,3
+Offer,Oriathan,Oriath Militia,A temporary militia escort through a tense district.,3
+Offer,Oriathan,Oriath Militia,A genuine copy of a patrol warrant.,3
+Offer,Oriathan,Oriath Militia,Access to a wardhouse holding cell or evidence room.,3
+Offer,Oriathan,Oriath Militia,A badge-backed introduction to a local shopkeeper network.,3
+Offer,Oriathan,Oriath Militia,A warning before the next Templar street sweep.,3
+Offer,Oriathan,Oriath Militia,The location of an unregistered civic safehouse.,3
+Disposition,Oriathan,Oriath Militia,Professionally helpful while watching for signs of bribery.,3
+Disposition,Oriathan,Oriath Militia,Defensive about the militia's poor reputation.,3
+Disposition,Oriathan,Oriath Militia,Relieved to meet outsiders with no wardhouse loyalties.,3
+Disposition,Oriathan,Oriath Militia,Suspicious that the party is working for the Templars.,3
+Disposition,Oriathan,Oriath Militia,Friendly in public but guarded when colleagues can hear.,3
+Disposition,Oriathan,Oriath Militia,Quietly testing whether the party protects ordinary residents.,3

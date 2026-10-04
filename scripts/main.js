@@ -2,7 +2,12 @@ import { NPCEngine } from "./npc-engine.js";
 
 const MODULE_ID = "wraeclast-npc-gen";
 const DATA_PATH = `modules/${MODULE_ID}/data`;
-const FILTER_FIELDS = ["culture", "affiliation", "branch", "species", "socialOrigin", "age", "alignment", "professionCategory"];
+const FILTER_FIELDS = [
+  "culture", "affiliation", "branch", "species", "socialOrigin", "age", "alignment",
+  "professionCategory", "location", "era", "capabilityTier"
+];
+const ARRAY_EDIT_FIELDS = new Set(["demeanor", "attitude"]);
+const APPEARANCE_FIELDS = new Set(["build", "features", "attire", "distinguishingMark"]);
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -30,7 +35,9 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
       saveJournal: this._onSaveJournal,
       createActor: this._onCreateActor,
       copyNpc: this._onCopyNpc,
-      outputAll: this._onOutputAll
+      toggleEdit: this._onToggleEdit,
+      undo: this._onUndo,
+      redo: this._onRedo
     }
   };
 
@@ -44,11 +51,14 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
   constructor(options = {}) {
     super(options);
     this.tables = null;
+    this.overrideFingerprint = null;
     this.results = [];
+    this.history = [];
+    this.historyIndex = -1;
+    this.editing = false;
     this.error = "";
     this.filters = Object.fromEntries(FILTER_FIELDS.map((field) => [field, ""]));
     this.filters.preset = game.settings.get(MODULE_ID, "defaultPreset") || "general";
-    this.batchCount = 1;
     this.chatMode = game.settings.get(MODULE_ID, "chatRollMode") || "gmroll";
     this.locks = Object.fromEntries(FILTER_FIELDS.map((field) => [field, false]));
   }
@@ -56,7 +66,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
     try {
-      this.tables ??= await NPCEngine.loadTables(DATA_PATH);
+      await this.#loadTables();
       this.#repairInvalidFilters();
       const available = NPCEngine.getOptions(this.tables, this.filters);
       const activePreset = NPCEngine.getPreset(this.tables, this.filters.preset);
@@ -65,8 +75,10 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
         error: this.error,
         filters: this.filters,
         locks: this.locks,
-        batchCount: this.batchCount,
         chatMode: this.chatMode,
+        canUndo: this.historyIndex > 0,
+        canRedo: this.historyIndex >= 0 && this.historyIndex < this.history.length - 1,
+        editing: this.editing,
         presetDescription: activePreset?.description ?? "",
         chatModes: this.#options([
           { value: "gmroll", label: "Whisper to GMs" },
@@ -86,11 +98,18 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
         socialOrigins: this.#options(available.socialOrigins, this.filters.socialOrigin),
         ages: this.#options(available.ages, this.filters.age),
         alignments: this.#options(available.alignments, this.filters.alignment),
+        locations: this.#options(available.locations, this.filters.location),
+        eras: this.#options(available.eras, this.filters.era),
+        capabilityTiers: this.#options(available.capabilityTiers, this.filters.capabilityTier),
         professionCategories: this.#options(available.professionCategories, this.filters.professionCategory),
         results: this.results.map((npc, index) => ({
           ...npc,
           index,
+          editing: this.editing,
+          demeanorText: npc.demeanor.join(", "),
+          attitudeText: npc.attitude.join(", "),
           showAffiliation: npc.affiliation && npc.affiliation !== "Unaffiliated" && npc.affiliation !== npc.culture,
+          showOrdination: npc.affiliation === "Templar",
           showBranch: npc.branch && npc.branch !== "Unaffiliated",
           branchDisplay: this.#branchDisplay(npc)
         }))
@@ -111,7 +130,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
         this.filters[field] = value;
         this.locks[field] = Boolean(value);
         this.#clearDependents(field);
-        this.results = [];
+        this.#resetResult();
         await this.render({ force: true });
       });
     }
@@ -120,15 +139,29 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
       for (const field of FILTER_FIELDS) {
         if (!this.locks[field]) this.filters[field] = "";
       }
-      this.results = [];
+      this.#resetResult();
       await this.render({ force: true });
-    });
-    this.element.querySelector('[name="batchCount"]')?.addEventListener("change", (event) => {
-      this.batchCount = Math.max(1, Math.min(10, Number.parseInt(event.currentTarget.value, 10) || 1));
     });
     this.element.querySelector('[name="chatMode"]')?.addEventListener("change", (event) => {
       this.chatMode = event.currentTarget.value;
     });
+    for (const element of this.element.querySelectorAll("[data-edit-field]")) {
+      element.addEventListener("change", async (event) => {
+        const npc = structuredClone(this.results[0]);
+        if (!npc) return;
+        const field = event.currentTarget.dataset.editField;
+        const raw = event.currentTarget.value.trim();
+        npc[field] = ARRAY_EDIT_FIELDS.has(field)
+          ? raw.split(",").map((value) => value.trim()).filter(Boolean)
+          : raw;
+        if (APPEARANCE_FIELDS.has(field)) {
+          npc.appearance = [npc.build, npc.features, npc.attire, npc.distinguishingMark].filter(Boolean);
+        }
+        this.#commit(npc);
+        this.editing = true;
+        await this.render({ force: true });
+      });
+    }
   }
 
   static async _onSubmit(event) {
@@ -138,7 +171,10 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
   static async _onGenerate() {
     await this.#run(async () => {
       this.#syncTransientFormState();
-      this.results = NPCEngine.generateBatch(this.batchCount, this.filters, this.tables);
+      this.history = [];
+      this.historyIndex = -1;
+      this.#commit(NPCEngine.generateNPC(this.filters, this.tables));
+      this.editing = false;
       this.error = "";
       await this.render({ force: true });
     });
@@ -181,7 +217,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
         age: npc.age,
         alignment: npc.alignment
       };
-      this.results[index] = NPCEngine.rerollSection(npc, section, identity, this.tables);
+      this.#commit(NPCEngine.rerollSection(npc, section, identity, this.tables));
       await this.render({ force: true });
     });
   }
@@ -213,23 +249,23 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     });
   }
 
-  static async _onOutputAll(_event, target) {
-    await this.#run(async () => {
-      if (!this.results.length) throw new Error("Generate at least one NPC first.");
-      const output = target.dataset.output;
-      if (output === "chat") {
-        for (const npc of this.results) await this.#sendToChat(npc);
-        ui.notifications.info(`Sent ${this.results.length} NPC${this.results.length === 1 ? "" : "s"} to chat.`);
-      } else if (output === "journal") {
-        for (const npc of this.results) await this.#createJournal(npc);
-        ui.notifications.info(`Saved ${this.results.length} NPC${this.results.length === 1 ? "" : "s"} to the journal.`);
-      } else if (output === "copy") {
-        const text = this.results.map((npc) => this.#plainText(npc)).join("\n\n---\n\n");
-        if (game.clipboard?.copyPlainText) await game.clipboard.copyPlainText(text);
-        else await navigator.clipboard.writeText(text);
-        ui.notifications.info("NPC batch copied to the clipboard.");
-      }
-    });
+  static async _onToggleEdit() {
+    this.editing = !this.editing;
+    await this.render({ force: true });
+  }
+
+  static async _onUndo() {
+    if (this.historyIndex <= 0) return;
+    this.historyIndex -= 1;
+    this.results = [structuredClone(this.history[this.historyIndex])];
+    await this.render({ force: true });
+  }
+
+  static async _onRedo() {
+    if (this.historyIndex >= this.history.length - 1) return;
+    this.historyIndex += 1;
+    this.results = [structuredClone(this.history[this.historyIndex])];
+    await this.render({ force: true });
   }
 
   #result(target) {
@@ -247,10 +283,38 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     }
   }
 
+  async #loadTables({ refresh = false } = {}) {
+    const overridesText = game.settings.get(MODULE_ID, "customDataOverrides") || "{}";
+    if (!refresh && this.tables && overridesText === this.overrideFingerprint) return this.tables;
+    const bundled = await NPCEngine.loadTables(DATA_PATH, { refresh });
+    let overrides;
+    try {
+      overrides = JSON.parse(overridesText);
+    } catch (error) {
+      throw new Error(`Custom data overrides are not valid JSON: ${error.message}`);
+    }
+    this.tables = NPCEngine.applyOverrides(bundled, overrides);
+    this.overrideFingerprint = overridesText;
+    return this.tables;
+  }
+
+  #commit(npc) {
+    const snapshot = structuredClone(npc);
+    this.history = this.history.slice(0, this.historyIndex + 1);
+    this.history.push(snapshot);
+    this.historyIndex = this.history.length - 1;
+    this.results = [structuredClone(snapshot)];
+  }
+
+  #resetResult() {
+    this.results = [];
+    this.history = [];
+    this.historyIndex = -1;
+    this.editing = false;
+  }
+
   #syncTransientFormState() {
-    const count = this.element.querySelector('[name="batchCount"]')?.value;
     const mode = this.element.querySelector('[name="chatMode"]')?.value;
-    this.batchCount = Math.max(1, Math.min(10, Number.parseInt(count, 10) || this.batchCount));
     this.chatMode = mode || this.chatMode;
   }
 
@@ -258,7 +322,8 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     const key = {
       culture: "cultures", affiliation: "affiliations", branch: "branches", species: "species",
       socialOrigin: "socialOrigins", age: "ages", alignment: "alignments",
-      professionCategory: "professionCategories"
+      professionCategory: "professionCategories", location: "locations", era: "eras",
+      capabilityTier: "capabilityTiers"
     }[field];
     const options = key ? NPCEngine.getOptions(this.tables, this.filters)[key] : [];
     return options.length === 1 ? options[0].value : "";
@@ -287,7 +352,9 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     for (const [field, rows] of [
       ["affiliation", refreshed.affiliations], ["branch", refreshed.branches], ["species", refreshed.species],
       ["socialOrigin", refreshed.socialOrigins], ["age", refreshed.ages],
-      ["alignment", refreshed.alignments], ["professionCategory", refreshed.professionCategories]
+      ["alignment", refreshed.alignments], ["professionCategory", refreshed.professionCategories],
+      ["location", refreshed.locations], ["era", refreshed.eras],
+      ["capabilityTier", refreshed.capabilityTiers]
     ]) {
       if (!valid(rows, this.filters[field])) {
         this.filters[field] = "";
@@ -339,13 +406,25 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
   async #createActorDocument(npc) {
     if (game.system.id !== "dnd5e") throw new Error("Actor creation is available only in a D&D 5e world.");
     const folder = await this.#folder("Actor", game.settings.get(MODULE_ID, "actorFolder"));
-    return Actor.create({
-      name: npc.fullName,
-      type: "npc",
-      folder: folder.id,
-      system: { details: { biography: { value: this.#html(npc, false) } } },
-      flags: { [MODULE_ID]: { generated: true, npc } }
-    });
+    let templateMap;
+    try {
+      templateMap = JSON.parse(game.settings.get(MODULE_ID, "actorTemplateMap") || "{}");
+    } catch (error) {
+      throw new Error(`Actor template map is not valid JSON: ${error.message}`);
+    }
+    const templateUuid = templateMap[npc.capabilityTier];
+    const template = templateUuid ? await fromUuid(templateUuid) : null;
+    if (templateUuid && !(template instanceof Actor)) throw new Error(`${templateUuid} is not an Actor UUID`);
+    const source = template ? template.toObject() : { type: "npc", system: {} };
+    delete source._id;
+    source.name = npc.fullName;
+    source.folder = folder.id;
+    source.type = source.type || "npc";
+    foundry.utils.setProperty(source, "system.details.biography.value", this.#html(npc, false));
+    source.flags = foundry.utils.mergeObject(source.flags ?? {}, {
+      [MODULE_ID]: { generated: true, npc, templateUuid: templateUuid || "" }
+    }, { inplace: false });
+    return Actor.create(source);
   }
 
   async #folder(type, name) {
@@ -360,8 +439,10 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     return [
       npc.fullName,
       `${npc.culture}${affiliation}${branch ? ` — ${branch}` : ""} | ${npc.species} | ${npc.age} | ${npc.alignment}`,
-      `Origin: ${npc.socialOrigin}`,
+      `Origin: ${npc.socialOrigin} | ${npc.location} | ${npc.era}`,
+      `Capability: ${npc.capabilityTier}`,
       `Profession: ${npc.profession}${npc.organization ? ` (${npc.organization})` : ""}`,
+      npc.rank ? `Rank: ${npc.rank}${npc.ordination ? ` | ${npc.ordination}` : ""}` : "",
       `Appearance: ${npc.appearance.join(", ")}`,
       `Voice: ${npc.voice}`,
       `Demeanor: ${npc.demeanor.join(", ")}`,
@@ -369,8 +450,14 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
       `Mannerism: ${npc.mannerism}`,
       `Ideal: ${npc.ideal}`,
       `Bond: ${npc.bond}`,
-      `Flaw: ${npc.flaw}`
-    ].join("\n");
+      `Flaw: ${npc.flaw}`,
+      `Goal: ${npc.goal}`,
+      `Problem: ${npc.problem}`,
+      `Secret: ${npc.secret}`,
+      `Knowledge: ${npc.knowledge}`,
+      `Offer: ${npc.offer}`,
+      `Disposition: ${npc.disposition}`
+    ].filter(Boolean).join("\n");
   }
 
   #html(npc, compact) {
@@ -380,12 +467,15 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     const branchDisplay = this.#branchDisplay(npc);
     const branch = branchDisplay ? ` · ${e(branchDisplay)}` : "";
     const organization = npc.organization ? `<p><strong>Organisation:</strong> ${e(npc.organization)}</p>` : "";
+    const rank = npc.rank ? `<p><strong>Rank:</strong> ${e(npc.rank)}${npc.ordination ? ` · ${e(npc.ordination)}` : ""}</p>` : "";
     return `<article class="wraeclast-dossier${compact ? " compact" : ""}">
       <h2>${e(npc.fullName)}</h2>
       <p class="identity"><strong>${e(npc.culture)}</strong>${affiliation}${branch} · ${e(npc.species)} · ${e(npc.age)} · ${e(npc.alignment)}</p>
-      <p><strong>Origin:</strong> ${e(npc.socialOrigin)}</p>
+      <p><strong>Origin:</strong> ${e(npc.socialOrigin)} · ${e(npc.location)} · ${e(npc.era)}</p>
+      <p><strong>Capability:</strong> ${e(npc.capabilityTier)}</p>
       <p><strong>Profession:</strong> ${e(npc.profession)} <em>(${e(npc.professionCategory)})</em></p>
       ${organization}
+      ${rank}
       <h3>Appearance &amp; voice</h3>
       <p>${npc.appearance.map(e).join(", ")}. ${e(npc.voice)}.</p>
       <h3>Personality</h3>
@@ -396,6 +486,13 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
       <p><strong>Ideal:</strong> ${e(npc.ideal)}<br>
       <strong>Bond:</strong> ${e(npc.bond)}<br>
       <strong>Flaw:</strong> ${e(npc.flaw)}</p>
+      <h3>Immediate use</h3>
+      <p><strong>Goal:</strong> ${e(npc.goal)}<br>
+      <strong>Problem:</strong> ${e(npc.problem)}<br>
+      <strong>Secret:</strong> ${e(npc.secret)}<br>
+      <strong>Knowledge:</strong> ${e(npc.knowledge)}<br>
+      <strong>Offer:</strong> ${e(npc.offer)}<br>
+      <strong>Disposition:</strong> ${e(npc.disposition)}</p>
     </article>`;
   }
 }
@@ -421,6 +518,7 @@ Hooks.once("init", () => {
     scope: "client", config: true, type: String, default: "general",
     choices: {
       general: "All Wraeclast", sarn_survivor: "Sarn survivor", oriathan_occupier: "Oriathan occupier",
+      theopolis: "Theopolis and Oriath",
       forest_encampment: "Forest Encampment", karui_tribe: "Karui clans",
       kalguur_expedition: "Kalguur expedition", stygian_mines: "Stygian mines", vaal_historical: "Ancient Vaal"
     }
@@ -429,6 +527,16 @@ Hooks.once("init", () => {
     name: "Default chat visibility",
     scope: "client", config: true, type: String, default: "gmroll",
     choices: { gmroll: "Whisper to GMs", selfroll: "Only me", publicroll: "Public" }
+  });
+  game.settings.register(MODULE_ID, "actorTemplateMap", {
+    name: "Actor templates by capability",
+    hint: 'Optional JSON mapping of capability tiers to Actor UUIDs, for example {"Veteran":"Actor.abc123"}.',
+    scope: "world", config: true, type: String, default: "{}"
+  });
+  game.settings.register(MODULE_ID, "customDataOverrides", {
+    name: "Custom generator data",
+    hint: "Optional JSON additions or replacements for local campaign names, descriptors, professions, hooks, drives, and presets.",
+    scope: "world", config: true, type: String, default: "{}"
   });
 });
 
@@ -439,14 +547,37 @@ const openGenerator = () => {
 };
 
 Hooks.once("ready", () => {
+  const loadWorldTables = async ({ refresh = false } = {}) => {
+    const bundled = await NPCEngine.loadTables(DATA_PATH, { refresh });
+    const raw = game.settings.get(MODULE_ID, "customDataOverrides") || "{}";
+    let overrides;
+    try {
+      overrides = JSON.parse(raw);
+    } catch (error) {
+      throw new Error(`Custom data overrides are not valid JSON: ${error.message}`);
+    }
+    return NPCEngine.applyOverrides(bundled, overrides);
+  };
   game.wraeclastGen = {
     open: openGenerator,
     generate: (constraints) => constraints === undefined
       ? openGenerator()
-      : NPCEngine.loadTables(DATA_PATH).then((tables) => NPCEngine.generateNPC(constraints, tables)),
-    generateNPC: async (constraints = {}) => NPCEngine.generateNPC(constraints, await NPCEngine.loadTables(DATA_PATH)),
-    generateBatch: async (count, constraints = {}) => NPCEngine.generateBatch(count, constraints, await NPCEngine.loadTables(DATA_PATH)),
-    validate: async () => NPCEngine.validateTables(await NPCEngine.loadTables(DATA_PATH, { refresh: true }))
+      : loadWorldTables().then((tables) => NPCEngine.generateNPC(constraints, tables)),
+    generateNPC: async (constraints = {}) => NPCEngine.generateNPC(constraints, await loadWorldTables()),
+    generateBatch: async (count, constraints = {}) => NPCEngine.generateBatch(count, constraints, await loadWorldTables()),
+    validate: async () => NPCEngine.validateTables(await loadWorldTables({ refresh: true })),
+    reload: async () => {
+      NPCEngine.clearCache();
+      if (generatorApp) {
+        generatorApp.tables = null;
+        generatorApp.overrideFingerprint = null;
+        generatorApp.results = [];
+        generatorApp.history = [];
+        generatorApp.historyIndex = -1;
+        generatorApp.editing = false;
+        await generatorApp.render({ force: true });
+      }
+    }
   };
 });
 

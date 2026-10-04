@@ -36,7 +36,7 @@
 }
 
 .wraeclast-toolbar {
-  grid-template-columns: minmax(220px, 1.5fr) 80px minmax(160px, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-bottom: 8px;
 }
 
@@ -148,22 +148,6 @@
   padding: 14px 16px 20px;
 }
 
-.wraeclast-batch-actions {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 6px;
-  padding: 8px 16px 0;
-  color: #bfb2a1;
-  font-size: 0.82rem;
-}
-
-.wraeclast-batch-actions button {
-  padding: 2px 9px;
-  font-size: 0.78rem;
-}
-
 .npc-preview {
   margin: 0 0 14px;
   overflow: hidden;
@@ -182,6 +166,33 @@
   padding: 11px 13px 9px;
   border-bottom: 2px solid var(--wraeclast-crimson);
   background: rgba(255, 255, 255, 0.13);
+}
+
+.npc-preview > header > div:first-child {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.preview-history {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+}
+
+#wraeclast-npc-generator .preview-history .edit-button {
+  min-height: 25px;
+  padding: 1px 8px;
+  border-color: rgba(79, 50, 35, 0.45);
+  background: rgba(71, 49, 36, 0.16);
+  color: #542821;
+  font-size: 0.76rem;
+}
+
+#wraeclast-npc-generator button:disabled {
+  cursor: default;
+  opacity: 0.38;
+  box-shadow: none;
 }
 
 .npc-preview h2,
@@ -232,6 +243,54 @@
 
 .preview-grid section {
   min-width: 0;
+}
+
+.preview-grid .span-two {
+  grid-column: span 2;
+}
+
+.narrative-grid,
+.narrative-edit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 16px;
+}
+
+.inline-edit {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: start;
+  gap: 5px;
+  margin: 4px 0;
+  color: #594b40;
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
+.inline-edit input,
+.inline-edit textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgba(79, 50, 35, 0.45);
+  border-radius: 3px;
+  background: rgba(255, 252, 244, 0.72);
+  color: #261d19;
+  font: inherit;
+}
+
+.inline-edit textarea {
+  resize: vertical;
+}
+
+.name-edit {
+  grid-template-columns: 42px minmax(0, 1fr);
+  max-width: 440px;
+  margin: 0;
+}
+
+.name-edit input {
+  font-family: "Modesto Condensed", "Palatino Linotype", serif;
+  font-size: 1.15rem;
 }
 
 #wraeclast-npc-generator .icon-button {
@@ -320,7 +379,16 @@
     grid-column: auto;
   }
 
-  .wraeclast-batch-actions,
+  .preview-grid .span-two {
+    grid-column: auto;
+  }
+
+  .narrative-grid,
+  .narrative-edit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-history,
   .npc-actions {
     flex-wrap: wrap;
   }

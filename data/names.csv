@@ -17,9 +17,9 @@ Name,Oriathan,Any,Helvia,1
 Name,Oriathan,Any,Junia,1
 Name,Oriathan,Any,Laelia,1
 Name,Oriathan,Any,Livia,1
-Name,Oriathan,Any,Lucan,1
+Name,Oriathan,Any,Livius,1
 Name,Oriathan,Any,Marcellus,1
-Name,Oriathan,Any,Octavia,1
+Name,Oriathan,Any,Livilla,1
 Name,Oriathan,Any,Quintus,1
 Name,Oriathan,Any,Sabina,1
 Name,Oriathan,Any,Severin,1
@@ -56,7 +56,7 @@ Surname,Oriathan,Any,Vespian,1
 Surname,Oriathan,Any,Vigilan,1
 Name,Azmeri,Any,Aldren,1
 Name,Azmeri,Any,Anwen,1
-Name,Azmeri,Any,Brenna,1
+Name,Azmeri,Any,Briallen,1
 Name,Azmeri,Any,Cadoc,1
 Name,Azmeri,Any,Cerys,1
 Name,Azmeri,Any,Deryn,1
@@ -169,26 +169,26 @@ Name,Maraketh,Any,Soraya,1
 Name,Maraketh,Any,Tahira,1
 Name,Maraketh,Any,Yasmin,1
 Name,Maraketh,Any,Zahir,1
-Surname,Maraketh,Any,Amberstep,1
-Surname,Maraketh,Any,Caravanborn,1
-Surname,Maraketh,Any,Dawnpath,1
-Surname,Maraketh,Any,Dunewalker,1
-Surname,Maraketh,Any,Farstrider,1
-Surname,Maraketh,Any,Goldsaddle,1
-Surname,Maraketh,Any,Moonreins,1
-Surname,Maraketh,Any,Oasisward,1
-Surname,Maraketh,Any,Redcairn,1
-Surname,Maraketh,Any,Roadwise,1
-Surname,Maraketh,Any,Saltwind,1
-Surname,Maraketh,Any,Sandlark,1
-Surname,Maraketh,Any,Silkroad,1
-Surname,Maraketh,Any,Starbridle,1
-Surname,Maraketh,Any,Sunveil,1
-Surname,Maraketh,Any,Swiftspur,1
-Surname,Maraketh,Any,Waterfinder,1
-Surname,Maraketh,Any,Windrider,1
-Surname,Maraketh,Any,Zarinfar,1
-Surname,Maraketh,Any,Zharavan,1
+Surname,Maraketh,Any,Al-Sahir,1
+Surname,Maraketh,Any,Ashari,1
+Surname,Maraketh,Any,Badiya,1
+Surname,Maraketh,Any,Daryan,1
+Surname,Maraketh,Any,Farouqi,1
+Surname,Maraketh,Any,Haddari,1
+Surname,Maraketh,Any,Jaziri,1
+Surname,Maraketh,Any,Kharif,1
+Surname,Maraketh,Any,Marwani,1
+Surname,Maraketh,Any,Nadiri,1
+Surname,Maraketh,Any,Qasimi,1
+Surname,Maraketh,Any,Rahmani,1
+Surname,Maraketh,Any,Safiri,1
+Surname,Maraketh,Any,Shafran,1
+Surname,Maraketh,Any,Tazir,1
+Surname,Maraketh,Any,Vardani,1
+Surname,Maraketh,Any,Yazdan,1
+Surname,Maraketh,Any,Zahiri,1
+Surname,Maraketh,Any,Zareen,1
+Surname,Maraketh,Any,Zayani,1
 Name,Karui,Any,Arihi,1
 Name,Karui,Any,Hauiti,1
 Name,Karui,Any,Hinewai,1
@@ -214,26 +214,26 @@ Name,Karui,Any,Waimaru,1
 Name,Karui,Any,Wiremu,1
 Name,Karui,Any,Whaireka,1
 Name,Karui,Any,Whareka,1
-Surname,Karui,Any,Ancestor-Singer,1
-Surname,Karui,Any,Ash-Spear,1
-Surname,Karui,Any,Cliff-Warden,1
-Surname,Karui,Any,Ember-Paddle,1
-Surname,Karui,Any,Flax-Binder,1
-Surname,Karui,Any,Greenstone-Hand,1
-Surname,Karui,Any,Iron-Tide,1
-Surname,Karui,Any,Reef-Born,1
-Surname,Karui,Any,Red-Feather,1
-Surname,Karui,Any,Salt-Blood,1
-Surname,Karui,Any,Shell-Carver,1
-Surname,Karui,Any,Sky-Drummer,1
-Surname,Karui,Any,Storm-Prow,1
-Surname,Karui,Any,Tide-Walker,1
-Surname,Karui,Any,War-Canoe,1
-Surname,Karui,Any,Wave-Breaker,1
-Surname,Karui,Any,Whale-Rider,1
-Surname,Karui,Any,White-Shark,1
-Surname,Karui,Any,Wind-Spear,1
-Surname,Karui,Any,Wood-Smoke,1
+Surname,Karui,Any,Arahura,1
+Surname,Karui,Any,Hauwhenua,1
+Surname,Karui,Any,Kahumaru,1
+Surname,Karui,Any,Kaitoa,1
+Surname,Karui,Any,Kerewai,1
+Surname,Karui,Any,Koromiko,1
+Surname,Karui,Any,Mahuta,1
+Surname,Karui,Any,Manutahi,1
+Surname,Karui,Any,Mataora,1
+Surname,Karui,Any,Ngahere,1
+Surname,Karui,Any,Ngataha,1
+Surname,Karui,Any,Pounamu,1
+Surname,Karui,Any,Raukura,1
+Surname,Karui,Any,Rerewaka,1
+Surname,Karui,Any,Taharoa,1
+Surname,Karui,Any,Takiri,1
+Surname,Karui,Any,Tamure,1
+Surname,Karui,Any,Te Awa,1
+Surname,Karui,Any,Te Kahu,1
+Surname,Karui,Any,Whaitiri,1
 Name,Vaal,Any,Aqama,1
 Name,Vaal,Any,Azqel,1
 Name,Vaal,Any,Calqet,1
@@ -259,26 +259,26 @@ Name,Vaal,Any,Yoltzin,1
 Name,Vaal,Any,Zaqal,1
 Name,Vaal,Any,Zeltan,1
 Name,Vaal,Any,Zyanya,1
-Surname,Vaal,Any,Ashen Glyph,1
-Surname,Vaal,Any,Blood Calendar,1
-Surname,Vaal,Any,Coil Scribe,1
-Surname,Vaal,Any,Fifth Sun,1
-Surname,Vaal,Any,Glass Serpent,1
-Surname,Vaal,Any,Jade Circuit,1
-Surname,Vaal,Any,Moon Cipher,1
-Surname,Vaal,Any,Obsidian Eye,1
-Surname,Vaal,Any,Quetzal Mark,1
-Surname,Vaal,Any,Red Ziggurat,1
-Surname,Vaal,Any,Ritual Gear,1
-Surname,Vaal,Any,Serpent Seal,1
-Surname,Vaal,Any,Sun Engine,1
-Surname,Vaal,Any,Temple Key,1
-Surname,Vaal,Any,Veiled Axis,1
-Surname,Vaal,Any,Void Calendar,1
-Surname,Vaal,Any,Wheel Keeper,1
-Surname,Vaal,Any,Xoac Line,1
-Surname,Vaal,Any,Ziggurat Born,1
-Surname,Vaal,Any,Zodiac Hand,1
+Surname,Vaal,Any,Acatl,1
+Surname,Vaal,Any,Acolmec,1
+Surname,Vaal,Any,Chalca,1
+Surname,Vaal,Any,Cihuatl,1
+Surname,Vaal,Any,Cozcatl,1
+Surname,Vaal,Any,Cuauhtli,1
+Surname,Vaal,Any,Ehecatl,1
+Surname,Vaal,Any,Itzcali,1
+Surname,Vaal,Any,Mazahua,1
+Surname,Vaal,Any,Mictlan,1
+Surname,Vaal,Any,Mixcoatl,1
+Surname,Vaal,Any,Nahuatl,1
+Surname,Vaal,Any,Ocelotl,1
+Surname,Vaal,Any,Quetzal,1
+Surname,Vaal,Any,Tenochtli,1
+Surname,Vaal,Any,Teotl,1
+Surname,Vaal,Any,Tlalocan,1
+Surname,Vaal,Any,Xochiya,1
+Surname,Vaal,Any,Yaotzin,1
+Surname,Vaal,Any,Yohualli,1
 Name,Kalguur,Any,Aelrik,1
 Name,Kalguur,Any,Alvaine,1
 Name,Kalguur,Any,Brynja,1
@@ -420,7 +420,7 @@ Name,Oriathan,Any,Caelia,1
 Name,Oriathan,Any,Caeso,1
 Name,Oriathan,Any,Calista,1
 Name,Oriathan,Any,Camilla,1
-Name,Oriathan,Any,Cato,1
+Name,Oriathan,Any,Cotta,1
 Name,Oriathan,Any,Claudia,1
 Name,Oriathan,Any,Corvin,1
 Name,Oriathan,Any,Domitia,1
@@ -609,26 +609,26 @@ Name,Maraketh,Any,Sohrab,1
 Name,Maraketh,Any,Sorush,1
 Name,Maraketh,Any,Taraneh,1
 Name,Maraketh,Any,Zubin,1
-Surname,Maraketh,Any,Brassreins,1
-Surname,Maraketh,Any,Cedarshade,1
-Surname,Maraketh,Any,Copperstep,1
-Surname,Maraketh,Any,Dunerose,1
-Surname,Maraketh,Any,Dustmantle,1
-Surname,Maraketh,Any,Eastwind,1
-Surname,Maraketh,Any,Emberveil,1
-Surname,Maraketh,Any,Falconpath,1
-Surname,Maraketh,Any,Glassdune,1
-Surname,Maraketh,Any,Goldenbridle,1
-Surname,Maraketh,Any,Ivoryroad,1
-Surname,Maraketh,Any,Lapisveil,1
-Surname,Maraketh,Any,Miragestep,1
-Surname,Maraketh,Any,Nightcaravan,1
-Surname,Maraketh,Any,Redoasis,1
-Surname,Maraketh,Any,Saffronwind,1
-Surname,Maraketh,Any,Sandglass,1
-Surname,Maraketh,Any,Starreins,1
-Surname,Maraketh,Any,Sunroad,1
-Surname,Maraketh,Any,Zaffarid,1
+Surname,Maraketh,Any,Al-Hadir,1
+Surname,Maraketh,Any,Bahari,1
+Surname,Maraketh,Any,Darvazi,1
+Surname,Maraketh,Any,Emiri,1
+Surname,Maraketh,Any,Ghazali,1
+Surname,Maraketh,Any,Hakimi,1
+Surname,Maraketh,Any,Isfari,1
+Surname,Maraketh,Any,Khamsin,1
+Surname,Maraketh,Any,Mazari,1
+Surname,Maraketh,Any,Nahrin,1
+Surname,Maraketh,Any,Qadiri,1
+Surname,Maraketh,Any,Rihani,1
+Surname,Maraketh,Any,Sabiri,1
+Surname,Maraketh,Any,Tabari,1
+Surname,Maraketh,Any,Vaziri,1
+Surname,Maraketh,Any,Yashar,1
+Surname,Maraketh,Any,Zaffari,1
+Surname,Maraketh,Any,Zarandi,1
+Surname,Maraketh,Any,Zarrin,1
+Surname,Maraketh,Any,Zulfi,1
 Name,Karui,Any,Anahera,1
 Name,Karui,Any,Ariki,1
 Name,Karui,Any,Aroha,1
@@ -638,6 +638,7 @@ Name,Karui,Any,Eruera,1
 Name,Karui,Any,Hana,1
 Name,Karui,Any,Hemi,1
 Name,Karui,Any,Hinerangi,1
+Name,Karui,Any,Hirini,1
 Name,Karui,Any,Hoani,1
 Name,Karui,Any,Ihaia,1
 Name,Karui,Any,Kahu,1
@@ -656,34 +657,33 @@ Name,Karui,Any,Ripeka,1
 Name,Karui,Any,Rongo,1
 Name,Karui,Any,Ropata,1
 Name,Karui,Any,Rua,1
-Name,Karui,Any,Tane,1
 Name,Karui,Any,Teina,1
 Name,Karui,Any,Tiare,1
 Name,Karui,Any,Tipene,1
 Name,Karui,Any,Tui,1
-Name,Karui,Any,Waiora,1
+Name,Karui,Any,Whaitua,1
 Name,Karui,Any,Whetu,1
 Name,Karui,Any,Wikitoria,1
-Surname,Karui,Any,Bone-Hook,1
-Surname,Karui,Any,Cloud-Paddle,1
-Surname,Karui,Any,Dawn-Spear,1
-Surname,Karui,Any,Deep-Current,1
-Surname,Karui,Any,Fern-Tattoo,1
-Surname,Karui,Any,Flame-Weaver,1
-Surname,Karui,Any,Greenstone-Eye,1
-Surname,Karui,Any,Kelp-Binder,1
-Surname,Karui,Any,Moon-Canoe,1
-Surname,Karui,Any,Obsidian-Tooth,1
-Surname,Karui,Any,Reef-Singer,1
-Surname,Karui,Any,River-Guard,1
-Surname,Karui,Any,Shark-Spear,1
-Surname,Karui,Any,Shell-Drum,1
-Surname,Karui,Any,Storm-Hunter,1
-Surname,Karui,Any,Sun-Prow,1
-Surname,Karui,Any,Tide-Carver,1
-Surname,Karui,Any,Whale-Song,1
-Surname,Karui,Any,Wind-Carver,1
-Surname,Karui,Any,Woven-Flax,1
+Surname,Karui,Any,Awarua,1
+Surname,Karui,Any,Hautapu,1
+Surname,Karui,Any,Hinerau,1
+Surname,Karui,Any,Kaipara,1
+Surname,Karui,Any,Kōwhai,1
+Surname,Karui,Any,Makiri,1
+Surname,Karui,Any,Maruata,1
+Surname,Karui,Any,Moturua,1
+Surname,Karui,Any,Ngakoro,1
+Surname,Karui,Any,Pukara,1
+Surname,Karui,Any,Rangitahi,1
+Surname,Karui,Any,Rerewai,1
+Surname,Karui,Any,Taiaroa,1
+Surname,Karui,Any,Tamarau,1
+Surname,Karui,Any,Te Kohu,1
+Surname,Karui,Any,Te Miro,1
+Surname,Karui,Any,Te Rangi,1
+Surname,Karui,Any,Tuhoro,1
+Surname,Karui,Any,Wairua,1
+Surname,Karui,Any,Whakaroa,1
 Name,Vaal,Any,Acatzin,1
 Name,Vaal,Any,Acolmiz,1
 Name,Vaal,Any,Ameyal,1
@@ -719,26 +719,26 @@ Name,Vaal,Any,Zolin,1
 Name,Vaal,Any,Amoxtli,1
 Name,Vaal,Any,Ceyac,1
 Name,Vaal,Any,Itzamar,1
-Surname,Vaal,Any,Amber Codex,1
-Surname,Vaal,Any,Broken Sun,1
-Surname,Vaal,Any,Cinnabar Gear,1
-Surname,Vaal,Any,Coiled Calendar,1
-Surname,Vaal,Any,Copper Jaguar,1
-Surname,Vaal,Any,Dawn Glyph,1
-Surname,Vaal,Any,Eclipse Scribe,1
-Surname,Vaal,Any,Emerald Serpent,1
-Surname,Vaal,Any,Fourth Wheel,1
-Surname,Vaal,Any,Golden Axis,1
-Surname,Vaal,Any,Hollow Sun,1
-Surname,Vaal,Any,Jade Numeral,1
-Surname,Vaal,Any,Mirror Glyph,1
-Surname,Vaal,Any,Night Engine,1
-Surname,Vaal,Any,Obsidian Gear,1
-Surname,Vaal,Any,Red Equation,1
-Surname,Vaal,Any,Serpent Wheel,1
-Surname,Vaal,Any,Star Calendar,1
-Surname,Vaal,Any,Turquoise Eye,1
-Surname,Vaal,Any,Void Numeral,1
+Surname,Vaal,Any,Amoxli,1
+Surname,Vaal,Any,Atlahua,1
+Surname,Vaal,Any,Cenzon,1
+Surname,Vaal,Any,Chalchiu,1
+Surname,Vaal,Any,Citlal,1
+Surname,Vaal,Any,Coatec,1
+Surname,Vaal,Any,Huemac,1
+Surname,Vaal,Any,Icnoya,1
+Surname,Vaal,Any,Itzama,1
+Surname,Vaal,Any,Matlali,1
+Surname,Vaal,Any,Necahua,1
+Surname,Vaal,Any,Ohtlan,1
+Surname,Vaal,Any,Tecpatl,1
+Surname,Vaal,Any,Teyolia,1
+Surname,Vaal,Any,Tlacotl,1
+Surname,Vaal,Any,Xihua,1
+Surname,Vaal,Any,Xilotl,1
+Surname,Vaal,Any,Yolcatl,1
+Surname,Vaal,Any,Zacatl,1
+Surname,Vaal,Any,Zolin,1
 Name,Kalguur,Any,Aedrin,1
 Name,Kalguur,Any,Aelwyn,1
 Name,Kalguur,Any,Alfhild,1
@@ -794,38 +794,78 @@ Surname,Kalguur,Any,Stormbriar,1
 Surname,Kalguur,Any,Thornlance,1
 Surname,Kalguur,Any,Whitebarb,1
 Surname,Kalguur,Any,Winterspike,1
-Name,Stygian,Any,Akhesh,1
-Name,Stygian,Any,Bhezra,1
-Name,Stygian,Any,Chavra,1
-Name,Stygian,Any,Dhrak,1
-Name,Stygian,Any,Ezzra,1
-Name,Stygian,Any,Ghaelin,1
-Name,Stygian,Any,Hekhra,1
-Name,Stygian,Any,Ishvek,1
-Name,Stygian,Any,Khavra,1
-Name,Stygian,Any,Lhevik,1
-Name,Stygian,Any,Mharra,1
-Name,Stygian,Any,Nhezr,1
-Name,Stygian,Any,Phaela,1
-Name,Stygian,Any,Qhadr,1
-Name,Stygian,Any,Rhelk,1
-Name,Stygian,Any,Shyra,1
-Name,Stygian,Any,Therv,1
-Name,Stygian,Any,Vhessa,1
-Name,Stygian,Any,Yhevik,1
-Name,Stygian,Any,Zhaela,1
-Surname,Stygian,Any,Blackdelve,1
-Surname,Stygian,Any,Cindervein,1
-Surname,Stygian,Any,Darkchime,1
-Surname,Stygian,Any,Deepbrand,1
-Surname,Stygian,Any,Gloomrune,1
-Surname,Stygian,Any,Ironwhisper,1
-Surname,Stygian,Any,Nightforge,1
-Surname,Stygian,Any,Obsidianvein,1
-Surname,Stygian,Any,Phosphorbrand,1
-Surname,Stygian,Any,Shalemark,1
-Surname,Stygian,Any,Smokevein,1
-Surname,Stygian,Any,Stonewhisper,1
-Surname,Stygian,Any,Underchime,1
-Surname,Stygian,Any,Voidrune,1
-Surname,Stygian,Any,Whisperforge,1
+Name,Stygian,Any,Akhessia,1
+Name,Stygian,Any,Aurekh,1
+Name,Stygian,Any,Casshra,1
+Name,Stygian,Any,Dhecima,1
+Name,Stygian,Any,Fhaustr,1
+Name,Stygian,Any,Ghaius,1
+Name,Stygian,Any,Helvhra,1
+Name,Stygian,Any,Iunekh,1
+Name,Stygian,Any,Khlavdia,1
+Name,Stygian,Any,Livhra,1
+Name,Stygian,Any,Lukhan,1
+Name,Stygian,Any,Marzellus,1
+Name,Stygian,Any,Nerhva,1
+Name,Stygian,Any,Okhthar,1
+Name,Stygian,Any,Phetronia,1
+Name,Stygian,Any,Prhiska,1
+Name,Stygian,Any,Rufhar,1
+Name,Stygian,Any,Sevherin,1
+Name,Stygian,Any,Thullia,1
+Name,Stygian,Any,Vharro,1
+Surname,Stygian,Any,Akhvilin,1
+Surname,Stygian,Any,Khalphurn,1
+Surname,Stygian,Any,Khassidor,1
+Surname,Stygian,Any,Khornelian,1
+Surname,Stygian,Any,Domithian,1
+Surname,Stygian,Any,Fhabrian,1
+Surname,Stygian,Any,Fhlavian,1
+Surname,Stygian,Any,Ghalenus,1
+Surname,Stygian,Any,Horathian,1
+Surname,Stygian,Any,Iunian,1
+Surname,Stygian,Any,Laelian,1
+Surname,Stygian,Any,Marzellan,1
+Surname,Stygian,Any,Nherian,1
+Surname,Stygian,Any,Okhthavian,1
+Surname,Stygian,Any,Vhalerian,1
+OrdainedName,Oriathan,Templar,Abnegation,1
+OrdainedName,Oriathan,Templar,Adherence,1
+OrdainedName,Oriathan,Templar,Ardour,1
+OrdainedName,Oriathan,Templar,Candour,1
+OrdainedName,Oriathan,Templar,Chastity,1
+OrdainedName,Oriathan,Templar,Clemency,1
+OrdainedName,Oriathan,Templar,Concord,1
+OrdainedName,Oriathan,Templar,Constancy,1
+OrdainedName,Oriathan,Templar,Contrition,1
+OrdainedName,Oriathan,Templar,Devotion,1
+OrdainedName,Oriathan,Templar,Diligence,1
+OrdainedName,Oriathan,Templar,Discipline,1
+OrdainedName,Oriathan,Templar,Duty,1
+OrdainedName,Oriathan,Templar,Fidelity,1
+OrdainedName,Oriathan,Templar,Fortitude,1
+OrdainedName,Oriathan,Templar,Grace,1
+OrdainedName,Oriathan,Templar,Humility,1
+OrdainedName,Oriathan,Templar,Judgement,1
+OrdainedName,Oriathan,Templar,Mercy,1
+OrdainedName,Oriathan,Templar,Obedience,1
+OrdainedName,Oriathan,Templar,Patience,1
+OrdainedName,Oriathan,Templar,Penance,1
+OrdainedName,Oriathan,Templar,Providence,1
+OrdainedName,Oriathan,Templar,Purity,1
+OrdainedName,Oriathan,Templar,Rectitude,1
+OrdainedName,Oriathan,Templar,Remorse,1
+OrdainedName,Oriathan,Templar,Resolve,1
+OrdainedName,Oriathan,Templar,Reverence,1
+OrdainedName,Oriathan,Templar,Sacrifice,1
+OrdainedName,Oriathan,Templar,Temperance,1
+OrdainedName,Oriathan,Templar,Truth,1
+OrdainedName,Oriathan,Templar,Valour,1
+OrdainedName,Oriathan,Templar,Verity,1
+OrdainedName,Oriathan,Templar,Vigilance,1
+OrdainedName,Oriathan,Templar,Zeal,1
+OrdainedName,Oriathan,Templar,Charity,1
+OrdainedName,Oriathan,Templar,Forbearance,1
+OrdainedName,Oriathan,Templar,Honour,1
+OrdainedName,Oriathan,Templar,Radiance,1
+OrdainedName,Oriathan,Templar,Steadfastness,1

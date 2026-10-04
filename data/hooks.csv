@@ -23,6 +23,174 @@ Flaw,Any,Any,I conceal an illness or wound.,1
 Flaw,Any,Any,I abandon plans when omens turn against me.,1
 Flaw,Any,Any,I trust status more than character.,1
 Flaw,Any,Any,I would betray a stranger to protect my own.,1
+Ideal,Oriathan,Any,Civil order is the wall between survival and ruin.,1
+Ideal,Oriathan,Any,"Education should serve the whole city, not only its patricians.",1
+Ideal,Oriathan,Any,A household's reputation is built by daily conduct.,1
+Ideal,Oriathan,Any,Law deserves respect only when it protects the weak.,1
+Ideal,Oriathan,Any,Oriath must answer honestly for what it did in Wraeclast.,1
+Ideal,Oriathan,Any,Public duty matters more than private comfort.,1
+Ideal,Oriathan,Any,Trade and civic works can rebuild what conquest destroyed.,1
+Ideal,Oriathan,Any,No priest or noble stands above consequence.,1
+Bond,Oriathan,Any,My family still occupies one room of our former estate.,1
+Bond,Oriathan,Any,A port neighbourhood sheltered me during a purge.,1
+Bond,Oriathan,Any,I carry the account book of a ruined household.,1
+Bond,Oriathan,Any,A former servant knows the truth about my family.,1
+Bond,Oriathan,Any,I send every spare coin to relatives in Theopolis.,1
+Bond,Oriathan,Any,A civic mentor taught me to read forbidden records.,1
+Bond,Oriathan,Any,I promised to clear an innocent person's name.,1
+Bond,Oriathan,Any,My livelihood depends on a fragile licence from the authorities.,1
+Flaw,Oriathan,Any,I treat refinement as evidence of competence.,1
+Flaw,Oriathan,Any,I conceal my family's loss of status.,1
+Flaw,Oriathan,Any,I assume bureaucracy can solve a human crisis.,1
+Flaw,Oriathan,Any,I speak of Wraeclast as though Oriath still owns it.,1
+Flaw,Oriathan,Any,I avoid offending authority until resistance is too late.,1
+Flaw,Oriathan,Any,I confuse education with wisdom.,1
+Flaw,Oriathan,Any,I preserve appearances at ruinous cost.,1
+Flaw,Oriathan,Any,I instinctively rank people by accent and clothing.,1
+Ideal,Azmeri,Any,A community survives by remembering who cared for it.,1
+Ideal,Azmeri,Any,The forest is a neighbour rather than a possession.,1
+Ideal,Azmeri,Any,"Old knowledge should be tested, not merely obeyed.",1
+Ideal,Azmeri,Any,Hospitality is sacred when roads are dangerous.,1
+Ideal,Azmeri,Any,A leader earns trust by sharing hardship.,1
+Ideal,Azmeri,Any,Every ruin carries a warning for the living.,1
+Ideal,Azmeri,Any,Healing the land is more important than claiming it.,1
+Ideal,Azmeri,Any,Stories keep a scattered people together.,1
+Bond,Azmeri,Any,I tend the grove where my family marks its dead.,1
+Bond,Azmeri,Any,A hunter who vanished taught me every safe path I know.,1
+Bond,Azmeri,Any,I carry a song known by only three surviving elders.,1
+Bond,Azmeri,Any,The Forest Encampment gave me refuge when no one else would.,1
+Bond,Azmeri,Any,A child in my care believes I can solve anything.,1
+Bond,Azmeri,Any,I owe a life-debt to an outsider the tribe distrusts.,1
+Bond,Azmeri,Any,I guard the route to an untouched medicinal spring.,1
+Bond,Azmeri,Any,I must recover a relic taken from an old Azmeri shrine.,1
+Flaw,Azmeri,Any,I treat unfamiliar customs as signs of corruption.,1
+Flaw,Azmeri,Any,I refuse to abandon land that has become unsafe.,1
+Flaw,Azmeri,Any,I hide bad omens to prevent panic.,1
+Flaw,Azmeri,Any,I give too much authority to tradition.,1
+Flaw,Azmeri,Any,I resent descendants of the Empire for forgetting us.,1
+Flaw,Azmeri,Any,I mistake secrecy for protection.,1
+Flaw,Azmeri,Any,I take responsibility for problems no one person can mend.,1
+Flaw,Azmeri,Any,I trust the forest's signs more than clear evidence.,1
+Ideal,Ezomyte,Any,An oath spoken before the clan must survive fear.,1
+Ideal,Ezomyte,Any,Craft and song preserve what conquerors try to erase.,1
+Ideal,Ezomyte,Any,Courage includes admitting when a feud must end.,1
+Ideal,Ezomyte,Any,No ruler has the right to own another person.,1
+Ideal,Ezomyte,Any,"The First Ones teach survival, not mindless cruelty.",1
+Ideal,Ezomyte,Any,A guest under one's roof must be defended.,1
+Ideal,Ezomyte,Any,History belongs in living memory rather than imperial archives.,1
+Ideal,Ezomyte,Any,A clan is strongest when its weakest member stands with it.,1
+Bond,Ezomyte,Any,I carry a brooch from a clanhold lost to war.,1
+Bond,Ezomyte,Any,My teacher's final poem contains a hidden warning.,1
+Bond,Ezomyte,Any,I swore to return a weapon to the family of its maker.,1
+Bond,Ezomyte,Any,A sibling joined a rival clan after an old dispute.,1
+Bond,Ezomyte,Any,I know the true account of a celebrated battle.,1
+Bond,Ezomyte,Any,A mine community depends on my judgement.,1
+Bond,Ezomyte,Any,I owe freedom to someone whose name my clan curses.,1
+Bond,Ezomyte,Any,I seek the burial cairn of an ancestor taken in chains.,1
+Flaw,Ezomyte,Any,I keep feuds alive long after their cause is forgotten.,1
+Flaw,Ezomyte,Any,I would rather suffer than admit an oath was foolish.,1
+Flaw,Ezomyte,Any,I dismiss quiet people as lacking courage.,1
+Flaw,Ezomyte,Any,I drink or boast when grief becomes difficult.,1
+Flaw,Ezomyte,Any,I assume fine speech conceals dishonesty.,1
+Flaw,Ezomyte,Any,I measure worth through endurance alone.,1
+Flaw,Ezomyte,Any,I cannot leave an insult unanswered.,1
+Flaw,Ezomyte,Any,I romanticise a past that was harsher than I admit.,1
+Ideal,Maraketh,Any,The caravan survives when every rider fulfils their duty.,1
+Ideal,Maraketh,Any,"Strength must protect the road, not prey upon it.",1
+Ideal,Maraketh,Any,Water offered to a traveller is never wasted.,1
+Ideal,Maraketh,Any,Tradition must remain strong enough to endure honest change.,1
+Ideal,Maraketh,Any,A promise made before the akhara binds the whole self.,1
+Ideal,Maraketh,Any,Skill deserves recognition regardless of birth.,1
+Ideal,Maraketh,Any,The desert punishes waste and rewards preparation.,1
+Ideal,Maraketh,Any,A leader listens before choosing the road.,1
+Bond,Maraketh,Any,My akhara entrusted me with a route known to few outsiders.,1
+Bond,Maraketh,Any,I raise a rhoa descended from my family's finest mount.,1
+Bond,Maraketh,Any,A Faridun saved me when custom said they should not.,1
+Bond,Maraketh,Any,I carry a message for a Sekhema who may already be dead.,1
+Bond,Maraketh,Any,My caravan partner disappeared beyond a dust storm.,1
+Bond,Maraketh,Any,I must repay water taken from a rival camp.,1
+Bond,Maraketh,Any,A family tattoo records a shame I intend to redeem.,1
+Bond,Maraketh,Any,I guard the last trade token of a broken caravan.,1
+Flaw,Maraketh,Any,I treat endurance as proof that a decision was right.,1
+Flaw,Maraketh,Any,I cannot forgive a public challenge to my competence.,1
+Flaw,Maraketh,Any,I hide doubt behind formal tradition.,1
+Flaw,Maraketh,Any,I judge settled people as soft and shortsighted.,1
+Flaw,Maraketh,Any,I accept dangerous wagers to defend my honour.,1
+Flaw,Maraketh,Any,I obey an akhara custom I privately know is cruel.,1
+Flaw,Maraketh,Any,I read every gift as an attempted obligation.,1
+Flaw,Maraketh,Any,I would abandon an outsider before risking my caravan.,1
+Ideal,Karui,Any,Mana is earned through service rather than claimed by birth.,1
+Ideal,Karui,Any,Ancestors should guide the living without ruling them.,1
+Ideal,Karui,Any,Hospitality and courage are both measures of strength.,1
+Ideal,Karui,Any,The clan survives when each generation adds to its knowledge.,1
+Ideal,Karui,Any,A challenge answered honestly prevents a hidden feud.,1
+Ideal,Karui,Any,Land and sea are inheritances held in trust.,1
+Ideal,Karui,Any,A warrior's first duty is to bring their people home.,1
+Ideal,Karui,Any,No foreign empire will define Karui worth.,1
+Bond,Karui,Any,My family canoe carries repairs from five generations.,1
+Bond,Karui,Any,I bear a carving that records my line's migrations.,1
+Bond,Karui,Any,A rival clan fostered me during a season of hunger.,1
+Bond,Karui,Any,I promised an elder to learn why our ancestors left this shore.,1
+Bond,Karui,Any,A younger relative copies everything I do.,1
+Bond,Karui,Any,I carry the name of someone denied proper funerary rites.,1
+Bond,Karui,Any,A warband companion once chose my life over victory.,1
+Bond,Karui,Any,I must return a stolen heirloom before the next gathering.,1
+Flaw,Karui,Any,I turn disagreement into a test of courage.,1
+Flaw,Karui,Any,I invoke ancestors to avoid admitting personal fear.,1
+Flaw,Karui,Any,I expect outsiders to misunderstand before they speak.,1
+Flaw,Karui,Any,I protect clan reputation by hiding serious failures.,1
+Flaw,Karui,Any,I treat retreat as shame even when it saves lives.,1
+Flaw,Karui,Any,I carry inherited grudges as though they were my own.,1
+Flaw,Karui,Any,I confuse directness with permission to be cruel.,1
+Flaw,Karui,Any,I will risk too much to avoid appearing dependent.,1
+Ideal,Vaal,Any,Knowledge has value only when its cost is understood.,1
+Ideal,Vaal,Any,A civilisation should be judged by what it refuses to sacrifice.,1
+Ideal,Vaal,Any,"Order is revealed through number, season and celestial motion.",1
+Ideal,Vaal,Any,Power must be recorded so later generations can question it.,1
+Ideal,Vaal,Any,Beauty and precision are forms of sacred discipline.,1
+Ideal,Vaal,Any,"Death is a boundary to study, not an excuse for cruelty.",1
+Ideal,Vaal,Any,The court exists to preserve civilisation beyond one ruler.,1
+Ideal,Vaal,Any,No discovery excuses the erasure of its victims.,1
+Bond,Vaal,Any,My calculations protect a district from a failing gem-engine.,1
+Bond,Vaal,Any,A rival scholar possesses the missing half of my proof.,1
+Bond,Vaal,Any,I owe my position to a courtier I no longer trust.,1
+Bond,Vaal,Any,My family maintains a shrine older than the present dynasty.,1
+Bond,Vaal,Any,I carry testimony from subjects selected for sacrifice.,1
+Bond,Vaal,Any,A construct recognises a command word only I know.,1
+Bond,Vaal,Any,I must warn a city that refuses to hear its own future.,1
+Bond,Vaal,Any,A sealed laboratory contains my mentor's unfinished work.,1
+Flaw,Vaal,Any,I value a complete experiment over the people endangered by it.,1
+Flaw,Vaal,Any,I assume mathematical elegance proves moral worth.,1
+Flaw,Vaal,Any,I conceal failed predictions to preserve my standing.,1
+Flaw,Vaal,Any,I treat servants as invisible parts of a system.,1
+Flaw,Vaal,Any,I mistake ritual repetition for safety.,1
+Flaw,Vaal,Any,I am fascinated by precisely what should frighten me.,1
+Flaw,Vaal,Any,I would sacrifice truth to prevent public disorder.,1
+Flaw,Vaal,Any,I believe my education makes me resistant to corruption.,1
+Ideal,Kalguur,Any,A lineage is honoured by adding knowledge to it.,1
+Ideal,Kalguur,Any,An expedition leader is responsible for every return journey.,1
+Ideal,Kalguur,Any,Runes should preserve truth rather than decorate authority.,1
+Ideal,Kalguur,Any,A tested design matters more than a glorious theory.,1
+Ideal,Kalguur,Any,Trade creates obligations on both sides.,1
+Ideal,Kalguur,Any,History must be sung accurately even when it shames the victors.,1
+Ideal,Kalguur,Any,Preparation is a form of respect for danger.,1
+Ideal,Kalguur,Any,No discovery belongs solely to the person who found it.,1
+Bond,Kalguur,Any,My family expects me to add a verse to its lineage song.,1
+Bond,Kalguur,Any,I inherited a rune-tool whose maker is officially forgotten.,1
+Bond,Kalguur,Any,A shipmate took the blame for my failed design.,1
+Bond,Kalguur,Any,I promised to map the last route of a lost expedition.,1
+Bond,Kalguur,Any,A rival house holds the legal claim to my best discovery.,1
+Bond,Kalguur,Any,I carry letters for people who may never see Aesclast again.,1
+Bond,Kalguur,Any,My crew saved an archive others wanted burned.,1
+Bond,Kalguur,Any,I must return proof that an ancestor was wrongly condemned.,1
+Flaw,Kalguur,Any,I dismiss knowledge that cannot be measured.,1
+Flaw,Kalguur,Any,I protect family prestige by hiding useful discoveries.,1
+Flaw,Kalguur,Any,I treat every conversation as a negotiation.,1
+Flaw,Kalguur,Any,I take excessive risks to produce a complete survey.,1
+Flaw,Kalguur,Any,I confuse emotional restraint with objectivity.,1
+Flaw,Kalguur,Any,I refuse to abandon equipment even when lives are at risk.,1
+Flaw,Kalguur,Any,I assume other cultures misuse anything they do not understand.,1
+Flaw,Kalguur,Any,I would rather repair a plan than admit it should be discarded.,1
 Ideal,Oriathan,Templar,Order must outlive the empire.,1
 Ideal,Oriathan,Templar,The Virtues must be defended from corruption.,1
 Ideal,Oriathan,Templar,Discipline is the first defence against nightmare.,1
@@ -38,6 +206,24 @@ Flaw,Oriathan,Templar,I see dissent as the first sign of heresy.,1
 Flaw,Oriathan,Templar,I hide how frightened I am of thaumaturgy.,1
 Flaw,Oriathan,Templar,I judge non-Oriathans by imperial custom.,1
 Flaw,Oriathan,Templar,I falsified a report to protect my unit.,1
+Ideal,Oriathan,Oriath Militia,Law should protect the street before it protects the palace.,1
+Ideal,Oriathan,Oriath Militia,A badge is a public trust rather than a private privilege.,1
+Ideal,Oriathan,Oriath Militia,Local knowledge is worth more than distant orders.,1
+Ideal,Oriathan,Oriath Militia,A peaceful arrest is better than a heroic funeral.,1
+Ideal,Oriathan,Oriath Militia,The militia must answer to the neighbourhoods it patrols.,1
+Ideal,Oriathan,Oriath Militia,No legion understands Oriath's streets as we do.,1
+Bond,Oriathan,Oriath Militia,My patrol partner covered for my worst mistake.,1
+Bond,Oriathan,Oriath Militia,A market district knows me by name.,1
+Bond,Oriathan,Oriath Militia,I keep evidence against a watch captain in a sealed box.,1
+Bond,Oriathan,Oriath Militia,The Ring paid for medicine my family could not afford.,1
+Bond,Oriathan,Oriath Militia,I promised a victim's family that the case would remain open.,1
+Bond,Oriathan,Oriath Militia,My badge belonged to the constable who trained me.,1
+Flaw,Oriathan,Oriath Militia,I accept small bribes and insist they change nothing.,1
+Flaw,Oriathan,Oriath Militia,I resent legionaries who treat us as amateurs.,1
+Flaw,Oriathan,Oriath Militia,I protect familiar offenders from outside investigators.,1
+Flaw,Oriathan,Oriath Militia,I use procedure to avoid difficult judgement.,1
+Flaw,Oriathan,Oriath Militia,I assume poverty is evidence of criminal intent.,1
+Flaw,Oriathan,Oriath Militia,I let loyalty to my patrol override the truth.,1
 Ideal,Oriathan,The Ring,Every bargain has a price and I name it.,1
 Ideal,Oriathan,The Ring,The Ring protects those the empire discards.,1
 Ideal,Oriathan,The Ring,Information is safer than steel.,1

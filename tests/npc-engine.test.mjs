@@ -16,7 +16,9 @@ const tables = {
   descriptors: await readCSV("descriptors"),
   professions: await readCSV("professions"),
   hooks: await readCSV("hooks"),
-  presets: JSON.parse(await readFile(path.join(root, "data", "presets.json"), "utf8"))
+  drives: await readCSV("drives"),
+  presets: JSON.parse(await readFile(path.join(root, "data", "presets.json"), "utf8")),
+  factions: JSON.parse(await readFile(path.join(root, "data", "factions.json"), "utf8"))
 };
 
 const rng = (seed = 0x1a2b3c4d) => {
@@ -58,9 +60,14 @@ test("campaign data passes structural and lore validation", () => {
     tables.main.filter((entry) => entry.category === "Affiliation" && entry.parent === "Stygian").map((entry) => entry.value),
     ["Stygian"]
   );
-  assert.equal(tables.names.length, 830);
-  assert.equal(tables.professions.length, 659);
-  assert.equal(tables.descriptors.length, 598);
+  assert.equal(tables.names.length, 870);
+  assert.equal(tables.professions.length, 691);
+  assert.equal(tables.descriptors.length, 860);
+  assert.equal(tables.hooks.length, 480);
+  assert.equal(tables.drives.length, 300);
+  for (const reserved of ["Cato", "Tane", "Lucan", "Kaom", "Hyrri", "Lani", "Utula", "Oyun", "Kira", "Dannig", "Gwennen", "Rog", "Tujen"]) {
+    assert.ok(!tables.names.some((entry) => entry.value === reserved), `${reserved} leaked into the random name pool`);
+  }
   for (const culture of ["Oriathan", "Azmeri", "Ezomyte", "Maraketh", "Karui", "Vaal", "Kalguur", "Stygian"]) {
     assert.ok(tables.names.filter((entry) => entry.parent === culture && entry.category === "Name").length >= 60);
     assert.ok(tables.names.filter((entry) => entry.parent === culture && entry.category === "Surname").length >= 40);
@@ -76,7 +83,11 @@ test("every preset generates complete and internally consistent NPCs", () => {
   for (const preset of tables.presets.presets) {
     for (let i = 0; i < 1200; i += 1) {
       const npc = NPCEngine.generateNPC({ preset: preset.id }, tables, random);
-      for (const field of ["culture", "affiliation", "species", "age", "alignment", "fullName", "profession", "ideal", "bond", "flaw"]) {
+      for (const field of [
+        "culture", "affiliation", "species", "age", "alignment", "fullName", "profession",
+        "location", "era", "capabilityTier", "ideal", "bond", "flaw", "goal", "problem",
+        "secret", "knowledge", "offer", "disposition", "build", "features", "attire", "distinguishingMark"
+      ]) {
         assert.ok(npc[field], `${preset.id} produced a blank ${field}`);
       }
       assert.ok(tables.main.some((entry) => entry.category === "Affiliation" && entry.parent === npc.culture && entry.value === npc.affiliation));
@@ -241,8 +252,8 @@ test("Emerald Legion recruitment is approximately half non-human", () => {
 
 test("surname selection honours affiliation specificity", () => {
   const custom = structuredClone(tables);
-  custom.names.push({ category: "Surname", parent: "Oriathan", subParent: "Templar", value: "ExactBranch", weight: 1 });
-  const npc = NPCEngine.generateNPC({ culture: "Oriathan", affiliation: "Templar", age: "Adult" }, custom, rng(7));
+  custom.names.push({ category: "Surname", parent: "Oriathan", subParent: "The Ring", value: "ExactBranch", weight: 1 });
+  const npc = NPCEngine.generateNPC({ culture: "Oriathan", affiliation: "The Ring", age: "Adult" }, custom, () => 0);
   assert.equal(npc.surname, "ExactBranch");
 });
 
@@ -271,11 +282,101 @@ test("locks and API constraints reject impossible combinations", () => {
   assert.throws(() => NPCEngine.generateNPC({ preset: "not-real" }, tables, rng(4)), /Unknown preset/);
 });
 
+test("ordained Templars use bestowed virtue-names while lay members keep birth names", () => {
+  const random = rng(6201);
+  const virtues = new Set(tables.names
+    .filter((entry) => entry.category === "OrdainedName" && entry.parent === "Oriathan")
+    .map((entry) => entry.value));
+  let ordained = 0;
+  let lay = 0;
+  for (let i = 0; i < 5000; i += 1) {
+    const npc = NPCEngine.generateNPC({ culture: "Oriathan", affiliation: "Templar", age: "Adult" }, tables, random);
+    assert.equal(npc.factionId, "oriath.templar");
+    if (npc.organization === "Archivists") assert.equal(npc.ordination, "Ordained");
+    if (npc.ordination === "Ordained") {
+      ordained += 1;
+      assert.ok(virtues.has(npc.firstName));
+      assert.equal(npc.surname, "");
+      assert.equal(npc.fullName, `Templar ${npc.firstName}`);
+      assert.equal(npc.nameStyle, "Bestowed virtue-name");
+      assert.ok(["Initiate", "Archivist", "Lord Archivist", "High Archivist", "Initiate Templar", "Templar", "Templar Captain", "Lord Templar General"].includes(npc.rank));
+    } else {
+      lay += 1;
+      assert.equal(npc.nameStyle, "Birth name");
+      assert.ok(!npc.fullName.startsWith("Templar "));
+      assert.ok(["Guard", "Sergeant", "Senior Sergeant"].includes(npc.rank));
+    }
+  }
+  assert.ok(ordained > 600, `only ${ordained} ordained Templars generated`);
+  assert.ok(lay > 2500, `only ${lay} lay Templars generated`);
+});
+
+test("Oriath Militia is distinct from the Templars and uses militia content", () => {
+  const random = rng(7114);
+  const militiaJobs = new Set(tables.professions
+    .filter((entry) => entry.category === "Militia Service" && entry.parent === "Oriathan")
+    .map((entry) => entry.value));
+  for (let i = 0; i < 500; i += 1) {
+    const npc = NPCEngine.generateNPC({
+      culture: "Oriathan", affiliation: "Oriath Militia", professionCategory: "Militia Service", age: "Adult"
+    }, tables, random);
+    assert.equal(npc.organization, "Oriath Militia");
+    assert.equal(npc.ordination, "");
+    assert.equal(npc.factionId, "oriath.militia");
+    assert.ok(militiaJobs.has(npc.profession));
+    assert.ok(["Militia Guard", "Constable", "Watch Sergeant", "Militia Captain"].includes(npc.rank));
+    assert.ok(!npc.fullName.startsWith("Templar "));
+    for (const [field, category] of [["goal", "Goal"], ["problem", "Problem"], ["secret", "Secret"], ["knowledge", "Knowledge"], ["offer", "Offer"], ["disposition", "Disposition"]]) {
+      assert.ok(tables.drives.some((entry) => entry.category === category
+        && entry.parent === "Oriathan" && entry.subParent === "Oriath Militia" && entry.value === npc[field]));
+    }
+  }
+});
+
+test("structured descriptors honour species, age, and profession restrictions", () => {
+  const custom = structuredClone(tables);
+  const unrestricted = custom.descriptors.filter((entry) => !["Features", "Attire", "Distinguishing"].includes(entry.category));
+  custom.descriptors = [
+    ...unrestricted,
+    { category: "Features", parent: "Any", subParent: "Any", value: "Wrong elder feature", weight: 100, species: "Any", ages: "Elder", professionCategories: "Any" },
+    { category: "Features", parent: "Any", subParent: "Any", value: "Adult feature", weight: 1, species: "Any", ages: "Adult", professionCategories: "Any" },
+    { category: "Attire", parent: "Any", subParent: "Any", value: "Wrong scholar attire", weight: 100, species: "Any", ages: "Any", professionCategories: "Scholarly" },
+    { category: "Attire", parent: "Any", subParent: "Any", value: "Military attire", weight: 1, species: "Any", ages: "Any", professionCategories: "Military" },
+    { category: "Distinguishing", parent: "Any", subParent: "Any", value: "Wrong gnome mark", weight: 100, species: "Gnome", ages: "Any", professionCategories: "Any" },
+    { category: "Distinguishing", parent: "Any", subParent: "Any", value: "Half-orc mark", weight: 1, species: "Half-Orc", ages: "Any", professionCategories: "Any" }
+  ];
+  const npc = NPCEngine.generateNPC({
+    culture: "Karui", species: "Half-Orc", age: "Adult", professionCategory: "Military"
+  }, custom, rng(81));
+  assert.equal(npc.features, "Adult feature");
+  assert.equal(npc.attire, "Military attire");
+  assert.equal(npc.distinguishingMark, "Half-orc mark");
+});
+
+test("location, era, capability, faction IDs, and custom overrides are first-class data", () => {
+  const vaal = NPCEngine.generateNPC({ culture: "Vaal", capabilityTier: "Elite" }, tables, rng(91));
+  assert.equal(vaal.location, "Ancient Vaal city");
+  assert.equal(vaal.era, "Ancient Vaal");
+  assert.equal(vaal.capabilityTier, "Elite");
+
+  const overridden = NPCEngine.applyOverrides(tables, {
+    add: {
+      names: [
+        { category: "Name", parent: "Oriathan", subParent: "The Ring", value: "LocalName", weight: 1 },
+        { category: "Surname", parent: "Oriathan", subParent: "The Ring", value: "LocalSurname", weight: 1 }
+      ]
+    }
+  });
+  const local = NPCEngine.generateNPC({ culture: "Oriathan", affiliation: "The Ring", age: "Adult" }, overridden, () => 0);
+  assert.equal(local.fullName, "LocalName LocalSurname");
+  assert.throws(() => NPCEngine.applyOverrides(tables, { names: "bad" }), /names overrides must be an array/);
+});
+
 test("section rerolls preserve identity", () => {
   const random = rng(777);
   const npc = NPCEngine.generateNPC({ preset: "stygian_mines" }, tables, random);
   const identity = Object.fromEntries(["culture", "affiliation", "branch", "species", "socialOrigin", "age", "alignment"].map((key) => [key, npc[key]]));
-  for (const section of ["name", "profession", "appearance", "personality", "hooks"]) {
+  for (const section of ["name", "profession", "appearance", "personality", "hooks", "drives"]) {
     const rerolled = NPCEngine.rerollSection(npc, section, identity, tables, random);
     for (const [key, value] of Object.entries(identity)) assert.equal(rerolled[key], value);
   }

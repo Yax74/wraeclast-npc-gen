@@ -40,7 +40,7 @@ jobs:
         run: |
           mkdir -p dist/package
           cp module.json README.md CHANGELOG.md dist/package/
-          cp -R data scripts styles templates dist/package/
+          cp -R data docs scripts styles templates dist/package/
           cp module.json dist/module.json
           (cd dist/package && zip -q -r ../wraeclast-npc-gen.zip .)
           (cd dist && sha256sum wraeclast-npc-gen.zip > wraeclast-npc-gen.zip.sha256)
@@ -54,4 +54,3 @@ jobs:
           dist/wraeclast-npc-gen.zip
           dist/wraeclast-npc-gen.zip.sha256
           --clobber
-

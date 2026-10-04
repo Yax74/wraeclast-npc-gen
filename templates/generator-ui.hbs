@@ -16,10 +16,6 @@
           {{/each}}
         </select>
       </label>
-      <label class="small-field">
-        <span>NPCs</span>
-        <input name="batchCount" type="number" min="1" max="10" step="1" value="{{batchCount}}">
-      </label>
       <label class="wide-field">
         <span>Chat visibility</span>
         <select name="chatMode">
@@ -107,13 +103,43 @@
         </span>
       </label>
 
-      <label class="span-two">
+      <label>
         <span>Profession category</span>
         <span class="filter-row">
           <select name="professionCategory" data-filter="professionCategory">
             {{#each professionCategories}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
           </select>
           <button type="button" class="lock-button {{#if locks.professionCategory}}active{{/if}}" data-action="toggleLock" data-field="professionCategory" title="Toggle profession lock" aria-label="Toggle profession lock"><i class="fa-solid {{#if locks.professionCategory}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+
+      <label>
+        <span>Location</span>
+        <span class="filter-row">
+          <select name="location" data-filter="location">
+            {{#each locations}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.location}}active{{/if}}" data-action="toggleLock" data-field="location" title="Toggle location lock" aria-label="Toggle location lock"><i class="fa-solid {{#if locks.location}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+
+      <label>
+        <span>Era</span>
+        <span class="filter-row">
+          <select name="era" data-filter="era">
+            {{#each eras}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.era}}active{{/if}}" data-action="toggleLock" data-field="era" title="Toggle era lock" aria-label="Toggle era lock"><i class="fa-solid {{#if locks.era}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
+        </span>
+      </label>
+
+      <label>
+        <span>Capability</span>
+        <span class="filter-row">
+          <select name="capabilityTier" data-filter="capabilityTier">
+            {{#each capabilityTiers}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="lock-button {{#if locks.capabilityTier}}active{{/if}}" data-action="toggleLock" data-field="capabilityTier" title="Toggle capability lock" aria-label="Toggle capability lock"><i class="fa-solid {{#if locks.capabilityTier}}fa-lock{{else}}fa-lock-open{{/if}}"></i></button>
         </span>
       </label>
     </div>
@@ -123,52 +149,100 @@
     </button>
   </section>
 
-  {{#if results.length}}
-  <div class="wraeclast-batch-actions" aria-label="Batch output actions">
-    <span>All previews:</span>
-    <button type="button" data-action="outputAll" data-output="chat"><i class="fa-solid fa-comments"></i> Chat</button>
-    <button type="button" data-action="outputAll" data-output="journal"><i class="fa-solid fa-book-open"></i> Journals</button>
-    <button type="button" data-action="outputAll" data-output="copy"><i class="fa-solid fa-copy"></i> Copy</button>
-  </div>
-  {{/if}}
-
   <section class="wraeclast-results" aria-live="polite">
     {{#each results}}
     <article class="npc-preview">
       <header>
         <div>
-          <h2>{{fullName}}</h2>
+          {{#if editing}}
+          <label class="inline-edit name-edit"><span>Name</span><input type="text" value="{{fullName}}" data-edit-field="fullName"></label>
+          {{else}}<h2>{{fullName}}</h2>{{/if}}
           <p class="identity-line"><strong>{{culture}}</strong>{{#if showAffiliation}} · {{affiliation}}{{/if}}{{#if showBranch}} · {{branchDisplay}}{{/if}} · {{species}} · {{age}} · {{alignment}}</p>
-          <p class="origin-line">{{socialOrigin}}</p>
+          <p class="origin-line">{{socialOrigin}} · {{location}} · {{era}} · {{capabilityTier}}</p>
         </div>
-        <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="name" title="Reroll name" aria-label="Reroll name"><i class="fa-solid fa-rotate"></i></button>
+        <div class="preview-history">
+          <button type="button" class="icon-button" data-action="undo" title="Undo last change" aria-label="Undo last change" {{#unless ../canUndo}}disabled{{/unless}}><i class="fa-solid fa-rotate-left"></i></button>
+          <button type="button" class="icon-button" data-action="redo" title="Redo change" aria-label="Redo change" {{#unless ../canRedo}}disabled{{/unless}}><i class="fa-solid fa-rotate-right"></i></button>
+          <button type="button" class="edit-button" data-action="toggleEdit"><i class="fa-solid fa-pen"></i> {{#if editing}}Done{{else}}Edit{{/if}}</button>
+          <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="name" title="Reroll name" aria-label="Reroll name"><i class="fa-solid fa-dice"></i></button>
+        </div>
       </header>
 
       <div class="preview-grid">
         <section>
           <h3>Profession <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="profession" title="Reroll profession" aria-label="Reroll profession"><i class="fa-solid fa-rotate"></i></button></h3>
+          {{#if editing}}
+          <label class="inline-edit"><span>Profession</span><input type="text" value="{{profession}}" data-edit-field="profession"></label>
+          <label class="inline-edit"><span>Organisation</span><input type="text" value="{{organization}}" data-edit-field="organization"></label>
+          <label class="inline-edit"><span>Rank</span><input type="text" value="{{rank}}" data-edit-field="rank"></label>
+          {{else}}
           <p>{{profession}} <em>({{professionCategory}})</em></p>
           {{#if organization}}<p class="detail-line">{{organization}}</p>{{/if}}
+          {{#if rank}}<p class="detail-line">{{rank}}{{#if showOrdination}} · {{ordination}}{{/if}}</p>{{/if}}
+          {{/if}}
         </section>
 
         <section>
           <h3>Appearance <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="appearance" title="Reroll appearance" aria-label="Reroll appearance"><i class="fa-solid fa-rotate"></i></button></h3>
-          <p>{{#each appearance}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p>
+          {{#if editing}}
+          <label class="inline-edit"><span>Build</span><input type="text" value="{{build}}" data-edit-field="build"></label>
+          <label class="inline-edit"><span>Features</span><input type="text" value="{{features}}" data-edit-field="features"></label>
+          <label class="inline-edit"><span>Attire</span><input type="text" value="{{attire}}" data-edit-field="attire"></label>
+          <label class="inline-edit"><span>Mark</span><input type="text" value="{{distinguishingMark}}" data-edit-field="distinguishingMark"></label>
+          <label class="inline-edit"><span>Voice</span><input type="text" value="{{voice}}" data-edit-field="voice"></label>
+          {{else}}
+          <p><strong>Build:</strong> {{build}}<br><strong>Features:</strong> {{features}}<br><strong>Attire:</strong> {{attire}}<br><strong>Mark:</strong> {{distinguishingMark}}</p>
           <p class="detail-line">{{voice}}</p>
+          {{/if}}
         </section>
 
         <section>
           <h3>Personality <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="personality" title="Reroll personality" aria-label="Reroll personality"><i class="fa-solid fa-rotate"></i></button></h3>
+          {{#if editing}}
+          <label class="inline-edit"><span>Demeanor</span><input type="text" value="{{demeanorText}}" data-edit-field="demeanor"></label>
+          <label class="inline-edit"><span>Attitude</span><input type="text" value="{{attitudeText}}" data-edit-field="attitude"></label>
+          <label class="inline-edit"><span>Mannerism</span><input type="text" value="{{mannerism}}" data-edit-field="mannerism"></label>
+          {{else}}
           <p><strong>Demeanor:</strong> {{#each demeanor}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p>
           <p><strong>Attitude:</strong> {{#each attitude}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p>
           <p class="detail-line">{{mannerism}}</p>
+          {{/if}}
         </section>
 
         <section>
           <h3>Hooks <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="hooks" title="Reroll hooks" aria-label="Reroll hooks"><i class="fa-solid fa-rotate"></i></button></h3>
+          {{#if editing}}
+          <label class="inline-edit"><span>Ideal</span><textarea rows="2" data-edit-field="ideal">{{ideal}}</textarea></label>
+          <label class="inline-edit"><span>Bond</span><textarea rows="2" data-edit-field="bond">{{bond}}</textarea></label>
+          <label class="inline-edit"><span>Flaw</span><textarea rows="2" data-edit-field="flaw">{{flaw}}</textarea></label>
+          {{else}}
           <p><strong>Ideal:</strong> {{ideal}}</p>
           <p><strong>Bond:</strong> {{bond}}</p>
           <p><strong>Flaw:</strong> {{flaw}}</p>
+          {{/if}}
+        </section>
+
+        <section class="span-two narrative-section">
+          <h3>Immediate use <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="drives" title="Reroll immediate-use details" aria-label="Reroll immediate-use details"><i class="fa-solid fa-rotate"></i></button></h3>
+          {{#if editing}}
+          <div class="narrative-edit-grid">
+            <label class="inline-edit"><span>Goal</span><textarea rows="2" data-edit-field="goal">{{goal}}</textarea></label>
+            <label class="inline-edit"><span>Problem</span><textarea rows="2" data-edit-field="problem">{{problem}}</textarea></label>
+            <label class="inline-edit"><span>Secret</span><textarea rows="2" data-edit-field="secret">{{secret}}</textarea></label>
+            <label class="inline-edit"><span>Knowledge</span><textarea rows="2" data-edit-field="knowledge">{{knowledge}}</textarea></label>
+            <label class="inline-edit"><span>Offer</span><textarea rows="2" data-edit-field="offer">{{offer}}</textarea></label>
+            <label class="inline-edit"><span>Disposition</span><textarea rows="2" data-edit-field="disposition">{{disposition}}</textarea></label>
+          </div>
+          {{else}}
+          <div class="narrative-grid">
+            <p><strong>Goal:</strong> {{goal}}</p>
+            <p><strong>Problem:</strong> {{problem}}</p>
+            <p><strong>Secret:</strong> {{secret}}</p>
+            <p><strong>Knowledge:</strong> {{knowledge}}</p>
+            <p><strong>Offer:</strong> {{offer}}</p>
+            <p><strong>Disposition:</strong> {{disposition}}</p>
+          </div>
+          {{/if}}
         </section>
       </div>
 

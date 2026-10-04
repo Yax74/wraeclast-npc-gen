@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "checkedAgainstNotion": "2026-10-04",
+  "sourceDatabase": "Campaign Factions database",
+  "factions": [
+    {
+      "id": "oriath.templar",
+      "label": "Templar",
+      "type": "affiliation",
+      "culture": "Oriathan",
+      "sourceEntry": "Order Templar"
+    },
+    {
+      "id": "oriath.militia",
+      "label": "Oriath Militia",
+      "type": "affiliation",
+      "culture": "Oriathan",
+      "sourceEntry": "Militia"
+    },
+    {
+      "id": "oriath.ring",
+      "label": "The Ring",
+      "type": "affiliation",
+      "culture": "Oriathan",
+      "sourceEntry": "The Ring"
+    },
+    {
+      "id": "kalguur.expedition",
+      "label": "Kalguur Expedition",
+      "type": "affiliation",
+      "culture": "Kalguur",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui",
+      "label": "Karui",
+      "type": "affiliation",
+      "culture": "Karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui.tukohama",
+      "label": "Tukohama",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui.ngamahu",
+      "label": "Ngamahu",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui.valako",
+      "label": "Valako",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui.tasalio",
+      "label": "Tasalio",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui.ramako",
+      "label": "Ramako",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui.rongokurai",
+      "label": "Rongokurai",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui.arohongui",
+      "label": "Arohongui",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui.tawhoa",
+      "label": "Tawhoa",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Tawhoa"
+    },
+    {
+      "id": "karui.kitava",
+      "label": "Kitava",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui.hinekora",
+      "label": "Hinekora",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Hinekora"
+    },
+    {
+      "id": "karui.sione",
+      "label": "Sione",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "karui.lani-lua",
+      "label": "Lani Lua",
+      "type": "branch",
+      "culture": "Karui",
+      "parentId": "karui",
+      "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "stygian",
+      "label": "Stygian",
+      "type": "affiliation",
+      "culture": "Stygian",
+      "sourceEntry": "Stygian / Azurite Miners"
+    },
+    {
+      "id": "stygian.deepwardens",
+      "label": "Deepwardens",
+      "type": "branch",
+      "culture": "Stygian",
+      "parentId": "stygian",
+      "sourceEntry": "Stygian / Azurite Miners"
+    },
+    {
+      "id": "stygian.sulphite-syndicate",
+      "label": "Sulphite Syndicate",
+      "type": "branch",
+      "culture": "Stygian",
+      "parentId": "stygian",
+      "sourceEntry": "Stygian / Azurite Miners"
+    },
+    {
+      "id": "stygian.shadowborn",
+      "label": "Shadowborn",
+      "type": "branch",
+      "culture": "Stygian",
+      "parentId": "stygian",
+      "sourceEntry": "Stygian / Azurite Miners"
+    },
+    {
+      "id": "stygian.emberforged",
+      "label": "Emberforged",
+      "type": "branch",
+      "culture": "Stygian",
+      "parentId": "stygian",
+      "sourceEntry": "Stygian / Azurite Miners"
+    },
+    {
+      "id": "stygian.hollowed-vein",
+      "label": "Hollowed Vein",
+      "type": "branch",
+      "culture": "Stygian",
+      "parentId": "stygian",
+      "sourceEntry": "Stygian / Azurite Miners"
+    }
+  ]
+}

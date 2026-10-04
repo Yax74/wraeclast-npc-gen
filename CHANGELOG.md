@@ -1,5 +1,34 @@
 # Changelog
 
+## 2.3.0
+
+### Lore and naming
+
+- Added the Oriath Militia as a distinct Oriathan affiliation with its own weighted occupations, ranks, uniform details, ideals, bonds, flaws, motives, secrets, contacts, and complications.
+- Modelled the Templar Rite of Abnegation: ordained Templars now renounce their birth name and receive a single virtue-name, while non-ordained legion personnel retain ordinary Oriathan birth names.
+- Added separate rank tables for ordained legion officers, lay legion personnel, Archivists, and Oriath Militia.
+- Audited all cultural name pools against the campaign culture mapping and established GGG naming patterns.
+- Replaced generic English compound surnames in the Maraketh, Karui, and Vaal pools; rebuilt Stygian names around their Eternal Empire ancestry.
+- Removed additional GGG collisions, including Cato, Tane, and Lucan, and expanded the reserved-character validator.
+- Added stable faction and branch IDs checked against the campaign Factions database without publishing private Notion URLs.
+
+### Content expansion
+
+- Expanded the module to 870 name entries, 691 professions, 860 descriptors, 480 faction/cultural hooks, and 300 immediate-use narrative prompts.
+- Added structured build, features, attire, and distinguishing-mark fields with species, age, and profession compatibility rules.
+- Added goals, immediate problems, secrets, useful knowledge, concrete offers, and initial dispositions.
+- Added location, era, social-background, and capability-tier generation plus a Theopolis and Oriath preset.
+
+### Quality of life
+
+- Refocused the normal interface on one detailed NPC instead of batch generation; the old batch macro API remains compatible.
+- Added inline editing and undo/redo history for generated NPCs.
+- Added independent rerolling for immediate-use narrative details.
+- Added optional D&D 5e Actor templates mapped to Civilian, Skilled, Trained, Veteran, and Elite capability tiers.
+- Added validated world-local JSON overrides for names, descriptors, professions, hooks, narrative prompts, main tables, and presets.
+- Added location, era, capability, rank, ordination, and faction IDs to previews and exported results.
+- Expanded deterministic validation to 19 tests, including Templar naming, Militia separation, structured descriptor compatibility, custom overrides, and faction registry coverage.
+
 ## 2.2.0
 
 ### Content expansion

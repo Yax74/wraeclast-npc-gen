@@ -1,10 +1,10 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "presets": [
     {
       "id": "general",
       "label": "All Wraeclast",
-      "description": "A broad present-day Wraeclast mix; ancient Vaal are excluded unless selected.",
+      "description": "A broad 1599 IC Wraeclast mix; ancient Vaal are excluded unless selected.",
       "cultures": {
         "Oriathan": 29,
         "Azmeri": 15,
@@ -13,12 +13,27 @@
         "Karui": 13,
         "Kalguur": 10,
         "Stygian": 8
+      },
+      "eras": {
+        "1599 IC": 100
+      },
+      "locations": {
+        "Wraeclast road or wilderness": 25,
+        "Lioneye's Watch": 10,
+        "Forest Encampment": 13,
+        "Sarn Slums": 12,
+        "Sarn Arena": 8,
+        "Sarn Docks": 8,
+        "Sarn Upper City": 5,
+        "Highgate and the Vastiri": 7,
+        "Kalguur expedition camp": 5,
+        "Azurite Mines": 7
       }
     },
     {
       "id": "sarn_survivor",
       "label": "Sarn survivor",
-      "description": "Civilians, refugees, opportunists, and occupiers around ruined Sarn.",
+      "description": "Civilians, refugees, opportunists, militia and occupiers around ruined Sarn.",
       "cultures": {
         "Oriathan": 48,
         "Azmeri": 17,
@@ -29,26 +44,78 @@
         "Stygian": 5
       },
       "socialOrigins": {
-        "Refugee": 40,
-        "Native": 25,
-        "Exile": 20,
-        "Diaspora": 10,
-        "Mixed heritage": 5
+        "Refugee": 30,
+        "Native": 20,
+        "Exile": 15,
+        "Diaspora": 8,
+        "Mixed heritage": 5,
+        "Urban poor": 12,
+        "Displaced survivor": 10
+      },
+      "eras": {
+        "1599 IC": 100
+      },
+      "locations": {
+        "Sarn Slums": 35,
+        "Sarn Arena": 25,
+        "Sarn Docks": 20,
+        "Sarn Upper City": 10,
+        "Wraeclast road or wilderness": 10
       }
     },
     {
       "id": "oriathan_occupier",
       "label": "Oriathan occupier",
-      "description": "Imperial, Templar, and Ring presence in and around Sarn.",
+      "description": "Templar, legion, militia and Ring presence in and around Sarn.",
       "cultures": {
         "Oriathan": 100
       },
       "affiliations": {
         "Oriathan": {
-          "Templar": 60,
-          "The Ring": 15,
-          "Unaffiliated": 25
+          "Templar": 55,
+          "Oriath Militia": 20,
+          "The Ring": 10,
+          "Unaffiliated": 15
         }
+      },
+      "eras": {
+        "1599 IC": 100
+      },
+      "locations": {
+        "Sarn Upper City": 45,
+        "Sarn Docks": 20,
+        "Sarn Slums": 15,
+        "Sarn Arena": 10,
+        "Wraeclast road or wilderness": 10
+      }
+    },
+    {
+      "id": "theopolis",
+      "label": "Theopolis and Oriath",
+      "description": "Residents, militia, Templars and criminal interests across Oriath.",
+      "cultures": {
+        "Oriathan": 90,
+        "Karui": 3,
+        "Ezomyte": 2,
+        "Maraketh": 2,
+        "Azmeri": 1,
+        "Kalguur": 1,
+        "Stygian": 1
+      },
+      "affiliations": {
+        "Oriathan": {
+          "Unaffiliated": 40,
+          "Oriath Militia": 28,
+          "Templar": 22,
+          "The Ring": 10
+        }
+      },
+      "eras": {
+        "1599 IC": 100
+      },
+      "locations": {
+        "Theopolis": 75,
+        "Oriath port town": 25
       }
     },
     {
@@ -65,11 +132,20 @@
         "Stygian": 4
       },
       "socialOrigins": {
-        "Native": 48,
-        "Refugee": 22,
-        "Exile": 18,
+        "Native": 38,
+        "Refugee": 18,
+        "Exile": 14,
         "Diaspora": 8,
-        "Mixed heritage": 4
+        "Mixed heritage": 4,
+        "Displaced survivor": 10,
+        "Nomad": 8
+      },
+      "eras": {
+        "1599 IC": 100
+      },
+      "locations": {
+        "Forest Encampment": 85,
+        "Wraeclast road or wilderness": 15
       }
     },
     {
@@ -83,6 +159,13 @@
         "Karui": {
           "Karui": 100
         }
+      },
+      "eras": {
+        "1599 IC": 100
+      },
+      "locations": {
+        "Karui Archipelago": 85,
+        "Wraeclast road or wilderness": 15
       },
       "branches": {
         "Karui": {
@@ -114,6 +197,13 @@
           "Kalguur Expedition": 90,
           "Unaffiliated": 10
         }
+      },
+      "eras": {
+        "1599 IC": 100
+      },
+      "locations": {
+        "Kalguur expedition camp": 90,
+        "Wraeclast road or wilderness": 10
       }
     },
     {
@@ -127,6 +217,12 @@
         "Stygian": {
           "Stygian": 100
         }
+      },
+      "eras": {
+        "1599 IC": 100
+      },
+      "locations": {
+        "Azurite Mines": 100
       },
       "branches": {
         "Stygian": {
@@ -159,9 +255,18 @@
         }
       },
       "socialOrigins": {
-        "Native": 90,
+        "Native": 75,
         "Diaspora": 5,
-        "Exile": 5
+        "Exile": 5,
+        "Religious household": 5,
+        "Merchant household": 5,
+        "Military household": 5
+      },
+      "eras": {
+        "Ancient Vaal": 100
+      },
+      "locations": {
+        "Ancient Vaal city": 100
       }
     }
   ]
