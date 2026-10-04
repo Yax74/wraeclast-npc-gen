@@ -52,6 +52,9 @@ test("campaign data passes structural and lore validation", () => {
   assert.deepEqual(branches("Stygian"), new Set([
     "Deepwardens", "Sulphite Syndicate", "Shadowborn", "Emberforged", "Hollowed Vein"
   ]));
+  assert.deepEqual(branches("Maraketh"), new Set([
+    "Kiyato Akhara", "Ardura Akhara", "Afarud", "Sel Khari"
+  ]));
   assert.deepEqual(
     tables.main.filter((entry) => entry.category === "Affiliation" && entry.parent === "Karui").map((entry) => entry.value),
     ["Karui"]
@@ -60,12 +63,16 @@ test("campaign data passes structural and lore validation", () => {
     tables.main.filter((entry) => entry.category === "Affiliation" && entry.parent === "Stygian").map((entry) => entry.value),
     ["Stygian"]
   );
-  assert.equal(tables.names.length, 870);
-  assert.equal(tables.professions.length, 691);
-  assert.equal(tables.descriptors.length, 860);
-  assert.equal(tables.hooks.length, 480);
-  assert.equal(tables.drives.length, 300);
-  for (const reserved of ["Cato", "Tane", "Lucan", "Kaom", "Hyrri", "Lani", "Utula", "Oyun", "Kira", "Dannig", "Gwennen", "Rog", "Tujen"]) {
+  assert.equal(tables.names.length, 900);
+  assert.equal(tables.professions.length, 834);
+  assert.equal(tables.descriptors.length, 968);
+  assert.equal(tables.hooks.length, 594);
+  assert.equal(tables.drives.length, 444);
+  for (const reserved of [
+    "Cato", "Tane", "Lucan", "Kaom", "Hyrri", "Lani", "Utula", "Oyun", "Kira",
+    "Dannig", "Gwennen", "Rog", "Tujen", "Deshret", "Asala", "Zarka", "Shambrin",
+    "Balbala", "Jamanra", "Risu", "Azmadi", "Saresh", "Varashta"
+  ]) {
     assert.ok(!tables.names.some((entry) => entry.value === reserved), `${reserved} leaked into the random name pool`);
   }
   for (const culture of ["Oriathan", "Azmeri", "Ezomyte", "Maraketh", "Karui", "Vaal", "Kalguur", "Stygian"]) {
@@ -144,6 +151,7 @@ test("general and location presets respect their intended scope", () => {
     assert.equal(NPCEngine.generateNPC({ preset: "stygian_mines" }, tables, random).culture, "Stygian");
     assert.equal(NPCEngine.generateNPC({ preset: "karui_tribe" }, tables, random).culture, "Karui");
     assert.equal(NPCEngine.generateNPC({ preset: "kalguur_expedition" }, tables, random).culture, "Kalguur");
+    assert.equal(NPCEngine.generateNPC({ preset: "maraketh_highgate" }, tables, random).culture, "Maraketh");
     assert.equal(NPCEngine.generateNPC({ preset: "vaal_historical" }, tables, random).culture, "Vaal");
   }
 });
@@ -200,6 +208,23 @@ test("branch options preserve the faction hierarchy", () => {
 
   const oriathan = NPCEngine.getOptions(tables, { culture: "Oriathan" });
   assert.deepEqual(oriathan.branches, []);
+
+  const maraketh = NPCEngine.getOptions(tables, { culture: "Maraketh" });
+  assert.deepEqual(maraketh.affiliations.map((entry) => entry.value), [
+    "Faridun", "Maraketh", "Order of the Djinn", "Unaffiliated"
+  ]);
+  assert.deepEqual(
+    NPCEngine.getOptions(tables, { culture: "Maraketh", affiliation: "Maraketh" }).branches.map((entry) => entry.value),
+    ["Ardura Akhara", "Kiyato Akhara", "Unaffiliated"]
+  );
+  assert.deepEqual(
+    NPCEngine.getOptions(tables, { culture: "Maraketh", affiliation: "Faridun" }).branches.map((entry) => entry.value),
+    ["Afarud", "Unaffiliated"]
+  );
+  assert.deepEqual(
+    NPCEngine.getOptions(tables, { culture: "Maraketh", affiliation: "Order of the Djinn" }).branches.map((entry) => entry.value),
+    ["Sel Khari", "Unaffiliated"]
+  );
 });
 
 test("legacy flattened affiliation constraints migrate to branches", () => {
@@ -212,6 +237,47 @@ test("legacy flattened affiliation constraints migrate to branches", () => {
   assert.equal(karui.culture, "Karui");
   assert.equal(karui.affiliation, "Karui");
   assert.equal(karui.branch, "Tawhoa");
+
+  const afarud = NPCEngine.generateNPC({ affiliation: "Afarud" }, tables, rng(13));
+  assert.equal(afarud.culture, "Maraketh");
+  assert.equal(afarud.affiliation, "Faridun");
+  assert.equal(afarud.branch, "Afarud");
+
+  const selKhari = NPCEngine.generateNPC({ affiliation: "Sel Khari" }, tables, rng(14));
+  assert.equal(selKhari.culture, "Maraketh");
+  assert.equal(selKhari.affiliation, "Order of the Djinn");
+  assert.equal(selKhari.branch, "Sel Khari");
+});
+
+test("Maraketh factions use stable IDs and faction-specific content", () => {
+  const random = rng(20264);
+  const cases = [
+    ["Maraketh", "Kiyato Akhara", "maraketh", "maraketh.kiyato"],
+    ["Maraketh", "Ardura Akhara", "maraketh", "maraketh.ardura"],
+    ["Faridun", "Afarud", "maraketh.faridun", "maraketh.faridun.afarud"],
+    ["Order of the Djinn", "Sel Khari", "maraketh.order-of-the-djinn", "maraketh.order-of-the-djinn.sel-khari"]
+  ];
+  for (const [affiliation, branch, factionId, branchId] of cases) {
+    for (let i = 0; i < 80; i += 1) {
+      const npc = NPCEngine.generateNPC({ culture: "Maraketh", affiliation, branch, age: "Adult" }, tables, random);
+      assert.equal(npc.factionId, factionId);
+      assert.equal(npc.branchId, branchId);
+      for (const [field, category] of [["ideal", "Ideal"], ["bond", "Bond"], ["flaw", "Flaw"]]) {
+        assert.ok(tables.hooks.some((entry) => entry.parent === "Maraketh"
+          && entry.subParent === branch && entry.category === category && entry.value === npc[field]));
+      }
+      for (const [field, category] of [["goal", "Goal"], ["problem", "Problem"], ["secret", "Secret"], ["knowledge", "Knowledge"], ["offer", "Offer"], ["disposition", "Disposition"]]) {
+        assert.ok(tables.drives.some((entry) => entry.parent === "Maraketh"
+          && entry.subParent === branch && entry.category === category && entry.value === npc[field]));
+      }
+    }
+  }
+
+  let surnames = 0;
+  for (let i = 0; i < 4000; i += 1) {
+    if (NPCEngine.generateNPC({ culture: "Maraketh", age: "Adult" }, tables, random).surname) surnames += 1;
+  }
+  assert.ok(surnames / 4000 > 0.22 && surnames / 4000 < 0.28, `Maraketh surname share was ${surnames / 4000}`);
 });
 
 test("every named branch generates branch-specific hooks", () => {
