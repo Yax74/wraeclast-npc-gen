@@ -474,6 +474,149 @@ Transport,Maraketh,Any,Pack-train marshal,1
 Transport,Maraketh,Any,Salt-road guide,1
 Transport,Maraketh,Any,Silk-road drover,1
 Transport,Maraketh,Any,Water-caravan guide,1
+Military,Maraketh,Kiyato Akhara,Deshret Seal warden,1
+Military,Maraketh,Kiyato Akhara,Highgate rampart guard,1
+Military,Maraketh,Kiyato Akhara,Mine-gate sentinel,1
+Military,Maraketh,Kiyato Akhara,Rhexback lancer,1
+Military,Maraketh,Kiyato Akhara,Vigil patrol leader,1
+Military,Maraketh,Kiyato Akhara,Corruption watch scout,1
+Military,Maraketh,Kiyato Akhara,Mountain-pass Khatari,1
+Military,Maraketh,Kiyato Akhara,Rapture Device sentry,1
+Survival,Maraketh,Kiyato Akhara,Black-mine tracker,1
+Survival,Maraketh,Kiyato Akhara,Corruption spoor reader,1
+Survival,Maraketh,Kiyato Akhara,Highgate cliff guide,1
+Survival,Maraketh,Kiyato Akhara,Mountain wind reader,1
+Survival,Maraketh,Kiyato Akhara,Rhex trail scout,1
+Survival,Maraketh,Kiyato Akhara,Seal-road pathfinder,1
+Transport,Maraketh,Kiyato Akhara,Rhex stable master,1
+Transport,Maraketh,Kiyato Akhara,Mine-supply outrider,1
+Transport,Maraketh,Kiyato Akhara,Highgate caravan marshal,1
+Transport,Maraketh,Kiyato Akhara,Mountain switchback courier,1
+Transport,Maraketh,Kiyato Akhara,Rhoa train keeper,1
+Religion,Maraketh,Kiyato Akhara,Deshret vigil keeper,1
+Religion,Maraketh,Kiyato Akhara,Garukhan wind-shrine attendant,1
+Religion,Maraketh,Kiyato Akhara,Seal oath reciter,1
+Religion,Maraketh,Kiyato Akhara,Akhara tale-woman,1
+Transport,Maraketh,Ardura Akhara,Dreadnought deckhand,1
+Transport,Maraketh,Ardura Akhara,Caravan route master,1
+Transport,Maraketh,Ardura Akhara,Sand-wheel mechanic,1
+Transport,Maraketh,Ardura Akhara,Rhex team driver,1
+Transport,Maraketh,Ardura Akhara,Vastiri passage guide,1
+Transport,Maraketh,Ardura Akhara,Mobile camp marshal,1
+Transport,Maraketh,Ardura Akhara,Trade-road outrider,1
+Transport,Maraketh,Ardura Akhara,Caravan winch keeper,1
+Trade,Maraketh,Ardura Akhara,Caravan quartermaster,1
+Trade,Maraketh,Ardura Akhara,Desert toll negotiator,1
+Trade,Maraketh,Ardura Akhara,Foreign-goods factor,1
+Trade,Maraketh,Ardura Akhara,Guest-right broker,1
+Trade,Maraketh,Ardura Akhara,Water ration assessor,1
+Trade,Maraketh,Ardura Akhara,Travelling bazaar keeper,1
+Survival,Maraketh,Ardura Akhara,Dust-storm pathfinder,1
+Survival,Maraketh,Ardura Akhara,Moving-camp scout,1
+Survival,Maraketh,Ardura Akhara,Night-dune navigator,1
+Survival,Maraketh,Ardura Akhara,Water-sign reader,1
+Survival,Maraketh,Ardura Akhara,Hyenic raider tracker,1
+Religion,Maraketh,Ardura Akhara,Caravan tale-woman,1
+Religion,Maraketh,Ardura Akhara,Barya tradition keeper,1
+Religion,Maraketh,Ardura Akhara,Garukhan wind reader,1
+Religion,Maraketh,Ardura Akhara,Solerai and Lundara celebrant,1
+Survival,Maraketh,Faridun,Hidden-well keeper,1
+Survival,Maraketh,Faridun,Foundling rescuer,1
+Survival,Maraketh,Faridun,Salt-flat scout,1
+Survival,Maraketh,Faridun,Outcast camp forager,1
+Survival,Maraketh,Faridun,Doom of the Desert guide,1
+Survival,Maraketh,Faridun,Dead-road tracker,1
+Survival,Maraketh,Faridun,Scrubland shelter builder,1
+Survival,Maraketh,Faridun,Night water runner,1
+Outcast,Maraketh,Faridun,Abandoned-child guardian,1
+Outcast,Maraketh,Faridun,Clanless caravan hand,1
+Outcast,Maraketh,Faridun,Exile camp elder,1
+Outcast,Maraketh,Faridun,Forbidden tattoo bearer,1
+Outcast,Maraketh,Faridun,Maraketh defector,1
+Outcast,Maraketh,Faridun,Outcast council speaker,1
+Outcast,Maraketh,Faridun,Shame-mark survivor,1
+Outcast,Maraketh,Faridun,Wandering foundling,1
+Magic,Maraketh,Faridun,Bone warder,1
+Magic,Maraketh,Faridun,Corpse-road diviner,1
+Magic,Maraketh,Faridun,Forbidden spirit medium,1
+Magic,Maraketh,Faridun,Necromantic camp defender,1
+Magic,Maraketh,Faridun,Grave-sand ritualist,1
+Magic,Maraketh,Faridun,Ancestral shade caller,1
+Craftsman,Maraketh,Faridun,Bone needle maker,1
+Craftsman,Maraketh,Faridun,Desert salvage smith,1
+Craftsman,Maraketh,Faridun,Foundling-token carver,1
+Craftsman,Maraketh,Faridun,Scavenged-armour fitter,1
+Craftsman,Maraketh,Faridun,Tattoo ink brewer,1
+Magic,Maraketh,Afarud,Astral energy siphoner,1
+Magic,Maraketh,Afarud,Djinn-chain warlock,1
+Magic,Maraketh,Afarud,Mirage tetherer,1
+Magic,Maraketh,Afarud,Soul-cage ritualist,1
+Magic,Maraketh,Afarud,Black-tear necromancer,1
+Magic,Maraketh,Afarud,Barya breaker,1
+Magic,Maraketh,Afarud,Death-host conjurer,1
+Magic,Maraketh,Afarud,Spirit tormentor,1
+Criminal,Maraketh,Afarud,Barya thief,1
+Criminal,Maraketh,Afarud,Burial-site despoiler,1
+Criminal,Maraketh,Afarud,Djinn poacher,1
+Criminal,Maraketh,Afarud,Outcast extortionist,1
+Criminal,Maraketh,Afarud,Relic kidnapper,1
+Criminal,Maraketh,Afarud,Soul-coin smuggler,1
+Military,Maraketh,Afarud,Bone-host commander,1
+Military,Maraketh,Afarud,Mirage raider,1
+Military,Maraketh,Afarud,Necromantic outrider,1
+Military,Maraketh,Afarud,Weeping Black enforcer,1
+Military,Maraketh,Afarud,Astral ambusher,1
+Scholarly,Maraketh,Afarud,Forbidden binding researcher,1
+Scholarly,Maraketh,Afarud,Djinn anatomy scribe,1
+Scholarly,Maraketh,Afarud,Mirage cartographer,1
+Scholarly,Maraketh,Afarud,Soul-transfer theorist,1
+Exploration,Maraketh,Order of the Djinn,Hidden-vault pathfinder,1
+Exploration,Maraketh,Order of the Djinn,Relic recovery agent,1
+Exploration,Maraketh,Order of the Djinn,Catastrophe-site surveyor,1
+Exploration,Maraketh,Order of the Djinn,Sealed-road scout,1
+Exploration,Maraketh,Order of the Djinn,Forbidden archive seeker,1
+Exploration,Maraketh,Order of the Djinn,Containment ruin examiner,1
+Scholarly,Maraketh,Order of the Djinn,Dangerous relic cataloguer,1
+Scholarly,Maraketh,Order of the Djinn,Ahkeli Cant instructor,1
+Scholarly,Maraketh,Order of the Djinn,Djinn history keeper,1
+Scholarly,Maraketh,Order of the Djinn,Existential-threat archivist,1
+Scholarly,Maraketh,Order of the Djinn,Vault indexer,1
+Scholarly,Maraketh,Order of the Djinn,Artefact provenance examiner,1
+Magic,Maraketh,Order of the Djinn,Artefact containment mage,1
+Magic,Maraketh,Order of the Djinn,Djinn negotiator,1
+Magic,Maraketh,Order of the Djinn,Relic curse assessor,1
+Magic,Maraketh,Order of the Djinn,Seal-forge ritualist,1
+Magic,Maraketh,Order of the Djinn,Spirit-vault warder,1
+Magic,Maraketh,Order of the Djinn,Thaumaturgic quarantine keeper,1
+Craftsman,Maraketh,Order of the Djinn,Barya case maker,1
+Craftsman,Maraketh,Order of the Djinn,Containment reliquary smith,1
+Craftsman,Maraketh,Order of the Djinn,Hidden-lock artificer,1
+Craftsman,Maraketh,Order of the Djinn,Relic sheath maker,1
+Craftsman,Maraketh,Order of the Djinn,Warded vaultwright,1
+Communications,Maraketh,Order of the Djinn,Ahkeli Cant courier,1
+Communications,Maraketh,Order of the Djinn,Counterphrase examiner,1
+Communications,Maraketh,Order of the Djinn,Clandestine gesture tutor,1
+Communications,Maraketh,Order of the Djinn,Silent-vault liaison,1
+Magic,Maraketh,Sel Khari,Barya custodian,1
+Magic,Maraketh,Sel Khari,Djinn sentence keeper,1
+Magic,Maraketh,Sel Khari,Spirit-binding adjudicator,1
+Magic,Maraketh,Sel Khari,Astral chain warden,1
+Magic,Maraketh,Sel Khari,Bound-wisdom interpreter,1
+Magic,Maraketh,Sel Khari,Release-rite officiant,1
+Magic,Maraketh,Sel Khari,Coin-oath ritualist,1
+Scholarly,Maraketh,Sel Khari,Trial record keeper,1
+Scholarly,Maraketh,Sel Khari,Djinn testimony scribe,1
+Scholarly,Maraketh,Sel Khari,Binding-law historian,1
+Scholarly,Maraketh,Sel Khari,Sentence ledger keeper,1
+Scholarly,Maraketh,Sel Khari,Ancient spirit genealogist,1
+Exploration,Maraketh,Sel Khari,Lost barya retriever,1
+Exploration,Maraketh,Sel Khari,Trial path guide,1
+Exploration,Maraketh,Sel Khari,Astral sanctuary scout,1
+Exploration,Maraketh,Sel Khari,Forgotten shrine examiner,1
+Religion,Maraketh,Sel Khari,Ritual of release attendant,1
+Religion,Maraketh,Sel Khari,Spirit-oath witness,1
+Religion,Maraketh,Sel Khari,Barya shrine keeper,1
+Religion,Maraketh,Sel Khari,Trial liturgist,1
 Magic,Vaal,Any,Blood-geometry assistant,1
 Magic,Vaal,Any,Gem-circuit architect,1
 Magic,Vaal,Any,Glyph-energy calibrator,1

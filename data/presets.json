@@ -149,6 +149,44 @@
       }
     },
     {
+      "id": "maraketh_highgate",
+      "label": "Maraketh — Highgate and Vastiri",
+      "description": "Act 4 Maraketh, Kiyato and Ardura travellers, Faridun outcasts, and agents of the Order of the Djinn.",
+      "cultures": {
+        "Maraketh": 100
+      },
+      "affiliations": {
+        "Maraketh": {
+          "Maraketh": 72,
+          "Faridun": 18,
+          "Order of the Djinn": 7,
+          "Unaffiliated": 3
+        }
+      },
+      "branches": {
+        "Maraketh": {
+          "Kiyato Akhara": 93,
+          "Ardura Akhara": 7
+        }
+      },
+      "socialOrigins": {
+        "Native": 28,
+        "Nomad": 30,
+        "Merchant household": 10,
+        "Military household": 10,
+        "Religious household": 5,
+        "Refugee": 7,
+        "Exile": 5,
+        "Freed captive": 5
+      },
+      "eras": {
+        "1599 IC": 100
+      },
+      "locations": {
+        "Highgate and the Vastiri": 100
+      }
+    },
+    {
       "id": "karui_tribe",
       "label": "Karui clans",
       "description": "Karui drawn from every god-clan in the campaign pantheon.",

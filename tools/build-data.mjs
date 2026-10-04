@@ -26,7 +26,7 @@ const affiliationPools = {
   Oriathan: { Unaffiliated: 40, Templar: 27, "Oriath Militia": 18, "The Ring": 15 },
   Azmeri: { Unaffiliated: 100 },
   Ezomyte: { Unaffiliated: 100 },
-  Maraketh: { Unaffiliated: 100 },
+  Maraketh: { Maraketh: 72, Faridun: 17, "Order of the Djinn": 6, Unaffiliated: 5 },
   Karui: { Karui: 100 },
   Vaal: { Unaffiliated: 100 },
   Kalguur: { "Kalguur Expedition": 70, Unaffiliated: 30 },
@@ -38,6 +38,20 @@ for (const [culture, values] of Object.entries(affiliationPools)) {
 // Names and relationships follow the campaign Notion databases. Weights tune generator variety;
 // they are not claims about exact population totals.
 const branchPools = {
+  Maraketh: [
+    {
+      affiliation: "Maraketh",
+      values: { "Kiyato Akhara": 72, "Ardura Akhara": 13, Unaffiliated: 15 }
+    },
+    {
+      affiliation: "Faridun",
+      values: { Afarud: 10, Unaffiliated: 90 }
+    },
+    {
+      affiliation: "Order of the Djinn",
+      values: { "Sel Khari": 65, Unaffiliated: 35 }
+    }
+  ],
   Karui: {
     affiliation: "Karui",
     values: {
@@ -54,8 +68,11 @@ const branchPools = {
     }
   }
 };
-for (const [culture, { affiliation, values }] of Object.entries(branchPools)) {
-  for (const [value, weight] of Object.entries(values)) main.push(row("Branch", culture, affiliation, value, weight));
+for (const [culture, definition] of Object.entries(branchPools)) {
+  const groups = Array.isArray(definition) ? definition : [definition];
+  for (const { affiliation, values } of groups) {
+    for (const [value, weight] of Object.entries(values)) main.push(row("Branch", culture, affiliation, value, weight));
+  }
 }
 const speciesPools = {
   Oriathan: { Human: 72, "Half-Elf": 8, Dwarf: 5, Halfling: 5, Gnome: 4, Elf: 3, Tiefling: 3 },
@@ -107,7 +124,15 @@ const categoryPools = {
   },
   Azmeri: { Any: { Agriculture: 16, Commoner: 13, Craftsman: 12, Construction: 8, Medical: 8, Military: 8, Outcast: 7, Scholarly: 5, Survival: 15, Trade: 5, Transport: 3 } },
   Ezomyte: { Any: { Mining: 22, Craftsman: 20, Military: 13, Construction: 12, Commoner: 10, Agriculture: 6, Medical: 5, Trade: 7, Transport: 5 } },
-  Maraketh: { Any: { Trade: 21, Transport: 16, Survival: 13, Military: 11, Craftsman: 12, Agriculture: 8, Commoner: 7, Medical: 5, Magic: 4, Religion: 3 } },
+  Maraketh: {
+    Any: { Trade: 21, Transport: 16, Survival: 13, Military: 11, Craftsman: 12, Agriculture: 8, Commoner: 7, Medical: 5, Magic: 4, Religion: 3 },
+    "Kiyato Akhara": { Military: 21, Survival: 17, Transport: 14, Trade: 11, Craftsman: 10, Religion: 8, Commoner: 6, Agriculture: 5, Medical: 4, Magic: 2, Communications: 2 },
+    "Ardura Akhara": { Transport: 22, Trade: 18, Survival: 15, Military: 13, Craftsman: 10, Commoner: 6, Medical: 5, Religion: 5, Communications: 4, Magic: 2 },
+    Faridun: { Survival: 22, Outcast: 18, Military: 15, Magic: 13, Craftsman: 10, Medical: 7, Trade: 5, Transport: 4, Commoner: 3, Criminal: 3 },
+    Afarud: { Magic: 25, Criminal: 20, Outcast: 18, Military: 14, Scholarly: 8, Survival: 7, Craftsman: 4, Medical: 4 },
+    "Order of the Djinn": { Scholarly: 22, Magic: 19, Exploration: 18, Military: 12, Craftsman: 10, Communications: 8, Religion: 5, Medical: 4, Trade: 2 },
+    "Sel Khari": { Magic: 28, Scholarly: 20, Exploration: 14, Military: 12, Religion: 10, Communications: 8, Craftsman: 5, Medical: 3 }
+  },
   Karui: {
     Any: { Tribal: 26, Survival: 22, Military: 16, Craftsman: 13, Agriculture: 7, Medical: 6, Religion: 6, Trade: 4 },
     Tukohama: { Military: 30, Tribal: 24, Survival: 14, Craftsman: 10, Religion: 10, Medical: 5, Agriculture: 4, Trade: 3 },
@@ -196,8 +221,8 @@ const expandedNamePools = {
     Surname: "Balnain|Benbrae|Blackcairn|Cairnloch|Dalrune|Drumhewn|Firthhammer|Glenfallow|Greysporran|Highcrag|Inverstone|Keldbrae|Lochward|Moorhammer|Northcairn|Ochilforge|Peatfire|Rowanbrae|Skyeanvil|Torrvein"
   },
   Maraketh: {
-    Name: "Afsaneh|Amira|Anahita|Arman|Banu|Behzad|Delara|Esmail|Faran|Farzana|Firuz|Hamid|Homa|Jaleh|Jamshid|Kian|Leila|Mahan|Marjan|Mina|Navid|Niloofar|Nima|Omid|Parvin|Payam|Rashid|Roya|Sahar|Sepideh|Shirin|Sohrab|Sorush|Taraneh|Zubin",
-    Surname: "Al-Hadir|Bahari|Darvazi|Emiri|Ghazali|Hakimi|Isfari|Khamsin|Mazari|Nahrin|Qadiri|Rihani|Sabiri|Tabari|Vaziri|Yashar|Zaffari|Zarandi|Zarrin|Zulfi"
+    Name: "Afsaneh|Amira|Anahita|Arman|Banu|Behzad|Delara|Esmail|Faran|Farzana|Firuz|Hamid|Homa|Jaleh|Jamshid|Kian|Leila|Mahan|Marjan|Mina|Navid|Niloofar|Nima|Omid|Parvin|Payam|Rashid|Roya|Sahar|Sepideh|Shirin|Sohrab|Sorush|Taraneh|Zubin|Amal|Anwar|Azadeh|Baktash|Baran|Dariush|Elham|Hazar|Iman|Kourosh|Mehran|Narges|Roshan|Shahrzad|Simin|Yara|Zoya|Arezou|Kamal|Shadi",
+    Surname: "Al-Hadir|Bahari|Darvazi|Emiri|Ghazali|Hakimi|Isfari|Khamsin|Mazari|Nahrin|Qadiri|Rihani|Sabiri|Tabari|Vaziri|Yashar|Zaffari|Zarandi|Zarrin|Zulfi|Akbari|Amiri|Ansari|Farhadi|Jafari|Kermani|Mehrabi|Moradi|Nouri|Rostami"
   },
   Karui: {
     Name: "Anahera|Ariki|Aroha|Atarangi|Awhina|Eruera|Hana|Hemi|Hinerangi|Hirini|Hoani|Ihaia|Kahu|Kaia|Kereama|Kiri|Manaia|Manawa|Maru|Miriama|Nikora|Pania|Parekura|Rangi|Ripeka|Rongo|Ropata|Rua|Teina|Tiare|Tipene|Tui|Whaitua|Whetu|Wikitoria",
@@ -258,6 +283,12 @@ const culturalVoicePools = {
 for (const [culture, values] of Object.entries(culturalVoicePools)) {
   addValues(descriptors, "Voice", culture, "Any", split(values), 2);
 }
+addValues(descriptors, "Voice", "Maraketh", "Kiyato Akhara", split("Clipped Highgate watch commands|Low recitation of Deshret's vigil|Dry mine-gate challenge|Precise Rhexback signal calls|Measured oath-speaking cadence|Wind-worn rampart rasp"), 3);
+addValues(descriptors, "Voice", "Maraketh", "Ardura Akhara", split("Rolling tale-woman's cadence|Sharp caravan command voice|Rhythmic dreadnought deck calls|Warm fireside history recitation|Rapid desert-route instructions|Formal welcome offered to a jingakh"), 3);
+addValues(descriptors, "Voice", "Maraketh", "Faridun", split("Low defiant desert cadence|Quiet speech sharpened by old resentment|Measured outcast council tone|Rough voice weathered by open dunes|Gentle foundling-story cadence|Flat rejection of Maraketh pieties"), 3);
+addValues(descriptors, "Voice", "Maraketh", "Afarud", split("A whisper like sand over bone|Ceremonial phrases spoken backwards|A hollow necromancer's chant|Soft threats delivered without emphasis|Breathless astral invocations|Funerary cadence stripped of mourning"), 3);
+addValues(descriptors, "Voice", "Maraketh", "Order of the Djinn", split("Deliberately forgettable diction|Measured relic-warden's briefing|Common phrases stressed as hidden cant|Patient explanation that reveals little|Soft warning disguised as courtesy|Precise catalogue recitation"), 3);
+addValues(descriptors, "Voice", "Maraketh", "Sel Khari", split("Resonant barya-oath cadence|Faintly echoing spirit speech|Formal trial liturgy|Whispered names of bound Djinn|A voice that seems older than its speaker|Measured sentence-and-release formulae"), 3);
 
 const addStructuredDescriptors = (category, parent, subParent, values, {
   weight = 1, species = "Any", ages = "Any", professionCategories = "Any"
@@ -286,7 +317,20 @@ for (const [culture, values] of Object.entries(culturalAttire)) {
 }
 addStructuredDescriptors("Attire", "Oriathan", "Templar", "A white Templar tabard over serviceable armour|An ordained robe without family heraldry|A legion coat bearing an orderly row of honours|A chaplain's mantle singed at the hem|A severe Archivist robe with waxed document pockets", { weight: 4 });
 addStructuredDescriptors("Attire", "Oriathan", "Oriath Militia", "A weathered leather coat and tarnished badge|A port-watch cloak smelling faintly of salt|A patched uniform bought from a former constable|A clean militia sash over civilian clothes|A reinforced watch coat with Ring stitching hidden inside", { weight: 4 });
+addStructuredDescriptors("Attire", "Maraketh", "Maraketh", "A riding coat cut to clear a saddle|Layered caravan robes weighted against the wind|A bright duty sash in their akhara's colours|A veil and headwrap arranged for desert travel|Light scale armour beneath embroidered cloth|A water ledger sealed inside an oiled pouch", { weight: 4 });
+addStructuredDescriptors("Attire", "Maraketh", "Kiyato Akhara", "A red sash recalling Deshret's vigil|A mine-gate coat dusted with black grit|A seal-watcher's layered leather armour|A Highgate cloak pinned with a carved mountain token|A Rhexback harness worn over fitted desert mail|Ceremonial cloth kept immaculate despite mine dust", { weight: 5 });
+addStructuredDescriptors("Attire", "Maraketh", "Ardura Akhara", "A caravan riding coat crossed by safety cords|A sand-scoured mantle in Ardura colours|A tale-woman's layered robes hung with memory knots|A route-master's coat crowded with map pockets|A beast-handler's wraps reinforced at the forearms|A formal guest sash carried for worthy jingakh", { weight: 5 });
+addStructuredDescriptors("Attire", "Maraketh", "Faridun", "Sun-bleached wraps repaired with many different fabrics|Scavenged armour hidden beneath desert cloth|A self-chosen tattoo left deliberately uncovered|A foundling's cloak stitched with mismatched family tokens|Layered robes dyed in colours forbidden by an old akhara|A bone-and-brass belt carrying survival tools", { weight: 5 });
+addStructuredDescriptors("Attire", "Maraketh", "Afarud", "Blackened wraps hung with empty barya cages|A bone-plated mantle marked by necromantic ash|Dark robes stiff with salt and old blood|A warlock's harness carrying astral siphons|A hood sewn with fragments of burial cloth|Lacquered armour etched with broken akhara oaths", { weight: 5 });
+addStructuredDescriptors("Attire", "Maraketh", "Order of the Djinn", "Unmarked travelling clothes concealing relic pockets|A plain mantle whose seams encode Ahkeli Cant|A vault-warden's coat lined against magical discharge|Desert robes fastened with a deliberately ordinary coin|A relic courier's harness hidden beneath loose cloth|A dust-coloured cloak that displays no akhara mark", { weight: 5 });
+addStructuredDescriptors("Attire", "Maraketh", "Sel Khari", "Trial robes secured with a sealed barya|A spirit-warden's mantle embroidered inside rather than out|Layered white and bronze cloth darkened by incense|A chain-patterned sash marking an oath of service|A coin keeper's coat with warded inner pockets|Ceremonial armour shaped around an ancient binding token", { weight: 5 });
 addStructuredDescriptors("Attire", "Stygian", "Emberforged", "A surface-cut coat adapted for mine work|A powderproof apron bearing the Emberforged mark|A travel mantle concealing trade ledgers|A reinforced smuggler's coat with hidden sample tubes", { weight: 4 });
+addStructuredDescriptors("Distinguishing", "Maraketh", "Kiyato Akhara", "A mountain-seal token polished by constant handling|Red thread tied around the weapon hand|Rhex bite scars along one forearm|A tiny image of Deshret worked into a clasp|Black mine dust permanently caught beneath the nails", { weight: 5 });
+addStructuredDescriptors("Distinguishing", "Maraketh", "Ardura Akhara", "A string of caravan memory knots|A brass route token stamped with the Ardura mark|Wind cracks at the corners of the eyes|A storyteller's tally tattoo hidden inside the wrist|Sand goggles repaired with bright wire", { weight: 5 });
+addStructuredDescriptors("Distinguishing", "Maraketh", "Faridun", "Defiant tattoos covering an older shame mark|A collection of tokens from rescued foundlings|The scar of an abandoned infant carried into adulthood|A deliberately broken Maraketh clan clasp|Names of the dead tattooed along the forearm", { weight: 5 });
+addStructuredDescriptors("Distinguishing", "Maraketh", "Afarud", "Fingertips stained by astral residue|A black tear tattoo beneath one eye|A barya-shaped brand over the heart|Necromantic script cut into a bone bracelet|A shadow that lags a fraction behind", { weight: 5 });
+addStructuredDescriptors("Distinguishing", "Maraketh", "Order of the Djinn", "A gesture repeated whenever a lie is spoken|An ordinary coin that is never spent|A clay token bearing Ahkeli's hidden mark|A catalogue number tattooed where clothing conceals it|A scar left by a relic containment failure", { weight: 5 });
+addStructuredDescriptors("Distinguishing", "Maraketh", "Sel Khari", "A sealed barya worn against the skin|Faint chain marks around both wrists|Eyes that catch light like old coinage|A spirit name written beneath the tongue|A voice that briefly doubles near bound objects", { weight: 5 });
 addStructuredDescriptors("Distinguishing", "Any", "Any", "Small lower tusks|A broken tusk capped in copper", { species: "Half-Orc|Orc" });
 addStructuredDescriptors("Distinguishing", "Any", "Any", "A beard clasped with a stone clan-ring|Pale stone dust caught permanently in the beard", { species: "Dwarf|Duergar" });
 addStructuredDescriptors("Distinguishing", "Any", "Any", "Long ears pierced near the tips|One pointed ear bears an old tear", { species: "Elf|Half-Elf|Drow" });
@@ -351,6 +395,31 @@ addJobs("Mining", "Clan seam master|Deep-iron prospector|Granite breaker|Highlan
 addJobs("Craftsman", "Cairn mason|Clan armour smith|Highland cooper|Iron-brooch maker|Stone-ale brewer|Tartan dyer|Tunnel timberer|War-pick smith", "Ezomyte", "Any");
 addJobs("Trade", "Caravan auctioneer|Carpet factor|Dried-fruit broker|Oasis factor|Salt-road merchant|Silk appraiser|Spice broker|Water-right trader", "Maraketh", "Any");
 addJobs("Transport", "Beast-caravan master|Desert outrider|Dune pathfinder|Oasis courier|Pack-train marshal|Salt-road guide|Silk-road drover|Water-caravan guide", "Maraketh", "Any");
+addJobs("Military", "Deshret Seal warden|Highgate rampart guard|Mine-gate sentinel|Rhexback lancer|Vigil patrol leader|Corruption watch scout|Mountain-pass Khatari|Rapture Device sentry", "Maraketh", "Kiyato Akhara");
+addJobs("Survival", "Black-mine tracker|Corruption spoor reader|Highgate cliff guide|Mountain wind reader|Rhex trail scout|Seal-road pathfinder", "Maraketh", "Kiyato Akhara");
+addJobs("Transport", "Rhex stable master|Mine-supply outrider|Highgate caravan marshal|Mountain switchback courier|Rhoa train keeper", "Maraketh", "Kiyato Akhara");
+addJobs("Religion", "Deshret vigil keeper|Garukhan wind-shrine attendant|Seal oath reciter|Akhara tale-woman", "Maraketh", "Kiyato Akhara");
+addJobs("Transport", "Dreadnought deckhand|Caravan route master|Sand-wheel mechanic|Rhex team driver|Vastiri passage guide|Mobile camp marshal|Trade-road outrider|Caravan winch keeper", "Maraketh", "Ardura Akhara");
+addJobs("Trade", "Caravan quartermaster|Desert toll negotiator|Foreign-goods factor|Guest-right broker|Water ration assessor|Travelling bazaar keeper", "Maraketh", "Ardura Akhara");
+addJobs("Survival", "Dust-storm pathfinder|Moving-camp scout|Night-dune navigator|Water-sign reader|Hyenic raider tracker", "Maraketh", "Ardura Akhara");
+addJobs("Religion", "Caravan tale-woman|Barya tradition keeper|Garukhan wind reader|Solerai and Lundara celebrant", "Maraketh", "Ardura Akhara");
+addJobs("Survival", "Hidden-well keeper|Foundling rescuer|Salt-flat scout|Outcast camp forager|Doom of the Desert guide|Dead-road tracker|Scrubland shelter builder|Night water runner", "Maraketh", "Faridun");
+addJobs("Outcast", "Abandoned-child guardian|Clanless caravan hand|Exile camp elder|Forbidden tattoo bearer|Maraketh defector|Outcast council speaker|Shame-mark survivor|Wandering foundling", "Maraketh", "Faridun");
+addJobs("Magic", "Bone warder|Corpse-road diviner|Forbidden spirit medium|Necromantic camp defender|Grave-sand ritualist|Ancestral shade caller", "Maraketh", "Faridun");
+addJobs("Craftsman", "Bone needle maker|Desert salvage smith|Foundling-token carver|Scavenged-armour fitter|Tattoo ink brewer", "Maraketh", "Faridun");
+addJobs("Magic", "Astral energy siphoner|Djinn-chain warlock|Mirage tetherer|Soul-cage ritualist|Black-tear necromancer|Barya breaker|Death-host conjurer|Spirit tormentor", "Maraketh", "Afarud");
+addJobs("Criminal", "Barya thief|Burial-site despoiler|Djinn poacher|Outcast extortionist|Relic kidnapper|Soul-coin smuggler", "Maraketh", "Afarud");
+addJobs("Military", "Bone-host commander|Mirage raider|Necromantic outrider|Weeping Black enforcer|Astral ambusher", "Maraketh", "Afarud");
+addJobs("Scholarly", "Forbidden binding researcher|Djinn anatomy scribe|Mirage cartographer|Soul-transfer theorist", "Maraketh", "Afarud");
+addJobs("Exploration", "Hidden-vault pathfinder|Relic recovery agent|Catastrophe-site surveyor|Sealed-road scout|Forbidden archive seeker|Containment ruin examiner", "Maraketh", "Order of the Djinn");
+addJobs("Scholarly", "Dangerous relic cataloguer|Ahkeli Cant instructor|Djinn history keeper|Existential-threat archivist|Vault indexer|Artefact provenance examiner", "Maraketh", "Order of the Djinn");
+addJobs("Magic", "Artefact containment mage|Djinn negotiator|Relic curse assessor|Seal-forge ritualist|Spirit-vault warder|Thaumaturgic quarantine keeper", "Maraketh", "Order of the Djinn");
+addJobs("Craftsman", "Barya case maker|Containment reliquary smith|Hidden-lock artificer|Relic sheath maker|Warded vaultwright", "Maraketh", "Order of the Djinn");
+addJobs("Communications", "Ahkeli Cant courier|Counterphrase examiner|Clandestine gesture tutor|Silent-vault liaison", "Maraketh", "Order of the Djinn");
+addJobs("Magic", "Barya custodian|Djinn sentence keeper|Spirit-binding adjudicator|Astral chain warden|Bound-wisdom interpreter|Release-rite officiant|Coin-oath ritualist", "Maraketh", "Sel Khari");
+addJobs("Scholarly", "Trial record keeper|Djinn testimony scribe|Binding-law historian|Sentence ledger keeper|Ancient spirit genealogist", "Maraketh", "Sel Khari");
+addJobs("Exploration", "Lost barya retriever|Trial path guide|Astral sanctuary scout|Forgotten shrine examiner", "Maraketh", "Sel Khari");
+addJobs("Religion", "Ritual of release attendant|Spirit-oath witness|Barya shrine keeper|Trial liturgist", "Maraketh", "Sel Khari");
 addJobs("Magic", "Blood-geometry assistant|Gem-circuit architect|Glyph-energy calibrator|Sacrifice registrar|Serpent-ward engineer|Sun-engine attendant|Temple-current reader|Vaal gemwright", "Vaal", "Any");
 addJobs("Scholarly", "Calendar calculator|Dynastic chronicler|Glyph grammarian|Observatory keeper|Ritual mathematician|Serpent-cult historian|Temple surveyor|Ziggurat archivist", "Vaal", "Any");
 addJobs("Exploration", "Expedition surveyor|Frozen-pass scout|Mobile-camp pathfinder|Relic-recovery leader|Shore-party navigator|Spiked-camp outrider|Unknown-coast mapper|Winter-route finder", "Kalguur", "Any");
@@ -418,6 +487,33 @@ addHooks("Flaw", "Ezomyte", "Any", "I keep feuds alive long after their cause is
 addHooks("Ideal", "Maraketh", "Any", "The caravan survives when every rider fulfils their duty.|Strength must protect the road, not prey upon it.|Water offered to a traveller is never wasted.|Tradition must remain strong enough to endure honest change.|A promise made before the akhara binds the whole self.|Skill deserves recognition regardless of birth.|The desert punishes waste and rewards preparation.|A leader listens before choosing the road.");
 addHooks("Bond", "Maraketh", "Any", "My akhara entrusted me with a route known to few outsiders.|I raise a rhoa descended from my family's finest mount.|A Faridun saved me when custom said they should not.|I carry a message for a Sekhema who may already be dead.|My caravan partner disappeared beyond a dust storm.|I must repay water taken from a rival camp.|A family tattoo records a shame I intend to redeem.|I guard the last trade token of a broken caravan.");
 addHooks("Flaw", "Maraketh", "Any", "I treat endurance as proof that a decision was right.|I cannot forgive a public challenge to my competence.|I hide doubt behind formal tradition.|I judge settled people as soft and shortsighted.|I accept dangerous wagers to defend my honour.|I obey an akhara custom I privately know is cruel.|I read every gift as an attempted obligation.|I would abandon an outsider before risking my caravan.");
+addHooks("Ideal", "Maraketh", "Maraketh", "Honour the Mother and honour the life she shelters.|Every member must strengthen the akhara.|A Sekhema earns obedience through proven judgement.|Water and guest-right bind even wary strangers.|The tale-women preserve victories that stone forgets.|Strength without duty is merely predation.");
+addHooks("Bond", "Maraketh", "Maraketh", "My Sekhema trusted me with an unpopular command.|My mount and I survived the same killing storm.|A tale-woman carries the only true account of my family.|My akhara's children know I will bring them home.|I owe guest-right to a jingakh who saved our caravan.|I guard the water claim that keeps my people moving.");
+addHooks("Flaw", "Maraketh", "Maraketh", "I confuse harsh necessity with moral certainty.|I assume every jingakh will eventually betray us.|I measure worth by what a person can endure.|I conceal shame rather than repair its cause.|I obey my Sekhema after my judgement says stop.|I treat compassion as a luxury of settled peoples.");
+
+addHooks("Ideal", "Maraketh", "Kiyato Akhara", "The Vigil must hold even when hope does not.|Deshret's sacrifice obliges us to stand watch.|Highgate survives because duty outlasts fear.|The Seal protects every people, not only our own.|A warrior proves strength by remaining at the post.");
+addHooks("Bond", "Maraketh", "Kiyato Akhara", "My family has watched the mine gate for generations.|A Rhexback patrol vanished beneath Highgate and I will find it.|I carry a splinter from Deshret's Seal.|My Sekhema once chose my life over tradition.|A mine worker below the Seal is waiting for my signal.");
+addHooks("Flaw", "Maraketh", "Kiyato Akhara", "I call every retreat a betrayal of the Vigil.|I distrust anyone who questions Deshret's command.|I hide signs that the Seal is failing.|I judge newcomers by how calmly they face corruption.|I would sacrifice the living to preserve an ancestral oath.");
+
+addHooks("Ideal", "Maraketh", "Ardura Akhara", "A moving caravan survives by making every skill useful.|A worthy jingakh should be judged by service, not birth.|Our histories live only while someone keeps telling them.|No route is sacred enough to justify needless deaths.|The road belongs to those prepared to cross it.");
+addHooks("Bond", "Maraketh", "Ardura Akhara", "The caravan is the only home I have ever known.|A tale-woman entrusted me with a story not yet spoken publicly.|My beast team carried us through an impossible sandstorm.|I promised safe passage to a jingakh who earned it.|An Ardura route marker bears my missing sibling's hand.");
+addHooks("Flaw", "Maraketh", "Ardura Akhara", "I reduce every stranger to the service they can provide.|I keep the caravan moving when rest would save lives.|I use old stories to silence present objections.|I treat hospitality as a debt that must be repaid exactly.|I am reckless whenever someone doubts my knowledge of the desert.");
+
+addHooks("Ideal", "Maraketh", "Faridun", "No child should be condemned for the body they were born with.|Chosen kin is stronger than the akhara that abandoned us.|Survival gives us the right to define our own worth.|A shame mark can become a declaration of freedom.|The desert's rejected deserve a home of their own.|Tradition must answer for the lives it discards.");
+addHooks("Bond", "Maraketh", "Faridun", "I rescued a foundling who now believes I am fearless.|My tattoos repeat the names of those left to die.|A Maraketh rider secretly keeps our camp supplied.|I owe my life to a necromancer others call monstrous.|Our hidden well sustains three outcast camps.|I seek proof that a Faridun once united our people.");
+addHooks("Flaw", "Maraketh", "Faridun", "I hear contempt in every Maraketh word.|I excuse forbidden magic when it harms our enemies.|I would risk my camp for revenge against one akhara.|I distrust mercy offered by anyone born accepted.|I turn justified anger against those who had no part in my exile.|I cannot admit when an old survival practice has become cruelty.");
+
+addHooks("Ideal", "Maraketh", "Afarud", "Only power can end the cycle of abandonment.|The Maraketh and Faridun must both answer for what they made us.|No rite is forbidden to people already denied every law.|Captured spirits are weapons before they are victims.|The old order deserves no survivors.");
+addHooks("Bond", "Maraketh", "Afarud", "A warlock of the Weeping Black gave me a purpose.|My barya contains the spirit of someone I failed.|I share an astral tether with the only person I trust.|The Afarud sheltered me when even the Faridun turned away.|I must complete a ritual begun by my dead teacher.");
+addHooks("Flaw", "Maraketh", "Afarud", "I mistake universal suffering for justice.|I treat bound Djinn as stores of power.|I destroy possible allies before they can reject me.|I would rather make the desert a grave than lose again.|Every kindness looks like an attempt to weaken my resolve.");
+
+addHooks("Ideal", "Maraketh", "Order of the Djinn", "Powerful relics are safest when the world forgets them.|Civilisations must be protected from their own worst inventions.|Secrecy is justified only by the catastrophe it prevents.|No custodian owns the artefact they guard.|Knowledge of a threat creates a duty to contain it.|The Order serves Wraeclast rather than any one akhara.");
+addHooks("Bond", "Maraketh", "Order of the Djinn", "My mentor died sealing the vault I now maintain.|An Ahkeli Cant phrase is the last message my partner left.|I guard a relic that knows my true name.|A supposed enemy once helped the Order prevent a catastrophe.|I must recover an artefact before its new owner learns its purpose.|The Order raised me after my household disappeared.");
+addHooks("Flaw", "Maraketh", "Order of the Djinn", "I conceal useful truths long after the danger has passed.|I treat uninformed people as pieces to be moved.|I would erase a witness rather than risk a vault.|I see every unusual object as a potential catastrophe.|I trust the Order's judgement more than my own conscience.|I invent new secrets to protect old ones.");
+
+addHooks("Ideal", "Maraketh", "Sel Khari", "A sentence should preserve wisdom rather than satisfy vengeance.|Every bound Djinn must retain a path to release.|A barya records an obligation between living and dead.|The guilty can still serve generations they harmed.|No spirit should be forgotten merely because it is dangerous.");
+addHooks("Bond", "Maraketh", "Sel Khari", "I carry the barya of a Djinn who once saved my akhara.|My teacher's sentence ends only when I complete their task.|A bound spirit remembers the location of our lost sanctuary.|I promised to release a Djinn the elders consider too dangerous.|My family has guarded the same barya for centuries.");
+addHooks("Flaw", "Maraketh", "Sel Khari", "I confuse a lawful sentence with a just one.|I consult bound spirits until my own judgement disappears.|I refuse release when a Djinn's knowledge remains useful.|I treat the dead as archives rather than people.|I believe every betrayal can be corrected through binding.");
 
 addHooks("Ideal", "Karui", "Any", "Mana is earned through service rather than claimed by birth.|Ancestors should guide the living without ruling them.|Hospitality and courage are both measures of strength.|The clan survives when each generation adds to its knowledge.|A challenge answered honestly prevents a hidden feud.|Land and sea are inheritances held in trust.|A warrior's first duty is to bring their people home.|No foreign empire will define Karui worth.");
 addHooks("Bond", "Karui", "Any", "My family canoe carries repairs from five generations.|I bear a carving that records my line's migrations.|A rival clan fostered me during a season of hunger.|I promised an elder to learn why our ancestors left this shore.|A younger relative copies everything I do.|I carry the name of someone denied proper funerary rites.|A warband companion once chose my life over victory.|I must return a stolen heirloom before the next gathering.");
@@ -580,6 +676,60 @@ for (const [culture, categories] of Object.entries(culturalDrives)) {
   for (const [category, values] of Object.entries(categories)) addDrives(category, culture, "Any", values, 2);
 }
 
+const marakethFactionDrives = {
+  "Kiyato Akhara": {
+    Goal: "Reinforce the Deshret Seal before the next tremor.|Find a missing Rhexback patrol below Highgate.|Convince the Sekhema to alter an ancient Vigil order.|Remove corrupted creatures from a mine supply route.",
+    Problem: "The Seal gives a different resonance each night.|Their patrol partner returned without recognising them.|A mine gate was opened with a legitimate Kiyato token.|The Rhex refuse to pass a shrine beneath Highgate.",
+    Secret: "They know a section of the Seal was repaired with Vaal work.|They have been allowing one Faridun healer into Highgate.|Their family abandoned a post during an earlier breach.|They heard a voice answer from inside the mountain.",
+    Knowledge: "A service route around Highgate's sealed mine gate.|The challenge used to test a returning Kiyato scout.|Which tremors mean collapse and which mean the Beast is stirring.|The old Vigil orders attributed to Deshret.",
+    Offer: "Kiyato escort through the Highgate fortifications.|A trained Rhex and tack for a dangerous ascent.|Permission to speak before a Dekhara.|A mine-watch token recognised at the Seal.",
+    Disposition: "Assessing whether the party can be trusted near the Seal.|Respectful of proven endurance and little else.|Grimly relieved that outsiders may attempt the impossible.|Hostile to anyone treating the Vigil as superstition."
+  },
+  "Ardura Akhara": {
+    Goal: "Bring the moving caravan through a blocked trade route.|Recover a missing chapter of the akhara's oral history.|Earn guest-right for a useful but distrusted jingakh.|Find safe water before the caravan must turn back.",
+    Problem: "Two route masters read the storm signs differently.|A caravan beast was deliberately given tainted feed.|The latest tale contradicts the Sekhema's public account.|A promised passenger is secretly wanted by another akhara.",
+    Secret: "They accepted payment to change the caravan's route.|They invented a heroic detail now treated as history.|Their most reliable guide is a Faridun informant.|They know who sabotaged the caravan but need that person's skill.",
+    Knowledge: "The Ardura signs marking water and safe shelter.|How a jingakh earns temporary standing in the caravan.|Which tale-woman may amend a disputed oral record.|A hidden route wide enough for the moving caravan.",
+    Offer: "Passage with the Ardura caravan.|A formal introduction to the caravan's Sekhema.|Fresh mounts and a route master.|Guest-right lasting until the next major encampment.",
+    Disposition: "Welcoming after the party proves useful to the caravan.|Bargaining over obligations before offering help.|Curious about news from beyond the Vastiri.|Guarded until the party accepts the rules of passage."
+  },
+  Faridun: {
+    Goal: "Bring an abandoned child safely to a Faridun camp.|Secure a permanent water source beyond Maraketh control.|Prove the Faridun have a legitimate place in the Vastiri.|Stop a revenge raid that will expose three hidden settlements.",
+    Problem: "A foundling's birth akhara has come to reclaim them.|Their camp is split over accepting criminal exiles.|A necromantic ward is attracting the dead it was meant to repel.|Maraketh riders have discovered signs near their hidden well.",
+    Secret: "They were born to a respected Maraketh household.|They trade information with a sympathetic tale-woman.|They oppose the Faridun leader who rescued them.|Their tattoos conceal a route into a Maraketh camp.",
+    Knowledge: "The signals used between scattered Faridun camps.|Which Maraketh patrol quietly ignores foundling rescuers.|A safe route through the Doom of the Desert.|The history of a child the Maraketh record as dead.",
+    Offer: "Shelter in a concealed Faridun settlement.|A guide across routes the akharas refuse to map.|Treatment by a healer experienced with desert exposure.|An introduction to outcasts in several Maraketh camps.",
+    Disposition: "Wary of anyone who repeats Maraketh tradition uncritically.|Protective of visibly injured or rejected travellers.|Directly testing whether the party pities or respects them.|Willing to cooperate against a threat to foundlings."
+  },
+  Afarud: {
+    Goal: "Capture a Djinn needed to complete an astral siphon.|Destroy an akhara and make the Faridun witness it.|Recover a barya taken by a rival Afarud cell.|Open a stable path into a weaponised Mirage.",
+    Problem: "The Djinn they bound has begun controlling its gaoler.|Their undead host remembers fragments of its former loyalties.|An astral tether is draining the wrong person.|A Faridun settlement has learned where the cell gathers.",
+    Secret: "They intend to betray the necromancer who commands them.|The spirit in their barya is an unwilling relative.|They no longer believe the Afarud can survive their own plan.|Their greatest ritual depends on Maraketh protection magic.",
+    Knowledge: "How Afarud warlocks anchor a captured Djinn.|The location of a temporary passage into the Mirage.|Which necromantic sign identifies a controlled corpse.|The counter-phrase that interrupts an astral siphon.",
+    Offer: "A dangerous passage through an imperfect Mirage.|Information taken from a tormented Djinn.|Control of an undead guide for one journey.|A stolen barya whose occupant knows ancient history.",
+    Disposition: "Coldly interested in how the party might be used.|Hostile to both Maraketh authority and Faridun restraint.|Feigning solidarity while measuring potential victims.|Unsettlingly calm around suffering and bound spirits."
+  },
+  "Order of the Djinn": {
+    Goal: "Recover a relic before anyone learns what it can do.|Move a dangerous artefact to an unrecorded vault.|Identify who has compromised an Ahkeli Cant network.|Contain a device linked to an approaching catastrophe.",
+    Problem: "A sealed relic has begun communicating with its courier.|Two vault records name different authorised custodians.|Their Cant counterphrase was answered incorrectly by an ally.|Destroying the artefact may release what it contains.",
+    Secret: "They hid a useful relic instead of surrendering it to the Order.|Their mentor sold one vault location to save a city.|They are testing the party as possible unwitting couriers.|The Order caused the disaster it now claims to contain.",
+    Knowledge: "An Ahkeli Cant phrase marking immediate danger.|The mundane appearance of a catastrophic relic.|A route to one of the Order's forgotten vaults.|Which collector unknowingly owns an Order artefact.",
+    Offer: "A warded container for one dangerous object.|Clandestine transport across several faction borders.|Expert identification of a cursed or ancient relic.|Access to a vault record unavailable to public scholars.",
+    Disposition: "Polite while revealing nothing not strictly necessary.|Testing whether curiosity overcomes the party's caution.|Prepared to cooperate if the threat is genuinely existential.|Treating every question as a possible security breach."
+  },
+  "Sel Khari": {
+    Goal: "Return a lost barya to its proper sanctuary.|Determine whether a Djinn has completed its sentence.|Prevent an elder from binding a political rival.|Recover testimony held by a spirit who refuses to speak.",
+    Problem: "The barya they guard contains two conflicting voices.|A sentenced Djinn insists the recorded crime never occurred.|Their release rite has been altered in the official ledger.|A bound spirit has begun appearing outside its object.",
+    Secret: "They released a Djinn before its sentence was complete.|Their own ancestor ordered an unjust binding.|They consult a spirit whose barya is officially lost.|They erased one name from the sentence ledger.",
+    Knowledge: "The rite used to bind a soul into a barya.|The conditions under which a Djinn earns release.|How to distinguish a true spirit memory from manipulation.|The location of a forgotten Sel Khari sanctuary.",
+    Offer: "Safe conversation with a bound ancient witness.|A temporary ward against spirit possession.|Authentication of a barya or Djinn sentence.|A supervised passage through a Trial sanctuary.",
+    Disposition: "Formally attentive to oaths and exact wording.|Sympathetic to the bound but cautious about release.|Suspicious of anyone seeking a Djinn's power.|Quietly questioning whether the old sentences remain just."
+  }
+};
+for (const [subParent, categories] of Object.entries(marakethFactionDrives)) {
+  for (const [category, values] of Object.entries(categories)) addDrives(category, "Maraketh", subParent, values, 3);
+}
+
 const militiaDrives = {
   Goal: "Identify the Ring paymaster inside their wardhouse.|Bring a violent constable to trial without the evidence disappearing.|Keep a street festival peaceful despite Templar provocation.|Find a missing patrol before the watch captain writes them off.|Earn enough trust to command a permanent neighbourhood post.|Move civilians out of a district before a legion sweep begins.",
   Problem: "Their patrol roster was altered after they signed it.|The only witness is protected by the Ring.|A Templar officer has ordered an arrest without a charge.|Their partner has started accepting increasingly serious bribes.|The wardhouse armoury is missing weapons before a riot.|Residents know the badge but no longer trust the person wearing it.",
@@ -600,6 +750,17 @@ const presets = {
     { id: "oriathan_occupier", label: "Oriathan occupier", description: "Templar, legion, militia and Ring presence in and around Sarn.", cultures: { Oriathan: 100 }, affiliations: { Oriathan: { Templar: 55, "Oriath Militia": 20, "The Ring": 10, Unaffiliated: 15 } }, eras: { "1599 IC": 100 }, locations: { "Sarn Upper City": 45, "Sarn Docks": 20, "Sarn Slums": 15, "Sarn Arena": 10, "Wraeclast road or wilderness": 10 } },
     { id: "theopolis", label: "Theopolis and Oriath", description: "Residents, militia, Templars and criminal interests across Oriath.", cultures: { Oriathan: 90, Karui: 3, Ezomyte: 2, Maraketh: 2, Azmeri: 1, Kalguur: 1, Stygian: 1 }, affiliations: { Oriathan: { Unaffiliated: 40, "Oriath Militia": 28, Templar: 22, "The Ring": 10 } }, eras: { "1599 IC": 100 }, locations: { Theopolis: 75, "Oriath port town": 25 } },
     { id: "forest_encampment", label: "Forest Encampment", description: "Azmeri locals, Ezomyte neighbours, exiles, and travellers.", cultures: { Azmeri: 47, Ezomyte: 22, Oriathan: 10, Maraketh: 7, Karui: 6, Kalguur: 4, Stygian: 4 }, socialOrigins: { Native: 38, Refugee: 18, Exile: 14, Diaspora: 8, "Mixed heritage": 4, "Displaced survivor": 10, Nomad: 8 }, eras: { "1599 IC": 100 }, locations: { "Forest Encampment": 85, "Wraeclast road or wilderness": 15 } },
+    {
+      id: "maraketh_highgate",
+      label: "Maraketh — Highgate and Vastiri",
+      description: "Act 4 Maraketh, Kiyato and Ardura travellers, Faridun outcasts, and agents of the Order of the Djinn.",
+      cultures: { Maraketh: 100 },
+      affiliations: { Maraketh: { Maraketh: 72, Faridun: 18, "Order of the Djinn": 7, Unaffiliated: 3 } },
+      branches: { Maraketh: { "Kiyato Akhara": 93, "Ardura Akhara": 7 } },
+      socialOrigins: { Native: 28, Nomad: 30, "Merchant household": 10, "Military household": 10, "Religious household": 5, Refugee: 7, Exile: 5, "Freed captive": 5 },
+      eras: { "1599 IC": 100 },
+      locations: { "Highgate and the Vastiri": 100 }
+    },
     {
       id: "karui_tribe",
       label: "Karui clans",
@@ -640,12 +801,19 @@ const presets = {
 const factions = {
   schemaVersion: 1,
   checkedAgainstNotion: "2026-10-04",
-  sourceDatabase: "Campaign Factions database",
+  sourceDatabase: "Campaign Factions, Civilisations, and Lore databases",
   factions: [
     { id: "oriath.templar", label: "Templar", type: "affiliation", culture: "Oriathan", sourceEntry: "Order Templar" },
     { id: "oriath.militia", label: "Oriath Militia", type: "affiliation", culture: "Oriathan", sourceEntry: "Militia" },
     { id: "oriath.ring", label: "The Ring", type: "affiliation", culture: "Oriathan", sourceEntry: "The Ring" },
     { id: "kalguur.expedition", label: "Kalguur Expedition", type: "affiliation", culture: "Kalguur", sourceEntry: "Wraeclast Cultures" },
+    { id: "maraketh", label: "Maraketh", type: "affiliation", culture: "Maraketh", sourceEntry: "Maraketh" },
+    { id: "maraketh.kiyato", label: "Kiyato Akhara", type: "branch", culture: "Maraketh", parentId: "maraketh", sourceEntry: "Maraketh Language Lexicon / Oyun Kiyato" },
+    { id: "maraketh.ardura", label: "Ardura Akhara", type: "branch", culture: "Maraketh", parentId: "maraketh", sourceEntry: "Path of Exile 2" },
+    { id: "maraketh.faridun", label: "Faridun", type: "affiliation", culture: "Maraketh", sourceEntry: "Faridun, The" },
+    { id: "maraketh.faridun.afarud", label: "Afarud", type: "branch", culture: "Maraketh", parentId: "maraketh.faridun", sourceEntry: "Path of Exile: Mirage" },
+    { id: "maraketh.order-of-the-djinn", label: "Order of the Djinn", type: "affiliation", culture: "Maraketh", sourceEntry: "Order of the Djinn, The" },
+    { id: "maraketh.order-of-the-djinn.sel-khari", label: "Sel Khari", type: "branch", culture: "Maraketh", parentId: "maraketh.order-of-the-djinn", sourceEntry: "Path of Exile 2 / Path of Exile: Mirage" },
     { id: "karui", label: "Karui", type: "affiliation", culture: "Karui", sourceEntry: "Wraeclast Cultures" },
     ...Object.keys(branchPools.Karui.values).filter((label) => label !== "Unaffiliated").map((label) => ({
       id: `karui.${label.toLowerCase().replaceAll(" ", "-")}`,

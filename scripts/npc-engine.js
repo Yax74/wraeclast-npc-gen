@@ -20,7 +20,11 @@ export class NPCEngine {
     "kraityn", "kaom", "hyrri", "lani", "utula", "oyun", "kira", "yeena",
     "greust", "silk", "oshabi", "grigor", "einhar", "rigwald", "zerphi",
     "vorana", "olroth", "uhtred", "medved", "niko", "dialla", "siosa",
-    "maramoa", "tarkleigh", "nessa", "bestel", "tane", "cato", "lucan"
+    "maramoa", "tarkleigh", "nessa", "bestel", "tane", "cato", "lucan",
+    "deshret", "asenath", "solerai", "lundara", "varashta", "aukuna", "orbala",
+    "asala", "zarka", "shambrin", "adiyah", "nashta", "nasima", "nenet", "sumei",
+    "balbala", "jamanra", "risu", "azmadi", "saresh", "ridan", "khatal", "toryal",
+    "ahkeli", "janus perandus", "egrin", "qianga"
   ]);
 
   static CONTRADICTIONS = Object.freeze([
@@ -88,7 +92,11 @@ export class NPCEngine {
     Hinekora: Object.freeze({ culture: "Karui", affiliation: "Karui" }),
     Tawhoa: Object.freeze({ culture: "Karui", affiliation: "Karui" }),
     Emberforged: Object.freeze({ culture: "Stygian", affiliation: "Stygian" }),
-    "Hollowed Vein": Object.freeze({ culture: "Stygian", affiliation: "Stygian" })
+    "Hollowed Vein": Object.freeze({ culture: "Stygian", affiliation: "Stygian" }),
+    "Kiyato Akhara": Object.freeze({ culture: "Maraketh", affiliation: "Maraketh" }),
+    "Ardura Akhara": Object.freeze({ culture: "Maraketh", affiliation: "Maraketh" }),
+    Afarud: Object.freeze({ culture: "Maraketh", affiliation: "Faridun" }),
+    "Sel Khari": Object.freeze({ culture: "Maraketh", affiliation: "Order of the Djinn" })
   });
 
   static #cache = new Map();
@@ -482,6 +490,17 @@ export class NPCEngine {
     if ((tables.names ?? []).filter((row) => row.category === "OrdainedName" && row.parent === "Oriathan" && row.subParent === "Templar").length < 30) {
       errors.push("Templar ordained-name pool has fewer than 30 entries");
     }
+    for (const affiliation of ["Maraketh", "Faridun", "Order of the Djinn"]) {
+      if (!(tables.main ?? []).some((row) => row.category === "Affiliation" && row.parent === "Maraketh" && row.value === affiliation)) {
+        errors.push(`missing Maraketh affiliation: ${affiliation}`);
+      }
+    }
+    for (const [branch, affiliation] of [["Kiyato Akhara", "Maraketh"], ["Ardura Akhara", "Maraketh"], ["Afarud", "Faridun"], ["Sel Khari", "Order of the Djinn"]]) {
+      if (!(tables.main ?? []).some((row) => row.category === "Branch" && row.parent === "Maraketh"
+        && row.subParent === affiliation && row.value === branch)) {
+        errors.push(`missing ${affiliation} branch: ${branch}`);
+      }
+    }
     if ((tables.professions ?? []).length < 600) errors.push("profession library has fewer than 600 entries");
     for (const [category, minimum] of Object.entries({ Appearance: 120, Demeanor: 80, Attitude: 80, Voice: 140, Mannerism: 100 })) {
       const count = (tables.descriptors ?? []).filter((row) => row.category === category).length;
@@ -662,7 +681,7 @@ export class NPCEngine {
     const surnamePool = this.#selectedRows(tables, "names", "Surname", npc);
     let firstName = this.#pickValue(firstPool, rng) || "Unnamed";
     const surnameChance = {
-      Oriathan: 0.95, Azmeri: 0.85, Ezomyte: 0.9, Maraketh: 0.55,
+      Oriathan: 0.95, Azmeri: 0.85, Ezomyte: 0.9, Maraketh: 0.25,
       Karui: 0.8, Vaal: 0.4, Kalguur: 0.4, Stygian: 0.9
     }[npc.culture] ?? 0.85;
     let surname = rng() < surnameChance ? this.#pickValue(surnamePool, rng) : "";
@@ -749,6 +768,7 @@ export class NPCEngine {
     );
     const branch = factions.find((entry) =>
       entry.type === "branch" && entry.culture === npc.culture && entry.label === npc.branch
+      && (!affiliation || entry.parentId === affiliation.id)
     );
     return { factionId: affiliation?.id ?? "", branchId: branch?.id ?? "" };
   }

@@ -597,6 +597,42 @@ Voice,Stygian,Any,Guarded surface-trade accent,2,,,
 Voice,Stygian,Any,Slow oath-cutting cadence,2,,,
 Voice,Stygian,Any,Rasping sulphite-lab voice,2,,,
 Voice,Stygian,Any,Low clan-assembly chant,2,,,
+Voice,Maraketh,Kiyato Akhara,Clipped Highgate watch commands,3,,,
+Voice,Maraketh,Kiyato Akhara,Low recitation of Deshret's vigil,3,,,
+Voice,Maraketh,Kiyato Akhara,Dry mine-gate challenge,3,,,
+Voice,Maraketh,Kiyato Akhara,Precise Rhexback signal calls,3,,,
+Voice,Maraketh,Kiyato Akhara,Measured oath-speaking cadence,3,,,
+Voice,Maraketh,Kiyato Akhara,Wind-worn rampart rasp,3,,,
+Voice,Maraketh,Ardura Akhara,Rolling tale-woman's cadence,3,,,
+Voice,Maraketh,Ardura Akhara,Sharp caravan command voice,3,,,
+Voice,Maraketh,Ardura Akhara,Rhythmic dreadnought deck calls,3,,,
+Voice,Maraketh,Ardura Akhara,Warm fireside history recitation,3,,,
+Voice,Maraketh,Ardura Akhara,Rapid desert-route instructions,3,,,
+Voice,Maraketh,Ardura Akhara,Formal welcome offered to a jingakh,3,,,
+Voice,Maraketh,Faridun,Low defiant desert cadence,3,,,
+Voice,Maraketh,Faridun,Quiet speech sharpened by old resentment,3,,,
+Voice,Maraketh,Faridun,Measured outcast council tone,3,,,
+Voice,Maraketh,Faridun,Rough voice weathered by open dunes,3,,,
+Voice,Maraketh,Faridun,Gentle foundling-story cadence,3,,,
+Voice,Maraketh,Faridun,Flat rejection of Maraketh pieties,3,,,
+Voice,Maraketh,Afarud,A whisper like sand over bone,3,,,
+Voice,Maraketh,Afarud,Ceremonial phrases spoken backwards,3,,,
+Voice,Maraketh,Afarud,A hollow necromancer's chant,3,,,
+Voice,Maraketh,Afarud,Soft threats delivered without emphasis,3,,,
+Voice,Maraketh,Afarud,Breathless astral invocations,3,,,
+Voice,Maraketh,Afarud,Funerary cadence stripped of mourning,3,,,
+Voice,Maraketh,Order of the Djinn,Deliberately forgettable diction,3,,,
+Voice,Maraketh,Order of the Djinn,Measured relic-warden's briefing,3,,,
+Voice,Maraketh,Order of the Djinn,Common phrases stressed as hidden cant,3,,,
+Voice,Maraketh,Order of the Djinn,Patient explanation that reveals little,3,,,
+Voice,Maraketh,Order of the Djinn,Soft warning disguised as courtesy,3,,,
+Voice,Maraketh,Order of the Djinn,Precise catalogue recitation,3,,,
+Voice,Maraketh,Sel Khari,Resonant barya-oath cadence,3,,,
+Voice,Maraketh,Sel Khari,Faintly echoing spirit speech,3,,,
+Voice,Maraketh,Sel Khari,Formal trial liturgy,3,,,
+Voice,Maraketh,Sel Khari,Whispered names of bound Djinn,3,,,
+Voice,Maraketh,Sel Khari,A voice that seems older than its speaker,3,,,
+Voice,Maraketh,Sel Khari,Measured sentence-and-release formulae,3,,,
 Build,Any,Any,Compact and wiry,1,Any,Any,Any
 Build,Any,Any,Lean and long-limbed,1,Any,Any,Any
 Build,Any,Any,Broad and heavy-set,1,Any,Any,Any
@@ -835,10 +871,82 @@ Attire,Oriathan,Oriath Militia,A port-watch cloak smelling faintly of salt,4,Any
 Attire,Oriathan,Oriath Militia,A patched uniform bought from a former constable,4,Any,Any,Any
 Attire,Oriathan,Oriath Militia,A clean militia sash over civilian clothes,4,Any,Any,Any
 Attire,Oriathan,Oriath Militia,A reinforced watch coat with Ring stitching hidden inside,4,Any,Any,Any
+Attire,Maraketh,Maraketh,A riding coat cut to clear a saddle,4,Any,Any,Any
+Attire,Maraketh,Maraketh,Layered caravan robes weighted against the wind,4,Any,Any,Any
+Attire,Maraketh,Maraketh,A bright duty sash in their akhara's colours,4,Any,Any,Any
+Attire,Maraketh,Maraketh,A veil and headwrap arranged for desert travel,4,Any,Any,Any
+Attire,Maraketh,Maraketh,Light scale armour beneath embroidered cloth,4,Any,Any,Any
+Attire,Maraketh,Maraketh,A water ledger sealed inside an oiled pouch,4,Any,Any,Any
+Attire,Maraketh,Kiyato Akhara,A red sash recalling Deshret's vigil,5,Any,Any,Any
+Attire,Maraketh,Kiyato Akhara,A mine-gate coat dusted with black grit,5,Any,Any,Any
+Attire,Maraketh,Kiyato Akhara,A seal-watcher's layered leather armour,5,Any,Any,Any
+Attire,Maraketh,Kiyato Akhara,A Highgate cloak pinned with a carved mountain token,5,Any,Any,Any
+Attire,Maraketh,Kiyato Akhara,A Rhexback harness worn over fitted desert mail,5,Any,Any,Any
+Attire,Maraketh,Kiyato Akhara,Ceremonial cloth kept immaculate despite mine dust,5,Any,Any,Any
+Attire,Maraketh,Ardura Akhara,A caravan riding coat crossed by safety cords,5,Any,Any,Any
+Attire,Maraketh,Ardura Akhara,A sand-scoured mantle in Ardura colours,5,Any,Any,Any
+Attire,Maraketh,Ardura Akhara,A tale-woman's layered robes hung with memory knots,5,Any,Any,Any
+Attire,Maraketh,Ardura Akhara,A route-master's coat crowded with map pockets,5,Any,Any,Any
+Attire,Maraketh,Ardura Akhara,A beast-handler's wraps reinforced at the forearms,5,Any,Any,Any
+Attire,Maraketh,Ardura Akhara,A formal guest sash carried for worthy jingakh,5,Any,Any,Any
+Attire,Maraketh,Faridun,Sun-bleached wraps repaired with many different fabrics,5,Any,Any,Any
+Attire,Maraketh,Faridun,Scavenged armour hidden beneath desert cloth,5,Any,Any,Any
+Attire,Maraketh,Faridun,A self-chosen tattoo left deliberately uncovered,5,Any,Any,Any
+Attire,Maraketh,Faridun,A foundling's cloak stitched with mismatched family tokens,5,Any,Any,Any
+Attire,Maraketh,Faridun,Layered robes dyed in colours forbidden by an old akhara,5,Any,Any,Any
+Attire,Maraketh,Faridun,A bone-and-brass belt carrying survival tools,5,Any,Any,Any
+Attire,Maraketh,Afarud,Blackened wraps hung with empty barya cages,5,Any,Any,Any
+Attire,Maraketh,Afarud,A bone-plated mantle marked by necromantic ash,5,Any,Any,Any
+Attire,Maraketh,Afarud,Dark robes stiff with salt and old blood,5,Any,Any,Any
+Attire,Maraketh,Afarud,A warlock's harness carrying astral siphons,5,Any,Any,Any
+Attire,Maraketh,Afarud,A hood sewn with fragments of burial cloth,5,Any,Any,Any
+Attire,Maraketh,Afarud,Lacquered armour etched with broken akhara oaths,5,Any,Any,Any
+Attire,Maraketh,Order of the Djinn,Unmarked travelling clothes concealing relic pockets,5,Any,Any,Any
+Attire,Maraketh,Order of the Djinn,A plain mantle whose seams encode Ahkeli Cant,5,Any,Any,Any
+Attire,Maraketh,Order of the Djinn,A vault-warden's coat lined against magical discharge,5,Any,Any,Any
+Attire,Maraketh,Order of the Djinn,Desert robes fastened with a deliberately ordinary coin,5,Any,Any,Any
+Attire,Maraketh,Order of the Djinn,A relic courier's harness hidden beneath loose cloth,5,Any,Any,Any
+Attire,Maraketh,Order of the Djinn,A dust-coloured cloak that displays no akhara mark,5,Any,Any,Any
+Attire,Maraketh,Sel Khari,Trial robes secured with a sealed barya,5,Any,Any,Any
+Attire,Maraketh,Sel Khari,A spirit-warden's mantle embroidered inside rather than out,5,Any,Any,Any
+Attire,Maraketh,Sel Khari,Layered white and bronze cloth darkened by incense,5,Any,Any,Any
+Attire,Maraketh,Sel Khari,A chain-patterned sash marking an oath of service,5,Any,Any,Any
+Attire,Maraketh,Sel Khari,A coin keeper's coat with warded inner pockets,5,Any,Any,Any
+Attire,Maraketh,Sel Khari,Ceremonial armour shaped around an ancient binding token,5,Any,Any,Any
 Attire,Stygian,Emberforged,A surface-cut coat adapted for mine work,4,Any,Any,Any
 Attire,Stygian,Emberforged,A powderproof apron bearing the Emberforged mark,4,Any,Any,Any
 Attire,Stygian,Emberforged,A travel mantle concealing trade ledgers,4,Any,Any,Any
 Attire,Stygian,Emberforged,A reinforced smuggler's coat with hidden sample tubes,4,Any,Any,Any
+Distinguishing,Maraketh,Kiyato Akhara,A mountain-seal token polished by constant handling,5,Any,Any,Any
+Distinguishing,Maraketh,Kiyato Akhara,Red thread tied around the weapon hand,5,Any,Any,Any
+Distinguishing,Maraketh,Kiyato Akhara,Rhex bite scars along one forearm,5,Any,Any,Any
+Distinguishing,Maraketh,Kiyato Akhara,A tiny image of Deshret worked into a clasp,5,Any,Any,Any
+Distinguishing,Maraketh,Kiyato Akhara,Black mine dust permanently caught beneath the nails,5,Any,Any,Any
+Distinguishing,Maraketh,Ardura Akhara,A string of caravan memory knots,5,Any,Any,Any
+Distinguishing,Maraketh,Ardura Akhara,A brass route token stamped with the Ardura mark,5,Any,Any,Any
+Distinguishing,Maraketh,Ardura Akhara,Wind cracks at the corners of the eyes,5,Any,Any,Any
+Distinguishing,Maraketh,Ardura Akhara,A storyteller's tally tattoo hidden inside the wrist,5,Any,Any,Any
+Distinguishing,Maraketh,Ardura Akhara,Sand goggles repaired with bright wire,5,Any,Any,Any
+Distinguishing,Maraketh,Faridun,Defiant tattoos covering an older shame mark,5,Any,Any,Any
+Distinguishing,Maraketh,Faridun,A collection of tokens from rescued foundlings,5,Any,Any,Any
+Distinguishing,Maraketh,Faridun,The scar of an abandoned infant carried into adulthood,5,Any,Any,Any
+Distinguishing,Maraketh,Faridun,A deliberately broken Maraketh clan clasp,5,Any,Any,Any
+Distinguishing,Maraketh,Faridun,Names of the dead tattooed along the forearm,5,Any,Any,Any
+Distinguishing,Maraketh,Afarud,Fingertips stained by astral residue,5,Any,Any,Any
+Distinguishing,Maraketh,Afarud,A black tear tattoo beneath one eye,5,Any,Any,Any
+Distinguishing,Maraketh,Afarud,A barya-shaped brand over the heart,5,Any,Any,Any
+Distinguishing,Maraketh,Afarud,Necromantic script cut into a bone bracelet,5,Any,Any,Any
+Distinguishing,Maraketh,Afarud,A shadow that lags a fraction behind,5,Any,Any,Any
+Distinguishing,Maraketh,Order of the Djinn,A gesture repeated whenever a lie is spoken,5,Any,Any,Any
+Distinguishing,Maraketh,Order of the Djinn,An ordinary coin that is never spent,5,Any,Any,Any
+Distinguishing,Maraketh,Order of the Djinn,A clay token bearing Ahkeli's hidden mark,5,Any,Any,Any
+Distinguishing,Maraketh,Order of the Djinn,A catalogue number tattooed where clothing conceals it,5,Any,Any,Any
+Distinguishing,Maraketh,Order of the Djinn,A scar left by a relic containment failure,5,Any,Any,Any
+Distinguishing,Maraketh,Sel Khari,A sealed barya worn against the skin,5,Any,Any,Any
+Distinguishing,Maraketh,Sel Khari,Faint chain marks around both wrists,5,Any,Any,Any
+Distinguishing,Maraketh,Sel Khari,Eyes that catch light like old coinage,5,Any,Any,Any
+Distinguishing,Maraketh,Sel Khari,A spirit name written beneath the tongue,5,Any,Any,Any
+Distinguishing,Maraketh,Sel Khari,A voice that briefly doubles near bound objects,5,Any,Any,Any
 Distinguishing,Any,Any,Small lower tusks,1,Half-Orc|Orc,Any,Any
 Distinguishing,Any,Any,A broken tusk capped in copper,1,Half-Orc|Orc,Any,Any
 Distinguishing,Any,Any,A beard clasped with a stone clan-ring,1,Dwarf|Duergar,Any,Any

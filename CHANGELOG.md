@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.4.0
+
+### Maraketh faction expansion
+
+- Added Maraketh as a first-class affiliation instead of leaving the culture generically unaffiliated.
+- Added the Kiyato Akhara and Ardura Akhara as Maraketh branches, the Faridun as a distinct affiliation with the Afarud branch, and the Order of the Djinn as a distinct affiliation with the Sel Khari branch.
+- Added stable IDs for every new affiliation and branch, preserving the same culture → affiliation → branch model used by the Karui and Stygians.
+- Added a dedicated **Maraketh — Highgate and Vastiri** Act 4 preset weighted toward the Kiyato Akhara while retaining Faridun, Order, and visiting Ardura results.
+
+### Culture and source audit
+
+- Reconciled the campaign's Maraketh civilisation, lexicon, pantheon, Faridun, Order of the Djinn, Oyun, Kira, and Tasuni entries with PoE 1, PoE 2, and the current Mirage lore.
+- Extended the Arabic/Persian name pool while reserving known GGG character names from random generation.
+- Reduced Maraketh surname frequency from 55% to 25% to reflect GGG's strong mononym-plus-title pattern; akhara names remain a separate field.
+- Kept campaign-specific Order of the Djinn material distinct from GGG's newer Sel Khari material and kept the Afarud distinct from ordinary Faridun.
+
+### Content and validation
+
+- Expanded the module to 900 name entries, 834 professions, 968 descriptors, 594 cultural/faction hooks, and 444 immediate-use prompts.
+- Added Maraketh-specific voices, clothing, marks, professions, ideals, bonds, flaws, goals, problems, secrets, knowledge, offers, and starting dispositions for all six new faction/branch selections.
+- Added flattened-macro migration for Kiyato Akhara, Ardura Akhara, Afarud, and Sel Khari.
+- Expanded deterministic validation to 20 tests, including Maraketh hierarchy, stable faction IDs, branch-specific output, and mononym frequency.
+
 ## 2.3.0
 
 ### Lore and naming

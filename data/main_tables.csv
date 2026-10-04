@@ -13,12 +13,22 @@ Affiliation,Oriathan,Any,Oriath Militia,18
 Affiliation,Oriathan,Any,The Ring,15
 Affiliation,Azmeri,Any,Unaffiliated,100
 Affiliation,Ezomyte,Any,Unaffiliated,100
-Affiliation,Maraketh,Any,Unaffiliated,100
+Affiliation,Maraketh,Any,Maraketh,72
+Affiliation,Maraketh,Any,Faridun,17
+Affiliation,Maraketh,Any,Order of the Djinn,6
+Affiliation,Maraketh,Any,Unaffiliated,5
 Affiliation,Karui,Any,Karui,100
 Affiliation,Vaal,Any,Unaffiliated,100
 Affiliation,Kalguur,Any,Kalguur Expedition,70
 Affiliation,Kalguur,Any,Unaffiliated,30
 Affiliation,Stygian,Any,Stygian,100
+Branch,Maraketh,Maraketh,Kiyato Akhara,72
+Branch,Maraketh,Maraketh,Ardura Akhara,13
+Branch,Maraketh,Maraketh,Unaffiliated,15
+Branch,Maraketh,Faridun,Afarud,10
+Branch,Maraketh,Faridun,Unaffiliated,90
+Branch,Maraketh,Order of the Djinn,Sel Khari,65
+Branch,Maraketh,Order of the Djinn,Unaffiliated,35
 Branch,Karui,Karui,Tukohama,12
 Branch,Karui,Karui,Ngamahu,11
 Branch,Karui,Karui,Valako,9
@@ -188,6 +198,62 @@ ProfessionCategory,Maraketh,Any,Commoner,7
 ProfessionCategory,Maraketh,Any,Medical,5
 ProfessionCategory,Maraketh,Any,Magic,4
 ProfessionCategory,Maraketh,Any,Religion,3
+ProfessionCategory,Maraketh,Kiyato Akhara,Military,21
+ProfessionCategory,Maraketh,Kiyato Akhara,Survival,17
+ProfessionCategory,Maraketh,Kiyato Akhara,Transport,14
+ProfessionCategory,Maraketh,Kiyato Akhara,Trade,11
+ProfessionCategory,Maraketh,Kiyato Akhara,Craftsman,10
+ProfessionCategory,Maraketh,Kiyato Akhara,Religion,8
+ProfessionCategory,Maraketh,Kiyato Akhara,Commoner,6
+ProfessionCategory,Maraketh,Kiyato Akhara,Agriculture,5
+ProfessionCategory,Maraketh,Kiyato Akhara,Medical,4
+ProfessionCategory,Maraketh,Kiyato Akhara,Magic,2
+ProfessionCategory,Maraketh,Kiyato Akhara,Communications,2
+ProfessionCategory,Maraketh,Ardura Akhara,Transport,22
+ProfessionCategory,Maraketh,Ardura Akhara,Trade,18
+ProfessionCategory,Maraketh,Ardura Akhara,Survival,15
+ProfessionCategory,Maraketh,Ardura Akhara,Military,13
+ProfessionCategory,Maraketh,Ardura Akhara,Craftsman,10
+ProfessionCategory,Maraketh,Ardura Akhara,Commoner,6
+ProfessionCategory,Maraketh,Ardura Akhara,Medical,5
+ProfessionCategory,Maraketh,Ardura Akhara,Religion,5
+ProfessionCategory,Maraketh,Ardura Akhara,Communications,4
+ProfessionCategory,Maraketh,Ardura Akhara,Magic,2
+ProfessionCategory,Maraketh,Faridun,Survival,22
+ProfessionCategory,Maraketh,Faridun,Outcast,18
+ProfessionCategory,Maraketh,Faridun,Military,15
+ProfessionCategory,Maraketh,Faridun,Magic,13
+ProfessionCategory,Maraketh,Faridun,Craftsman,10
+ProfessionCategory,Maraketh,Faridun,Medical,7
+ProfessionCategory,Maraketh,Faridun,Trade,5
+ProfessionCategory,Maraketh,Faridun,Transport,4
+ProfessionCategory,Maraketh,Faridun,Commoner,3
+ProfessionCategory,Maraketh,Faridun,Criminal,3
+ProfessionCategory,Maraketh,Afarud,Magic,25
+ProfessionCategory,Maraketh,Afarud,Criminal,20
+ProfessionCategory,Maraketh,Afarud,Outcast,18
+ProfessionCategory,Maraketh,Afarud,Military,14
+ProfessionCategory,Maraketh,Afarud,Scholarly,8
+ProfessionCategory,Maraketh,Afarud,Survival,7
+ProfessionCategory,Maraketh,Afarud,Craftsman,4
+ProfessionCategory,Maraketh,Afarud,Medical,4
+ProfessionCategory,Maraketh,Order of the Djinn,Scholarly,22
+ProfessionCategory,Maraketh,Order of the Djinn,Magic,19
+ProfessionCategory,Maraketh,Order of the Djinn,Exploration,18
+ProfessionCategory,Maraketh,Order of the Djinn,Military,12
+ProfessionCategory,Maraketh,Order of the Djinn,Craftsman,10
+ProfessionCategory,Maraketh,Order of the Djinn,Communications,8
+ProfessionCategory,Maraketh,Order of the Djinn,Religion,5
+ProfessionCategory,Maraketh,Order of the Djinn,Medical,4
+ProfessionCategory,Maraketh,Order of the Djinn,Trade,2
+ProfessionCategory,Maraketh,Sel Khari,Magic,28
+ProfessionCategory,Maraketh,Sel Khari,Scholarly,20
+ProfessionCategory,Maraketh,Sel Khari,Exploration,14
+ProfessionCategory,Maraketh,Sel Khari,Military,12
+ProfessionCategory,Maraketh,Sel Khari,Religion,10
+ProfessionCategory,Maraketh,Sel Khari,Communications,8
+ProfessionCategory,Maraketh,Sel Khari,Craftsman,5
+ProfessionCategory,Maraketh,Sel Khari,Medical,3
 ProfessionCategory,Karui,Any,Tribal,26
 ProfessionCategory,Karui,Any,Survival,22
 ProfessionCategory,Karui,Any,Military,16

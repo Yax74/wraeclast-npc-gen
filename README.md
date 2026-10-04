@@ -1,6 +1,6 @@
 # Wraeclast NPC Generator
 
-A Foundry VTT 13 module for generating lore-aware NPCs for a Wraeclast D&D campaign. Version 2.3 adds ordained Templar naming, the Oriath Militia, structured descriptions, immediately playable motives, era/location context, editing history, local data overrides, and capability-based Actor templates.
+A Foundry VTT 13 module for generating lore-aware NPCs for a Wraeclast D&D campaign. Version 2.4 adds a complete Maraketh faction hierarchy, a Highgate/Vastiri preset, and faction-specific Act 4 content grounded in the campaign Notion databases and Path of Exile 1 and 2.
 
 ## Install in Foundry
 
@@ -29,22 +29,22 @@ The module never posts or creates documents merely because **Generate preview** 
 - **Oriathan:** Human-majority. Templar, Oriath Militia, and The Ring are separate affiliations, not cultures. Templar results include the Ebony/Primis, Crimson/Secundo, both Sarn Azure/Tertius legions, Emerald/Quartus, and Archivists. Ordained Templars renounce their birth names and use a bestowed virtue-name such as `Templar Vigilance`; lay legion personnel retain ordinary Roman/Greek-style Oriathan names. Unlocked Emerald results use an approximately even human/non-human recruitment mix.
 - **Azmeri:** Human-majority survivors and forest communities.
 - **Ezomyte:** Dwarf-majority, with Scottish/Gaelic-inspired names.
-- **Maraketh:** Halfling-majority, with Arabic/Persian-inspired names.
+- **Maraketh:** Halfling-majority, with Arabic/Persian-inspired names and GGG-style preference for mononyms. The Maraketh parent faction branches into the Highgate-based Kiyato Akhara and PoE 2's Ardura Akhara. The Faridun and Order of the Djinn are distinct Maraketh-culture affiliations; the Afarud branch from the Faridun, while the Sel Khari branch from the Order.
 - **Karui:** Half-orc-majority, Māori-inspired culture. The Karui parent faction branches into a clan for each campaign god: Tukohama, Ngamahu, Valako, Tasalio, Ramako, Rongokurai, Arohongui, Tawhoa, Kitava, Hinekora, Sione, and Lani Lua.
 - **Vaal:** Gnome-majority and available through the historical Ancient Vaal preset or a direct culture selection.
 - **Kalguur:** High-elf-majority explorers in angular, spiked equipment. Their black-powder specialists reflect guarded trade with the Stygians.
 - **Stygian:** Drow, duergar, and deep gnomes of the Azurite Mines. The Stygian parent faction branches into the Deepwardens, Sulphite Syndicate, Shadowborn, Emberforged, and Hollowed Vein. Their content includes sulphite black-powder trades, rune lore, Kalguur links, surface ambitions, and accented-Azmeri voice descriptors.
 
-Named GGG and campaign figures are excluded from random name pools. The cultural and source-material review is recorded in [docs/name-audit.md](docs/name-audit.md).
+Named GGG and campaign figures are excluded from random name pools. The cultural and source-material review is recorded in [docs/name-audit.md](docs/name-audit.md), with the detailed Maraketh hierarchy decisions in [docs/maraketh-audit.md](docs/maraketh-audit.md).
 Branch weights are generation tuning informed by the campaign notes, not asserted population counts.
 
 ## Content depth
 
-- **870 name entries:** 490 first names, 340 surnames, and 40 ordained Templar virtue-names; every culture has at least 60 first names and 40 surnames.
-- **691 professions:** broad common occupations plus culture-, faction-, expedition-, legion-, militia-, and clan-specific work.
-- **860 descriptors:** the earlier freeform library plus dedicated build, facial/features, attire, and distinguishing-mark pools. Structured entries can be restricted by species, age, and profession.
-- **480 cultural hooks:** ideals, bonds, and flaws for every culture and named faction branch.
-- **300 immediate-use prompts:** goals, problems, secrets, knowledge, offers, and starting dispositions.
+- **900 name entries:** 510 first names, 350 surnames, and 40 ordained Templar virtue-names; every culture has at least 60 first names and 40 surnames.
+- **834 professions:** broad common occupations plus culture-, faction-, expedition-, legion-, militia-, akhara-, outcast-, and secret-order work.
+- **968 descriptors:** the earlier freeform library plus dedicated build, facial/features, attire, distinguishing-mark, Maraketh faction, and faction-voice pools. Structured entries can be restricted by species, age, and profession.
+- **594 cultural hooks:** ideals, bonds, and flaws for every culture and named faction branch.
+- **444 immediate-use prompts:** goals, problems, secrets, knowledge, offers, and starting dispositions.
 - Every culture has its own weighted voice pool while retaining access to broadly applicable voices.
 - Cultural professions supplement the general profession library rather than replacing it, keeping results distinctive without becoming repetitive.
 
@@ -55,6 +55,7 @@ Branch weights are generation tuning informed by the campaign notes, not asserte
 - Oriathan occupier
 - Theopolis and Oriath
 - Forest Encampment
+- Maraketh — Highgate and Vastiri
 - Karui clans
 - Kalguur expedition
 - Stygian mines
@@ -107,7 +108,7 @@ await game.wraeclastGen.reload();
 await game.wraeclastGen.validate();
 ```
 
-Supported constraint keys are `preset`, `culture`, `affiliation`, `branch`, `species`, `socialOrigin`, `age`, `alignment`, `professionCategory`, `location`, `era`, and `capabilityTier`. For compatibility, the old flattened `affiliation` values `Hinekora`, `Tawhoa`, `Emberforged`, and `Hollowed Vein` are automatically migrated to their correct parent faction and branch.
+Supported constraint keys are `preset`, `culture`, `affiliation`, `branch`, `species`, `socialOrigin`, `age`, `alignment`, `professionCategory`, `location`, `era`, and `capabilityTier`. For compatibility and macro convenience, flattened `affiliation` values such as `Hinekora`, `Tawhoa`, `Emberforged`, `Hollowed Vein`, `Kiyato Akhara`, `Ardura Akhara`, `Afarud`, and `Sel Khari` are automatically migrated to their correct parent faction and branch.
 
 For compatibility with the original module, `game.wraeclastGen.generate()` with no argument also opens the generator. Passing a constraint object returns one generated NPC.
 
@@ -129,7 +130,7 @@ The test suite validates compatibility rules, pool depth, reserved names, contra
 
 1. Update the version in `module.json` and `package.json`.
 2. Update `module.json`'s versioned `download` URL and add release notes to `CHANGELOG.md`.
-3. Commit the changes and create a GitHub release whose tag is `v` followed by that version, such as `v2.3.0`.
+3. Commit the changes and create a GitHub release whose tag is `v` followed by that version, such as `v2.4.0`.
 4. The release workflow validates the tag, runs the test suite, and attaches `module.json`, `wraeclast-npc-gen.zip`, and a SHA-256 checksum to the release.
 
 If a release job needs to be rerun, start **Build release assets** from the Actions tab and supply the existing release tag.
