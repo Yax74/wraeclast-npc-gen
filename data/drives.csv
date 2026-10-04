@@ -263,6 +263,150 @@ Disposition,Stygian,Any,Carefully formal with surface strangers.,2
 Disposition,Stygian,Any,Interested but alert for mockery of their accent.,2
 Disposition,Stygian,Any,More trusting underground than beneath open sky.,2
 Disposition,Stygian,Any,Relieved to meet outsiders who respect negotiated boundaries.,2
+Goal,Maraketh,Kiyato Akhara,Reinforce the Deshret Seal before the next tremor.,3
+Goal,Maraketh,Kiyato Akhara,Find a missing Rhexback patrol below Highgate.,3
+Goal,Maraketh,Kiyato Akhara,Convince the Sekhema to alter an ancient Vigil order.,3
+Goal,Maraketh,Kiyato Akhara,Remove corrupted creatures from a mine supply route.,3
+Problem,Maraketh,Kiyato Akhara,The Seal gives a different resonance each night.,3
+Problem,Maraketh,Kiyato Akhara,Their patrol partner returned without recognising them.,3
+Problem,Maraketh,Kiyato Akhara,A mine gate was opened with a legitimate Kiyato token.,3
+Problem,Maraketh,Kiyato Akhara,The Rhex refuse to pass a shrine beneath Highgate.,3
+Secret,Maraketh,Kiyato Akhara,They know a section of the Seal was repaired with Vaal work.,3
+Secret,Maraketh,Kiyato Akhara,They have been allowing one Faridun healer into Highgate.,3
+Secret,Maraketh,Kiyato Akhara,Their family abandoned a post during an earlier breach.,3
+Secret,Maraketh,Kiyato Akhara,They heard a voice answer from inside the mountain.,3
+Knowledge,Maraketh,Kiyato Akhara,A service route around Highgate's sealed mine gate.,3
+Knowledge,Maraketh,Kiyato Akhara,The challenge used to test a returning Kiyato scout.,3
+Knowledge,Maraketh,Kiyato Akhara,Which tremors mean collapse and which mean the Beast is stirring.,3
+Knowledge,Maraketh,Kiyato Akhara,The old Vigil orders attributed to Deshret.,3
+Offer,Maraketh,Kiyato Akhara,Kiyato escort through the Highgate fortifications.,3
+Offer,Maraketh,Kiyato Akhara,A trained Rhex and tack for a dangerous ascent.,3
+Offer,Maraketh,Kiyato Akhara,Permission to speak before a Dekhara.,3
+Offer,Maraketh,Kiyato Akhara,A mine-watch token recognised at the Seal.,3
+Disposition,Maraketh,Kiyato Akhara,Assessing whether the party can be trusted near the Seal.,3
+Disposition,Maraketh,Kiyato Akhara,Respectful of proven endurance and little else.,3
+Disposition,Maraketh,Kiyato Akhara,Grimly relieved that outsiders may attempt the impossible.,3
+Disposition,Maraketh,Kiyato Akhara,Hostile to anyone treating the Vigil as superstition.,3
+Goal,Maraketh,Ardura Akhara,Bring the moving caravan through a blocked trade route.,3
+Goal,Maraketh,Ardura Akhara,Recover a missing chapter of the akhara's oral history.,3
+Goal,Maraketh,Ardura Akhara,Earn guest-right for a useful but distrusted jingakh.,3
+Goal,Maraketh,Ardura Akhara,Find safe water before the caravan must turn back.,3
+Problem,Maraketh,Ardura Akhara,Two route masters read the storm signs differently.,3
+Problem,Maraketh,Ardura Akhara,A caravan beast was deliberately given tainted feed.,3
+Problem,Maraketh,Ardura Akhara,The latest tale contradicts the Sekhema's public account.,3
+Problem,Maraketh,Ardura Akhara,A promised passenger is secretly wanted by another akhara.,3
+Secret,Maraketh,Ardura Akhara,They accepted payment to change the caravan's route.,3
+Secret,Maraketh,Ardura Akhara,They invented a heroic detail now treated as history.,3
+Secret,Maraketh,Ardura Akhara,Their most reliable guide is a Faridun informant.,3
+Secret,Maraketh,Ardura Akhara,They know who sabotaged the caravan but need that person's skill.,3
+Knowledge,Maraketh,Ardura Akhara,The Ardura signs marking water and safe shelter.,3
+Knowledge,Maraketh,Ardura Akhara,How a jingakh earns temporary standing in the caravan.,3
+Knowledge,Maraketh,Ardura Akhara,Which tale-woman may amend a disputed oral record.,3
+Knowledge,Maraketh,Ardura Akhara,A hidden route wide enough for the moving caravan.,3
+Offer,Maraketh,Ardura Akhara,Passage with the Ardura caravan.,3
+Offer,Maraketh,Ardura Akhara,A formal introduction to the caravan's Sekhema.,3
+Offer,Maraketh,Ardura Akhara,Fresh mounts and a route master.,3
+Offer,Maraketh,Ardura Akhara,Guest-right lasting until the next major encampment.,3
+Disposition,Maraketh,Ardura Akhara,Welcoming after the party proves useful to the caravan.,3
+Disposition,Maraketh,Ardura Akhara,Bargaining over obligations before offering help.,3
+Disposition,Maraketh,Ardura Akhara,Curious about news from beyond the Vastiri.,3
+Disposition,Maraketh,Ardura Akhara,Guarded until the party accepts the rules of passage.,3
+Goal,Maraketh,Faridun,Bring an abandoned child safely to a Faridun camp.,3
+Goal,Maraketh,Faridun,Secure a permanent water source beyond Maraketh control.,3
+Goal,Maraketh,Faridun,Prove the Faridun have a legitimate place in the Vastiri.,3
+Goal,Maraketh,Faridun,Stop a revenge raid that will expose three hidden settlements.,3
+Problem,Maraketh,Faridun,A foundling's birth akhara has come to reclaim them.,3
+Problem,Maraketh,Faridun,Their camp is split over accepting criminal exiles.,3
+Problem,Maraketh,Faridun,A necromantic ward is attracting the dead it was meant to repel.,3
+Problem,Maraketh,Faridun,Maraketh riders have discovered signs near their hidden well.,3
+Secret,Maraketh,Faridun,They were born to a respected Maraketh household.,3
+Secret,Maraketh,Faridun,They trade information with a sympathetic tale-woman.,3
+Secret,Maraketh,Faridun,They oppose the Faridun leader who rescued them.,3
+Secret,Maraketh,Faridun,Their tattoos conceal a route into a Maraketh camp.,3
+Knowledge,Maraketh,Faridun,The signals used between scattered Faridun camps.,3
+Knowledge,Maraketh,Faridun,Which Maraketh patrol quietly ignores foundling rescuers.,3
+Knowledge,Maraketh,Faridun,A safe route through the Doom of the Desert.,3
+Knowledge,Maraketh,Faridun,The history of a child the Maraketh record as dead.,3
+Offer,Maraketh,Faridun,Shelter in a concealed Faridun settlement.,3
+Offer,Maraketh,Faridun,A guide across routes the akharas refuse to map.,3
+Offer,Maraketh,Faridun,Treatment by a healer experienced with desert exposure.,3
+Offer,Maraketh,Faridun,An introduction to outcasts in several Maraketh camps.,3
+Disposition,Maraketh,Faridun,Wary of anyone who repeats Maraketh tradition uncritically.,3
+Disposition,Maraketh,Faridun,Protective of visibly injured or rejected travellers.,3
+Disposition,Maraketh,Faridun,Directly testing whether the party pities or respects them.,3
+Disposition,Maraketh,Faridun,Willing to cooperate against a threat to foundlings.,3
+Goal,Maraketh,Afarud,Capture a Djinn needed to complete an astral siphon.,3
+Goal,Maraketh,Afarud,Destroy an akhara and make the Faridun witness it.,3
+Goal,Maraketh,Afarud,Recover a barya taken by a rival Afarud cell.,3
+Goal,Maraketh,Afarud,Open a stable path into a weaponised Mirage.,3
+Problem,Maraketh,Afarud,The Djinn they bound has begun controlling its gaoler.,3
+Problem,Maraketh,Afarud,Their undead host remembers fragments of its former loyalties.,3
+Problem,Maraketh,Afarud,An astral tether is draining the wrong person.,3
+Problem,Maraketh,Afarud,A Faridun settlement has learned where the cell gathers.,3
+Secret,Maraketh,Afarud,They intend to betray the necromancer who commands them.,3
+Secret,Maraketh,Afarud,The spirit in their barya is an unwilling relative.,3
+Secret,Maraketh,Afarud,They no longer believe the Afarud can survive their own plan.,3
+Secret,Maraketh,Afarud,Their greatest ritual depends on Maraketh protection magic.,3
+Knowledge,Maraketh,Afarud,How Afarud warlocks anchor a captured Djinn.,3
+Knowledge,Maraketh,Afarud,The location of a temporary passage into the Mirage.,3
+Knowledge,Maraketh,Afarud,Which necromantic sign identifies a controlled corpse.,3
+Knowledge,Maraketh,Afarud,The counter-phrase that interrupts an astral siphon.,3
+Offer,Maraketh,Afarud,A dangerous passage through an imperfect Mirage.,3
+Offer,Maraketh,Afarud,Information taken from a tormented Djinn.,3
+Offer,Maraketh,Afarud,Control of an undead guide for one journey.,3
+Offer,Maraketh,Afarud,A stolen barya whose occupant knows ancient history.,3
+Disposition,Maraketh,Afarud,Coldly interested in how the party might be used.,3
+Disposition,Maraketh,Afarud,Hostile to both Maraketh authority and Faridun restraint.,3
+Disposition,Maraketh,Afarud,Feigning solidarity while measuring potential victims.,3
+Disposition,Maraketh,Afarud,Unsettlingly calm around suffering and bound spirits.,3
+Goal,Maraketh,Order of the Djinn,Recover a relic before anyone learns what it can do.,3
+Goal,Maraketh,Order of the Djinn,Move a dangerous artefact to an unrecorded vault.,3
+Goal,Maraketh,Order of the Djinn,Identify who has compromised an Ahkeli Cant network.,3
+Goal,Maraketh,Order of the Djinn,Contain a device linked to an approaching catastrophe.,3
+Problem,Maraketh,Order of the Djinn,A sealed relic has begun communicating with its courier.,3
+Problem,Maraketh,Order of the Djinn,Two vault records name different authorised custodians.,3
+Problem,Maraketh,Order of the Djinn,Their Cant counterphrase was answered incorrectly by an ally.,3
+Problem,Maraketh,Order of the Djinn,Destroying the artefact may release what it contains.,3
+Secret,Maraketh,Order of the Djinn,They hid a useful relic instead of surrendering it to the Order.,3
+Secret,Maraketh,Order of the Djinn,Their mentor sold one vault location to save a city.,3
+Secret,Maraketh,Order of the Djinn,They are testing the party as possible unwitting couriers.,3
+Secret,Maraketh,Order of the Djinn,The Order caused the disaster it now claims to contain.,3
+Knowledge,Maraketh,Order of the Djinn,An Ahkeli Cant phrase marking immediate danger.,3
+Knowledge,Maraketh,Order of the Djinn,The mundane appearance of a catastrophic relic.,3
+Knowledge,Maraketh,Order of the Djinn,A route to one of the Order's forgotten vaults.,3
+Knowledge,Maraketh,Order of the Djinn,Which collector unknowingly owns an Order artefact.,3
+Offer,Maraketh,Order of the Djinn,A warded container for one dangerous object.,3
+Offer,Maraketh,Order of the Djinn,Clandestine transport across several faction borders.,3
+Offer,Maraketh,Order of the Djinn,Expert identification of a cursed or ancient relic.,3
+Offer,Maraketh,Order of the Djinn,Access to a vault record unavailable to public scholars.,3
+Disposition,Maraketh,Order of the Djinn,Polite while revealing nothing not strictly necessary.,3
+Disposition,Maraketh,Order of the Djinn,Testing whether curiosity overcomes the party's caution.,3
+Disposition,Maraketh,Order of the Djinn,Prepared to cooperate if the threat is genuinely existential.,3
+Disposition,Maraketh,Order of the Djinn,Treating every question as a possible security breach.,3
+Goal,Maraketh,Sel Khari,Return a lost barya to its proper sanctuary.,3
+Goal,Maraketh,Sel Khari,Determine whether a Djinn has completed its sentence.,3
+Goal,Maraketh,Sel Khari,Prevent an elder from binding a political rival.,3
+Goal,Maraketh,Sel Khari,Recover testimony held by a spirit who refuses to speak.,3
+Problem,Maraketh,Sel Khari,The barya they guard contains two conflicting voices.,3
+Problem,Maraketh,Sel Khari,A sentenced Djinn insists the recorded crime never occurred.,3
+Problem,Maraketh,Sel Khari,Their release rite has been altered in the official ledger.,3
+Problem,Maraketh,Sel Khari,A bound spirit has begun appearing outside its object.,3
+Secret,Maraketh,Sel Khari,They released a Djinn before its sentence was complete.,3
+Secret,Maraketh,Sel Khari,Their own ancestor ordered an unjust binding.,3
+Secret,Maraketh,Sel Khari,They consult a spirit whose barya is officially lost.,3
+Secret,Maraketh,Sel Khari,They erased one name from the sentence ledger.,3
+Knowledge,Maraketh,Sel Khari,The rite used to bind a soul into a barya.,3
+Knowledge,Maraketh,Sel Khari,The conditions under which a Djinn earns release.,3
+Knowledge,Maraketh,Sel Khari,How to distinguish a true spirit memory from manipulation.,3
+Knowledge,Maraketh,Sel Khari,The location of a forgotten Sel Khari sanctuary.,3
+Offer,Maraketh,Sel Khari,Safe conversation with a bound ancient witness.,3
+Offer,Maraketh,Sel Khari,A temporary ward against spirit possession.,3
+Offer,Maraketh,Sel Khari,Authentication of a barya or Djinn sentence.,3
+Offer,Maraketh,Sel Khari,A supervised passage through a Trial sanctuary.,3
+Disposition,Maraketh,Sel Khari,Formally attentive to oaths and exact wording.,3
+Disposition,Maraketh,Sel Khari,Sympathetic to the bound but cautious about release.,3
+Disposition,Maraketh,Sel Khari,Suspicious of anyone seeking a Djinn's power.,3
+Disposition,Maraketh,Sel Khari,Quietly questioning whether the old sentences remain just.,3
 Goal,Oriathan,Oriath Militia,Identify the Ring paymaster inside their wardhouse.,3
 Goal,Oriathan,Oriath Militia,Bring a violent constable to trial without the evidence disappearing.,3
 Goal,Oriathan,Oriath Militia,Keep a street festival peaceful despite Templar provocation.,3
