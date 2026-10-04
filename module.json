@@ -1,18 +1,18 @@
 {
   "id": "wraeclast-npc-gen",
   "title": "Wraeclast NPC Generator",
-  "description": "A lore-aware, weighted NPC generator for a Wraeclast D&D campaign, with ordained Templar naming, Oriath Militia, hierarchical factions, structured descriptions, motives, editing, and Foundry outputs.",
-  "version": "2.3.0",
+  "description": "A lore-aware, weighted NPC generator for a Wraeclast D&D campaign, with hierarchical Maraketh, Karui, and Stygian factions, ordained Templars, structured descriptions, motives, editing, and Foundry outputs.",
+  "version": "2.4.0",
   "url": "https://github.com/Yax74/wraeclast-npc-gen",
   "manifest": "https://github.com/Yax74/wraeclast-npc-gen/releases/latest/download/module.json",
-  "download": "https://github.com/Yax74/wraeclast-npc-gen/releases/download/v2.3.0/wraeclast-npc-gen.zip",
+  "download": "https://github.com/Yax74/wraeclast-npc-gen/releases/download/v2.4.0/wraeclast-npc-gen.zip",
   "authors": [
     {
       "name": "Yax74",
       "url": "https://github.com/Yax74"
     }
   ],
-  "compatibility": {
+  "compatibity": {
     "minimum": "13",
     "verified": "13"
   },
