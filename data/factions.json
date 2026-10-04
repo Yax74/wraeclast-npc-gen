@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "checkedAgainstNotion": "2026-10-04",
-  "sourceDatabase": "Campaign Factions database",
+  "sourceDatabase": "Campaign Factions, Civilisations, and Lore databases",
   "factions": [
     {
       "id": "oriath.templar",
@@ -30,6 +30,59 @@
       "type": "affiliation",
       "culture": "Kalguur",
       "sourceEntry": "Wraeclast Cultures"
+    },
+    {
+      "id": "maraketh",
+      "label": "Maraketh",
+      "type": "affiliation",
+      "culture": "Maraketh",
+      "sourceEntry": "Maraketh"
+    },
+    {
+      "id": "maraketh.kiyato",
+      "label": "Kiyato Akhara",
+      "type": "branch",
+      "culture": "Maraketh",
+      "parentId": "maraketh",
+      "sourceEntry": "Maraketh Language Lexicon / Oyun Kiyato"
+    },
+    {
+      "id": "maraketh.ardura",
+      "label": "Ardura Akhara",
+      "type": "branch",
+      "culture": "Maraketh",
+      "parentId": "maraketh",
+      "sourceEntry": "Path of Exile 2"
+    },
+    {
+      "id": "maraketh.faridun",
+      "label": "Faridun",
+      "type": "affiliation",
+      "culture": "Maraketh",
+      "sourceEntry": "Faridun, The"
+    },
+    {
+      "id": "maraketh.faridun.afarud",
+      "label": "Afarud",
+      "type": "branch",
+      "culture": "Maraketh",
+      "parentId": "maraketh.faridun",
+      "sourceEntry": "Path of Exile: Mirage"
+    },
+    {
+      "id": "maraketh.order-of-the-djinn",
+      "label": "Order of the Djinn",
+      "type": "affiliation",
+      "culture": "Maraketh",
+      "sourceEntry": "Order of the Djinn, The"
+    },
+    {
+      "id": "maraketh.order-of-the-djinn.sel-khari",
+      "label": "Sel Khari",
+      "type": "branch",
+      "culture": "Maraketh",
+      "parentId": "maraketh.order-of-the-djinn",
+      "sourceEntry": "Path of Exile 2 / Path of Exile: Mirage"
     },
     {
       "id": "karui",
