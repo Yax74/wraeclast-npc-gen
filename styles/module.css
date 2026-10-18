@@ -66,6 +66,11 @@
   color: #231b17;
 }
 
+.wraeclast-controls select:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
 .filter-row {
   display: flex;
   min-width: 0;
@@ -109,7 +114,9 @@
 }
 
 .wraeclast-controls .hint,
-.wraeclast-controls .preset-description {
+.wraeclast-controls .preset-description,
+.wraeclast-controls .name-generation-hint,
+.wraeclast-controls .pin-hint {
   margin: 5px 0 10px;
   color: #aa9e8d;
   font-size: 0.76rem;
@@ -121,15 +128,40 @@
   font-style: italic;
 }
 
-#wraeclast-npc-generator .generate-button {
-  width: 100%;
-  min-height: 40px;
+.wraeclast-controls .name-generation-hint {
+  margin-top: 2px;
+  color: #b9ad9b;
+}
+
+.wraeclast-controls .pin-hint {
+  padding: 6px 8px;
+  border-left: 3px solid var(--wraeclast-brass);
+  background: rgba(184, 149, 85, 0.09);
+  color: #d8c7a6;
+}
+
+.generate-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
   margin-top: 12px;
+}
+
+#wraeclast-npc-generator .generate-button {
+  flex: 1 1 auto;
+  min-height: 40px;
   border-color: #bb7777;
   background: linear-gradient(#8b3035, #5c1d21);
   font-family: "Modesto Condensed", "Palatino Linotype", serif;
   font-size: 1.15rem;
   letter-spacing: 0.035em;
+}
+
+#wraeclast-npc-generator .clear-recent-button {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 2px 12px;
+  font-size: 0.78rem;
 }
 
 .wraeclast-error {
@@ -227,6 +259,13 @@
   margin-top: 5px;
 }
 
+.npc-preview .name-style {
+  margin-top: 3px;
+  color: #776457;
+  font-size: 0.73rem;
+  font-style: italic;
+}
+
 .npc-preview .origin-line,
 .npc-preview .detail-line {
   color: #5f5246;
@@ -301,6 +340,19 @@
   background: rgba(71, 49, 36, 0.12);
   color: #5d3028;
   font-size: 0.76rem;
+}
+
+.section-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#wraeclast-npc-generator .pin-button.active {
+  border-color: #8a3034;
+  background: #7b2529;
+  color: #fff4e8;
+  box-shadow: 0 0 0 1px rgba(123, 37, 41, 0.2);
 }
 
 .npc-actions {
@@ -389,7 +441,12 @@
   }
 
   .preview-history,
-  .npc-actions {
+  .npc-actions,
+  .generate-row {
     flex-wrap: wrap;
+  }
+
+  #wraeclast-npc-generator .clear-recent-button {
+    flex: 1 1 100%;
   }
 }

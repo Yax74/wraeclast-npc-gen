@@ -24,11 +24,38 @@
           {{/each}}
         </select>
       </label>
+      <label class="wide-field">
+        <span>Output detail</span>
+        <select name="outputMode">
+          {{#each outputModes}}
+          <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label class="wide-field">
+        <span>Name generation</span>
+        <select name="nameMode">
+          {{#each nameModes}}
+          <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label class="wide-field">
+        <span>Given-name fragments</span>
+        <select name="nameFragmentCount" {{#if fragmentCountDisabled}}disabled{{/if}}>
+          {{#each nameFragmentCounts}}
+          <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+          {{/each}}
+        </select>
+      </label>
     </div>
 
     {{#if presetDescription}}<p class="preset-description">{{presetDescription}}</p>{{/if}}
 
+    <p class="name-generation-hint">Fragment mode builds the given name from culture-specific positional groups; existing surname frequency and form remain unchanged. Ordained Templars always use bestowed virtue-names. These controls apply on the next generation or name reroll.</p>
+
     <p class="hint"><i class="fa-solid fa-lock" aria-hidden="true"></i> Choosing a value locks it. Locking a random field captures the first preview; unlocking returns it to weighted random.</p>
+    {{#if hasPinnedSections}}<p class="pin-hint"><i class="fa-solid fa-thumbtack" aria-hidden="true"></i> {{pinnedSectionCount}} section(s) pinned. Regeneration keeps this NPC's identity and replaces only unpinned sections.</p>{{/if}}
 
     <div class="wraeclast-filter-grid">
       <label>
@@ -144,9 +171,14 @@
       </label>
     </div>
 
-    <button type="button" class="generate-button" data-action="generate">
-      <i class="fa-solid fa-dice" aria-hidden="true"></i> Generate preview
-    </button>
+    <div class="generate-row">
+      <button type="button" class="generate-button" data-action="generate">
+        <i class="fa-solid fa-dice" aria-hidden="true"></i> {{generateLabel}}
+      </button>
+      <button type="button" class="clear-recent-button" data-action="clearRecent" title="Allow recently generated names and details again" {{#unless recentResultCount}}disabled{{/unless}}>
+        <i class="fa-solid fa-eraser" aria-hidden="true"></i> Clear recent{{#if recentResultCount}} ({{recentResultCount}}){{/if}}
+      </button>
+    </div>
   </section>
 
   <section class="wraeclast-results" aria-live="polite">
@@ -157,6 +189,7 @@
           {{#if editing}}
           <label class="inline-edit name-edit"><span>Name</span><input type="text" value="{{fullName}}" data-edit-field="fullName"></label>
           {{else}}<h2>{{fullName}}</h2>{{/if}}
+          <p class="name-style">{{nameStyle}}{{#if hasNameFragments}} · {{nameFragmentDisplay}}{{/if}}</p>
           <p class="identity-line"><strong>{{culture}}</strong>{{#if showAffiliation}} · {{affiliation}}{{/if}}{{#if showBranch}} · {{branchDisplay}}{{/if}} · {{species}} · {{age}} · {{alignment}}</p>
           <p class="origin-line">{{socialOrigin}} · {{location}} · {{era}} · {{capabilityTier}}</p>
         </div>
@@ -164,13 +197,14 @@
           <button type="button" class="icon-button" data-action="undo" title="Undo last change" aria-label="Undo last change" {{#unless ../canUndo}}disabled{{/unless}}><i class="fa-solid fa-rotate-left"></i></button>
           <button type="button" class="icon-button" data-action="redo" title="Redo change" aria-label="Redo change" {{#unless ../canRedo}}disabled{{/unless}}><i class="fa-solid fa-rotate-right"></i></button>
           <button type="button" class="edit-button" data-action="toggleEdit"><i class="fa-solid fa-pen"></i> {{#if editing}}Done{{else}}Edit{{/if}}</button>
+          <button type="button" class="icon-button pin-button {{#if pinName}}active{{/if}}" data-action="toggleSectionPin" data-section="name" title="{{#if pinName}}Unpin{{else}}Pin{{/if}} name for regeneration" aria-label="{{#if pinName}}Unpin{{else}}Pin{{/if}} name"><i class="fa-solid fa-thumbtack"></i></button>
           <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="name" title="Reroll name" aria-label="Reroll name"><i class="fa-solid fa-dice"></i></button>
         </div>
       </header>
 
       <div class="preview-grid">
         <section>
-          <h3>Profession <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="profession" title="Reroll profession" aria-label="Reroll profession"><i class="fa-solid fa-rotate"></i></button></h3>
+          <h3><span>Profession</span><span class="section-actions"><button type="button" class="icon-button pin-button {{#if pinProfession}}active{{/if}}" data-action="toggleSectionPin" data-section="profession" title="{{#if pinProfession}}Unpin{{else}}Pin{{/if}} profession" aria-label="{{#if pinProfession}}Unpin{{else}}Pin{{/if}} profession"><i class="fa-solid fa-thumbtack"></i></button><button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="profession" title="Reroll profession" aria-label="Reroll profession"><i class="fa-solid fa-rotate"></i></button></span></h3>
           {{#if editing}}
           <label class="inline-edit"><span>Profession</span><input type="text" value="{{profession}}" data-edit-field="profession"></label>
           <label class="inline-edit"><span>Organisation</span><input type="text" value="{{organization}}" data-edit-field="organization"></label>
@@ -183,7 +217,7 @@
         </section>
 
         <section>
-          <h3>Appearance <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="appearance" title="Reroll appearance" aria-label="Reroll appearance"><i class="fa-solid fa-rotate"></i></button></h3>
+          <h3><span>Appearance</span><span class="section-actions"><button type="button" class="icon-button pin-button {{#if pinAppearance}}active{{/if}}" data-action="toggleSectionPin" data-section="appearance" title="{{#if pinAppearance}}Unpin{{else}}Pin{{/if}} appearance" aria-label="{{#if pinAppearance}}Unpin{{else}}Pin{{/if}} appearance"><i class="fa-solid fa-thumbtack"></i></button><button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="appearance" title="Reroll appearance" aria-label="Reroll appearance"><i class="fa-solid fa-rotate"></i></button></span></h3>
           {{#if editing}}
           <label class="inline-edit"><span>Build</span><input type="text" value="{{build}}" data-edit-field="build"></label>
           <label class="inline-edit"><span>Features</span><input type="text" value="{{features}}" data-edit-field="features"></label>
@@ -197,7 +231,7 @@
         </section>
 
         <section>
-          <h3>Personality <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="personality" title="Reroll personality" aria-label="Reroll personality"><i class="fa-solid fa-rotate"></i></button></h3>
+          <h3><span>Personality</span><span class="section-actions"><button type="button" class="icon-button pin-button {{#if pinPersonality}}active{{/if}}" data-action="toggleSectionPin" data-section="personality" title="{{#if pinPersonality}}Unpin{{else}}Pin{{/if}} personality" aria-label="{{#if pinPersonality}}Unpin{{else}}Pin{{/if}} personality"><i class="fa-solid fa-thumbtack"></i></button><button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="personality" title="Reroll personality" aria-label="Reroll personality"><i class="fa-solid fa-rotate"></i></button></span></h3>
           {{#if editing}}
           <label class="inline-edit"><span>Demeanor</span><input type="text" value="{{demeanorText}}" data-edit-field="demeanor"></label>
           <label class="inline-edit"><span>Attitude</span><input type="text" value="{{attitudeText}}" data-edit-field="attitude"></label>
@@ -210,7 +244,7 @@
         </section>
 
         <section>
-          <h3>Hooks <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="hooks" title="Reroll hooks" aria-label="Reroll hooks"><i class="fa-solid fa-rotate"></i></button></h3>
+          <h3><span>Hooks</span><span class="section-actions"><button type="button" class="icon-button pin-button {{#if pinHooks}}active{{/if}}" data-action="toggleSectionPin" data-section="hooks" title="{{#if pinHooks}}Unpin{{else}}Pin{{/if}} hooks" aria-label="{{#if pinHooks}}Unpin{{else}}Pin{{/if}} hooks"><i class="fa-solid fa-thumbtack"></i></button><button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="hooks" title="Reroll hooks" aria-label="Reroll hooks"><i class="fa-solid fa-rotate"></i></button></span></h3>
           {{#if editing}}
           <label class="inline-edit"><span>Ideal</span><textarea rows="2" data-edit-field="ideal">{{ideal}}</textarea></label>
           <label class="inline-edit"><span>Bond</span><textarea rows="2" data-edit-field="bond">{{bond}}</textarea></label>
@@ -223,7 +257,7 @@
         </section>
 
         <section class="span-two narrative-section">
-          <h3>Immediate use <button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="drives" title="Reroll immediate-use details" aria-label="Reroll immediate-use details"><i class="fa-solid fa-rotate"></i></button></h3>
+          <h3><span>Immediate use</span><span class="section-actions"><button type="button" class="icon-button pin-button {{#if pinDrives}}active{{/if}}" data-action="toggleSectionPin" data-section="drives" title="{{#if pinDrives}}Unpin{{else}}Pin{{/if}} immediate-use details" aria-label="{{#if pinDrives}}Unpin{{else}}Pin{{/if}} immediate-use details"><i class="fa-solid fa-thumbtack"></i></button><button type="button" class="icon-button" data-action="reroll" data-index="{{index}}" data-section="drives" title="Reroll immediate-use details" aria-label="Reroll immediate-use details"><i class="fa-solid fa-rotate"></i></button></span></h3>
           {{#if editing}}
           <div class="narrative-edit-grid">
             <label class="inline-edit"><span>Goal</span><textarea rows="2" data-edit-field="goal">{{goal}}</textarea></label>
@@ -250,6 +284,7 @@
         <button type="button" data-action="sendChat" data-index="{{index}}"><i class="fa-solid fa-comment"></i> Chat</button>
         <button type="button" data-action="saveJournal" data-index="{{index}}"><i class="fa-solid fa-book-open"></i> Journal</button>
         {{#if ../canCreateActor}}<button type="button" data-action="createActor" data-index="{{index}}"><i class="fa-solid fa-user-plus"></i> Actor</button>{{/if}}
+        {{#if ../canForgeActor}}<button type="button" data-action="createAndForge" data-index="{{index}}"><i class="fa-solid fa-hammer"></i> Actor + Forge</button>{{/if}}
         <button type="button" data-action="copyNpc" data-index="{{index}}"><i class="fa-solid fa-copy"></i> Copy</button>
       </footer>
     </article>

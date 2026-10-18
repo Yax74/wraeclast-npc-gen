@@ -6,10 +6,21 @@ export class NPCEngine {
   static DATA_FILES = Object.freeze({
     main: "main_tables.csv",
     names: "names.csv",
+    nameFragments: "name_fragments.csv",
     descriptors: "descriptors.csv",
     professions: "professions.csv",
     hooks: "hooks.csv",
     drives: "drives.csv"
+  });
+
+  static NAME_MODES = Object.freeze(["curated", "mixed", "fragments"]);
+
+  static NAME_FRAGMENT_COUNTS = Object.freeze(["auto", "2", "3", "4"]);
+
+  static NAME_FRAGMENT_CATEGORIES = Object.freeze({
+    2: Object.freeze(["Given2Start", "Given2End"]),
+    3: Object.freeze(["Given3Start", "Given3Middle", "Given3End"]),
+    4: Object.freeze(["Given4Start", "Given4Middle1", "Given4Middle2", "Given4End"])
   });
 
   static RESERVED_NAMES = new Set([
@@ -368,7 +379,9 @@ export class NPCEngine {
 
     const npc = {
       culture, affiliation, branch, species, socialOrigin, age, alignment, organization,
-      ordination, rank, location, era, preset: preset?.id ?? "general"
+      ordination, rank, location, era, preset: preset?.id ?? "general",
+      nameMode: requested.nameMode || "curated",
+      nameFragmentCount: requested.nameFragmentCount || "auto"
     };
     Object.assign(npc, this.#resolveFactionIds(npc, tables));
     Object.assign(npc, this.#generateName(npc, tables, rng));
@@ -388,7 +401,12 @@ export class NPCEngine {
 
   static rerollSection(npc, section, constraints, tables, rng = Math.random) {
     const next = structuredClone(npc);
-    if (section === "name") Object.assign(next, this.#generateName(next, tables, rng));
+    if (section === "name") {
+      const requested = this.#cleanConstraints(constraints);
+      next.nameMode = requested.nameMode || next.nameMode || "curated";
+      next.nameFragmentCount = requested.nameFragmentCount || next.nameFragmentCount || "auto";
+      Object.assign(next, this.#generateName(next, tables, rng));
+    }
     else if (section === "profession") Object.assign(next, this.#generateProfession(next, tables, this.#cleanConstraints(constraints), rng));
     else if (section === "appearance") Object.assign(next, this.#generateAppearance(next, tables, rng));
     else if (section === "personality") Object.assign(next, this.#generatePersonality(next, tables, rng));
@@ -401,7 +419,7 @@ export class NPCEngine {
   static validateTables(tables) {
     const errors = [];
     const warnings = [];
-    for (const key of ["main", "names", "descriptors", "professions", "hooks", "drives"]) {
+    for (const key of Object.keys(this.DATA_FILES)) {
       if (!Array.isArray(tables[key]) || !tables[key].length) errors.push(`${key} has no rows`);
     }
     if (!Array.isArray(tables.factions?.factions)) errors.push("factions registry has no entries");
@@ -421,7 +439,26 @@ export class NPCEngine {
       if (!firstNames.length || !surnames.length) errors.push(`${culture} has incomplete name pools`);
       if (firstNames.length < 60) errors.push(`${culture} has fewer than 60 first names`);
       if (surnames.length < 40) errors.push(`${culture} has fewer than 40 surnames`);
+      for (const [count, categories] of Object.entries(this.NAME_FRAGMENT_CATEGORIES)) {
+        const families = new Set((tables.nameFragments ?? [])
+          .filter((row) => row.category === categories[0] && row.parent === culture)
+          .map((row) => row.subParent));
+        if (families.size < 2) errors.push(`${culture} ${count}-fragment grammar has fewer than 2 phonetic families`);
+        for (const family of families) {
+          for (const category of categories) {
+            const fragments = (tables.nameFragments ?? []).filter((row) => row.category === category
+              && row.parent === culture && row.subParent === family);
+            if (fragments.length < 4) errors.push(`${culture} ${family} ${category} pool has fewer than 4 fragments`);
+          }
+        }
+      }
       if (!hasProfession) errors.push(`${culture} has no profession categories`);
+    }
+
+    const knownFragmentCategories = new Set(Object.values(this.NAME_FRAGMENT_CATEGORIES).flat());
+    for (const row of tables.nameFragments ?? []) {
+      if (!cultures.has(row.parent)) errors.push(`name fragment ${row.value} has unknown culture ${row.parent}`);
+      if (!knownFragmentCategories.has(row.category)) errors.push(`unknown name-fragment category: ${row.category}`);
     }
 
     for (const row of (tables.main ?? []).filter((candidate) => candidate.category === "Affiliation")) {
@@ -674,24 +711,99 @@ export class NPCEngine {
         firstName: virtueName,
         surname: "",
         fullName: `Templar ${virtueName}`,
-        nameStyle: "Bestowed virtue-name"
+        nameStyle: "Bestowed virtue-name",
+        nameSource: "ordained",
+        nameFragmentCountUsed: 0,
+        nameFragments: [],
+        nameFragmentFamily: ""
       };
     }
     const firstPool = this.#selectedRows(tables, "names", "Name", npc);
     const surnamePool = this.#selectedRows(tables, "names", "Surname", npc);
-    let firstName = this.#pickValue(firstPool, rng) || "Unnamed";
+    const requestedMode = this.NAME_MODES.includes(npc.nameMode) ? npc.nameMode : "curated";
+    let nameSource = requestedMode === "mixed"
+      ? (rng() < 0.5 ? "fragments" : "curated")
+      : requestedMode;
+    let generated = nameSource === "fragments"
+      ? this.#generateFragmentGivenName(npc, tables, rng)
+      : { value: this.#pickValue(firstPool, rng) || "Unnamed", count: 0, fragments: [], family: "" };
+    let firstName = generated.value;
     const surnameChance = {
       Oriathan: 0.95, Azmeri: 0.85, Ezomyte: 0.9, Maraketh: 0.25,
       Karui: 0.8, Vaal: 0.4, Kalguur: 0.4, Stygian: 0.9
     }[npc.culture] ?? 0.85;
     let surname = rng() < surnameChance ? this.#pickValue(surnamePool, rng) : "";
     let fullName = `${firstName} ${surname}`.trim();
-    for (let attempt = 0; attempt < 8 && this.RESERVED_NAMES.has(fullName.toLocaleLowerCase()); attempt += 1) {
-      firstName = this.#pickValue(firstPool, rng) || "Unnamed";
+    const reserved = () => this.RESERVED_NAMES.has(firstName.toLocaleLowerCase())
+      || this.RESERVED_NAMES.has(fullName.toLocaleLowerCase());
+    for (let attempt = 0; attempt < 12 && reserved(); attempt += 1) {
+      generated = nameSource === "fragments"
+        ? this.#generateFragmentGivenName(npc, tables, rng)
+        : { value: this.#pickValue(firstPool, rng) || "Unnamed", count: 0, fragments: [], family: "" };
+      firstName = generated.value;
       surname = rng() < surnameChance ? this.#pickValue(surnamePool, rng) : "";
       fullName = `${firstName} ${surname}`.trim();
     }
-    return { firstName, surname, fullName, nameStyle: "Birth name" };
+    if (reserved()) {
+      nameSource = "curated";
+      generated = { value: firstPool.find((row) => !this.RESERVED_NAMES.has(row.value.toLocaleLowerCase()))?.value || "Unnamed", count: 0, fragments: [], family: "" };
+      firstName = generated.value;
+      surname = rng() < surnameChance ? this.#pickValue(surnamePool, rng) : "";
+      fullName = `${firstName} ${surname}`.trim();
+    }
+    return {
+      firstName,
+      surname,
+      fullName,
+      nameStyle: nameSource === "fragments"
+        ? `Fragment-built birth name (${generated.count} fragments)`
+        : "Birth name",
+      nameSource,
+      nameFragmentCountUsed: generated.count,
+      nameFragments: generated.fragments,
+      nameFragmentFamily: generated.family
+    };
+  }
+
+  static #generateFragmentGivenName(npc, tables, rng) {
+    const requested = this.NAME_FRAGMENT_COUNTS.includes(String(npc.nameFragmentCount))
+      ? String(npc.nameFragmentCount)
+      : "auto";
+    const count = requested === "auto"
+      ? Number(this.#pickValue([
+        { value: "2", weight: 45 },
+        { value: "3", weight: 40 },
+        { value: "4", weight: 15 }
+      ], rng))
+      : Number(requested);
+    const categories = this.NAME_FRAGMENT_CATEGORIES[count];
+    if (!categories) throw new Error(`Unsupported name fragment count: ${requested}`);
+    const familyRows = this.#categoryRows(tables, "nameFragments", categories[0])
+      .filter((row) => row.parent === npc.culture);
+    const familyWeights = new Map();
+    for (const row of familyRows) {
+      familyWeights.set(row.subParent, (familyWeights.get(row.subParent) ?? 0) + row.weight);
+    }
+    const familyPool = [...familyWeights].map(([value, weight]) => ({ value, weight }));
+    if (!familyPool.length) throw new Error(`No ${count}-fragment name families are available for ${npc.culture}`);
+    const minimumLength = { 2: 4, 3: 5, 4: 6 }[count];
+    let candidate = null;
+    for (let attempt = 0; attempt < 16; attempt += 1) {
+      const family = this.#pickValue(familyPool, rng);
+      const fragments = categories.map((category) => {
+        const pool = this.#categoryRows(tables, "nameFragments", category)
+          .filter((row) => row.parent === npc.culture && row.subParent === family);
+        const fragment = this.#pickValue(pool, rng);
+        if (!fragment) throw new Error(`No ${category} fragments are available for ${npc.culture}`);
+        return fragment;
+      });
+      const raw = fragments.join("").normalize("NFC");
+      const characters = Array.from(raw);
+      const value = `${characters.shift()?.toLocaleUpperCase() ?? ""}${characters.join("")}`;
+      candidate = { value, count, fragments, family };
+      if (characters.length + 1 >= minimumLength && !/aa|ee|ii|uu/i.test(raw) && !/(.)\1\1/iu.test(raw)) return candidate;
+    }
+    return candidate;
   }
 
   static #generateProfession(npc, tables, constraints, rng) {
@@ -895,7 +1007,7 @@ export class NPCEngine {
     let index = this.#indexes.get(tables);
     if (index) return index;
     const categories = new Map();
-    for (const tableName of ["main", "names", "descriptors", "professions", "hooks", "drives"]) {
+    for (const tableName of Object.keys(this.DATA_FILES)) {
       const byCategory = new Map();
       for (const row of tables[tableName] ?? []) {
         if (!byCategory.has(row.category)) byCategory.set(row.category, []);
@@ -1019,7 +1131,7 @@ export class NPCEngine {
   static #cleanConstraints(constraints = {}) {
     const allowed = [
       "preset", "culture", "affiliation", "branch", "species", "socialOrigin", "age", "alignment",
-      "professionCategory", "location", "era", "capabilityTier"
+      "professionCategory", "location", "era", "capabilityTier", "nameMode", "nameFragmentCount"
     ];
     const cleaned = Object.fromEntries(allowed.map((key) => [key, String(constraints[key] ?? "").trim()]));
     const legacy = this.LEGACY_BRANCH_AFFILIATIONS[cleaned.affiliation];
@@ -1049,6 +1161,12 @@ export class NPCEngine {
     }
     if (requested.branch && !tables.main.some((row) => row.category === "Branch" && row.value === requested.branch)) {
       throw new Error(`Unknown branch: ${requested.branch}`);
+    }
+    if (requested.nameMode && !this.NAME_MODES.includes(requested.nameMode)) {
+      throw new Error(`Unknown nameMode: ${requested.nameMode}`);
+    }
+    if (requested.nameFragmentCount && !this.NAME_FRAGMENT_COUNTS.includes(requested.nameFragmentCount)) {
+      throw new Error(`Unknown nameFragmentCount: ${requested.nameFragmentCount}`);
     }
   }
 

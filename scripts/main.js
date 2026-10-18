@@ -1,6 +1,15 @@
 import { NPCEngine } from "./npc-engine.js";
+import {
+  NPC_SECTIONS,
+  RecentNPCMemory,
+  activePinnedSections,
+  emptySectionPins,
+  leastRepeatedCandidate
+} from "./generator-qol.js";
 
 const MODULE_ID = "wraeclast-npc-gen";
+const MODULE_VERSION = "2.5.0";
+const DATA_SCHEMA_VERSION = 1;
 const DATA_PATH = `modules/${MODULE_ID}/data`;
 const FILTER_FIELDS = [
   "culture", "affiliation", "branch", "species", "socialOrigin", "age", "alignment",
@@ -30,10 +39,13 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     actions: {
       generate: this._onGenerate,
       toggleLock: this._onToggleLock,
+      toggleSectionPin: this._onToggleSectionPin,
+      clearRecent: this._onClearRecent,
       reroll: this._onReroll,
       sendChat: this._onSendChat,
       saveJournal: this._onSaveJournal,
       createActor: this._onCreateActor,
+      createAndForge: this._onCreateAndForge,
       copyNpc: this._onCopyNpc,
       toggleEdit: this._onToggleEdit,
       undo: this._onUndo,
@@ -60,7 +72,12 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     this.filters = Object.fromEntries(FILTER_FIELDS.map((field) => [field, ""]));
     this.filters.preset = game.settings.get(MODULE_ID, "defaultPreset") || "general";
     this.chatMode = game.settings.get(MODULE_ID, "chatRollMode") || "gmroll";
+    this.outputMode = game.settings.get(MODULE_ID, "defaultOutputMode") || "full";
+    this.nameMode = game.settings.get(MODULE_ID, "defaultNameMode") || "curated";
+    this.nameFragmentCount = String(game.settings.get(MODULE_ID, "defaultNameFragmentCount") || "auto");
     this.locks = Object.fromEntries(FILTER_FIELDS.map((field) => [field, false]));
+    this.sectionPins = emptySectionPins();
+    this.recent = new RecentNPCMemory(20);
   }
 
   async _prepareContext(options) {
@@ -70,12 +87,23 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
       this.#repairInvalidFilters();
       const available = NPCEngine.getOptions(this.tables, this.filters);
       const activePreset = NPCEngine.getPreset(this.tables, this.filters.preset);
+      const pinnedSections = activePinnedSections(this.sectionPins);
+      const canCreateActor = game.system.id === "dnd5e";
+      const canForgeActor = canCreateActor
+        && Boolean(game.modules?.get?.("monster-forge")?.active)
+        && typeof game.monsterForge?.open === "function";
       return foundry.utils.mergeObject(context, {
         ready: true,
         error: this.error,
         filters: this.filters,
         locks: this.locks,
+        sectionPins: this.sectionPins,
+        hasPinnedSections: pinnedSections.length > 0,
+        pinnedSectionCount: pinnedSections.length,
+        generateLabel: pinnedSections.length ? "Regenerate unpinned sections" : "Generate preview",
+        recentResultCount: this.recent.count,
         chatMode: this.chatMode,
+        outputMode: this.outputMode,
         canUndo: this.historyIndex > 0,
         canRedo: this.historyIndex >= 0 && this.historyIndex < this.history.length - 1,
         editing: this.editing,
@@ -85,7 +113,24 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
           { value: "selfroll", label: "Only me" },
           { value: "publicroll", label: "Public" }
         ], this.chatMode, false),
-        canCreateActor: game.system.id === "dnd5e",
+        outputModes: this.#options([
+          { value: "full", label: "Full dossier" },
+          { value: "table", label: "Table card" }
+        ], this.outputMode, false),
+        nameModes: this.#options([
+          { value: "curated", label: "Curated names" },
+          { value: "mixed", label: "Mixed (50/50)" },
+          { value: "fragments", label: "Fragment-built names" }
+        ], this.nameMode, false),
+        nameFragmentCounts: this.#options([
+          { value: "auto", label: "Auto (weighted)" },
+          { value: "2", label: "2 fragments" },
+          { value: "3", label: "3 fragments" },
+          { value: "4", label: "4 fragments" }
+        ], this.nameFragmentCount, false),
+        fragmentCountDisabled: this.nameMode === "curated",
+        canCreateActor,
+        canForgeActor,
         presets: this.#options(available.presets.map((preset) => ({ value: preset.id, label: preset.label, description: preset.description })), this.filters.preset, false),
         cultures: this.#options(available.cultures, this.filters.culture),
         affiliations: this.#options(available.affiliations, this.filters.affiliation),
@@ -108,6 +153,14 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
           editing: this.editing,
           demeanorText: npc.demeanor.join(", "),
           attitudeText: npc.attitude.join(", "),
+          nameFragmentDisplay: npc.nameFragments?.join(" · ") ?? "",
+          hasNameFragments: Boolean(npc.nameFragments?.length),
+          pinName: this.sectionPins.name,
+          pinProfession: this.sectionPins.profession,
+          pinAppearance: this.sectionPins.appearance,
+          pinPersonality: this.sectionPins.personality,
+          pinHooks: this.sectionPins.hooks,
+          pinDrives: this.sectionPins.drives,
           showAffiliation: npc.affiliation && npc.affiliation !== "Unaffiliated" && npc.affiliation !== npc.culture,
           showOrdination: npc.affiliation === "Templar",
           showBranch: npc.branch && npc.branch !== "Unaffiliated",
@@ -145,6 +198,16 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     this.element.querySelector('[name="chatMode"]')?.addEventListener("change", (event) => {
       this.chatMode = event.currentTarget.value;
     });
+    this.element.querySelector('[name="outputMode"]')?.addEventListener("change", (event) => {
+      this.outputMode = event.currentTarget.value;
+    });
+    this.element.querySelector('[name="nameMode"]')?.addEventListener("change", async (event) => {
+      this.nameMode = event.currentTarget.value;
+      await this.render({ force: true });
+    });
+    this.element.querySelector('[name="nameFragmentCount"]')?.addEventListener("change", (event) => {
+      this.nameFragmentCount = event.currentTarget.value;
+    });
     for (const element of this.element.querySelectorAll("[data-edit-field]")) {
       element.addEventListener("change", async (event) => {
         const npc = structuredClone(this.results[0]);
@@ -156,6 +219,13 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
           : raw;
         if (APPEARANCE_FIELDS.has(field)) {
           npc.appearance = [npc.build, npc.features, npc.attire, npc.distinguishingMark].filter(Boolean);
+        }
+        if (field === "fullName") {
+          npc.nameStyle = "Manually edited";
+          npc.nameSource = "manual";
+          npc.nameFragmentCountUsed = 0;
+          npc.nameFragments = [];
+          npc.nameFragmentFamily = "";
         }
         this.#commit(npc);
         this.editing = true;
@@ -171,9 +241,28 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
   static async _onGenerate() {
     await this.#run(async () => {
       this.#syncTransientFormState();
+      const current = this.results[0];
+      const pinned = activePinnedSections(this.sectionPins);
       this.history = [];
       this.historyIndex = -1;
-      this.#commit(NPCEngine.generateNPC(this.filters, this.tables));
+      let npc;
+      if (current && pinned.length) {
+        npc = structuredClone(current);
+        const identity = this.#identityConstraints(current);
+        for (const section of NPC_SECTIONS) {
+          if (!this.sectionPins[section]) npc = this.#rerollCandidate(npc, section, identity);
+        }
+      } else {
+        npc = leastRepeatedCandidate(
+          () => NPCEngine.generateNPC(this.#generationConstraints(), this.tables),
+          this.recent
+        );
+      }
+      const changedSections = current && pinned.length
+        ? NPC_SECTIONS.filter((section) => !this.sectionPins[section])
+        : NPC_SECTIONS;
+      this.recent.remember(npc, changedSections);
+      this.#commit(npc);
       this.editing = false;
       this.error = "";
       await this.render({ force: true });
@@ -201,23 +290,28 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     });
   }
 
+  static async _onToggleSectionPin(_event, target) {
+    const section = target.dataset.section;
+    if (!NPC_SECTIONS.includes(section) || !this.results[0]) return;
+    this.sectionPins[section] = !this.sectionPins[section];
+    await this.render({ force: true });
+  }
+
+  static async _onClearRecent() {
+    this.recent.clear();
+    ui.notifications.info("Recent-result repetition memory cleared.");
+    await this.render({ force: true });
+  }
+
   static async _onReroll(_event, target) {
     await this.#run(async () => {
       const index = Number.parseInt(target.dataset.index, 10);
       const section = target.dataset.section;
       const npc = this.results[index];
       if (!npc) return;
-      const identity = {
-        ...this.filters,
-        culture: npc.culture,
-        affiliation: npc.affiliation,
-        branch: npc.branch,
-        species: npc.species,
-        socialOrigin: npc.socialOrigin,
-        age: npc.age,
-        alignment: npc.alignment
-      };
-      this.#commit(NPCEngine.rerollSection(npc, section, identity, this.tables));
+      const next = this.#rerollCandidate(npc, section, this.#identityConstraints(npc));
+      this.recent.remember(next, [section]);
+      this.#commit(next);
       await this.render({ force: true });
     });
   }
@@ -237,6 +331,17 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     await this.#run(async () => {
       const actor = await this.#createActorDocument(this.#result(target));
       ui.notifications.info(`Created actor ${actor.name}.`);
+    });
+  }
+
+  static async _onCreateAndForge(_event, target) {
+    await this.#run(async () => {
+      if (!game.modules?.get?.("monster-forge")?.active || typeof game.monsterForge?.open !== "function") {
+        throw new Error("Monster Forge is not enabled in this world.");
+      }
+      const actor = await this.#createActorDocument(this.#result(target));
+      ui.notifications.info(`Created actor ${actor.name}; opening Monster Forge.`);
+      await game.monsterForge.open(actor);
     });
   }
 
@@ -311,11 +416,43 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     this.history = [];
     this.historyIndex = -1;
     this.editing = false;
+    this.sectionPins = emptySectionPins();
   }
 
   #syncTransientFormState() {
-    const mode = this.element.querySelector('[name="chatMode"]')?.value;
-    this.chatMode = mode || this.chatMode;
+    const chatMode = this.element.querySelector('[name="chatMode"]')?.value;
+    const outputMode = this.element.querySelector('[name="outputMode"]')?.value;
+    const nameMode = this.element.querySelector('[name="nameMode"]')?.value;
+    const fragmentCount = this.element.querySelector('[name="nameFragmentCount"]')?.value;
+    this.chatMode = chatMode || this.chatMode;
+    this.outputMode = outputMode || this.outputMode;
+    this.nameMode = nameMode || this.nameMode;
+    this.nameFragmentCount = fragmentCount || this.nameFragmentCount;
+  }
+
+  #generationConstraints() {
+    return {
+      ...this.filters,
+      nameMode: this.nameMode,
+      nameFragmentCount: this.nameFragmentCount
+    };
+  }
+
+  #identityConstraints(npc) {
+    return {
+      preset: npc.preset || this.filters.preset,
+      ...Object.fromEntries(FILTER_FIELDS.map((field) => [field, npc[field] ?? ""])),
+      nameMode: this.nameMode,
+      nameFragmentCount: this.nameFragmentCount
+    };
+  }
+
+  #rerollCandidate(npc, section, constraints) {
+    return leastRepeatedCandidate(
+      () => NPCEngine.rerollSection(npc, section, constraints, this.tables),
+      this.recent,
+      [section]
+    );
   }
 
   #inferredValue(field) {
@@ -383,7 +520,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     const data = {
       user: game.user.id,
       speaker: { alias: "Wraeclast NPC Generator" },
-      content: this.#html(npc, true)
+      content: this.#html(npc, this.outputMode)
     };
     ChatMessage.applyRollMode(data, this.chatMode);
     return ChatMessage.create(data);
@@ -395,11 +532,11 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
       name: npc.fullName,
       folder: folder.id,
       pages: [{
-        name: "Identity Dossier",
+        name: this.outputMode === "table" ? "Table Card" : "Identity Dossier",
         type: "text",
-        text: { content: this.#html(npc, false), format: 1 }
+        text: { content: this.#html(npc, this.outputMode), format: 1 }
       }],
-      flags: { [MODULE_ID]: { generated: true, npc } }
+      flags: { [MODULE_ID]: this.#generatorFlags(npc) }
     });
   }
 
@@ -420,9 +557,9 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     source.name = npc.fullName;
     source.folder = folder.id;
     source.type = source.type || "npc";
-    foundry.utils.setProperty(source, "system.details.biography.value", this.#html(npc, false));
+    foundry.utils.setProperty(source, "system.details.biography.value", this.#html(npc, this.outputMode));
     source.flags = foundry.utils.mergeObject(source.flags ?? {}, {
-      [MODULE_ID]: { generated: true, npc, templateUuid: templateUuid || "" }
+      [MODULE_ID]: { ...this.#generatorFlags(npc), templateUuid: templateUuid || "" }
     }, { inplace: false });
     return Actor.create(source);
   }
@@ -432,35 +569,57 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     return existing ?? Folder.create({ name, type, color: "#6f2025" });
   }
 
-  #plainText(npc) {
+  #generatorFlags(npc) {
+    return {
+      generated: true,
+      schemaVersion: DATA_SCHEMA_VERSION,
+      generatorVersion: game.modules?.get?.(MODULE_ID)?.version || MODULE_VERSION,
+      outputMode: this.outputMode,
+      npc
+    };
+  }
+
+  #plainText(npc, mode = this.outputMode) {
     const affiliation = npc.affiliation && npc.affiliation !== "Unaffiliated" && npc.affiliation !== npc.culture
       ? ` — ${npc.affiliation}` : "";
     const branch = this.#branchDisplay(npc);
-    return [
+    const identity = [
       npc.fullName,
       `${npc.culture}${affiliation}${branch ? ` — ${branch}` : ""} | ${npc.species} | ${npc.age} | ${npc.alignment}`,
       `Origin: ${npc.socialOrigin} | ${npc.location} | ${npc.era}`,
       `Capability: ${npc.capabilityTier}`,
       `Profession: ${npc.profession}${npc.organization ? ` (${npc.organization})` : ""}`,
-      npc.rank ? `Rank: ${npc.rank}${npc.ordination ? ` | ${npc.ordination}` : ""}` : "",
+      npc.rank ? `Rank: ${npc.rank}${npc.ordination ? ` | ${npc.ordination}` : ""}` : ""
+    ];
+    const roleplay = [
       `Appearance: ${npc.appearance.join(", ")}`,
       `Voice: ${npc.voice}`,
       `Demeanor: ${npc.demeanor.join(", ")}`,
       `Attitude: ${npc.attitude.join(", ")}`,
-      `Mannerism: ${npc.mannerism}`,
+      `Mannerism: ${npc.mannerism}`
+    ];
+    const hooks = [
       `Ideal: ${npc.ideal}`,
       `Bond: ${npc.bond}`,
-      `Flaw: ${npc.flaw}`,
+      `Flaw: ${npc.flaw}`
+    ];
+    const situation = [
       `Goal: ${npc.goal}`,
       `Problem: ${npc.problem}`,
       `Secret: ${npc.secret}`,
       `Knowledge: ${npc.knowledge}`,
       `Offer: ${npc.offer}`,
       `Disposition: ${npc.disposition}`
+    ];
+    const tableSituation = situation.filter((line) => !line.startsWith("Secret:") && !line.startsWith("Knowledge:"));
+    return [
+      ...identity,
+      ...roleplay,
+      ...(mode === "table" ? tableSituation : [...hooks, ...situation])
     ].filter(Boolean).join("\n");
   }
 
-  #html(npc, compact) {
+  #html(npc, mode = this.outputMode) {
     const e = (value) => foundry.utils.escapeHTML(String(value ?? ""));
     const affiliation = npc.affiliation && npc.affiliation !== "Unaffiliated" && npc.affiliation !== npc.culture
       ? ` · ${e(npc.affiliation)}` : "";
@@ -468,14 +627,29 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     const branch = branchDisplay ? ` · ${e(branchDisplay)}` : "";
     const organization = npc.organization ? `<p><strong>Organisation:</strong> ${e(npc.organization)}</p>` : "";
     const rank = npc.rank ? `<p><strong>Rank:</strong> ${e(npc.rank)}${npc.ordination ? ` · ${e(npc.ordination)}` : ""}</p>` : "";
-    return `<article class="wraeclast-dossier${compact ? " compact" : ""}">
-      <h2>${e(npc.fullName)}</h2>
+    const header = `<h2>${e(npc.fullName)}</h2>
       <p class="identity"><strong>${e(npc.culture)}</strong>${affiliation}${branch} · ${e(npc.species)} · ${e(npc.age)} · ${e(npc.alignment)}</p>
       <p><strong>Origin:</strong> ${e(npc.socialOrigin)} · ${e(npc.location)} · ${e(npc.era)}</p>
       <p><strong>Capability:</strong> ${e(npc.capabilityTier)}</p>
       <p><strong>Profession:</strong> ${e(npc.profession)} <em>(${e(npc.professionCategory)})</em></p>
       ${organization}
-      ${rank}
+      ${rank}`;
+    if (mode === "table") {
+      return `<article class="wraeclast-dossier compact">
+      ${header}
+      <p><strong>Appearance:</strong> ${npc.appearance.map(e).join(", ")}.</p>
+      <p><strong>Voice:</strong> ${e(npc.voice)}<br>
+      <strong>Demeanor:</strong> ${npc.demeanor.map(e).join(", ")}<br>
+      <strong>Attitude:</strong> ${npc.attitude.map(e).join(", ")}<br>
+      <strong>Mannerism:</strong> ${e(npc.mannerism)}</p>
+      <p><strong>Goal:</strong> ${e(npc.goal)}<br>
+      <strong>Problem:</strong> ${e(npc.problem)}<br>
+      <strong>Offer:</strong> ${e(npc.offer)}<br>
+      <strong>Disposition:</strong> ${e(npc.disposition)}</p>
+    </article>`;
+    }
+    return `<article class="wraeclast-dossier">
+      ${header}
       <h3>Appearance &amp; voice</h3>
       <p>${npc.appearance.map(e).join(", ")}. ${e(npc.voice)}.</p>
       <h3>Personality</h3>
@@ -519,7 +693,8 @@ Hooks.once("init", () => {
     choices: {
       general: "All Wraeclast", sarn_survivor: "Sarn survivor", oriathan_occupier: "Oriathan occupier",
       theopolis: "Theopolis and Oriath",
-      forest_encampment: "Forest Encampment", karui_tribe: "Karui clans",
+      forest_encampment: "Forest Encampment", maraketh_highgate: "Maraketh — Highgate and Vastiri",
+      karui_tribe: "Karui clans",
       kalguur_expedition: "Kalguur expedition", stygian_mines: "Stygian mines", vaal_historical: "Ancient Vaal"
     }
   });
@@ -528,6 +703,24 @@ Hooks.once("init", () => {
     scope: "client", config: true, type: String, default: "gmroll",
     choices: { gmroll: "Whisper to GMs", selfroll: "Only me", publicroll: "Public" }
   });
+  game.settings.register(MODULE_ID, "defaultOutputMode", {
+    name: "Default output detail",
+    hint: "Full dossier includes every generated detail; Table card keeps only immediately useful play information.",
+    scope: "client", config: true, type: String, default: "full",
+    choices: { full: "Full dossier", table: "Table card" }
+  });
+  game.settings.register(MODULE_ID, "defaultNameMode", {
+    name: "Default name generation",
+    hint: "Use curated names, culture-specific fragment-built names, or an even mix.",
+    scope: "client", config: true, type: String, default: "curated",
+    choices: { curated: "Curated names", mixed: "Mixed (50/50)", fragments: "Fragment-built names" }
+  });
+  game.settings.register(MODULE_ID, "defaultNameFragmentCount", {
+    name: "Default name fragment count",
+    hint: "Auto favours two- and three-fragment given names. Ordained Templar virtue-names ignore this setting.",
+    scope: "client", config: true, type: String, default: "auto",
+    choices: { auto: "Auto (weighted)", 2: "2 fragments", 3: "3 fragments", 4: "4 fragments" }
+  });
   game.settings.register(MODULE_ID, "actorTemplateMap", {
     name: "Actor templates by capability",
     hint: 'Optional JSON mapping of capability tiers to Actor UUIDs, for example {"Veteran":"Actor.abc123"}.',
@@ -535,7 +728,7 @@ Hooks.once("init", () => {
   });
   game.settings.register(MODULE_ID, "customDataOverrides", {
     name: "Custom generator data",
-    hint: "Optional JSON additions or replacements for local campaign names, descriptors, professions, hooks, drives, and presets.",
+    hint: "Optional JSON additions or replacements for local campaign names, name fragments, descriptors, professions, hooks, drives, and presets.",
     scope: "world", config: true, type: String, default: "{}"
   });
 });
@@ -559,6 +752,7 @@ Hooks.once("ready", () => {
     return NPCEngine.applyOverrides(bundled, overrides);
   };
   game.wraeclastGen = {
+    schemaVersion: DATA_SCHEMA_VERSION,
     open: openGenerator,
     generate: (constraints) => constraints === undefined
       ? openGenerator()
@@ -575,6 +769,8 @@ Hooks.once("ready", () => {
         generatorApp.history = [];
         generatorApp.historyIndex = -1;
         generatorApp.editing = false;
+        generatorApp.sectionPins = emptySectionPins();
+        generatorApp.recent.clear();
         await generatorApp.render({ force: true });
       }
     }

@@ -248,6 +248,112 @@ addValues(names, "OrdainedName", "Oriathan", "Templar", split(
   "Abnegation|Adherence|Ardour|Candour|Chastity|Clemency|Concord|Constancy|Contrition|Devotion|Diligence|Discipline|Duty|Fidelity|Fortitude|Grace|Humility|Judgement|Mercy|Obedience|Patience|Penance|Providence|Purity|Rectitude|Remorse|Resolve|Reverence|Sacrifice|Temperance|Truth|Valour|Verity|Vigilance|Zeal|Charity|Forbearance|Honour|Radiance|Steadfastness"
 ), 1);
 
+// Position-specific fragment pools provide combinatorial names without mixing
+// phonetic material between cultures. Counts are literal fragment counts:
+// 2 = Start + End, 3 = Start + Middle + End, and
+// 4 = Start + Middle1 + Middle2 + End.
+const nameFragments = [];
+const fragmentGrammars = {
+  Oriathan: {
+    Given2Start: "ael|aur|cass|flav|liv|corv|helv|jun|marc|val",
+    Given2End: "ia|ina|illa|era|etta|ian|ius|on|or|us",
+    Given3Start: "ae|ca|do|fa|ju|au|cla|se|ti|va",
+    Given3Middle: "li|ssi|mi|bri|sti|rel|d|ver|tri|ron",
+    Given3End: "a|na|ella|era|ta|ian|ius|or|us|um",
+    Given4Start: "a|ca|do|fa|ju|cor|mar|oc|pe|se",
+    Given4Middle1: "ure|ssi|mi|bri|sti|ne|cel|ta|ro|ve",
+    Given4Middle2: "li|an|ti|ci|ni|li|ri|vi|ni|ti",
+    Given4End: "a|na|ella|era|ta|an|or|us|um|ax"
+  },
+  Azmeri: {
+    Given2Start: "ael|aer|bran|car|rhian|an|bryn|cer|el|tal",
+    Given2End: "en|eth|wen|wyn|ys|a|id|in|on|or",
+    Given3Start: "a|be|ge|gwe|ne|ca|de|ie|ma|ta",
+    Given3Middle: "der|ri|ll|wyn|lir|ra|th|red|gan|mor",
+    Given3End: "en|eth|in|yn|wen|a|an|is|on|ydd",
+    Given4Start: "b|br|g|gw|rh|c|d|ll|m|t",
+    Given4Middle1: "a|e|y|wy|i|a|e|i|o|y",
+    Given4Middle2: "n|ll|r|th|an|rad|wyn|wel|r|esi",
+    Given4End: "en|eth|wen|yn|on|oc|an|n|d|s"
+  },
+  Ezomyte: {
+    Given2Start: "ail|alas|caile|eogh|gille|bair|donn|fionn|lach|ruar",
+    Given2End: "a|an|ean|in|na|air|ach|idh|aid|aidh",
+    Given3Start: "c|d|e|l|m|b|f|g|n|r",
+    Given3Middle: "aile|eala|eann|iona|uire|air|ionn|omh|igh|aor",
+    Given3End: "a|an|ean|in|na|ach|adh|air|idh|us",
+    Given4Start: "c|e|m|s|u|b|d|f|g|r",
+    Given4Middle1: "ai|ea|io|ì|ui|a|ao|io|ua|o",
+    Given4Middle2: "l|n|r|ll|mh|ch|nn|rr|gh|dh",
+    Given4End: "a|an|ean|in|na|ach|adh|air|idh|us"
+  },
+  Maraketh: {
+    Given2Start: "ad|ar|dar|far|mehr|bah|jam|khor|sah|zar",
+    Given2End: "a|an|eh|in|ya|ad|id|ir|ish|zadeh",
+    Given3Start: "a|da|fa|ma|na|ba|ja|ka|sha|za",
+    Given3Middle: "far|har|man|mir|ran|hir|rid|ruz|zad|vin",
+    Given3End: "a|an|eh|in|ya|ad|i|ir|un|zad",
+    Given4Start: "a|da|far|meh|ni|b|j|kh|sh|z",
+    Given4Middle1: "re|ri|za|ra|loo|ak|am|or|ah|ar",
+    Given4Middle2: "z|u|n|b|f|t|sh|r|z|ri",
+    Given4End: "ou|sh|a|i|ar|ash|id|ush|zad|n"
+  },
+  Karui: {
+    Given2Start: "aro|hine|kaha|kiri|mana|mara|nga|rau|tai|whaka",
+    Given2End: "ha|i|ia|ka|wa|mau|ngi|noa|roa|rua",
+    Given3Start: "a|hi|ka|ma|wa|ha|nga|ra|ta|wha",
+    Given3Middle: "hae|hi|ma|na|ra|hau|ho|reo|tai|whi",
+    Given3End: "a|hi|ka|ra|wa|ma|nga|noa|ri|rua",
+    Given4Start: "h|k|m|r|t|p|w|wh|ng|n",
+    Given4Middle1: "a|e|i|o|u|ai|ao|au|ia|ui",
+    Given4Middle2: "h|k|m|n|r|ng|t|w|wh|p",
+    Given4End: "a|i|ana|aro|ora|e|o|u|ai|iri"
+  },
+  Vaal: {
+    Given2Start: "acat|chal|citlal|coat|izta|matlal|nec|tec|xih|yolo",
+    Given2End: "al|i|li|tl|tli|an|in|ya|zin|otl",
+    Given3Start: "a|chi|co|i|ma|ne|te|tla|xi|yo",
+    Given3Middle: "cat|mal|nal|och|poc|tec|tzin|hua|xil|yol",
+    Given3End: "a|i|li|tl|tli|al|an|in|ya|otl",
+    Given4Start: "c|ch|m|t|x|h|n|qu|tl|y",
+    Given4Middle1: "a|i|o|la|och|e|ua|ui|ia|eo",
+    Given4Middle2: "c|l|n|t|tl|ch|m|tz|x|y",
+    Given4End: "a|i|li|tli|ya|al|an|in|otl|zin"
+  },
+  Kalguur: {
+    Given2Start: "ael|bryn|eir|mael|vael|dag|fen|hal|ragn|sig",
+    Given2End: "a|in|ith|rik|yn|dis|dra|run|var|or",
+    Given3Start: "ae|bry|ei|kae|mae|dae|frey|ny|thal|vey",
+    Given3Middle: "dr|li|n|ri|yl|ra|va|vin|sk|ld",
+    Given3End: "a|el|in|ith|yn|dis|en|rik|run|var",
+    Given4Start: "a|b|k|m|v|d|f|h|s|th",
+    Given4Middle1: "ae|ei|i|y|ia|a|au|e|o|ui",
+    Given4Middle2: "l|n|r|v|th|ld|nd|rn|sk|vr",
+    Given4End: "a|en|in|ith|yn|dis|rik|run|var|or"
+  },
+  Stygian: {
+    Given2Start: "akh|dhec|fha|ghal|marz|cassh|khlav|nerh|thul|vhar",
+    Given2End: "a|ia|in|ra|en|ar|kh|on|us|ius",
+    Given3Start: "a|dhe|fha|gha|mar|ca|kha|ne|tha|vha",
+    Given3Middle: "kh|vr|th|rz|rh|ss|lv|ph|zh|rr",
+    Given3End: "a|ia|in|ra|en|ar|ius|on|us|ekh",
+    Given4Start: "c|dh|fh|m|vh|a|gh|kh|n|th",
+    Given4Middle1: "a|e|i|ia|ou|ae|iu|o|u|ei",
+    Given4Middle2: "ss|th|lv|rz|rh|kh|vr|ph|rr|zh",
+    Given4End: "a|ia|in|ius|ra|ar|en|on|us|ekh"
+  }
+};
+for (const [culture, categories] of Object.entries(fragmentGrammars)) {
+  for (const [category, values] of Object.entries(categories)) {
+    const fragments = split(values);
+    const count = category.match(/^Given([234])/)?.[1];
+    if (!count || fragments.length !== 10) throw new Error(`Invalid ${culture} ${category} fragment grammar`);
+    fragments.forEach((value, index) => {
+      nameFragments.push(row(category, culture, `${count}-${index < 5 ? "a" : "b"}`, value, 1));
+    });
+  }
+}
+
 const descriptors = [];
 const descriptorPools = {
   Appearance: "Acne-scarred|Athletic|Battered travel cloak|Beautiful|Blind in one eye|Broad-shouldered|Broken nose|Burn-scarred|Calloused hands|Carefully braided hair|Ceremonial tattoos|Close-cropped hair|Crooked smile|Frail|Freckled|Grime-streaked|Heavy-set|Immaculately groomed|Ink-stained fingers|Lean and corded|Missing finger|Narrow-shouldered|Old blade scars|Patchwork armour|Pierced ears|Powerfully built|Ritual scarification|Shaven-headed|Soot-blackened|Stooped|Sun-darkened|Towering|Very short|Waist-length hair|Weathered by decades|Youthful face",
@@ -838,6 +944,7 @@ const factions = {
 await Promise.all([
   writeFile(path.join(dataDir, "main_tables.csv"), csv(main), "utf8"),
   writeFile(path.join(dataDir, "names.csv"), csv(names), "utf8"),
+  writeFile(path.join(dataDir, "name_fragments.csv"), csv(nameFragments), "utf8"),
   writeFile(path.join(dataDir, "descriptors.csv"), csv(descriptors, ["Category", "Parent", "SubParent", "Value", "Weight", "Species", "Ages", "ProfessionCategories"]), "utf8"),
   writeFile(path.join(dataDir, "professions.csv"), csv(professions), "utf8"),
   writeFile(path.join(dataDir, "hooks.csv"), csv(hooks), "utf8"),
@@ -846,4 +953,4 @@ await Promise.all([
   writeFile(path.join(dataDir, "factions.json"), `${JSON.stringify(factions, null, 2)}\n`, "utf8")
 ]);
 
-console.log(`Wrote ${main.length} main rows, ${names.length} names, ${descriptors.length} descriptors, ${professions.length} professions, ${hooks.length} hooks, and ${drives.length} narrative drives.`);
+console.log(`Wrote ${main.length} main rows, ${names.length} names, ${nameFragments.length} name fragments, ${descriptors.length} descriptors, ${professions.length} professions, ${hooks.length} hooks, and ${drives.length} narrative drives.`);

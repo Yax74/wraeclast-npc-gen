@@ -19,6 +19,12 @@ The validator rejects exact names reserved for established GGG or campaign chara
 
 The check is deliberately exact-name based. Ordinary real-world names can occur independently in a population, but distinctive established character names should not appear as random NPC identities.
 
+## Fragment construction policy
+
+Version 2.4 retains the curated lists as the default and adds an explicitly optional combinatorial mode. Each culture has separate 2-, 3-, and 4-position grammars; each grammar is divided into two compatible phonetic families so an opening is not freely combined with an unrelated ending. Fragments are never shared across cultures.
+
+The grammar expands incidental-NPC variety rather than claiming that constructed results are historical real-world names or canonical GGG vocabulary. It changes only the given name. Existing surname probabilities and forms still apply, Maraketh akhara remain separate from surnames, and ordained Templars continue to use only bestowed virtue-names. Generated candidates are length-checked and rejected if either the given name or full name collides exactly with the reserved-character set.
+
 ## Public references
 
 - [Karui](https://www.poewiki.net/wiki/Karui)

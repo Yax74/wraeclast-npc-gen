@@ -13,6 +13,7 @@ const readCSV = async (name) => NPCEngine.parseCSVText(
 const tables = {
   main: await readCSV("main_tables"),
   names: await readCSV("names"),
+  nameFragments: await readCSV("name_fragments"),
   descriptors: await readCSV("descriptors"),
   professions: await readCSV("professions"),
   hooks: await readCSV("hooks"),
@@ -64,6 +65,7 @@ test("campaign data passes structural and lore validation", () => {
     ["Stygian"]
   );
   assert.equal(tables.names.length, 900);
+  assert.equal(tables.nameFragments.length, 720);
   assert.equal(tables.professions.length, 834);
   assert.equal(tables.descriptors.length, 968);
   assert.equal(tables.hooks.length, 594);
@@ -79,6 +81,9 @@ test("campaign data passes structural and lore validation", () => {
     assert.ok(tables.names.filter((entry) => entry.parent === culture && entry.category === "Name").length >= 60);
     assert.ok(tables.names.filter((entry) => entry.parent === culture && entry.category === "Surname").length >= 40);
     assert.ok(tables.descriptors.filter((entry) => entry.parent === culture && entry.category === "Voice").length >= 12);
+    for (const category of Object.values(NPCEngine.NAME_FRAGMENT_CATEGORIES).flat()) {
+      assert.ok(tables.nameFragments.filter((entry) => entry.parent === culture && entry.category === category).length >= 8);
+    }
   }
   assert.ok(tables.professions.filter((entry) => entry.parent === "Stygian").length >= 50);
   assert.ok(tables.hooks.filter((entry) => entry.parent === "Stygian").length >= 30);
@@ -346,6 +351,8 @@ test("locks and API constraints reject impossible combinations", () => {
   assert.equal(youth.age, "Child");
   assert.equal(youth.professionCategory, "Youth");
   assert.throws(() => NPCEngine.generateNPC({ preset: "not-real" }, tables, rng(4)), /Unknown preset/);
+  assert.throws(() => NPCEngine.generateNPC({ nameMode: "markov" }, tables, rng(4)), /Unknown nameMode/);
+  assert.throws(() => NPCEngine.generateNPC({ nameMode: "fragments", nameFragmentCount: 5 }, tables, rng(4)), /Unknown nameFragmentCount/);
 });
 
 test("ordained Templars use bestowed virtue-names while lay members keep birth names", () => {
@@ -375,6 +382,94 @@ test("ordained Templars use bestowed virtue-names while lay members keep birth n
   }
   assert.ok(ordained > 600, `only ${ordained} ordained Templars generated`);
   assert.ok(lay > 2500, `only ${lay} lay Templars generated`);
+});
+
+test("culture-specific fragment modes build two-, three-, and four-part given names", () => {
+  const random = rng(6419);
+  const cultures = ["Oriathan", "Azmeri", "Ezomyte", "Maraketh", "Karui", "Vaal", "Kalguur", "Stygian"];
+  const affiliations = { Karui: "Karui", Stygian: "Stygian" };
+  for (const culture of cultures) {
+    for (const count of [2, 3, 4]) {
+      const seen = new Set();
+      for (let i = 0; i < 160; i += 1) {
+        const npc = NPCEngine.generateNPC({
+          culture,
+          affiliation: affiliations[culture] || "Unaffiliated",
+          age: "Adult",
+          nameMode: "fragments",
+          nameFragmentCount: count
+        }, tables, random);
+        const raw = npc.nameFragments.join("");
+        assert.equal(npc.nameMode, "fragments");
+        assert.equal(npc.nameSource, "fragments");
+        assert.equal(npc.nameFragmentCountUsed, count);
+        assert.equal(npc.nameFragments.length, count);
+        assert.match(npc.nameFragmentFamily, new RegExp(`^${count}-[ab]$`));
+        assert.equal(npc.firstName, `${raw[0].toLocaleUpperCase()}${raw.slice(1)}`);
+        assert.ok(Array.from(raw).length >= ({ 2: 4, 3: 5, 4: 6 })[count]);
+        assert.match(npc.nameStyle, new RegExp(`\\(${count} fragments\\)$`));
+        assert.equal(NPCEngine.RESERVED_NAMES.has(npc.firstName.toLocaleLowerCase()), false);
+        assert.equal(NPCEngine.RESERVED_NAMES.has(npc.fullName.toLocaleLowerCase()), false);
+        seen.add(npc.firstName);
+      }
+      const minimum = ({ 2: 40, 3: 100, 4: 135 })[count];
+      assert.ok(seen.size >= minimum, `${culture} ${count}-fragment variety was ${seen.size}`);
+    }
+  }
+});
+
+test("name modes keep their weights, surname rules, and ordained Templar override", () => {
+  const random = rng(6420);
+  let fragments = 0;
+  for (let i = 0; i < 4000; i += 1) {
+    const npc = NPCEngine.generateNPC({ culture: "Azmeri", age: "Adult", nameMode: "mixed" }, tables, random);
+    if (npc.nameSource === "fragments") fragments += 1;
+  }
+  assert.ok(fragments / 4000 > 0.46 && fragments / 4000 < 0.54, `fragment share was ${fragments / 4000}`);
+
+  const autoCounts = new Map([[2, 0], [3, 0], [4, 0]]);
+  for (let i = 0; i < 5000; i += 1) {
+    const npc = NPCEngine.generateNPC({
+      culture: "Karui",
+      affiliation: "Karui",
+      age: "Adult",
+      nameMode: "fragments",
+      nameFragmentCount: "auto"
+    }, tables, random);
+    autoCounts.set(npc.nameFragmentCountUsed, autoCounts.get(npc.nameFragmentCountUsed) + 1);
+  }
+  assert.ok(autoCounts.get(2) / 5000 > 0.42 && autoCounts.get(2) / 5000 < 0.48);
+  assert.ok(autoCounts.get(3) / 5000 > 0.37 && autoCounts.get(3) / 5000 < 0.43);
+  assert.ok(autoCounts.get(4) / 5000 > 0.12 && autoCounts.get(4) / 5000 < 0.18);
+
+  let marakethSurnames = 0;
+  for (let i = 0; i < 4000; i += 1) {
+    const npc = NPCEngine.generateNPC({
+      culture: "Maraketh",
+      affiliation: "Unaffiliated",
+      age: "Adult",
+      nameMode: "fragments"
+    }, tables, random);
+    if (npc.surname) marakethSurnames += 1;
+  }
+  assert.ok(marakethSurnames / 4000 > 0.22 && marakethSurnames / 4000 < 0.28);
+
+  let ordained;
+  for (let i = 0; i < 500 && !ordained; i += 1) {
+    const npc = NPCEngine.generateNPC({
+      culture: "Oriathan",
+      affiliation: "Templar",
+      age: "Adult",
+      nameMode: "fragments",
+      nameFragmentCount: 4
+    }, tables, random);
+    if (npc.ordination === "Ordained") ordained = npc;
+  }
+  assert.ok(ordained, "expected at least one ordained Templar");
+  assert.equal(ordained.nameSource, "ordained");
+  assert.equal(ordained.nameFragmentCountUsed, 0);
+  assert.deepEqual(ordained.nameFragments, []);
+  assert.match(ordained.fullName, /^Templar /);
 });
 
 test("Oriath Militia is distinct from the Templars and uses militia content", () => {
@@ -446,6 +541,14 @@ test("section rerolls preserve identity", () => {
     const rerolled = NPCEngine.rerollSection(npc, section, identity, tables, random);
     for (const [key, value] of Object.entries(identity)) assert.equal(rerolled[key], value);
   }
+  const fragmentName = NPCEngine.rerollSection(npc, "name", {
+    ...identity,
+    nameMode: "fragments",
+    nameFragmentCount: 4
+  }, tables, random);
+  assert.equal(fragmentName.nameMode, "fragments");
+  assert.equal(fragmentName.nameSource, "fragments");
+  assert.equal(fragmentName.nameFragmentCountUsed, 4);
 });
 
 test("batch size is bounded for UI safety", () => {

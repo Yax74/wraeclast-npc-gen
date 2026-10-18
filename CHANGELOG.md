@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.5.0
+
+### Cultural name construction
+
+- Added 720 position-specific name fragments arranged into separate phonetic families for all eight cultures.
+- Added Curated, Mixed, and Fragment-built name modes with Auto, 2-, 3-, and 4-fragment controls; fragment mode changes only the given name and preserves each culture's surname rules.
+- Kept ordained Templar virtue-names authoritative regardless of the selected fragment controls and exposed the actual fragment breakdown in the preview.
+- Added validation for complete culture/count/family fragment grammars, minimum generated lengths, reserved-name avoidance, and mode-specific rerolls.
+
+### Quality of life
+
+- Added independent pins for Name, Profession, Appearance, Personality, Hooks, and Immediate Use. Regenerating with any pin active preserves the current NPC's identity and replaces only unpinned sections.
+- Added bounded session memory that favours names, professions, descriptors, hooks, and immediate-use details not seen in the previous 20 results, plus a manual clear action.
+- Added Full dossier and Table card output modes for chat, Journals, Actor biographies, and clipboard text.
+- Added an optional **Actor + Forge** action when Monster Forge is enabled; the created NPC Actor opens directly in Monster Forge, which can read its generated species flag.
+- Added schema and generator versions to generated Actor and Journal flags so future migrations can distinguish saved data formats.
+
+### Validation
+
+- Expanded deterministic validation to 25 tests, including name fragment construction and bounded repetition-memory behaviour.
+
 ## 2.4.0
 
 ### Maraketh faction expansion
