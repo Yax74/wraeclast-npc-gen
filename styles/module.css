@@ -450,3 +450,70 @@
     flex: 1 1 100%;
   }
 }
+ 
+
+/* v2.5.1 — split, independently scrolling workbench. */
+.wraeclast-command-bar {
+  display: flex; flex: 0 0 auto; align-items: center; gap: 10px; min-width: 0;
+  padding: 9px 14px; border-bottom: 1px solid rgba(184,149,85,.48);
+  background: linear-gradient(180deg,rgba(63,41,33,.96),rgba(40,27,24,.97));
+}
+#wraeclast-npc-generator .wraeclast-toggle-settings {
+  flex: 0 0 auto; min-height: 37px; padding: 5px 11px; color: #ead6aa;
+}
+.wraeclast-command-status {
+  display: flex; flex: 1 1 180px; min-width: 0; flex-direction: column;
+  gap: 2px; color: #e0d4c0;
+}
+.wraeclast-command-status strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .86rem; }
+.wraeclast-command-status small { color: #bcae9a; font-size: .7rem; }
+#wraeclast-npc-generator .wraeclast-command-bar .generate-button {
+  flex: 0 1 250px; min-height: 37px; padding: 4px 12px; white-space: nowrap; font-size: 1rem;
+}
+#wraeclast-npc-generator .wraeclast-command-bar .clear-recent-button { flex: 0 0 auto; min-height: 37px; }
+.wraeclast-workspace {
+  display: grid; grid-template-columns: minmax(300px,35%) minmax(0,1fr);
+  flex: 1 1 auto; min-height: 0; min-width: 0; overflow: hidden;
+}
+.wraeclast-controls-hidden .wraeclast-workspace { grid-template-columns: minmax(0,1fr); }
+.wraeclast-workspace .wraeclast-controls[hidden] { display: none !important; }
+.wraeclast-workspace .wraeclast-controls {
+  min-height: 0; min-width: 0; overflow-x: hidden; overflow-y: auto;
+  overscroll-behavior: contain; padding: 12px 13px 16px;
+  border-right: 1px solid rgba(184,149,85,.42); border-bottom: 0;
+}
+.wraeclast-workspace .wraeclast-results {
+  min-height: 0; min-width: 0; overflow-x: hidden; overflow-y: auto;
+  padding: 12px 14px 20px; overscroll-behavior: contain;
+}
+.wraeclast-panel-title {
+  margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(184,149,85,.35);
+  color: #d8c4a3; font: 600 1rem "Modesto Condensed","Palatino Linotype",serif;
+}
+.wraeclast-workspace .wraeclast-toolbar,
+.wraeclast-workspace .wraeclast-filter-grid { grid-template-columns: minmax(0,1fr); gap: 8px; }
+.wraeclast-workspace .wraeclast-controls label { font-size: .72rem; }
+.wraeclast-workspace .wraeclast-controls select { min-height: 30px; }
+.wraeclast-help {
+  min-width: 0; border: 1px solid rgba(184,149,85,.3); border-radius: 4px;
+  padding: 7px 9px; margin: 8px 0; color: #d6c9b7;
+}
+.wraeclast-help summary { cursor: pointer; font-size: .8rem; font-weight: 650; }
+.wraeclast-help summary i { margin-right: 5px; color: #b89555; }
+.wraeclast-help p { margin: 8px 0 2px !important; }
+.wraeclast-workspace .preview-grid { grid-template-columns: repeat(auto-fit,minmax(min(100%,250px),1fr)); }
+.wraeclast-workspace .preview-grid .span-two { grid-column: 1 / -1; }
+.wraeclast-workspace .narrative-grid,
+.wraeclast-workspace .narrative-edit-grid { grid-template-columns: repeat(auto-fit,minmax(min(100%,215px),1fr)); }
+@media (max-width: 750px) {
+  .wraeclast-command-bar { flex-wrap: wrap; gap: 6px; padding: 7px 9px; }
+  .wraeclast-command-status { flex-basis: 120px; }
+  #wraeclast-npc-generator .wraeclast-command-bar .generate-button { flex: 1 1 190px; }
+  .wraeclast-workspace { grid-template-columns: minmax(0,1fr); position: relative; }
+  .wraeclast-workspace .wraeclast-controls {
+    position: absolute; inset: 0 auto 0 0; z-index: 2;
+    width: min(360px,90%); max-width: 90%; background: #241c19;
+    box-shadow: 4px 0 18px rgba(0,0,0,.6);
+  }
+  .wraeclast-workspace .wraeclast-results { grid-row: 1; grid-column: 1; }
+}

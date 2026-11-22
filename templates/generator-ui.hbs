@@ -1,4 +1,4 @@
-<div class="wraeclast-generator-body">
+<div class="wraeclast-generator-body{{#unless showControls}} wraeclast-controls-hidden{{/unless}}">
   {{#if error}}
   <div class="wraeclast-error" role="alert">
     <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> {{error}}
@@ -6,7 +6,22 @@
   {{/if}}
 
   {{#if ready}}
-  <section class="wraeclast-controls" aria-label="Generator controls">
+  <div class="wraeclast-command-bar">
+    <button type="button" class="wraeclast-toggle-settings" data-action="toggleControls" aria-controls="wraeclast-settings" aria-expanded="{{#if showControls}}true{{else}}false{{/if}}">
+      <i class="fa-solid fa-sliders" aria-hidden="true"></i> {{#if showControls}}Hide settings{{else}}Show settings{{/if}}
+    </button>
+    <div class="wraeclast-command-status">
+      <strong>{{presetLabel}}</strong>
+      <small>{{lockedCount}} locked filter(s)</small>
+    </div>
+    <button type="button" class="generate-button" data-action="generate"><i class="fa-solid fa-dice" aria-hidden="true"></i> {{generateLabel}}</button>
+    <button type="button" class="clear-recent-button" data-action="clearRecent" title="Allow recently generated names and details again" {{#unless recentResultCount}}disabled{{/unless}}>
+      <i class="fa-solid fa-eraser" aria-hidden="true"></i> Clear recent{{#if recentResultCount}} ({{recentResultCount}}){{/if}}
+    </button>
+  </div>
+  <div class="wraeclast-workspace">
+  <section class="wraeclast-controls" id="wraeclast-settings" aria-label="Generator controls" {{#unless showControls}}hidden{{/unless}}>
+    <h2 class="wraeclast-panel-title"><i class="fa-solid fa-sliders" aria-hidden="true"></i> Generation settings</h2>
     <div class="wraeclast-toolbar">
       <label class="wide-field">
         <span>Campaign preset</span>
@@ -52,9 +67,11 @@
 
     {{#if presetDescription}}<p class="preset-description">{{presetDescription}}</p>{{/if}}
 
-    <p class="name-generation-hint">Fragment mode builds the given name from culture-specific positional groups; existing surname frequency and form remain unchanged. Ordained Templars always use bestowed virtue-names. These controls apply on the next generation or name reroll.</p>
-
-    <p class="hint"><i class="fa-solid fa-lock" aria-hidden="true"></i> Choosing a value locks it. Locking a random field captures the first preview; unlocking returns it to weighted random.</p>
+    <details class="wraeclast-help">
+      <summary><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Naming and lock rules</summary>
+      <p class="name-generation-hint">Fragment mode builds the given name from culture-specific positional groups; existing surname frequency and form remain unchanged. Ordained Templars always use bestowed virtue-names. These controls apply on the next generation or name reroll.</p>
+      <p class="hint"><i class="fa-solid fa-lock" aria-hidden="true"></i> Choosing a value locks it. Locking a random field captures the first preview; unlocking returns it to weighted random.</p>
+    </details>
     {{#if hasPinnedSections}}<p class="pin-hint"><i class="fa-solid fa-thumbtack" aria-hidden="true"></i> {{pinnedSectionCount}} section(s) pinned. Regeneration keeps this NPC's identity and replaces only unpinned sections.</p>{{/if}}
 
     <div class="wraeclast-filter-grid">
@@ -171,14 +188,6 @@
       </label>
     </div>
 
-    <div class="generate-row">
-      <button type="button" class="generate-button" data-action="generate">
-        <i class="fa-solid fa-dice" aria-hidden="true"></i> {{generateLabel}}
-      </button>
-      <button type="button" class="clear-recent-button" data-action="clearRecent" title="Allow recently generated names and details again" {{#unless recentResultCount}}disabled{{/unless}}>
-        <i class="fa-solid fa-eraser" aria-hidden="true"></i> Clear recent{{#if recentResultCount}} ({{recentResultCount}}){{/if}}
-      </button>
-    </div>
   </section>
 
   <section class="wraeclast-results" aria-live="polite">
@@ -295,5 +304,6 @@
     </div>
     {{/each}}
   </section>
+  </div>
   {{/if}}
 </div>

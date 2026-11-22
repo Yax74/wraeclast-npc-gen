@@ -8,7 +8,7 @@ import {
 } from "./generator-qol.js";
 
 const MODULE_ID = "wraeclast-npc-gen";
-const MODULE_VERSION = "2.5.0";
+const MODULE_VERSION = "2.5.1";
 const DATA_SCHEMA_VERSION = 1;
 const DATA_PATH = `modules/${MODULE_ID}/data`;
 const FILTER_FIELDS = [
@@ -25,7 +25,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     id: "wraeclast-npc-generator",
     classes: ["wraeclast-npc-generator"],
     tag: "form",
-    position: { width: 860, height: 800 },
+    position: { width: 1100, height: 800 },
     window: {
       title: "Wraeclast NPC Generator",
       icon: "fa-solid fa-skull",
@@ -38,6 +38,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     },
     actions: {
       generate: this._onGenerate,
+      toggleControls: this._onToggleControls,
       toggleLock: this._onToggleLock,
       toggleSectionPin: this._onToggleSectionPin,
       clearRecent: this._onClearRecent,
@@ -56,7 +57,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
   static PARTS = {
     main: {
       template: `modules/${MODULE_ID}/templates/generator-ui.hbs`,
-      scrollable: [".wraeclast-results"]
+      scrollable: [".wraeclast-controls", ".wraeclast-results"]
     }
   };
 
@@ -69,6 +70,9 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     this.historyIndex = -1;
     this.editing = false;
     this.error = "";
+    this.showControls = true;
+    this._panelScroll = null;
+    this._previewToTop = false;
     this.filters = Object.fromEntries(FILTER_FIELDS.map((field) => [field, ""]));
     this.filters.preset = game.settings.get(MODULE_ID, "defaultPreset") || "general";
     this.chatMode = game.settings.get(MODULE_ID, "chatRollMode") || "gmroll";
@@ -95,6 +99,9 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
       return foundry.utils.mergeObject(context, {
         ready: true,
         error: this.error,
+        showControls: this.showControls,
+        presetLabel: activePreset?.label ?? "General Wraeclast",
+        lockedCount: FILTER_FIELDS.filter(field => this.locks[field]).length,
         filters: this.filters,
         locks: this.locks,
         sectionPins: this.sectionPins,
@@ -174,8 +181,25 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     }
   }
 
+  async _preRender(context, options) {
+    const root = this.element;
+    this._panelScroll = root ? {
+      settings: root.querySelector(".wraeclast-controls")?.scrollTop ?? 0,
+      preview: root.querySelector(".wraeclast-results")?.scrollTop ?? 0
+    } : null;
+    await super._preRender(context, options);
+  }
+
   async _onRender(context, options) {
     await super._onRender(context, options);
+    if (this._panelScroll) {
+      const settings = this.element.querySelector(".wraeclast-controls");
+      const preview = this.element.querySelector(".wraeclast-results");
+      if (settings) settings.scrollTop = this._panelScroll.settings;
+      if (preview) preview.scrollTop = this._previewToTop ? 0 : this._panelScroll.preview;
+    }
+    this._panelScroll = null;
+    this._previewToTop = false;
     for (const element of this.element.querySelectorAll("[data-filter]")) {
       element.addEventListener("change", async (event) => {
         const field = event.currentTarget.dataset.filter;
@@ -238,6 +262,12 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
     event.preventDefault();
   }
 
+  static async _onToggleControls() {
+    this.#syncTransientFormState();
+    this.showControls = !this.showControls;
+    await this.render({ force: true });
+  }
+
   static async _onGenerate() {
     await this.#run(async () => {
       this.#syncTransientFormState();
@@ -265,6 +295,7 @@ export class WraeclastNPCGenerator extends HandlebarsApplicationMixin(Applicatio
       this.#commit(npc);
       this.editing = false;
       this.error = "";
+      this._previewToTop = true;
       await this.render({ force: true });
     });
   }

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.5.1
+
+- Replaced the vertical, controls-first layout with a two-pane workspace: scrollable filters on the left and full-height NPC preview on the right.
+- Added Show/Hide settings, with Generate and Clear Recent available in a fixed toolbar.
+- Moved long naming/lock guidance behind an expandable help section and adapted preview columns to the available pane width.
+- Preserved both panels' scroll positions when selections rerender the interface, while returning new NPC previews to the top.
+- Increased default window width and added narrow-window styling.
+
+
 ## 2.5.0
 
 ### Cultural name construction

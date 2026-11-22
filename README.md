@@ -2,6 +2,8 @@
 
 A Foundry VTT 13 module for generating lore-aware NPCs for a Wraeclast D&D campaign. Version 2.5 adds culture-specific fragment-built names, section pins, recent-result repetition control, compact table output, and an optional Monster Forge handoff on top of version 2.4's Maraketh expansion.
 
+**Interface (v2.5.1):** The generator opens as a split workbench: an independently scrolling settings panel on the left and a full-height NPC preview on the right. Use **Hide settings** to give the preview the whole window, or **Show settings** to restore the filters. Generate and Clear Recent remain in the toolbar above both panes. On narrow windows, settings overlay the preview instead of pushing it below the fold.
+
 ## Install in Foundry
 
 In Foundry's **Add-on Modules** screen, choose **Install Module**, paste this manifest URL, and select **Install**:
